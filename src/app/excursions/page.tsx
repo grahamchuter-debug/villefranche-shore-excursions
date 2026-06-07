@@ -5,10 +5,10 @@ import { ContentPage } from "@/components/content-page";
 import { CruisePortDayPlanner } from "@/components/cruise-port-day-planner";
 import { featuredTour } from "@/lib/featured-tour";
 import {
+  featuredTourCoordinatedCoverage,
   featuredTourFacts,
   featuredTourGroupSizeLine,
-  featuredTourGuideMeetAdvice,
-  featuredTourMeetingPointLine,
+  featuredTourMeetingPointSummary,
 } from "@/lib/featured-tour-facts";
 import {
   ezeVillageRivieraCoastExcursion,
@@ -23,7 +23,7 @@ import { siteImages } from "@/lib/site-images";
 const pageMeta = {
   title: "Villefranche Shore Excursions | Small Group Monaco, Monte Carlo & Eze",
   description:
-    `Compare Villefranche shore excursions for cruise passengers. Our top pick: the ${featuredTour.fullName} (${featuredTourFacts.durationLabel.toLowerCase()}) with return-to-ship timing.`,
+    `Compare Villefranche shore excursions for cruise passengers. Our top pick: the ${featuredTour.fullName}, with return-to-ship timing.`,
   path: "/excursions",
   ogImage: siteImages.monacoHarbour,
   ogImageAlt:
@@ -41,7 +41,7 @@ const relatedLinks = [
 const faqs = [
   {
     question: "What is the best Villefranche shore excursion for cruise passengers?",
-    answer: `The ${featuredTour.fullName} is our top recommendation. It covers Monaco, Monte Carlo and Eze in ${featuredTourFacts.durationLabel.toLowerCase()} with a local guide and return-to-ship timing.`,
+    answer: `The ${featuredTour.fullName} is our top recommendation. It ${featuredTourCoordinatedCoverage} with a local guide and return-to-ship timing.`,
   },
   {
     question: "Should cruise passengers book Villefranche excursions in advance?",
@@ -51,7 +51,7 @@ const faqs = [
   {
     question: "How long do Villefranche shore excursions take?",
     answer:
-      "Duration is confirmed at booking for each tour. All durations exclude tender transfer time to and from the ship — allow generous time each way.",
+      "Duration is confirmed before booking for each tour. All durations exclude tender transfer time to and from the ship — allow generous time each way.",
   },
   {
     question: "Do Villefranche tours guarantee return to the cruise ship?",
@@ -89,10 +89,10 @@ export default function ExcursionsPage() {
         </p>
         <ul>
           <li>Three French Riviera destinations in one cruise day</li>
-          <li>{featuredTourGroupSizeLine} · {featuredTourFacts.vehicle.largerGroupsNote}</li>
-          <li>{featuredTourFacts.durationLabel} tour time (excluding tender transfers)</li>
+          <li>{featuredTourGroupSizeLine}</li>
+          <li>{featuredTourFacts.durationLabel} (excluding tender transfers)</li>
           <li>Best when you have enough usable hours ashore after tender time is counted</li>
-          <li>Meet at {featuredTourMeetingPointLine} — {featuredTourGuideMeetAdvice}</li>
+          <li>{featuredTourMeetingPointSummary}</li>
           <li>
             <Link href={featuredTour.path}>View full tour details</Link>
           </li>

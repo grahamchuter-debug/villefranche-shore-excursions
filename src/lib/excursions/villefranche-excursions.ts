@@ -7,6 +7,7 @@ import {
   featuredTourMeetingInstructions,
   featuredTourMeetingPointLine,
 } from "@/lib/featured-tour-facts";
+import { featuredTourSampleItinerary } from "@/lib/featured-tour-content";
 import { operatorImageSlots } from "@/lib/operator-images";
 import { meetingPointPath, portGuidePath } from "@/lib/site-paths";
 import { ezeVillageAlt, siteImages } from "@/lib/site-images";
@@ -37,7 +38,7 @@ export const smallGroupMonacoMonteCarloEzeExcursion: ExcursionData = {
     { label: "Tender transfer", value: "Allow generous time each way — queues vary" },
     { label: "Fitness level", value: "Easy to moderate — some walking in Eze village" },
     { label: "Vehicle", value: featuredTourFacts.vehicle.label },
-    { label: "Group size", value: `${featuredTourGroupSizeLine} · ${featuredTourFacts.vehicle.largerGroupsNote}` },
+    { label: "Group size", value: featuredTourGroupSizeLine },
     { label: "Port call suitability", value: "Best when you have enough usable hours ashore after tender time" },
   ],
   gallery: [
@@ -87,7 +88,7 @@ export const smallGroupMonacoMonteCarloEzeExcursion: ExcursionData = {
     "Visits Monte Carlo — famous casino quarter and Riviera glamour when timing allows",
     "Visits Eze — medieval hill village with panoramic French Riviera views",
     "Designed for cruise passengers — built around tender timing and all-aboard pressure",
-    "Small-group van format — capacity confirmed at booking",
+    featuredTourGroupSizeLine,
     "Avoids the stress of planning train, taxi and bus connections independently",
     "Return-to-ship planning built around your cruise schedule",
   ],
@@ -105,37 +106,7 @@ export const smallGroupMonacoMonteCarloEzeExcursion: ExcursionData = {
     "Your guide monitors traffic on the coastal roads and adjusts the pace if queues at the tender pier are building",
     "A practical alternative to a private vehicle — shared small-group format at a lower cost per person",
   ],
-  itinerary: [
-    {
-      title: `Meet near the tender landing`,
-      description: `${featuredTourMeetingInstructions} ${featuredTourFacts.arrivalAdvice}`,
-    },
-    {
-      title: "Scenic coastal drive along the Côte d'Azur",
-      description:
-        "Travel by small vehicle along the Corniche roads with views of the French Riviera coastline. Your guide shares local context as you head toward Monaco.",
-    },
-    {
-      title: "Monaco & Monte Carlo",
-      description:
-        "Explore the Principality of Monaco and Monte Carlo — harbour views, palace district, and the famous casino quarter when timing allows.",
-    },
-    {
-      title: "Eze village",
-      description:
-        "Discover the medieval hilltop village of Eze — narrow stone lanes, artisan shops, and panoramic views over the Mediterranean.",
-    },
-    {
-      title: "Return to Villefranche",
-      description:
-        "Head back toward Villefranche-sur-Mer with your guide monitoring the schedule throughout the day.",
-    },
-    {
-      title: "Return to the tender pier",
-      description:
-        "Your guide ensures the group reaches the Villefranche harbour with time to queue for the return tender. Be at the pier well before all aboard — allow generous margin on busy days.",
-    },
-  ],
+  itinerary: featuredTourSampleItinerary,
   bestForDetails: [
     "First-time visitors who want the classic French Riviera experience in one port day",
     "Passengers with enough usable hours ashore once tender transfers are counted",
@@ -183,7 +154,7 @@ export const smallGroupMonacoMonteCarloEzeExcursion: ExcursionData = {
     },
     {
       question: "How do I find my guide?",
-      answer: `${featuredTourMeetingPointLine}. ${featuredTourFacts.meetingPoint.walkFromTender}. ${featuredTourGuideMeetAdvice}`,
+      answer: `${featuredTourMeetingInstructions} ${featuredTourFacts.arrivalAdvice}`,
     },
     {
       question: "Why book a small-group tour instead of going independently?",
@@ -229,8 +200,8 @@ export const monacoMonteCarloHighlightsExcursion: ExcursionData = {
   heroImageAlt: "Monaco harbour on the French Riviera",
   heroBadge: "⭐ Small Group Favourite",
   summary: {
-    duration: "Duration confirmed at booking",
-    meetingPoint: "Near the Villefranche tender landing — details on confirmation",
+    duration: featuredTourFacts.durationLabel,
+    meetingPoint: featuredTourFacts.meetingPoint.landmark,
     returnReassurance:
       "Coordinated return with tender queue buffer",
     bestFor:
@@ -239,7 +210,7 @@ export const monacoMonteCarloHighlightsExcursion: ExcursionData = {
   snapshotCards: [
     { label: "Tender transfer", value: "Allow generous time each way — queues vary" },
     { label: "Fitness level", value: "Easy" },
-    { label: "Group size", value: "Small group — capacity confirmed at booking" },
+    { label: "Group size", value: featuredTourGroupSizeLine },
     { label: "Port call suitability", value: "Best when you have enough usable hours ashore" },
   ],
   gallery: [
@@ -326,8 +297,8 @@ export const ezeVillageRivieraCoastExcursion: ExcursionData = {
   heroImageAlt: ezeVillageAlt,
   heroBadge: "⭐ French Riviera Highlights",
   summary: {
-    duration: "Duration confirmed at booking",
-    meetingPoint: "Near the Villefranche tender landing — details on confirmation",
+    duration: featuredTourFacts.durationLabel,
+    meetingPoint: featuredTourFacts.meetingPoint.landmark,
     returnReassurance:
       "Compact duration with buffer for tender return queue",
     bestFor:
@@ -336,7 +307,7 @@ export const ezeVillageRivieraCoastExcursion: ExcursionData = {
   snapshotCards: [
     { label: "Walking", value: "Moderate — uphill lanes in Eze village" },
     { label: "Fitness level", value: "Moderate — some uphill sections" },
-    { label: "Group size", value: "Small group — capacity confirmed at booking" },
+    { label: "Group size", value: featuredTourGroupSizeLine },
     { label: "Port call suitability", value: "Works when you have enough usable hours ashore" },
   ],
   gallery: [

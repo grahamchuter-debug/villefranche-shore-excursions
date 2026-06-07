@@ -100,8 +100,8 @@ export default function VillefrancheTenderInformationPage() {
         <p>
           For the recommended{" "}
           <Link href={featuredTour.path}>{featuredTour.fullName}</Link>, you
-          need enough usable hours ashore once tender time is counted. Duration
-          is {featuredTourFacts.durationLabel.toLowerCase()}.
+          need enough usable hours ashore once tender time is counted. Duration is
+          confirmed before booking.
         </p>
       </section>
 

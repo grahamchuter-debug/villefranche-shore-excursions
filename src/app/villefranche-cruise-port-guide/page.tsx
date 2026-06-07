@@ -54,7 +54,7 @@ const faqs = [
   },
   {
     question: "What is the best shore excursion for first-time visitors?",
-    answer: `The ${featuredTour.fullName} covers Monaco, Monte Carlo and Eze in ${featuredTourFacts.durationLabel.toLowerCase()} — ideal when you have enough usable hours ashore after tender delays.`,
+    answer: `The ${featuredTour.fullName} covers Monaco, Monte Carlo and Eze on a coordinated small-group excursion — ideal when you have enough usable hours ashore after tender delays.`,
   },
   {
     question: "How early should I return to the tender pier?",
@@ -215,9 +215,8 @@ export default function VillefrancheCruisePortGuidePage() {
             When your port call gives you enough usable time ashore, our
             recommendation is the{" "}
             <Link href={featuredTour.path}>{featuredTour.fullName}</Link>.
-            It covers Monaco, Monte Carlo and Eze in{" "}
-            {featuredTourFacts.durationLabel.toLowerCase()} on a coordinated
-            small-group excursion — with a meeting point near the tender landing
+            It covers Monaco, Monte Carlo and Eze on a coordinated
+            small-group excursion — with a meeting point near the harbour tender landing
             and return-to-ship timing built around typical cruise schedules.
           </p>
           <p>

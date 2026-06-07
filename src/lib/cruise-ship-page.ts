@@ -48,7 +48,7 @@ export function getCruiseShipFaqs(ship: CruiseShipProfile) {
     },
     {
       question: `What shore excursions suit ${ship.name} passengers?`,
-      answer: `The ${featuredTour.fullName} works well when your port call is long enough once tender time is counted. The tour itself runs ${featuredTourFacts.durationLabel.toLowerCase()}. See tour details for full information.`,
+      answer: `The ${featuredTour.fullName} works well when your port call is long enough once tender time is counted. Tour duration is confirmed before booking. See tour details for full information.`,
     },
     {
       question: `When should ${ship.name} passengers return to the tender pier?`,

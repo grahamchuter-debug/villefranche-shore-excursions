@@ -1,33 +1,40 @@
 /** Operational facts for the featured Villefranche shore excursion — single source of truth. */
 export const featuredTourFacts = {
-  durationLabel: "Duration confirmed at booking",
+  durationLabel: "Duration confirmed before booking",
   portType: "Tender port",
   meetingPoint: {
-    landmark: "Near the Villefranche tender landing",
-    streetAddress: "Exact address confirmed on booking",
-    locality: "Villefranche-sur-Mer, France",
+    landmark: "Near the harbour tender landing",
+    streetAddress: "Exact meeting point confirmed after booking",
+    locality: "Villefranche-sur-Mer",
     walkFromTender:
-      "Short walk from the tender landing — route confirmed on booking",
+      "A short walk from where cruise passengers come ashore — your route is confirmed after booking",
   },
   arrivalAdvice:
     "Aim to arrive a few minutes before departure and use an early tender where appropriate.",
   uniqueSellingPoint:
-    "The recommended cruise excursion from Villefranche — a shared small-group van tour visiting Monaco, Monte Carlo and Eze in one French Riviera port day.",
+    "A shared small-group van tour visiting Monaco, Monte Carlo and Eze in one French Riviera port day.",
   vehicle: {
     label: "Small-group van",
-    largerGroupsNote: "Group size confirmed at booking",
+    // Vehicle capacity to be confirmed with operator before publishing exact numbers.
+    largerGroupsNote: "Final group size confirmed before booking",
   },
 } as const;
 
+export const featuredTourMeetingPointSummary =
+  "Your exact meeting point is confirmed after booking. Most Villefranche shore excursions meet near the harbour tender landing, a short walk from where cruise passengers come ashore." as const;
+
+export const featuredTourCoordinatedCoverage =
+  "covers Monaco, Monte Carlo and Eze on a coordinated small-group excursion" as const;
+
 export const featuredTourMeetingPointLine =
-  `${featuredTourFacts.meetingPoint.landmark}, ${featuredTourFacts.meetingPoint.locality}` as const;
+  featuredTourFacts.meetingPoint.landmark;
 
 /** Public website copy — guide identification is sent on the booking confirmation only. */
 export const featuredTourGuideMeetAdvice =
   "Look for your guide at the meeting point. Sign and contact details are on your booking confirmation." as const;
 
 export const featuredTourMeetingInstructions =
-  `Meet at ${featuredTourMeetingPointLine}. ${featuredTourFacts.meetingPoint.walkFromTender}. ${featuredTourGuideMeetAdvice}` as const;
+  `${featuredTourMeetingPointSummary} ${featuredTourGuideMeetAdvice}` as const;
 
 export const featuredTourGroupSizeLine =
-  "Small group — capacity confirmed at booking" as const;
+  "Small-group van format, with final group size confirmed before booking" as const;

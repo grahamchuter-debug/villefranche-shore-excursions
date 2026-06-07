@@ -204,9 +204,8 @@ function RecommendedExcursionSection({
         <p className="mt-2 text-sm leading-6 text-gray-800">
           We generally recommend at least five hours of usable time ashore to
           allow for tender operations, check-in and a comfortable return to the
-          ship. On a longer Villefranche call, the {featuredTour.cardName} covers
-          Monaco, Monte Carlo and Eze in{" "}
-          {featuredTourFacts.durationLabel.toLowerCase()}.
+          ship.           On a longer Villefranche call, the {featuredTour.cardName} covers
+          Monaco, Monte Carlo and Eze on a coordinated small-group excursion.
         </p>
         <Link
           href={featuredTour.path}
@@ -442,19 +441,23 @@ export function CruisePortDayPlanner() {
               </ResultCard>
 
               <ResultCard title="Suggested Villefranche day plan">
-                <ol className="list-none space-y-2 pl-0">
+                <div role="list" className="space-y-2">
                   {result.dayPlan.map((step, index) => (
-                    <li
+                    <div
                       key={step}
+                      role="listitem"
                       className="flex gap-3 text-sm leading-6 text-gray-700 sm:text-base"
                     >
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-100 text-xs font-semibold text-blue-800">
+                      <span
+                        aria-hidden="true"
+                        className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-100 text-xs font-semibold text-blue-800"
+                      >
                         {index + 1}
                       </span>
                       <span>{step}</span>
-                    </li>
+                    </div>
                   ))}
-                </ol>
+                </div>
               </ResultCard>
 
               <RecommendedExcursionSection result={result} />

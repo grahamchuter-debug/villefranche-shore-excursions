@@ -2,6 +2,7 @@ import { featuredTour } from "@/lib/featured-tour";
 import {
   featuredTourFacts,
   featuredTourGroupSizeLine,
+  featuredTourMeetingPointSummary,
 } from "@/lib/featured-tour-facts";
 import { meetingPointPath } from "@/lib/site-paths";
 import { buildCruiseShipSummaries } from "@/lib/villefranche-cruise-ships";
@@ -63,7 +64,7 @@ export const cruiseLineVillefranchePages: CruiseLineVillefranchePage[] = [
       },
       {
         question: "Where do I meet my excursion after tendering?",
-        answer: `Meet near the Villefranche tender landing (${featuredTourFacts.meetingPoint.walkFromTender}). Exact details are confirmed on booking. See our meeting point guide.`,
+        answer: `${featuredTourMeetingPointSummary} See our meeting point guide for more detail.`,
       },
     ],
   },
@@ -94,7 +95,7 @@ export const cruiseLineVillefranchePages: CruiseLineVillefranchePage[] = [
       },
       {
         question: "Where is the excursion meeting point?",
-        answer: `Near the Villefranche tender landing — ${featuredTourFacts.meetingPoint.walkFromTender}. Full directions are confirmed on booking and on our meeting point page.`,
+        answer: `${featuredTourMeetingPointSummary} Full directions are on our meeting point page and your booking confirmation.`,
       },
     ],
   },
@@ -157,7 +158,7 @@ export const cruiseLineVillefranchePages: CruiseLineVillefranchePage[] = [
       },
       {
         question: "Where do shore excursions meet?",
-        answer: `Near the Villefranche tender landing (${featuredTourFacts.meetingPoint.walkFromTender}). See the meeting point page for guidance — exact details confirmed on booking.`,
+        answer: `${featuredTourMeetingPointSummary} See the meeting point page for guidance.`,
       },
     ],
   },
@@ -188,7 +189,7 @@ export const cruiseLineVillefranchePages: CruiseLineVillefranchePage[] = [
       },
       {
         question: "How do I find my guide after tendering?",
-        answer: `Walk to the meeting point near the tender landing (${featuredTourFacts.meetingPoint.walkFromTender}). Full directions and FAQs are on our meeting point page.`,
+        answer: `${featuredTourMeetingPointSummary} Full directions and FAQs are on our meeting point page.`,
       },
     ],
   },

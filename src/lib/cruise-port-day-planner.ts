@@ -1,8 +1,8 @@
 import { featuredTour } from "@/lib/featured-tour";
 import {
+  featuredTourCoordinatedCoverage,
   featuredTourFacts,
   featuredTourGroupSizeLine,
-  featuredTourMeetingPointLine,
 } from "@/lib/featured-tour-facts";
 
 /** Minutes after ship arrival before passengers are realistically ashore in Villefranche. */
@@ -60,7 +60,7 @@ export const PLANNER_GOOD_MIN_HOURS = 5;
 export const PLANNER_EXCELLENT_MIN_HOURS = 6;
 
 export const plannerMainTourBenefits = [
-  featuredTourFacts.durationLabel,
+  "Duration confirmed before booking",
   featuredTourGroupSizeLine,
   "Shared small-group excursion",
   "Visits Monaco, Monte Carlo and Eze",
@@ -221,7 +221,7 @@ function getBandDetails(usableHours: number, band: PlannerFitBand) {
       recommendationCardTitle: "May Work — Check Availability",
       recommendationHeading: `${featuredTour.cardName} may work for your schedule`,
       fitMessage:
-        `Your usable time ashore may allow the small-group tour (${featuredTourFacts.durationLabel.toLowerCase()}), but tender timing, meeting point and return arrangements need to be checked before booking.`,
+        "Your usable time ashore may allow the small-group tour, but tender timing, meeting point and return arrangements need to be checked before booking.",
       shortStayNote: null,
       recommendMainTour: true,
       mainTourStrength: "good" as const,
@@ -238,7 +238,7 @@ function getBandDetails(usableHours: number, band: PlannerFitBand) {
         },
       ],
       dayPlan: [
-        `Tender ashore as early as practical and walk to ${featuredTourMeetingPointLine}`,
+        "Tender ashore as early as practical and head to the meeting area near the harbour tender landing",
         `Book the ${featuredTour.cardName} if availability is confirmed`,
         "Allow margin for tender queues on the return journey",
         "Be at the tender pier by your recommended return time",
@@ -252,7 +252,7 @@ function getBandDetails(usableHours: number, band: PlannerFitBand) {
     recommendationCardTitle: "Excellent Fit",
     recommendationHeading: `${featuredTour.cardName} fits your schedule well`,
     fitMessage:
-      `Your estimated usable time ashore gives a comfortable window for this small-group French Riviera excursion (${featuredTourFacts.durationLabel.toLowerCase()}), with time allowed for Villefranche tender operations and return-to-ship planning.`,
+      `Your estimated usable time ashore gives a comfortable window for this small-group French Riviera excursion, which ${featuredTourCoordinatedCoverage}, with time allowed for Villefranche tender operations and return-to-ship planning.`,
     shortStayNote: null,
     recommendMainTour: true,
     mainTourStrength: "strong" as const,

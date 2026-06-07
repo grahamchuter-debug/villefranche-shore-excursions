@@ -74,19 +74,9 @@ export default function VillefrancheMeetingPointPage() {
       <section>
         <h2>Where to meet your guide</h2>
         <p>{meetingPointVerifiedDescription}</p>
-        <p>
-          <strong>Landmark:</strong> {featuredTourFacts.meetingPoint.landmark}
-        </p>
-        <p>
-          <strong>Address:</strong> {featuredTourFacts.meetingPoint.streetAddress}
-        </p>
-        <p>
-          <strong>Locality:</strong> {featuredTourFacts.meetingPoint.locality}
-        </p>
         <p className="text-sm text-gray-600">
-          Exact meeting point details and walking directions are sent on your
-          booking confirmation. We do not publish a fixed street address until
-          your booking is confirmed.
+          {featuredTourFacts.meetingPoint.streetAddress}. We do not publish a
+          fixed street address or guide sign until your booking is confirmed.
         </p>
       </section>
 
@@ -114,8 +104,7 @@ export default function VillefrancheMeetingPointPage() {
           <li>{featuredTour.fullName}</li>
           <li>{featuredTourFacts.durationLabel}</li>
           <li>{featuredTourGroupSizeLine}</li>
-          <li>{featuredTourFacts.vehicle.largerGroupsNote}</li>
-          <li>Meet at {featuredTourFacts.meetingPoint.landmark}</li>
+          <li>{featuredTourFacts.meetingPoint.streetAddress}</li>
         </ul>
       </section>
 

@@ -11,8 +11,7 @@ import { featuredTour } from "@/lib/featured-tour";
 import {
   featuredTourFacts,
   featuredTourGroupSizeLine,
-  featuredTourGuideMeetAdvice,
-  featuredTourMeetingPointLine,
+  featuredTourMeetingPointSummary,
 } from "@/lib/featured-tour-facts";
 import { bookingPreConfirmReassurance } from "@/lib/featured-tour-content";
 import { buildPageMetadata } from "@/lib/site-metadata";
@@ -87,9 +86,8 @@ export default function BookFeaturedTourPage() {
             <ul className="mt-3 space-y-1 text-sm leading-6 text-gray-700">
               <li>Monaco, Monte Carlo and Eze in one French Riviera cruise day</li>
               <li>{featuredTourFacts.durationLabel} · {featuredTourFacts.portType}</li>
-              <li>{featuredTourGroupSizeLine} · {featuredTourFacts.vehicle.largerGroupsNote}</li>
-              <li>Meet at {featuredTourMeetingPointLine}</li>
-              <li>{featuredTourGuideMeetAdvice}</li>
+              <li>{featuredTourGroupSizeLine}</li>
+              <li>{featuredTourMeetingPointSummary}</li>
             </ul>
             <Link
               href={featuredTour.path}

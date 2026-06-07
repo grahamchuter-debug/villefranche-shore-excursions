@@ -212,10 +212,13 @@ export function ExcursionDetailPage({ excursion }: ExcursionDetailPageProps) {
                   isFeaturedTour ? "Suggested itinerary" : "Itinerary"
                 }
               >
-                <ol className="list-none space-y-6 pl-0 leading-7">
+                <div role="list" className="space-y-6 leading-7">
                   {excursion.itinerary.map((step, index) => (
-                    <li key={step.title} className="flex gap-4">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+                    <div key={step.title} role="listitem" className="flex gap-4">
+                      <span
+                        aria-hidden="true"
+                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white"
+                      >
                         {index + 1}
                       </span>
                       <div>
@@ -224,9 +227,9 @@ export function ExcursionDetailPage({ excursion }: ExcursionDetailPageProps) {
                         </h3>
                         <p className="mt-1 text-gray-700">{step.description}</p>
                       </div>
-                    </li>
+                    </div>
                   ))}
-                </ol>
+                </div>
               </ContentSection>
             ) : null}
 

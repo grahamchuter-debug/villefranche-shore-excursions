@@ -1,41 +1,12 @@
 import Link from "next/link";
 
-import { ConversionCtaStrip } from "@/components/conversion-cta-strip";
-import { FeaturedTourRecommendationBox } from "@/components/featured-tour-recommendation-box";
 import { featuredTour } from "@/lib/featured-tour";
 import {
   featuredTourComparisonRows,
   featuredTourPassengerQuestions,
   featuredTourSampleItinerary,
   featuredTourSampleItineraryDisclaimer,
-  featuredTourTrustPoints,
 } from "@/lib/featured-tour-content";
-
-export function FeaturedTourTrustSection() {
-  return (
-    <section className="border-b bg-gray-900 text-white">
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
-        <h2 className="text-center text-2xl font-bold sm:text-3xl">
-          Why cruise passengers book with us
-        </h2>
-        <ul className="mx-auto mt-6 grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredTourTrustPoints.map((point) => (
-            <li
-              key={point}
-              className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/90"
-            >
-              <span aria-hidden="true" className="text-sky-400">
-                ✓
-              </span>
-              {point}
-            </li>
-          ))}
-        </ul>
-        <FeaturedTourRecommendationBox className="mx-auto mt-8 max-w-2xl" />
-      </div>
-    </section>
-  );
-}
 
 export function FeaturedTourComparisonSection() {
   return (
@@ -125,8 +96,6 @@ export function FeaturedTourComparisonSection() {
             </article>
           ))}
         </div>
-
-        <ConversionCtaStrip className="mt-10" />
       </div>
     </section>
   );
@@ -143,10 +112,16 @@ export function FeaturedTourSampleItinerarySection() {
           {featuredTourSampleItineraryDisclaimer}
         </p>
 
-        <ol className="mx-auto max-w-3xl list-none space-y-5 pl-0">
+        <div
+          role="list"
+          className="mx-auto max-w-3xl space-y-5"
+        >
           {featuredTourSampleItinerary.map((step, index) => (
-            <li key={step.title} className="flex gap-4">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+            <div key={step.title} role="listitem" className="flex gap-4">
+              <span
+                aria-hidden="true"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white"
+              >
                 {index + 1}
               </span>
               <div>
@@ -155,9 +130,9 @@ export function FeaturedTourSampleItinerarySection() {
                   {step.description}
                 </p>
               </div>
-            </li>
+            </div>
           ))}
-        </ol>
+        </div>
 
         <div className="mx-auto mt-8 max-w-3xl text-center">
           <Link
@@ -167,8 +142,6 @@ export function FeaturedTourSampleItinerarySection() {
             See full tour details, inclusions and FAQs
           </Link>
         </div>
-
-        <FeaturedTourRecommendationBox className="mx-auto mt-10 max-w-2xl" />
       </div>
     </section>
   );
@@ -194,7 +167,6 @@ export function FeaturedTourPassengerQuestionsSection() {
             </div>
           ))}
         </dl>
-        <ConversionCtaStrip className="mt-10" variant="light" />
       </div>
     </section>
   );

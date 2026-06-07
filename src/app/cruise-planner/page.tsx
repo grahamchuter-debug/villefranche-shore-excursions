@@ -56,7 +56,7 @@ const faqs = [
   {
     question: "When is the Small Group Monaco, Monte Carlo and Eze tour recommended?",
     answer:
-      `Excellent Fit appears when you have six or more usable hours ashore — a comfortable match for the ${featuredTourFacts.durationLabel.toLowerCase()} tour. May Work — Check Availability means five to under six usable hours: the tour may work depending on tender timing. Stay Close to Villefranche is shown when you have under five usable hours ashore.`,
+      "Excellent Fit appears when you have six or more usable hours ashore — a comfortable match once the confirmed tour duration is taken into account. May Work — Check Availability means five to under six usable hours: the tour may work depending on tender timing. Stay Close to Villefranche is shown when you have under five usable hours ashore.",
   },
   {
     question: "What does the port day rating mean?",

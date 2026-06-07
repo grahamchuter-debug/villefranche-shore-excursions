@@ -1,13 +1,16 @@
-import { featuredTourFacts } from "@/lib/featured-tour-facts";
+import {
+  featuredTourFacts,
+  featuredTourMeetingPointSummary,
+} from "@/lib/featured-tour-facts";
 
 export const meetingPointVerifiedDescription =
-  `Your tour departs near the Villefranche-sur-Mer tender landing area. The exact meeting point address and walking directions are confirmed on your booking confirmation. ${featuredTourFacts.meetingPoint.landmark}.` as const;
+  `${featuredTourMeetingPointSummary} Full address and walking directions are sent on your booking confirmation.` as const;
 
 export const meetingPointWalkingDirections =
   "Upon arrival at the tender pier, follow the directions on your booking confirmation to reach the meeting point. The walk from the tender landing is typically short and mostly flat, but exact route and timing depend on where your ship's tenders land on the day." as const;
 
 export const meetingPointWalkSummary =
-  `${featuredTourFacts.meetingPoint.walkFromTender}` as const;
+  "Most excursions meet near the harbour tender landing, a short walk from where passengers come ashore" as const;
 
 export const meetingPointFaqs = [
   {
@@ -28,7 +31,7 @@ export const meetingPointFaqs = [
   },
   {
     question: "What if I arrive early?",
-    answer: `Head to ${featuredTourFacts.meetingPoint.landmark}. ${featuredTourFacts.arrivalAdvice} If you cannot see your guide, call the number on your booking confirmation.`,
+    answer: `${featuredTourMeetingPointSummary} ${featuredTourFacts.arrivalAdvice} If you cannot see your guide, call the number on your booking confirmation.`,
   },
   {
     question: "What if my tender is delayed?",

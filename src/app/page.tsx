@@ -3,19 +3,14 @@ import Link from "next/link";
 
 import { BookingReassurance } from "@/components/booking-reassurance";
 import { ConversionCtaStrip } from "@/components/conversion-cta-strip";
-import { FeaturedTourRecommendationBox } from "@/components/featured-tour-recommendation-box";
 import {
   FeaturedTourComparisonSection,
   FeaturedTourPassengerQuestionsSection,
   FeaturedTourSampleItinerarySection,
-  FeaturedTourTrustSection,
 } from "@/components/homepage-conversion-sections";
 import { WhyThisExcursionIsDifferentSection } from "@/components/why-this-excursion-is-different-section";
-import { WhyThisTourBooksEarlySection } from "@/components/why-this-tour-books-early-section";
-import { WhyWeCreatedThisTourSection } from "@/components/why-we-created-this-tour-section";
 import { JsonLd } from "@/components/json-ld";
 import { featuredTour } from "@/lib/featured-tour";
-import { featuredTourFacts } from "@/lib/featured-tour-facts";
 import {
   featuredTourPassengerQuestions,
   featuredTourProductBullets,
@@ -35,7 +30,7 @@ const pageMeta = {
   title:
     "Villefranche Shore Excursions | Small Group Monaco, Monte Carlo & Eze Tours",
   description:
-    `Small-group Villefranche shore excursions for cruise passengers — ${featuredTourFacts.durationLabel.toLowerCase()} tour covering Monaco, Monte Carlo and Eze. Tender guides and return-to-ship planning.`,
+    "Small-group Villefranche shore excursions for cruise passengers — Monaco, Monte Carlo and Eze in one French Riviera port day. Tender guides and return-to-ship planning.",
   path: "/",
 } as const;
 
@@ -89,7 +84,7 @@ export default function Home() {
             {
               name: featuredTour.fullName,
               description:
-                `${featuredTourFacts.durationLabel} small-group shore excursion — Monaco, Monte Carlo and Eze in one French Riviera cruise day.`,
+                "Small-group shore excursion covering Monaco, Monte Carlo and Eze in one French Riviera cruise day.",
             },
             ...alternativeTours.map((t) => ({
               name: t.name,
@@ -213,25 +208,9 @@ export default function Home() {
 
         <WhyThisExcursionIsDifferentSection showCta />
 
-        <WhyThisTourBooksEarlySection variant="muted" />
-
-        <WhyWeCreatedThisTourSection variant="muted" showCta={false} />
-
-        <section className="border-y border-blue-100 bg-blue-50/40">
-          <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
-            <FeaturedTourRecommendationBox />
-          </div>
-        </section>
-
-        <FeaturedTourTrustSection />
-
         <FeaturedTourComparisonSection />
 
         <FeaturedTourSampleItinerarySection />
-
-        <section className="border-b bg-white py-10">
-          <ConversionCtaStrip className="mx-auto max-w-6xl px-4 sm:px-6" />
-        </section>
 
         <section
           id="tours"
@@ -333,8 +312,6 @@ export default function Home() {
               </Link>{" "}
               for the best way to combine Monaco, Monte Carlo and Eze.
             </p>
-
-            <FeaturedTourRecommendationBox className="mt-8" />
           </div>
         </section>
 
@@ -348,7 +325,6 @@ export default function Home() {
               enjoy the French Riviera and still return before all aboard.
             </p>
 
-            <FeaturedTourRecommendationBox className="mb-8" />
             <ul className="flex flex-wrap gap-3">
               <li>
                 <Link
