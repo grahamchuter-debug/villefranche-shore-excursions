@@ -161,13 +161,15 @@ export default function Home() {
               ashore after tendering.
             </p>
             <div className="overflow-hidden rounded-2xl border-2 border-blue-600 bg-white shadow-lg">
-              <div className="grid grid-cols-1 lg:grid-cols-2">
-                <img
-                  src={siteImages.monacoHarbour}
-                  alt="Casino de Monte-Carlo at night — Small Group Monaco, Monte Carlo and Eze shore excursion from Villefranche-sur-Mer"
-                  className="h-56 w-full object-cover lg:h-full lg:min-h-[360px]"
-                />
-                <div className="flex flex-col p-6 sm:p-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 lg:items-start">
+                <div className="h-56 w-full overflow-hidden sm:h-64 lg:h-72">
+                  <img
+                    src={siteImages.monacoHarbour}
+                    alt="Casino de Monte-Carlo at night — Small Group Monaco, Monte Carlo and Eze shore excursion from Villefranche-sur-Mer"
+                    className="h-full w-full object-cover object-center"
+                  />
+                </div>
+                <div className="flex flex-col p-6 sm:p-8 lg:p-7">
                   <p className="mb-4 inline-flex w-fit rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">
                     Most Popular Cruise Excursion
                   </p>
