@@ -5,7 +5,7 @@ export const villefrancheTenderLanding =
   "Tender boats arrive in Villefranche-sur-Mer, near the harbour and old town" as const;
 
 export const villefrancheTenderPortAlt =
-  "Villefranche-sur-Mer cruise port with tender boats arriving at the harbour" as const;
+  "Cruise ship anchored in the bay at Villefranche-sur-Mer with the colourful French Riviera harbour and hills" as const;
 
 export const villefrancheArrivalPortLabel = "Villefranche-sur-Mer (tender)" as const;
 
