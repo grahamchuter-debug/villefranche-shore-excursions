@@ -1,5 +1,5 @@
 /**
- * Booking engine configuration — Phase 2 premium experience.
+ * Booking engine configuration — Version 3 desire-led experience.
  *
  * Pricing and capacity live here so the UI never hardcodes commercial values.
  */
@@ -7,36 +7,39 @@ import { featuredTour } from "@/lib/featured-tour";
 import { siteConfig } from "@/lib/site-config";
 import { siteImages } from "@/lib/site-images";
 
-/**
- * Headline candidates considered for Phase 2 (kept for iteration):
- * 1. "Three Riviera icons. One unhurried day."
- * 2. "A luminous day between sea and sky."
- * 3. "Monaco, Monte Carlo & Eze — as they should be seen."
- * 4. "The Riviera, quietly arranged."
- * Chosen: 1 — clearest aspiration without cliché.
- */
 export const bookingPrototypeTour = {
   id: "monaco-monte-carlo-eze-small-group",
   slug: featuredTour.slug,
   name: "Monaco, Monte Carlo & Eze",
-  subtitle: "Small Group Shore Excursion",
-  headline: "Three Riviera icons. One unhurried day.",
+  /** Overlay label on the experience hero */
+  experienceLabel: "Small Group Shore Excursion",
+  /**
+   * Display title — rendered as stacked elegant lines on the hero.
+   * Uses Èze for the authentic Riviera spelling in the aspirational moment.
+   */
+  experienceTitleLines: ["Monaco,", "Monte Carlo", "& Èze"] as const,
+  /**
+   * Sub-heading candidates:
+   * 1. "Three iconic Riviera destinations. One unforgettable day."
+   * 2. "Harbour light. Hilltop silence. One perfect day ashore."
+   * 3. "The Côte d'Azur, arranged for a single luminous day."
+   * Chosen: 1 — clear desire, understated, matches the brief.
+   */
+  experienceSubheading:
+    "Three iconic Riviera destinations. One unforgettable day.",
   fullName: featuredTour.fullName,
   path: featuredTour.path,
   bookingPath: featuredTour.bookingPath,
-  /** Bright daytime Port Hercules — not night photography. */
+  /** Bright daytime Port Hercules — no night, no casino. */
   image: siteImages.hero,
   imageAlt:
     "Sunlit Port Hercules in Monaco with luxury yachts and the Monte Carlo skyline on the French Riviera",
-  secondaryImage: siteImages.ezeVillage,
-  secondaryImageAlt:
-    "The medieval hilltop village of Eze above the Mediterranean on a bright day",
-  tagline: "Monaco · Monte Carlo · Eze",
+  ctaLabel: "Choose your cruise date",
   reassurance: [
-    "Maximum 6 guests per vehicle",
-    "Return to ship guarantee",
+    "Maximum 6 guests",
+    "Designed for cruise passengers",
     "Free cancellation",
-    "Carefully timed for cruise passengers",
+    "Return to ship guarantee",
   ],
 } as const;
 
@@ -52,7 +55,6 @@ export const bookingPrototypeTour = {
  */
 export const bookingCapacityConfig = {
   guestsPerVehicle: 6,
-  /** Phase 1: one vehicle per checkout session. */
   maxVehiclesSelectableAtCheckout: 1,
   minGuests: 1,
   capacityLabel: "Maximum 6 guests per vehicle.",
@@ -62,7 +64,6 @@ export const bookingCapacityConfig = {
   overCapacityContactLabel: "Contact us",
 } as const;
 
-/** Hard cap for the guest stepper — one vehicle today. */
 export const bookingCheckoutGuestLimit =
   bookingCapacityConfig.guestsPerVehicle *
   bookingCapacityConfig.maxVehiclesSelectableAtCheckout;
@@ -79,7 +80,6 @@ export const bookingCheckoutGuestLimit =
 export const bookingPricingConfig = {
   currencyCode: "EUR",
   currencySymbol: "€",
-  /** Temporary design-test amount in major currency units (euros). */
   pricePerGuest: 149,
   freeCancellationLabel: "Free cancellation",
   freeCancellationDetail: "Full refund up to 24 hours before departure.",
@@ -97,9 +97,9 @@ export const bookingPaymentMethods = [
   { id: "paypal", label: "PayPal" },
 ] as const;
 
-/** Phase 2 journey — summary folded into payment. */
+/** Experience → Date → Guests → Payment → Confirmation */
 export const bookingSteps = [
-  { id: "tour", label: "Tour" },
+  { id: "tour", label: "Experience" },
   { id: "date", label: "Date" },
   { id: "guests", label: "Guests" },
   { id: "payment", label: "Payment" },
@@ -108,7 +108,6 @@ export const bookingSteps = [
 
 export type BookingStepId = (typeof bookingSteps)[number]["id"];
 
-/** Session key scoped per tour so drafts never leak across tour routes. */
 export function bookingSessionStorageKey(tourId: string): string {
-  return `vf-booking:v2:${tourId}`;
+  return `vf-booking:v3:${tourId}`;
 }

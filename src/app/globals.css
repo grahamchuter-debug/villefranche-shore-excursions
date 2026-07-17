@@ -25,7 +25,7 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Booking engine — Phase 2 luxury Riviera palette */
+/* Booking engine — Version 3 desire-led Riviera experience */
 .booking-engine-root {
   --book-ink: #0c1a24;
   --book-muted: #6a7a88;
@@ -39,7 +39,7 @@ body {
   --book-gold: #9a7b4f;
   font-family: var(--font-booking-sans), var(--font-sans), system-ui, sans-serif;
   color: var(--book-ink);
-  background: linear-gradient(180deg, #fbfcfb 0%, #f3f6f5 48%, #eef3f2 100%);
+  background: #fbfcfb;
 }
 
 .booking-engine-root .book-display {

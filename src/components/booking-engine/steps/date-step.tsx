@@ -79,10 +79,10 @@ export function DateStep({
     <div className="mx-auto max-w-3xl space-y-10">
       <header className="space-y-3 text-center">
         <h2 className="book-display text-4xl font-medium text-[var(--book-ink)] sm:text-5xl">
-          When are you ashore?
+          Choose your cruise date
         </h2>
         <p className="text-lg text-[var(--book-muted)]">
-          Choose the date your ship calls at Villefranche.
+          The day your ship calls at Villefranche-sur-Mer.
         </p>
       </header>
 

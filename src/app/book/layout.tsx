@@ -1,7 +1,5 @@
 import { Cormorant_Garamond, Outfit } from "next/font/google";
 
-import { BookingCheckoutHeader } from "@/components/booking-engine/booking-checkout-header";
-
 const bookingDisplay = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-booking-display",
@@ -23,8 +21,7 @@ export default function BookingLayout({
     <div
       className={`${bookingDisplay.variable} ${bookingSans.variable} booking-engine-root flex min-h-full flex-1 flex-col`}
     >
-      <BookingCheckoutHeader />
-      <div className="flex flex-1 flex-col">{children}</div>
+      {children}
     </div>
   );
 }
