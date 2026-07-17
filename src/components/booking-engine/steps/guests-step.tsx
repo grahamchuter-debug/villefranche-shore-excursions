@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+
 import { BookingPrimaryButton } from "@/components/booking-engine/booking-primary-button";
 import {
   bookingCapacityConfig,
@@ -16,6 +18,7 @@ type GuestsStepProps = {
   onChangeGuests: (guests: number) => void;
   onContinue: () => void;
   onBack: () => void;
+  selectedDateLabel?: string | null;
 };
 
 export function GuestsStep({
@@ -23,19 +26,33 @@ export function GuestsStep({
   onChangeGuests,
   onContinue,
   onBack,
+  selectedDateLabel,
 }: GuestsStepProps) {
   const { minGuests, capacityLabel, overCapacityContactHref } =
     bookingCapacityConfig;
   const maxGuests = bookingCheckoutGuestLimit;
   const total = calculateBookingTotal(guests);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    headingRef.current?.focus({ preventScroll: true });
+  }, []);
 
   return (
     <div className="mx-auto max-w-2xl space-y-10">
       <header className="space-y-3 text-center">
-        <h2 className="book-display text-4xl font-medium text-[var(--book-ink)] sm:text-5xl">
+        <h2
+          ref={headingRef}
+          tabIndex={-1}
+          id="booking-guests-heading"
+          className="book-display text-4xl font-medium text-[var(--book-ink)] outline-none sm:text-5xl"
+        >
           How many guests?
         </h2>
         <p className="text-lg text-[var(--book-muted)]">{capacityLabel}</p>
+        {selectedDateLabel ? (
+          <p className="text-sm text-[var(--book-muted)]">{selectedDateLabel}</p>
+        ) : null}
       </header>
 
       <div className="book-surface-card rounded-[1.75rem] bg-[var(--book-surface)] px-6 py-12 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.35)] sm:px-12">
@@ -103,7 +120,7 @@ export function GuestsStep({
 
       <div className="mx-auto max-w-md space-y-3">
         <BookingPrimaryButton onClick={onContinue}>
-          Continue to payment
+          Continue to secure payment
         </BookingPrimaryButton>
         <BookingPrimaryButton variant="ghost" onClick={onBack}>
           Back

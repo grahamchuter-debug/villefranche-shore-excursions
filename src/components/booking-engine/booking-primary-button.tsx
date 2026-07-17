@@ -1,19 +1,19 @@
 "use client";
 
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 
 type BookingPrimaryButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   variant?: "primary" | "secondary" | "ghost";
 };
 
-export function BookingPrimaryButton({
-  children,
-  variant = "primary",
-  className = "",
-  type = "button",
-  ...props
-}: BookingPrimaryButtonProps) {
+export const BookingPrimaryButton = forwardRef<
+  HTMLButtonElement,
+  BookingPrimaryButtonProps
+>(function BookingPrimaryButton(
+  { children, variant = "primary", className = "", type = "button", ...props },
+  ref,
+) {
   const base =
     "book-btn inline-flex w-full items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-40 sm:text-base";
 
@@ -28,6 +28,7 @@ export function BookingPrimaryButton({
 
   return (
     <button
+      ref={ref}
       type={type}
       className={`${base} ${variants[variant]} ${className}`}
       {...props}
@@ -35,4 +36,4 @@ export function BookingPrimaryButton({
       {children}
     </button>
   );
-}
+});

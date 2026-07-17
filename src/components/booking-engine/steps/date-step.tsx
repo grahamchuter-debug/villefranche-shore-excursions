@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { BookingPrimaryButton } from "@/components/booking-engine/booking-primary-button";
+import { bookingPrototypeTour } from "@/lib/booking/booking-config";
 import {
   formatBookingDate,
   startOfLocalDay,
@@ -11,12 +12,19 @@ import {
 
 type DateStepProps = {
   selectedDate: string | null;
-  onSelectDate: (isoDate: string) => void;
-  onContinue: () => void;
+  onSelectDate: (isoDate: string | null) => void;
+  /** Called after polished confirmation pause — advances to guests */
+  onDateConfirmed: (isoDate: string) => void;
   onBack: () => void;
 };
 
 const WEEKDAYS = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"] as const;
+const CONFIRM_DELAY_MS = 450;
+
+function prefersReducedMotion(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 function buildMonthGrid(year: number, month: number) {
   const first = new Date(year, month, 1);
@@ -34,16 +42,32 @@ function buildMonthGrid(year: number, month: number) {
 export function DateStep({
   selectedDate,
   onSelectDate,
-  onContinue,
+  onDateConfirmed,
   onBack,
 }: DateStepProps) {
   const [today, setToday] = useState<Date | null>(null);
   const [view, setView] = useState<Date | null>(null);
+  const [pendingDate, setPendingDate] = useState<string | null>(null);
+  const [announcement, setAnnouncement] = useState("");
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const advanceTimer = useRef<number | null>(null);
 
   useEffect(() => {
     const start = startOfLocalDay();
     setToday(start);
     setView(new Date(start.getFullYear(), start.getMonth(), 1));
+  }, []);
+
+  useEffect(() => {
+    headingRef.current?.focus({ preventScroll: true });
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (advanceTimer.current !== null) {
+        window.clearTimeout(advanceTimer.current);
+      }
+    };
   }, []);
 
   const cells = useMemo(
@@ -64,6 +88,35 @@ export function DateStep({
       (view!.getFullYear() === today!.getFullYear() &&
         view!.getMonth() > today!.getMonth()));
 
+  const clearAdvanceTimer = () => {
+    if (advanceTimer.current !== null) {
+      window.clearTimeout(advanceTimer.current);
+      advanceTimer.current = null;
+    }
+  };
+
+  const handleSelectDate = (iso: string, date: Date) => {
+    if (!today || date < today) return;
+
+    clearAdvanceTimer();
+    setPendingDate(iso);
+    onSelectDate(iso);
+
+    const label = formatBookingDate(iso);
+    setAnnouncement(`${label} selected`);
+
+    const delay = prefersReducedMotion() ? 0 : CONFIRM_DELAY_MS;
+    advanceTimer.current = window.setTimeout(() => {
+      onDateConfirmed(iso);
+    }, delay);
+  };
+
+  const handleBack = () => {
+    clearAdvanceTimer();
+    setPendingDate(null);
+    onBack();
+  };
+
   if (!today || !view) {
     return (
       <div
@@ -75,10 +128,30 @@ export function DateStep({
     );
   }
 
+  const displayDate = pendingDate ?? selectedDate;
+
   return (
-    <div className="mx-auto max-w-3xl space-y-10">
+    <div className="book-date-stage mx-auto max-w-3xl space-y-8">
+      {/* Soft photographic remnant — journey continues from the hero */}
+      <div
+        className="book-date-hero-remnant relative overflow-hidden rounded-[1.25rem]"
+        aria-hidden="true"
+      >
+        <img
+          src={bookingPrototypeTour.image}
+          alt=""
+          className="h-28 w-full object-cover object-center sm:h-36"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--book-ink)]/50 to-[var(--book-ink)]/10" />
+      </div>
+
       <header className="space-y-3 text-center">
-        <h2 className="book-display text-4xl font-medium text-[var(--book-ink)] sm:text-5xl">
+        <h2
+          ref={headingRef}
+          tabIndex={-1}
+          id="booking-date-heading"
+          className="book-display text-4xl font-medium text-[var(--book-ink)] outline-none sm:text-5xl"
+        >
           Choose your cruise date
         </h2>
         <p className="text-lg text-[var(--book-muted)]">
@@ -86,13 +159,25 @@ export function DateStep({
         </p>
       </header>
 
+      <div
+        className="sr-only"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {announcement}
+      </div>
+
       <div className="book-surface-card rounded-[1.75rem] bg-[var(--book-surface)] p-6 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.35)] sm:p-10">
         <div className="mb-6 flex items-center justify-between gap-3">
           <button
             type="button"
-            onClick={() =>
-              setView(new Date(view.getFullYear(), view.getMonth() - 1, 1))
-            }
+            onClick={() => {
+              clearAdvanceTimer();
+              setPendingDate(null);
+              setAnnouncement("");
+              onSelectDate(null);
+              setView(new Date(view.getFullYear(), view.getMonth() - 1, 1));
+            }}
             disabled={!canGoPrev}
             className="book-btn rounded-full px-4 py-2 text-sm font-medium text-[var(--book-sea)] disabled:opacity-25"
             aria-label="Previous month"
@@ -107,9 +192,13 @@ export function DateStep({
           </p>
           <button
             type="button"
-            onClick={() =>
-              setView(new Date(view.getFullYear(), view.getMonth() + 1, 1))
-            }
+            onClick={() => {
+              clearAdvanceTimer();
+              setPendingDate(null);
+              setAnnouncement("");
+              onSelectDate(null);
+              setView(new Date(view.getFullYear(), view.getMonth() + 1, 1));
+            }}
             className="book-btn rounded-full px-4 py-2 text-sm font-medium text-[var(--book-sea)]"
             aria-label="Next month"
           >
@@ -135,13 +224,13 @@ export function DateStep({
             }
             const iso = toLocalIsoDate(date);
             const disabled = date < today;
-            const selected = selectedDate === iso;
+            const selected = displayDate === iso;
             return (
               <button
                 key={iso}
                 type="button"
-                disabled={disabled}
-                onClick={() => onSelectDate(iso)}
+                disabled={disabled || Boolean(pendingDate)}
+                onClick={() => handleSelectDate(iso, date)}
                 aria-label={formatBookingDate(iso)}
                 aria-pressed={selected}
                 className={[
@@ -151,6 +240,7 @@ export function DateStep({
                     : selected
                       ? "bg-[var(--book-sea-deep)] text-white"
                       : "text-[var(--book-ink)] hover:bg-[var(--book-mist)]",
+                  pendingDate && selected ? "book-day-confirming" : "",
                 ].join(" ")}
               >
                 {date.getDate()}
@@ -159,21 +249,23 @@ export function DateStep({
           })}
         </div>
 
-        {selectedDate ? (
+        {displayDate ? (
           <p
-            key={selectedDate}
-            className="book-selected-date mt-8 text-center text-base text-[var(--book-ink)]"
+            key={displayDate}
+            className="book-selected-date mt-8 text-center text-base font-medium text-[var(--book-ink)]"
+            aria-hidden="true"
           >
-            {formatBookingDate(selectedDate)}
+            {formatBookingDate(displayDate)} selected
           </p>
-        ) : null}
+        ) : (
+          <p className="mt-8 text-center text-sm text-[var(--book-muted)]">
+            Select a date to continue
+          </p>
+        )}
       </div>
 
-      <div className="mx-auto max-w-md space-y-3">
-        <BookingPrimaryButton onClick={onContinue} disabled={!selectedDate}>
-          Continue
-        </BookingPrimaryButton>
-        <BookingPrimaryButton variant="ghost" onClick={onBack}>
+      <div className="mx-auto max-w-md">
+        <BookingPrimaryButton variant="ghost" onClick={handleBack}>
           Back
         </BookingPrimaryButton>
       </div>

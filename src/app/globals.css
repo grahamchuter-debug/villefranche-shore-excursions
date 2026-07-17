@@ -120,6 +120,10 @@ body {
   animation: book-step-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.booking-engine-root .book-step-enter-forward {
+  animation: book-step-enter-forward 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 @keyframes book-step-enter {
   from {
     opacity: 0;
@@ -129,6 +133,100 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes book-step-enter-forward {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Hero gently yields to the calendar */
+.booking-engine-root .book-hero-exiting .book-hero-panel {
+  animation: book-hero-retreat 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.booking-engine-root .book-hero-exiting .book-hero-copy,
+.booking-engine-root .book-hero-exiting .book-hero-cta-strip {
+  animation: book-fade-out-soft 0.45s ease forwards;
+}
+
+@keyframes book-hero-retreat {
+  to {
+    min-height: 28vh;
+    opacity: 0.35;
+    filter: saturate(0.85);
+  }
+}
+
+@keyframes book-fade-out-soft {
+  to {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.booking-engine-root .book-date-hero-remnant {
+  animation: book-date-remnant-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.booking-engine-root .book-date-stage {
+  animation: book-date-stage-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes book-date-remnant-in {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes book-date-stage-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.booking-engine-root .book-day-confirming {
+  animation: book-day-pulse 0.45s ease both;
+}
+
+@keyframes book-day-pulse {
+  0% {
+    transform: scale(1.06);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.06);
+  }
+}
+
+.booking-engine-root .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Hero: Ken Burns + soft crossfade gallery */
@@ -301,16 +399,24 @@ body {
   }
 
   .booking-engine-root .book-step-enter,
+  .booking-engine-root .book-step-enter-forward,
   .booking-engine-root .book-hero-copy,
   .booking-engine-root .book-calendar-grid,
   .booking-engine-root .book-guest-count,
   .booking-engine-root .book-selected-date,
   .booking-engine-root .book-hero-layer,
-  .booking-engine-root .book-hero-layer img {
+  .booking-engine-root .book-hero-layer img,
+  .booking-engine-root .book-hero-exiting .book-hero-panel,
+  .booking-engine-root .book-hero-exiting .book-hero-copy,
+  .booking-engine-root .book-hero-exiting .book-hero-cta-strip,
+  .booking-engine-root .book-date-hero-remnant,
+  .booking-engine-root .book-date-stage,
+  .booking-engine-root .book-day-confirming {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
     will-change: auto !important;
+    filter: none !important;
   }
 
   .booking-engine-root .book-hero-layer:not(:first-child) {

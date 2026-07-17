@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { BookingCheckoutHeader } from "@/components/booking-engine/booking-checkout-header";
 import { BookingProgress } from "@/components/booking-engine/booking-progress";
@@ -16,7 +16,10 @@ import {
   bookingSessionStorageKey,
   type BookingStepId,
 } from "@/lib/booking/booking-config";
-import { createPrototypeBookingReference } from "@/lib/booking/booking-format";
+import {
+  createPrototypeBookingReference,
+  formatBookingDate,
+} from "@/lib/booking/booking-format";
 
 type BookingState = {
   step: BookingStepId;
@@ -39,6 +42,14 @@ const VALID_STEPS = new Set<BookingStepId>([
   "payment",
   "confirmed",
 ]);
+
+const HERO_EXIT_MS = 720;
+const DATE_TO_GUESTS_ENTER = "book-step-enter-forward";
+
+function prefersReducedMotion(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 function loadState(): BookingState | null {
   if (typeof window === "undefined") return null;
@@ -97,6 +108,9 @@ const initialState: BookingState = {
 export function BookingEngine() {
   const [state, setState] = useState<BookingState>(initialState);
   const [hydrated, setHydrated] = useState(false);
+  const [heroExiting, setHeroExiting] = useState(false);
+  const [liveMessage, setLiveMessage] = useState("");
+  const heroExitTimer = useRef<number | null>(null);
 
   useEffect(() => {
     const stored = loadState();
@@ -111,19 +125,53 @@ export function BookingEngine() {
 
   useEffect(() => {
     if (!hydrated) return;
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (state.step === "tour") return;
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion() ? "auto" : "smooth",
+    });
   }, [state.step, hydrated]);
+
+  useEffect(() => {
+    return () => {
+      if (heroExitTimer.current !== null) {
+        window.clearTimeout(heroExitTimer.current);
+      }
+    };
+  }, []);
 
   const go = (step: BookingStepId) =>
     setState((prev) => ({ ...prev, step }));
 
   const reset = () => {
     setState(initialState);
+    setHeroExiting(false);
+    setLiveMessage("");
     try {
       window.sessionStorage.removeItem(STORAGE_KEY);
     } catch {
       // ignore
     }
+  };
+
+  const beginDateSelection = () => {
+    if (heroExiting) return;
+    setHeroExiting(true);
+    const delay = prefersReducedMotion() ? 0 : HERO_EXIT_MS;
+    heroExitTimer.current = window.setTimeout(() => {
+      setState((prev) => ({ ...prev, step: "date" }));
+      setHeroExiting(false);
+    }, delay);
+  };
+
+  const handleDateConfirmed = (isoDate: string) => {
+    const label = formatBookingDate(isoDate);
+    setLiveMessage(`${label} selected. Continuing to guest selection.`);
+    setState((prev) => ({
+      ...prev,
+      date: isoDate,
+      step: "guests",
+    }));
   };
 
   const handlePay = () => {
@@ -135,6 +183,9 @@ export function BookingEngine() {
   };
 
   const isExperience = state.step === "tour";
+  const selectedDateLabel = state.date
+    ? formatBookingDate(state.date)
+    : null;
 
   if (!hydrated) {
     return (
@@ -155,10 +206,17 @@ export function BookingEngine() {
           : "flex flex-1 flex-col"
       }
     >
-      <BookingCheckoutHeader immersive={isExperience} />
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {liveMessage}
+      </div>
+
+      <BookingCheckoutHeader immersive={isExperience && !heroExiting} />
 
       {isExperience ? (
-        <TourIntroStep onContinue={() => go("date")} />
+        <TourIntroStep
+          onContinue={beginDateSelection}
+          isExiting={heroExiting}
+        />
       ) : (
         <div className="book-shell py-8 sm:py-12 lg:py-14">
           {state.step !== "confirmed" ? (
@@ -167,16 +225,21 @@ export function BookingEngine() {
             </div>
           ) : null}
 
-          <div key={state.step} className="book-step-enter">
+          <div
+            key={state.step}
+            className={
+              state.step === "guests" || state.step === "payment"
+                ? DATE_TO_GUESTS_ENTER
+                : "book-step-enter"
+            }
+          >
             {state.step === "date" ? (
               <DateStep
                 selectedDate={state.date}
                 onSelectDate={(date) =>
                   setState((prev) => ({ ...prev, date }))
                 }
-                onContinue={() => {
-                  if (state.date) go("guests");
-                }}
+                onDateConfirmed={handleDateConfirmed}
                 onBack={() => go("tour")}
               />
             ) : null}
@@ -184,6 +247,7 @@ export function BookingEngine() {
             {state.step === "guests" ? (
               <GuestsStep
                 guests={state.guests}
+                selectedDateLabel={selectedDateLabel}
                 onChangeGuests={(guests) =>
                   setState((prev) => ({
                     ...prev,
