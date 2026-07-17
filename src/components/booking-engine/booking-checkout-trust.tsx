@@ -1,49 +1,23 @@
 import Link from "next/link";
 
 import {
-  bookingCapacityConfig,
+  bookingCheckoutCopy,
   bookingCheckoutLinks,
-  bookingPricingConfig,
+  bookingContactPath,
 } from "@/lib/booking/booking-config";
-import { siteConfig } from "@/lib/site-config";
 
 export function BookingCheckoutTrust() {
-  const trustItems = [
-    "SSL encrypted",
-    bookingPricingConfig.freeCancellationLabel,
-    bookingPricingConfig.returnGuaranteeLabel,
-    bookingCapacityConfig.capacityLabel.replace(/\.$/, ""),
-  ] as const;
-
   return (
-    <section
-      className="book-checkout-trust mx-auto max-w-3xl space-y-8 pt-4 text-center"
-      aria-label="Booking reassurance"
-    >
-      <div className="space-y-4">
-        <p className="text-[11px] font-medium tracking-[0.18em] text-[var(--book-gold)] uppercase">
-          Secure checkout
-        </p>
-        <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:gap-x-7">
-          {trustItems.map((item) => (
-            <li
-              key={item}
-              className="text-[13px] tracking-wide text-[var(--book-muted)]"
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
-        <p className="text-sm text-[var(--book-muted)]">
-          Need help?{" "}
-          <a
-            href={`mailto:${siteConfig.bookingEmail}`}
-            className="font-medium text-[var(--book-sea)] underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
-          >
-            Contact us
-          </a>
-        </p>
-      </div>
+    <footer className="book-checkout-trust mx-auto max-w-3xl space-y-6 pt-2 text-center">
+      <p className="text-sm leading-6 text-[var(--book-muted)]">
+        {bookingCheckoutCopy.supportLine}{" "}
+        <Link
+          href={bookingContactPath}
+          className="font-medium text-[var(--book-sea)] underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
+        >
+          {bookingCheckoutCopy.supportLinkLabel}
+        </Link>
+      </p>
 
       <nav
         aria-label="Booking policies"
@@ -62,6 +36,6 @@ export function BookingCheckoutTrust() {
           ))}
         </ul>
       </nav>
-    </section>
+    </footer>
   );
 }

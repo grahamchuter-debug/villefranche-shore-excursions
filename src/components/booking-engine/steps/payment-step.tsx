@@ -1,12 +1,15 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
-import { BookingPrimaryButton } from "@/components/booking-engine/booking-primary-button";
 import { BookingCheckoutTrust } from "@/components/booking-engine/booking-checkout-trust";
+import { BookingPrimaryButton } from "@/components/booking-engine/booking-primary-button";
+import { BookingReconnectMoment } from "@/components/booking-engine/booking-reconnect-moment";
+import { CruiseDaySummary } from "@/components/booking-engine/cruise-day-summary";
+import { CruiseReassurance } from "@/components/booking-engine/cruise-reassurance";
 import {
+  bookingCheckoutCopy,
   bookingPaymentMethods,
-  bookingPricingConfig,
   bookingPrototypeTour,
 } from "@/lib/booking/booking-config";
 import {
@@ -44,6 +47,7 @@ export function PaymentStep({
   onBack,
 }: PaymentStepProps) {
   const formId = useId();
+  const headingRef = useRef<HTMLHeadingElement>(null);
   const [method, setMethod] = useState<string>("visa");
   const [isPaying, setIsPaying] = useState(false);
   const [details, setDetails] = useState<GuestDetails>({
@@ -55,6 +59,11 @@ export function PaymentStep({
   const [attempted, setAttempted] = useState(false);
 
   const total = formatBookingMoney(calculateBookingTotal(guests));
+  const copy = bookingCheckoutCopy;
+
+  useEffect(() => {
+    headingRef.current?.focus({ preventScroll: true });
+  }, []);
 
   const validate = (next: GuestDetails): FieldErrors => {
     const nextErrors: FieldErrors = {};
@@ -85,85 +94,40 @@ export function PaymentStep({
     if (attempted) setErrors(validate(next));
   };
 
-  const summaryRows = [
-    { label: "Tour", value: bookingPrototypeTour.name },
-    { label: "Date", value: formatBookingDate(date) },
-    {
-      label: "Guests",
-      value: `${guests} ${guests === 1 ? "guest" : "guests"}`,
-    },
-  ] as const;
-
   return (
-    <div className="space-y-10 lg:space-y-12">
-      <header className="space-y-3 text-center lg:text-left">
-        <h2 className="book-display text-4xl font-medium tracking-[-0.02em] text-[var(--book-ink)] sm:text-5xl">
-          Complete your booking
+    <div className="mx-auto max-w-4xl space-y-14 sm:space-y-16 lg:space-y-20">
+      <header className="mx-auto max-w-2xl space-y-3 text-center">
+        <h2
+          ref={headingRef}
+          tabIndex={-1}
+          id="booking-payment-heading"
+          className="book-display text-4xl font-medium tracking-[-0.02em] text-[var(--book-ink)] outline-none sm:text-5xl"
+        >
+          {copy.heading}
         </h2>
-        <p className="text-lg text-[var(--book-muted)]">
-          A few details, then you&apos;re finished.
-        </p>
+        <p className="text-lg text-[var(--book-muted)]">{copy.supportingLine}</p>
       </header>
 
-      <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-12">
-        <aside className="book-surface-card rounded-[1.5rem] bg-[var(--book-surface)] p-6 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.3)] sm:p-8 lg:sticky lg:top-6">
-          <p className="text-[11px] font-medium tracking-[0.16em] text-[var(--book-gold)] uppercase">
-            Your reservation
-          </p>
-          <dl className="mt-5 space-y-4">
-            {summaryRows.map((row) => (
-              <div
-                key={row.label}
-                className="flex items-baseline justify-between gap-4 border-b border-[var(--book-line)] pb-4"
-              >
-                <dt className="text-sm text-[var(--book-muted)]">{row.label}</dt>
-                <dd className="max-w-[65%] text-right text-[15px] font-medium text-[var(--book-ink)]">
-                  {row.value}
-                </dd>
-              </div>
-            ))}
-            <div className="flex items-baseline justify-between gap-4 pt-1">
-              <dt className="text-sm text-[var(--book-muted)]">Total</dt>
-              <dd className="book-display text-3xl font-medium text-[var(--book-ink)]">
-                {total}
-              </dd>
-            </div>
-          </dl>
+      <CruiseDaySummary date={date} guests={guests} heading={copy.cruiseDayHeading} />
 
-          <ul className="mt-6 space-y-3">
-            <li className="flex gap-2.5 text-sm text-[var(--book-ink)]/80">
-              <span aria-hidden="true" className="text-[var(--book-success)]">
-                ✓
-              </span>
-              <span>
-                <span className="font-medium text-[var(--book-ink)]">
-                  {bookingPricingConfig.freeCancellationLabel}
-                </span>
-                <span className="block text-[var(--book-muted)]">
-                  {bookingPricingConfig.freeCancellationDetail}
-                </span>
-              </span>
-            </li>
-            <li className="flex gap-2.5 text-sm text-[var(--book-ink)]/80">
-              <span aria-hidden="true" className="text-[var(--book-success)]">
-                ✓
-              </span>
-              <span>
-                <span className="font-medium text-[var(--book-ink)]">
-                  {bookingPricingConfig.returnGuaranteeLabel}
-                </span>
-                <span className="block text-[var(--book-muted)]">
-                  {bookingPricingConfig.returnGuaranteeDetail}
-                </span>
-              </span>
-            </li>
-          </ul>
-        </aside>
+      <CruiseReassurance />
 
-        <div className="book-surface-card rounded-[1.5rem] bg-[var(--book-surface)] p-6 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.3)] sm:p-8">
+      <BookingReconnectMoment />
+
+      <section
+        className="book-checkout-enter space-y-8"
+        aria-labelledby="booking-payment-heading"
+      >
+        <p className="text-center text-[15px] text-[var(--book-muted)] sm:text-left">
+          <span className="sr-only">Booking summary: </span>
+          {bookingPrototypeTour.experienceName} · {formatBookingDate(date)} ·{" "}
+          {guests} {guests === 1 ? "guest" : "guests"} · {total}
+        </p>
+
+        <div className="rounded-[1.75rem] border border-[var(--book-line)]/80 bg-[var(--book-surface)] p-6 sm:p-9">
           <fieldset className="space-y-4 border-0 p-0">
             <legend className="mb-1 text-[11px] font-medium tracking-[0.16em] text-[var(--book-muted)] uppercase">
-              Guest details
+              Your details
             </legend>
 
             <div className="grid gap-3 sm:grid-cols-2">
@@ -234,7 +198,7 @@ export function PaymentStep({
                 htmlFor={`${formId}-email`}
                 className="mb-1.5 block text-sm text-[var(--book-muted)]"
               >
-                Email
+                Email address
               </label>
               <input
                 id={`${formId}-email`}
@@ -252,7 +216,7 @@ export function PaymentStep({
                 id={`${formId}-email-hint`}
                 className="mt-1.5 text-sm text-[var(--book-muted)]"
               >
-                For your confirmation and receipt.
+                For your confirmation and voucher.
               </p>
               {errors.email ? (
                 <p
@@ -266,14 +230,34 @@ export function PaymentStep({
             </div>
           </fieldset>
 
-          <div className="mt-7">
+          <div className="mt-8 border-t border-[var(--book-line)] pt-7">
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p className="text-[11px] font-medium tracking-[0.16em] text-[var(--book-muted)] uppercase">
+                  Total
+                </p>
+                <p className="book-display mt-1 text-4xl font-medium text-[var(--book-ink)]">
+                  {total}
+                </p>
+              </div>
+              <p className="text-sm text-[var(--book-muted)]">
+                {guests} ×{" "}
+                {formatBookingMoney(calculateBookingTotal(1))}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8">
             <p className="mb-3 text-[11px] font-medium tracking-[0.16em] text-[var(--book-muted)] uppercase">
-              Pay with
+              {copy.securePaymentHeading}
+            </p>
+            <p className="mb-4 text-sm leading-6 text-[var(--book-muted)]">
+              {copy.securePaymentNote}
             </p>
             <div
               className="flex flex-wrap gap-2"
               role="group"
-              aria-label="Payment method"
+              aria-label="Payment method placeholder"
             >
               {bookingPaymentMethods.map((item) => {
                 const selected = method === item.id;
@@ -297,71 +281,9 @@ export function PaymentStep({
             </div>
           </div>
 
-          {(method === "visa" || method === "mastercard") && (
-            <div className="mt-5 space-y-3">
-              <div>
-                <label
-                  htmlFor={`${formId}-card`}
-                  className="mb-1.5 block text-sm text-[var(--book-muted)]"
-                >
-                  Card number
-                </label>
-                <input
-                  id={`${formId}-card`}
-                  type="text"
-                  inputMode="numeric"
-                  placeholder="•••• •••• •••• ••••"
-                  autoComplete="off"
-                  className={`${inputClass} border-[var(--book-line)]`}
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label
-                    htmlFor={`${formId}-expiry`}
-                    className="mb-1.5 block text-sm text-[var(--book-muted)]"
-                  >
-                    Expiry
-                  </label>
-                  <input
-                    id={`${formId}-expiry`}
-                    type="text"
-                    placeholder="MM / YY"
-                    autoComplete="off"
-                    className={`${inputClass} border-[var(--book-line)]`}
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor={`${formId}-cvc`}
-                    className="mb-1.5 block text-sm text-[var(--book-muted)]"
-                  >
-                    CVC
-                  </label>
-                  <input
-                    id={`${formId}-cvc`}
-                    type="text"
-                    placeholder="•••"
-                    autoComplete="off"
-                    className={`${inputClass} border-[var(--book-line)]`}
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-
-          {method === "apple-pay" ||
-          method === "google-pay" ||
-          method === "paypal" ? (
-            <div className="mt-5 rounded-xl bg-[var(--book-mist)] px-4 py-6 text-center text-sm text-[var(--book-muted)]">
-              Continue below with{" "}
-              {bookingPaymentMethods.find((m) => m.id === method)?.label}.
-            </div>
-          ) : null}
-
           <div className="mt-8 space-y-3">
             <BookingPrimaryButton onClick={handlePay} disabled={isPaying}>
-              {isPaying ? "Confirming…" : `Pay ${total}`}
+              {isPaying ? copy.payingLabel : copy.payButtonLabel}
             </BookingPrimaryButton>
             <BookingPrimaryButton
               variant="ghost"
@@ -372,7 +294,7 @@ export function PaymentStep({
             </BookingPrimaryButton>
           </div>
         </div>
-      </div>
+      </section>
 
       <BookingCheckoutTrust />
     </div>

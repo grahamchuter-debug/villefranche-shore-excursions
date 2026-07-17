@@ -283,8 +283,50 @@ body {
   opacity: 0.92;
 }
 
-.booking-engine-root .book-checkout-trust {
-  animation: book-fade-soft 0.5s ease both;
+.booking-engine-root .book-checkout-enter {
+  animation: book-checkout-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes book-checkout-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.booking-engine-root .book-reassure-stagger {
+  animation: book-checkout-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.booking-engine-root .book-reconnect {
+  isolation: isolate;
+}
+
+.booking-engine-root .book-reconnect-stage {
+  overflow: hidden;
+}
+
+.booking-engine-root .book-reconnect-image {
+  transform: scale(1);
+  animation: book-reconnect-drift 48s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes book-reconnect-drift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.025);
+  }
+}
+
+.booking-engine-root .book-reassure-featured {
+  box-shadow: 0 20px 50px -40px rgba(13, 47, 60, 0.35);
 }
 
 /* 4 slides × ~16s visible window within 64s cycle */
@@ -429,6 +471,9 @@ body {
   .booking-engine-root .book-opening-brand,
   .booking-engine-root .book-opening-cta,
   .booking-engine-root .book-checkout-trust,
+  .booking-engine-root .book-checkout-enter,
+  .booking-engine-root .book-reassure-stagger,
+  .booking-engine-root .book-reconnect-image,
   .booking-engine-root .book-calendar-grid,
   .booking-engine-root .book-guest-count,
   .booking-engine-root .book-selected-date,
