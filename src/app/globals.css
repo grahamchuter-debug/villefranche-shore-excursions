@@ -269,6 +269,24 @@ body {
   will-change: transform;
 }
 
+.booking-engine-root .book-hero-layer picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.booking-engine-root .book-brand-mark {
+  transition: opacity 0.35s ease, color 0.35s ease;
+}
+
+.booking-engine-root .book-brand-mark:hover {
+  opacity: 0.92;
+}
+
+.booking-engine-root .book-checkout-trust {
+  animation: book-fade-soft 0.5s ease both;
+}
+
 /* 4 slides × ~16s visible window within 64s cycle */
 @keyframes book-hero-crossfade {
   0% {
@@ -303,7 +321,7 @@ body {
 }
 
 .booking-engine-root .book-opening-cta {
-  animation: book-hero-copy-enter 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+  animation: book-hero-copy-enter 1s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
 }
 
 @keyframes book-hero-copy-enter {
@@ -410,6 +428,7 @@ body {
   .booking-engine-root .book-hero-copy,
   .booking-engine-root .book-opening-brand,
   .booking-engine-root .book-opening-cta,
+  .booking-engine-root .book-checkout-trust,
   .booking-engine-root .book-calendar-grid,
   .booking-engine-root .book-guest-count,
   .booking-engine-root .book-selected-date,

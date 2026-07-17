@@ -1,5 +1,5 @@
 /**
- * Booking engine configuration — Version 3 desire-led experience.
+ * Booking engine configuration — Version 4 premium presentation.
  *
  * Pricing and capacity live here so the UI never hardcodes commercial values.
  */
@@ -7,10 +7,40 @@ import { featuredTour } from "@/lib/featured-tour";
 import { siteConfig } from "@/lib/site-config";
 import { siteImages } from "@/lib/site-images";
 
+export type BookingHeroSlide = {
+  id: string;
+  width: number;
+  height: number;
+  /** Native-ish JPEG/PNG fallback for older browsers */
+  fallbackSrc: string;
+  webpSrcSet: string;
+  avifSrcSet: string;
+  priority?: boolean;
+};
+
+function bookingHeroSlide(
+  id: string,
+  dims: { width: number; height: number },
+  priority = false,
+): BookingHeroSlide {
+  const base = `/images/booking/${id}`;
+  return {
+    id,
+    width: dims.width,
+    height: dims.height,
+    fallbackSrc: `${base}-1280.webp`,
+    webpSrcSet: `${base}-1280.webp 1280w, ${base}-1920.webp 1920w`,
+    avifSrcSet: `${base}-1280.avif 1280w, ${base}-1920.avif 1920w`,
+    priority,
+  };
+}
+
 export const bookingPrototypeTour = {
   id: "monaco-monte-carlo-eze-small-group",
   slug: featuredTour.slug,
   name: "Monaco, Monte Carlo & Eze",
+  /** Breadcrumb / back-link label to the excursion page */
+  backLabel: "← Monaco, Monte Carlo & Èze",
   /**
    * Display title — stacked lines on the opening desire scene.
    * Uses Èze for the authentic Riviera spelling in the aspirational moment.
@@ -31,28 +61,16 @@ export const bookingPrototypeTour = {
     "Sunlit Port Hercules in Monaco with luxury yachts and the Monte Carlo skyline on the French Riviera",
   /**
    * Soft crossfade gallery for the opening scene.
-   * Daytime Riviera only — harbour, Èze, coastline.
+   * Pre-encoded AVIF/WebP at 1280 / 1920 for crisp full-bleed delivery.
    */
   heroGallery: [
-    {
-      src: siteImages.hero,
-      alt: "Sunlit Port Hercules in Monaco with luxury yachts on the French Riviera",
-    },
-    {
-      src: siteImages.ezeVillage,
-      alt: "The medieval hilltop village of Èze above the Mediterranean",
-    },
-    {
-      src: siteImages.villefrancheHarbour,
-      alt: "Villefranche-sur-Mer harbour and bay on a bright Mediterranean day",
-    },
-    {
-      src: siteImages.frenchRivieraCoast,
-      alt: "French Riviera coastline under warm sunshine",
-    },
+    bookingHeroSlide("monaco-harbour", { width: 1920, height: 1331 }, true),
+    bookingHeroSlide("eze-village", { width: 1920, height: 1187 }),
+    bookingHeroSlide("villefranche-harbour", { width: 1920, height: 1292 }),
+    bookingHeroSlide("riviera-coast", { width: 1920, height: 1256 }),
   ] as const,
-  /** Desire commitment — booking UI follows after this choice. */
-  ctaLabel: "I want this day",
+  /** Single primary action into the booking journey */
+  ctaLabel: "Choose Your Cruise Date",
 } as const;
 
 /**
@@ -100,6 +118,14 @@ export const bookingPricingConfig = {
   securePaymentLabel: "Secure payment",
   securePaymentDetail: "Encrypted checkout. Your details stay protected.",
 } as const;
+
+/** Placeholder policy routes — pages can be added later without UI churn. */
+export const bookingCheckoutLinks = [
+  { label: "Terms & Conditions", href: "/terms" },
+  { label: "Cancellation Policy", href: "/cancellation-policy" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Contact Us", href: "/contact" },
+] as const;
 
 export const bookingPaymentMethods = [
   { id: "visa", label: "Visa" },

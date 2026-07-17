@@ -23,8 +23,18 @@ const pageMeta = {
 export const metadata: Metadata = buildPageMetadata(pageMeta);
 
 export default function BookFeaturedTourPage() {
+  const firstHero = bookingPrototypeTour.heroGallery[0];
+
   return (
     <>
+      <link
+        rel="preload"
+        as="image"
+        href="/images/booking/monaco-harbour-1280.avif"
+        type="image/avif"
+        imageSrcSet={firstHero.avifSrcSet}
+        imageSizes="100vw"
+      />
       <JsonLd
         data={[
           buildWebPageSchema({

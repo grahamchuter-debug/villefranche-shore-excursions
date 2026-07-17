@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 
 import { BookingPrimaryButton } from "@/components/booking-engine/booking-primary-button";
+import { BookingCheckoutTrust } from "@/components/booking-engine/booking-checkout-trust";
 import {
   bookingPaymentMethods,
   bookingPricingConfig,
@@ -94,9 +95,9 @@ export function PaymentStep({
   ] as const;
 
   return (
-    <div className="space-y-8 lg:space-y-10">
+    <div className="space-y-10 lg:space-y-12">
       <header className="space-y-3 text-center lg:text-left">
-        <h2 className="book-display text-4xl font-medium text-[var(--book-ink)] sm:text-5xl">
+        <h2 className="book-display text-4xl font-medium tracking-[-0.02em] text-[var(--book-ink)] sm:text-5xl">
           Complete your booking
         </h2>
         <p className="text-lg text-[var(--book-muted)]">
@@ -104,7 +105,7 @@ export function PaymentStep({
         </p>
       </header>
 
-      <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-10">
+      <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-12">
         <aside className="book-surface-card rounded-[1.5rem] bg-[var(--book-surface)] p-6 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.3)] sm:p-8 lg:sticky lg:top-6">
           <p className="text-[11px] font-medium tracking-[0.16em] text-[var(--book-gold)] uppercase">
             Your reservation
@@ -372,6 +373,8 @@ export function PaymentStep({
           </div>
         </div>
       </div>
+
+      <BookingCheckoutTrust />
     </div>
   );
 }

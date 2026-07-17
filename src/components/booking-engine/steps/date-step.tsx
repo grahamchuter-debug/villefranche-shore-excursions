@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { BookingPrimaryButton } from "@/components/booking-engine/booking-primary-button";
-import { bookingPrototypeTour } from "@/lib/booking/booking-config";
 import {
   formatBookingDate,
   startOfLocalDay,
@@ -138,9 +137,13 @@ export function DateStep({
         aria-hidden="true"
       >
         <img
-          src={bookingPrototypeTour.image}
+          src="/images/booking/monaco-harbour-1280.webp"
           alt=""
+          width={1280}
+          height={887}
           className="h-28 w-full object-cover object-center sm:h-36"
+          decoding="async"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--book-ink)]/50 to-[var(--book-ink)]/10" />
       </div>

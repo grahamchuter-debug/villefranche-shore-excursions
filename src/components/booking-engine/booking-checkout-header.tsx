@@ -7,15 +7,15 @@ type BookingCheckoutHeaderProps = {
   tourPath?: string;
   tourLabel?: string;
   /**
-   * Opening scene: quiet escape only — no checkout trust chrome.
-   * Booking flow: standard secure header with brand.
+   * Opening scene: brand wordmark + return to tour.
+   * Booking flow: brand + secure cue + return to tour.
    */
   mode?: "scene" | "booking";
 };
 
 export function BookingCheckoutHeader({
   tourPath = bookingPrototypeTour.path,
-  tourLabel = "Exit",
+  tourLabel = bookingPrototypeTour.backLabel,
   mode = "booking",
 }: BookingCheckoutHeaderProps) {
   const isScene = mode === "scene";
@@ -24,24 +24,22 @@ export function BookingCheckoutHeader({
     <header
       className={
         isScene
-          ? "pointer-events-none absolute inset-x-0 top-0 z-30"
+          ? "pointer-events-none absolute inset-x-0 top-0 z-30 bg-gradient-to-b from-[var(--book-ink)]/45 via-[var(--book-ink)]/10 to-transparent"
           : "border-b border-[var(--book-line)]/80 bg-[var(--book-surface)]/85 backdrop-blur-xl"
       }
     >
-      <div
-        className={[
-          "book-shell flex items-center gap-4 py-4 sm:py-5",
-          isScene ? "justify-end" : "justify-between",
-        ].join(" ")}
-      >
-        {!isScene ? (
-          <Link
-            href="/"
-            className="min-w-0 truncate text-[13px] font-medium tracking-[0.04em] text-[var(--book-ink)] sm:text-sm"
-          >
-            {siteConfig.name}
-          </Link>
-        ) : null}
+      <div className="book-shell flex items-center justify-between gap-5 py-5 sm:py-6">
+        <Link
+          href="/"
+          className={[
+            "book-brand-mark pointer-events-auto min-w-0 truncate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+            isScene
+              ? "book-display text-[1.15rem] font-medium leading-tight tracking-[-0.01em] text-white drop-shadow-[0_1px_12px_rgba(12,26,36,0.45)] focus-visible:outline-white sm:text-[1.35rem]"
+              : "text-[14px] font-medium tracking-[0.02em] text-[var(--book-ink)] focus-visible:outline-[var(--book-sea)] sm:text-[15px]",
+          ].join(" ")}
+        >
+          {siteConfig.name}
+        </Link>
 
         <div className="pointer-events-auto flex shrink-0 items-center gap-4 sm:gap-6">
           {!isScene ? (
@@ -56,9 +54,9 @@ export function BookingCheckoutHeader({
           <Link
             href={tourPath}
             className={[
-              "text-[13px] font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+              "max-w-[14rem] truncate text-[13px] font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:max-w-none sm:text-sm",
               isScene
-                ? "text-white/80 hover:text-white focus-visible:outline-white"
+                ? "text-white/85 hover:text-white focus-visible:outline-white"
                 : "text-[var(--book-muted)] hover:text-[var(--book-ink)] focus-visible:outline-[var(--book-sea)]",
             ].join(" ")}
           >
