@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { JsonLd } from "@/components/json-ld";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/lib/site-config";
 import {
   buildLocalBusinessSchema,
@@ -88,9 +86,7 @@ export default function RootLayout({
             }),
           ]}
         />
-        <SiteHeader />
         <div className="flex flex-1 flex-col">{children}</div>
-        <SiteFooter />
       </body>
     </html>
   );
