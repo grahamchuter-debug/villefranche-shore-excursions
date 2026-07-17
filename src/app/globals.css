@@ -228,7 +228,9 @@ body {
   border: 0;
 }
 
-/* Hero: Ken Burns + soft crossfade gallery */
+/* Hero: Ken Burns + soft crossfade gallery
+ * Opening slide holds ~5.5s so most visitors see a transition;
+ * thereafter ~9s per image with a ~1.5s crossfade (38.5s cycle). */
 .booking-engine-root .book-hero-stage {
   position: absolute;
   inset: 0;
@@ -239,23 +241,22 @@ body {
   position: absolute;
   inset: 0;
   opacity: 0;
-  animation: book-hero-crossfade 64s ease-in-out infinite;
 }
 
 .booking-engine-root .book-hero-layer:nth-child(1) {
-  animation-delay: 0s;
+  animation: book-hero-slide-1 38.5s ease-in-out infinite;
 }
 
 .booking-engine-root .book-hero-layer:nth-child(2) {
-  animation-delay: -16s;
+  animation: book-hero-slide-2 38.5s ease-in-out infinite;
 }
 
 .booking-engine-root .book-hero-layer:nth-child(3) {
-  animation-delay: -32s;
+  animation: book-hero-slide-3 38.5s ease-in-out infinite;
 }
 
 .booking-engine-root .book-hero-layer:nth-child(4) {
-  animation-delay: -48s;
+  animation: book-hero-slide-4 38.5s ease-in-out infinite;
 }
 
 .booking-engine-root .book-hero-layer img {
@@ -276,7 +277,9 @@ body {
 }
 
 .booking-engine-root .book-brand-mark {
-  transition: opacity 0.35s ease, color 0.35s ease;
+  transition:
+    opacity 0.35s ease,
+    color 0.35s ease;
 }
 
 .booking-engine-root .book-brand-mark:hover {
@@ -329,16 +332,59 @@ body {
   box-shadow: 0 20px 50px -40px rgba(13, 47, 60, 0.35);
 }
 
-/* 4 slides × ~16s visible window within 64s cycle */
-@keyframes book-hero-crossfade {
-  0% {
+/* 5.5s hold → 1.5s fade → 9s × 3 holds with 1.5s fades */
+@keyframes book-hero-slide-1 {
+  0%,
+  14.3% {
     opacity: 1;
   }
-  22% {
-    opacity: 1;
-  }
-  25% {
+  18.2%,
+  96.1% {
     opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes book-hero-slide-2 {
+  0%,
+  14.3% {
+    opacity: 0;
+  }
+  18.2%,
+  41.6% {
+    opacity: 1;
+  }
+  45.5%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes book-hero-slide-3 {
+  0%,
+  41.6% {
+    opacity: 0;
+  }
+  45.5%,
+  68.8% {
+    opacity: 1;
+  }
+  72.7%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes book-hero-slide-4 {
+  0%,
+  68.8% {
+    opacity: 0;
+  }
+  72.7%,
+  96.1% {
+    opacity: 1;
   }
   100% {
     opacity: 0;
