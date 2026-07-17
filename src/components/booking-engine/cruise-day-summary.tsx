@@ -5,7 +5,7 @@ import {
   bookingStartTimeConfig,
   getBookingStartTimeLabel,
 } from "@/lib/booking/booking-config";
-import type { BookingShipVisit } from "@/lib/booking/booking-ships";
+import type { BookingShipVisit } from "@/lib/booking/booking-ship-types";
 import {
   calculateBookingTotal,
   formatBookingDate,

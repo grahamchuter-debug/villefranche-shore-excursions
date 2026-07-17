@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { BookingPrimaryButton } from "@/components/booking-engine/booking-primary-button";
 import { bookingPrototypeTour } from "@/lib/booking/booking-config";
-import type { BookingShipVisit } from "@/lib/booking/booking-ships";
+import type { BookingShipVisit } from "@/lib/booking/booking-ship-types";
 import {
   formatBookingDate,
   formatBookingMoney,

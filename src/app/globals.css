@@ -332,6 +332,27 @@ body {
   box-shadow: 0 20px 50px -40px rgba(13, 47, 60, 0.35);
 }
 
+.booking-engine-root .book-ship-feature {
+  box-shadow: 0 28px 60px -40px rgba(12, 26, 36, 0.45);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.booking-engine-root .book-ship-feature:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 32px 70px -40px rgba(12, 26, 36, 0.5);
+}
+
+.booking-engine-root .book-ship-feature-image {
+  transform: scale(1);
+  transition: transform 12s ease;
+}
+
+.booking-engine-root .book-ship-feature:hover .book-ship-feature-image {
+  transform: scale(1.03);
+}
+
 /* 5.5s hold → 1.5s fade → 9s × 3 holds with 1.5s fades */
 @keyframes book-hero-slide-1 {
   0%,
@@ -509,6 +530,15 @@ body {
     transform: none !important;
     box-shadow: none !important;
     animation: none !important;
+  }
+
+  .booking-engine-root .book-ship-feature,
+  .booking-engine-root .book-ship-feature:hover,
+  .booking-engine-root .book-ship-feature-image,
+  .booking-engine-root .book-ship-feature:hover .book-ship-feature-image {
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
   }
 
   .booking-engine-root .book-step-enter,

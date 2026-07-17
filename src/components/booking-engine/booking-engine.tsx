@@ -24,7 +24,7 @@ import {
 import type {
   BookingShipVisit,
   BookingShipsByDate,
-} from "@/lib/booking/booking-ships";
+} from "@/lib/booking/booking-ship-types";
 
 type BookingState = {
   step: BookingStepId;
@@ -139,9 +139,17 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
 
   useEffect(() => {
     const stored = loadState();
-    if (stored) setState(stored);
+    if (stored) {
+      if (stored.cruiseShip && stored.date) {
+        const match = shipsByDate[stored.date]?.find(
+          (ship) => ship.slug === stored.cruiseShip?.slug,
+        );
+        if (match) stored.cruiseShip = match;
+      }
+      setState(stored);
+    }
     setHydrated(true);
-  }, []);
+  }, [shipsByDate]);
 
   useEffect(() => {
     if (!hydrated) return;

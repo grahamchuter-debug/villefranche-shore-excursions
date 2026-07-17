@@ -6,7 +6,10 @@ import Link from "next/link";
 import { BookingPrimaryButton } from "@/components/booking-engine/booking-primary-button";
 import { bookingContactPath } from "@/lib/booking/booking-config";
 import { formatBookingDate } from "@/lib/booking/booking-format";
-import type { BookingShipVisit } from "@/lib/booking/booking-ships";
+import {
+  formatShipPortTime,
+  type BookingShipVisit,
+} from "@/lib/booking/booking-ship-types";
 
 type ShipStepProps = {
   date: string;
@@ -16,6 +19,132 @@ type ShipStepProps = {
   onContinue: () => void;
   onBack: () => void;
 };
+
+function ShipTimingLine({ ship }: { ship: BookingShipVisit }) {
+  const arrival = formatShipPortTime(ship.arrival);
+  const departure = formatShipPortTime(ship.departure);
+  const parts = [
+    arrival ? `Arrives ${arrival}` : null,
+    departure ? `Departs ${departure}` : null,
+  ].filter(Boolean);
+
+  if (parts.length === 0) return null;
+  return <span>{parts.join(" · ")}</span>;
+}
+
+function ShipCardButton({
+  ship,
+  selected,
+  singleShip,
+  onSelect,
+}: {
+  ship: BookingShipVisit;
+  selected: boolean;
+  singleShip: boolean;
+  onSelect: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      aria-pressed={selected}
+      className={[
+        "book-btn flex w-full flex-col items-start gap-1 rounded-[1.25rem] border px-5 py-5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)] sm:px-6",
+        selected
+          ? "border-[var(--book-sea-deep)] bg-[var(--book-sea-deep)] text-white shadow-[0_16px_40px_-28px_rgba(13,47,60,0.55)]"
+          : "border-[var(--book-line)] bg-[var(--book-surface)] text-[var(--book-ink)] hover:border-[var(--book-ink)]/20",
+      ].join(" ")}
+    >
+      <span className="text-lg font-semibold tracking-wide">{ship.name}</span>
+      <span
+        className={[
+          "text-sm",
+          selected ? "text-white/75" : "text-[var(--book-muted)]",
+        ].join(" ")}
+      >
+        {ship.cruiseLine}
+        {formatShipPortTime(ship.arrival)
+          ? ` · Arrives ${formatShipPortTime(ship.arrival)}`
+          : null}
+      </span>
+      {selected ? (
+        <span
+          className={[
+            "mt-2 text-[11px] font-medium tracking-[0.14em] uppercase",
+            selected ? "text-white/70" : "text-[var(--book-muted)]",
+          ].join(" ")}
+        >
+          {singleShip ? "Selected for your cruise day ✓" : "Selected ✓"}
+        </span>
+      ) : null}
+    </button>
+  );
+}
+
+function ShipFeatureButton({
+  ship,
+  onSelect,
+}: {
+  ship: BookingShipVisit;
+  onSelect: () => void;
+}) {
+  const image = ship.image;
+  if (!image) return null;
+
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      aria-pressed="true"
+      aria-label={`${ship.name}, ${ship.cruiseLine}, selected for your cruise day`}
+      className="book-ship-feature group relative w-full overflow-hidden rounded-[1.5rem] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
+    >
+      <div className="relative min-h-[14rem] sm:min-h-[17rem]">
+        <picture>
+          {image.avifSrcSet ? (
+            <source
+              type="image/avif"
+              srcSet={image.avifSrcSet}
+              sizes="(max-width: 768px) 100vw, 42rem"
+            />
+          ) : null}
+          <source
+            type="image/webp"
+            srcSet={image.srcSet}
+            sizes="(max-width: 768px) 100vw, 42rem"
+          />
+          <img
+            src={image.src}
+            alt=""
+            width={image.width}
+            height={image.height}
+            className="book-ship-feature-image absolute inset-0 h-full w-full object-cover object-center"
+            decoding="async"
+          />
+        </picture>
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-[var(--book-ink)]/85 via-[var(--book-ink)]/45 to-[var(--book-ink)]/15"
+          aria-hidden="true"
+        />
+        <div className="relative z-10 flex min-h-[14rem] flex-col justify-end px-6 py-7 sm:min-h-[17rem] sm:px-8 sm:py-8">
+          <p className="text-[11px] font-medium tracking-[0.18em] text-white/70 uppercase">
+            Your cruise
+          </p>
+          <p className="book-display mt-2 text-3xl font-medium leading-tight text-white sm:text-4xl">
+            {ship.name}
+          </p>
+          <p className="mt-2 text-[15px] text-white/85">{ship.cruiseLine}</p>
+          <p className="mt-3 text-sm text-white/75">
+            <ShipTimingLine ship={ship} />
+          </p>
+          <p className="mt-5 text-[12px] font-medium tracking-[0.12em] text-white/90 uppercase">
+            Selected for your cruise day ✓
+          </p>
+        </div>
+      </div>
+    </button>
+  );
+}
 
 export function ShipStep({
   date,
@@ -85,44 +214,26 @@ export function ShipStep({
           <legend className="sr-only">Cruise ship</legend>
           {ships.map((ship) => {
             const selected = selectedShip?.slug === ship.slug;
+            const showFeature = selected && Boolean(ship.image);
+
+            if (showFeature) {
+              return (
+                <ShipFeatureButton
+                  key={ship.slug}
+                  ship={ship}
+                  onSelect={() => onSelectShip(ship)}
+                />
+              );
+            }
+
             return (
-              <button
+              <ShipCardButton
                 key={ship.slug}
-                type="button"
-                onClick={() => onSelectShip(ship)}
-                aria-pressed={selected}
-                className={[
-                  "book-btn flex w-full flex-col items-start gap-1 rounded-[1.25rem] border px-5 py-5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)] sm:px-6",
-                  selected
-                    ? "border-[var(--book-sea-deep)] bg-[var(--book-sea-deep)] text-white shadow-[0_16px_40px_-28px_rgba(13,47,60,0.55)]"
-                    : "border-[var(--book-line)] bg-[var(--book-surface)] text-[var(--book-ink)] hover:border-[var(--book-ink)]/20",
-                ].join(" ")}
-              >
-                <span className="text-lg font-semibold tracking-wide">
-                  {ship.name}
-                </span>
-                <span
-                  className={[
-                    "text-sm",
-                    selected ? "text-white/75" : "text-[var(--book-muted)]",
-                  ].join(" ")}
-                >
-                  {ship.cruiseLine}
-                  {ship.arrival && ship.arrival.toLowerCase() !== "tbc"
-                    ? ` · Arrives ${ship.arrival}`
-                    : null}
-                </span>
-                {singleShip && selected ? (
-                  <span
-                    className={[
-                      "mt-2 text-[11px] font-medium tracking-[0.14em] uppercase",
-                      selected ? "text-white/70" : "text-[var(--book-muted)]",
-                    ].join(" ")}
-                  >
-                    Selected for your day
-                  </span>
-                ) : null}
-              </button>
+                ship={ship}
+                selected={selected}
+                singleShip={singleShip}
+                onSelect={() => onSelectShip(ship)}
+              />
             );
           })}
         </fieldset>

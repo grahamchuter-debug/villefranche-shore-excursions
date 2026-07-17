@@ -1,27 +1,13 @@
 import type { CruiseScheduleEntry } from "@/lib/cruise-schedule-types";
-import { slugifyShipName } from "@/lib/cruise-ship-utils";
+import {
+  toBookingShipVisit,
+  type BookingShipVisit,
+  type BookingShipsByDate,
+} from "@/lib/booking/booking-ship-types";
 import { loadAllVillefrancheScheduleEntries } from "@/lib/villefranche-cruise-ships";
 
-/** Ship visiting Villefranche on a bookable date — stored with the booking. */
-export type BookingShipVisit = {
-  name: string;
-  slug: string;
-  cruiseLine: string;
-  arrival: string;
-  departure: string;
-};
-
-export type BookingShipsByDate = Record<string, BookingShipVisit[]>;
-
-function toVisit(entry: CruiseScheduleEntry): BookingShipVisit {
-  return {
-    name: entry.ship,
-    slug: slugifyShipName(entry.ship),
-    cruiseLine: entry.cruiseLine,
-    arrival: entry.arrival,
-    departure: entry.departure,
-  };
-}
+export type { BookingShipVisit, BookingShipsByDate } from "@/lib/booking/booking-ship-types";
+export { formatShipPortTime, toBookingShipVisit } from "@/lib/booking/booking-ship-types";
 
 /** Ships calling at Villefranche on an ISO date (deduped by ship name). */
 export function getVillefrancheShipsOnDate(
@@ -35,7 +21,7 @@ export function getVillefrancheShipsOnDate(
     if (entry.date !== isoDate) continue;
     if (seen.has(entry.ship)) continue;
     seen.add(entry.ship);
-    visits.push(toVisit(entry));
+    visits.push(toBookingShipVisit(entry));
   }
 
   return visits.sort((a, b) => a.name.localeCompare(b.name, "en"));
@@ -50,7 +36,7 @@ export function buildBookingShipsByDate(
   for (const entry of entries) {
     const list = map[entry.date] ?? [];
     if (!list.some((ship) => ship.name === entry.ship)) {
-      list.push(toVisit(entry));
+      list.push(toBookingShipVisit(entry));
       map[entry.date] = list;
     }
   }
