@@ -19,7 +19,7 @@ type ConfirmationStepProps = {
 };
 
 const fieldClass =
-  "w-full rounded-2xl border border-[var(--book-line)] bg-white px-4 py-4 text-base text-[var(--book-ink)] outline-none focus:border-[var(--book-sea)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]";
+  "w-full rounded-xl border border-[var(--book-line)] bg-white px-4 py-3.5 text-base text-[var(--book-ink)] outline-none focus:border-[var(--book-sea)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -38,77 +38,77 @@ export function ConfirmationStep({
   };
 
   return (
-    <div className="space-y-10">
+    <div className="mx-auto max-w-3xl space-y-12">
       {isDevelopment ? (
         <p
-          className="rounded-2xl border border-amber-300 bg-amber-50 px-4 py-3 text-center text-sm font-medium text-amber-950"
+          className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-center text-sm font-medium text-amber-950"
           role="status"
         >
           Prototype complete — no payment has been taken.
         </p>
       ) : null}
 
-      <section className="overflow-hidden rounded-3xl bg-[var(--book-surface)] text-center shadow-[0_20px_50px_-28px_rgba(19,34,56,0.35)]">
-        <div className="bg-gradient-to-br from-[var(--book-sea)] to-[var(--book-sea-deep)] px-5 py-10 text-white sm:px-8 sm:py-12">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-white/75">
-            You&apos;re booked
-          </p>
-          <h2 className="book-display text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl">
-            Your French Riviera day is reserved
-          </h2>
-          <p className="mx-auto mt-4 max-w-lg text-lg leading-8 text-white/85">
-            Monaco, Monte Carlo and Eze — a small-group day designed around your
-            cruise call.
-          </p>
-          <p className="mt-6 inline-flex rounded-full bg-white/15 px-4 py-2 text-sm font-medium backdrop-blur-sm">
-            Reference {bookingReference}
-          </p>
+      <section className="overflow-hidden rounded-[1.75rem] bg-[var(--book-surface)] text-center shadow-[0_30px_80px_-40px_rgba(12,26,36,0.4)]">
+        <div className="relative min-h-[14rem] overflow-hidden sm:min-h-[18rem]">
+          <img
+            src={bookingPrototypeTour.image}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-[var(--book-ink)]/55" />
+          <div className="relative flex h-full min-h-[14rem] flex-col items-center justify-center px-6 py-12 text-white sm:min-h-[18rem] sm:px-10">
+            <p className="mb-3 text-[11px] font-medium tracking-[0.2em] text-white/70 uppercase">
+              Reserved for you
+            </p>
+            <h2 className="book-display max-w-xl text-3xl font-medium leading-tight sm:text-5xl">
+              Your Riviera day awaits
+            </h2>
+            <p className="mt-5 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm backdrop-blur-sm">
+              {bookingReference}
+            </p>
+          </div>
         </div>
 
-        <div className="space-y-5 px-5 py-8 text-left sm:px-8">
-          <dl className="space-y-3 text-base">
-            <div className="flex justify-between gap-4">
-              <dt className="text-[var(--book-muted)]">Tour</dt>
-              <dd className="max-w-[60%] text-right font-semibold text-[var(--book-ink)]">
+        <div className="space-y-8 px-6 py-10 text-left sm:px-10">
+          <dl className="grid gap-4 sm:grid-cols-3">
+            <div>
+              <dt className="text-[11px] tracking-[0.14em] text-[var(--book-muted)] uppercase">
+                Tour
+              </dt>
+              <dd className="mt-1 font-medium text-[var(--book-ink)]">
                 {bookingPrototypeTour.name}
               </dd>
             </div>
-            <div className="flex justify-between gap-4">
-              <dt className="text-[var(--book-muted)]">Date</dt>
-              <dd className="text-right font-semibold text-[var(--book-ink)]">
+            <div>
+              <dt className="text-[11px] tracking-[0.14em] text-[var(--book-muted)] uppercase">
+                Date
+              </dt>
+              <dd className="mt-1 font-medium text-[var(--book-ink)]">
                 {formatBookingDate(date)}
               </dd>
             </div>
-            <div className="flex justify-between gap-4">
-              <dt className="text-[var(--book-muted)]">Guests</dt>
-              <dd className="text-right font-semibold text-[var(--book-ink)]">
-                {guests}
-              </dd>
-            </div>
-            <div className="flex justify-between gap-4 border-t border-[var(--book-line)] pt-3">
-              <dt className="text-[var(--book-muted)]">Total</dt>
-              <dd className="text-right font-semibold text-[var(--book-ink)]">
-                {formatBookingMoney(calculateBookingTotal(guests))}
+            <div>
+              <dt className="text-[11px] tracking-[0.14em] text-[var(--book-muted)] uppercase">
+                Total
+              </dt>
+              <dd className="mt-1 font-medium text-[var(--book-ink)]">
+                {formatBookingMoney(calculateBookingTotal(guests))} · {guests}{" "}
+                {guests === 1 ? "guest" : "guests"}
               </dd>
             </div>
           </dl>
 
-          <div className="rounded-2xl bg-[var(--book-mist)] px-4 py-5">
-            <h3 className="text-lg font-semibold text-[var(--book-ink)]">
+          <div className="rounded-2xl bg-[var(--book-mist)] px-5 py-6">
+            <h3 className="book-display text-2xl font-medium text-[var(--book-ink)]">
               What happens next
             </h3>
-            <ol className="mt-3 space-y-3 text-base leading-7 text-[var(--book-muted)]">
+            <ol className="mt-4 space-y-3 text-[15px] leading-7 text-[var(--book-muted)]">
+              <li>We prepare your meeting details for the tender landing.</li>
               <li>
-                <span className="font-semibold text-[var(--book-ink)]">1.</span>{" "}
-                We prepare your meeting details for the tender landing.
+                Closer to port day, you receive exact meeting instructions.
               </li>
               <li>
-                <span className="font-semibold text-[var(--book-ink)]">2.</span>{" "}
-                Closer to port day, you receive your exact meeting instructions.
-              </li>
-              <li>
-                <span className="font-semibold text-[var(--book-ink)]">3.</span>{" "}
-                On the day, your guide meets you ashore and brings you back with
+                On the day, your guide meets you ashore and returns you with
                 time for your ship.
               </li>
             </ol>
@@ -116,33 +116,31 @@ export function ConfirmationStep({
         </div>
       </section>
 
-      <section className="rounded-3xl border border-[var(--book-line)] bg-[var(--book-surface)] p-5 sm:p-8">
-        <div className="mb-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--book-muted)]">
-            Optional · after booking
-          </p>
-          <h3 className="book-display mt-2 text-2xl font-semibold text-[var(--book-ink)] sm:text-3xl">
-            Tell us about your cruise
-          </h3>
-          <p className="mt-2 max-w-xl text-base leading-7 text-[var(--book-muted)]">
-            This is not part of payment. It simply helps us prepare your
-            meeting point and return timing.
-          </p>
-        </div>
+      <section className="rounded-[1.5rem] border border-[var(--book-line)] bg-[var(--book-surface)] p-6 sm:p-8">
+        <p className="text-[11px] font-medium tracking-[0.16em] text-[var(--book-muted)] uppercase">
+          Optional · after booking
+        </p>
+        <h3 className="book-display mt-2 text-2xl font-medium text-[var(--book-ink)] sm:text-3xl">
+          Tell us about your cruise
+        </h3>
+        <p className="mt-2 max-w-xl text-[15px] leading-7 text-[var(--book-muted)]">
+          Not part of payment — simply helps us prepare meeting and return
+          timing.
+        </p>
 
         {cruiseSaved ? (
           <div
-            className="mt-6 rounded-2xl bg-[var(--book-success)]/10 px-4 py-5 text-[var(--book-success)]"
+            className="mt-6 rounded-xl bg-[var(--book-success)]/10 px-4 py-4 text-[var(--book-success)]"
             role="status"
           >
-            <p className="font-semibold">Thank you — cruise details noted.</p>
+            <p className="font-medium">Thank you — cruise details noted.</p>
           </div>
         ) : (
           <form className="mt-6 space-y-4" onSubmit={handleCruiseSubmit}>
             <div>
               <label
                 htmlFor={`${formId}-ship`}
-                className="mb-1.5 block text-sm font-medium text-[var(--book-muted)]"
+                className="mb-1.5 block text-sm text-[var(--book-muted)]"
               >
                 Ship
               </label>
@@ -154,48 +152,50 @@ export function ConfirmationStep({
                 className={fieldClass}
               />
             </div>
-            <div>
-              <label
-                htmlFor={`${formId}-mobile`}
-                className="mb-1.5 block text-sm font-medium text-[var(--book-muted)]"
-              >
-                Mobile number
-              </label>
-              <input
-                id={`${formId}-mobile`}
-                name="mobile"
-                type="tel"
-                placeholder="Including country code"
-                className={fieldClass}
-              />
-            </div>
-            <div>
-              <label
-                htmlFor={`${formId}-whatsapp`}
-                className="mb-1.5 block text-sm font-medium text-[var(--book-muted)]"
-              >
-                WhatsApp{" "}
-                <span className="font-normal">(optional)</span>
-              </label>
-              <input
-                id={`${formId}-whatsapp`}
-                name="whatsapp"
-                type="tel"
-                placeholder="If different from mobile"
-                className={fieldClass}
-              />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label
+                  htmlFor={`${formId}-mobile`}
+                  className="mb-1.5 block text-sm text-[var(--book-muted)]"
+                >
+                  Mobile number
+                </label>
+                <input
+                  id={`${formId}-mobile`}
+                  name="mobile"
+                  type="tel"
+                  placeholder="Including country code"
+                  className={fieldClass}
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor={`${formId}-whatsapp`}
+                  className="mb-1.5 block text-sm text-[var(--book-muted)]"
+                >
+                  WhatsApp{" "}
+                  <span className="font-normal">(optional)</span>
+                </label>
+                <input
+                  id={`${formId}-whatsapp`}
+                  name="whatsapp"
+                  type="tel"
+                  placeholder="If different"
+                  className={fieldClass}
+                />
+              </div>
             </div>
             <div>
               <label
                 htmlFor={`${formId}-requirements`}
-                className="mb-1.5 block text-sm font-medium text-[var(--book-muted)]"
+                className="mb-1.5 block text-sm text-[var(--book-muted)]"
               >
                 Special requirements
               </label>
               <textarea
                 id={`${formId}-requirements`}
                 name="requirements"
-                rows={4}
+                rows={3}
                 placeholder="Mobility needs, celebration, timing notes…"
                 className={`${fieldClass} resize-y`}
               />
@@ -207,15 +207,17 @@ export function ConfirmationStep({
         )}
       </section>
 
-      <div className="flex flex-col gap-3 sm:flex-row">
-        <BookingPrimaryButton variant="secondary" onClick={onBookAgain}>
-          Book another date
-        </BookingPrimaryButton>
+      <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
+        <div className="sm:w-56">
+          <BookingPrimaryButton variant="secondary" onClick={onBookAgain}>
+            Book another date
+          </BookingPrimaryButton>
+        </div>
         <Link
           href={bookingPrototypeTour.path}
-          className="inline-flex w-full items-center justify-center rounded-2xl px-6 py-4 text-base font-semibold text-[var(--book-sea)] underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)] sm:text-lg"
+          className="inline-flex items-center justify-center px-6 py-4 text-[15px] font-medium text-[var(--book-sea)] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
         >
-          Back to tour page
+          Back to tour
         </Link>
       </div>
     </div>

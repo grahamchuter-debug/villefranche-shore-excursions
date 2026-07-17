@@ -7,7 +7,6 @@ import { ConfirmationStep } from "@/components/booking-engine/steps/confirmation
 import { DateStep } from "@/components/booking-engine/steps/date-step";
 import { GuestsStep } from "@/components/booking-engine/steps/guests-step";
 import { PaymentStep } from "@/components/booking-engine/steps/payment-step";
-import { SummaryStep } from "@/components/booking-engine/steps/summary-step";
 import { TourIntroStep } from "@/components/booking-engine/steps/tour-intro-step";
 import {
   bookingCapacityConfig,
@@ -25,17 +24,39 @@ type BookingState = {
   bookingReference: string | null;
 };
 
-const LEGACY_STORAGE_KEY = "vf-booking-prototype-v1";
+const LEGACY_KEYS = [
+  "vf-booking-prototype-v1",
+  `vf-booking:${bookingPrototypeTour.id}`,
+] as const;
 const STORAGE_KEY = bookingSessionStorageKey(bookingPrototypeTour.id);
+
+const VALID_STEPS = new Set<BookingStepId>([
+  "tour",
+  "date",
+  "guests",
+  "payment",
+  "confirmed",
+]);
 
 function loadState(): BookingState | null {
   if (typeof window === "undefined") return null;
   try {
-    // Drop the unscoped legacy key so drafts never cross tour routes.
-    window.sessionStorage.removeItem(LEGACY_STORAGE_KEY);
+    for (const key of LEGACY_KEYS) {
+      window.sessionStorage.removeItem(key);
+    }
     const raw = window.sessionStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
-    const parsed = JSON.parse(raw) as BookingState;
+    const parsed = JSON.parse(raw) as {
+      step: string;
+      date: string | null;
+      guests: number;
+      bookingReference: string | null;
+    };
+    // Phase 1 summary step → Phase 2 payment
+    if (parsed.step === "summary") parsed.step = "payment";
+    if (!VALID_STEPS.has(parsed.step as BookingStepId)) {
+      parsed.step = "tour";
+    }
     if (
       typeof parsed.guests === "number" &&
       (parsed.guests < bookingCapacityConfig.minGuests ||
@@ -46,7 +67,12 @@ function loadState(): BookingState | null {
         Math.max(bookingCapacityConfig.minGuests, parsed.guests),
       );
     }
-    return parsed;
+    return {
+      step: parsed.step as BookingStepId,
+      date: parsed.date,
+      guests: parsed.guests,
+      bookingReference: parsed.bookingReference,
+    };
   } catch {
     return null;
   }
@@ -110,7 +136,7 @@ export function BookingEngine() {
   if (!hydrated) {
     return (
       <div
-        className="mx-auto max-w-xl px-4 py-20 text-center text-[var(--book-muted)]"
+        className="book-shell py-24 text-center text-[var(--book-muted)]"
         aria-live="polite"
       >
         Preparing your booking…
@@ -119,10 +145,12 @@ export function BookingEngine() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-xl px-4 py-8 sm:px-6 sm:py-12">
-      <div className="mb-8 sm:mb-10">
-        <BookingProgress current={state.step} />
-      </div>
+    <div className="book-shell py-8 sm:py-12 lg:py-14">
+      {state.step !== "tour" ? (
+        <div className="mb-10 sm:mb-12">
+          <BookingProgress current={state.step} />
+        </div>
+      ) : null}
 
       {state.step === "tour" ? (
         <TourIntroStep onContinue={() => go("date")} />
@@ -151,25 +179,17 @@ export function BookingEngine() {
               ),
             }))
           }
-          onContinue={() => go("summary")}
+          onContinue={() => go("payment")}
           onBack={() => go("date")}
         />
       ) : null}
 
-      {state.step === "summary" && state.date ? (
-        <SummaryStep
+      {state.step === "payment" && state.date ? (
+        <PaymentStep
           date={state.date}
           guests={state.guests}
-          onContinue={() => go("payment")}
-          onBack={() => go("guests")}
-        />
-      ) : null}
-
-      {state.step === "payment" ? (
-        <PaymentStep
-          guests={state.guests}
           onPay={handlePay}
-          onBack={() => go("summary")}
+          onBack={() => go("guests")}
         />
       ) : null}
 

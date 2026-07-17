@@ -10,32 +10,29 @@ type BookingCheckoutHeaderProps = {
 
 export function BookingCheckoutHeader({
   tourPath = bookingPrototypeTour.path,
-  tourLabel = "Back to tour",
+  tourLabel = "Exit",
 }: BookingCheckoutHeaderProps) {
   return (
-    <header className="border-b border-[var(--book-line)] bg-[var(--book-surface)]/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-xl items-center justify-between gap-3 px-4 py-3.5 sm:px-6">
+    <header className="border-b border-[var(--book-line)]/80 bg-[var(--book-surface)]/85 backdrop-blur-xl">
+      <div className="book-shell flex items-center justify-between gap-4 py-4">
         <Link
           href="/"
-          className="min-w-0 truncate text-sm font-semibold tracking-tight text-[var(--book-ink)] sm:text-base"
+          className="min-w-0 truncate text-[13px] font-medium tracking-[0.04em] text-[var(--book-ink)] sm:text-sm"
         >
           {siteConfig.name}
         </Link>
 
-        <div className="flex shrink-0 items-center gap-3 sm:gap-4">
-          <p className="hidden text-xs font-medium text-[var(--book-muted)] sm:block">
+        <div className="flex shrink-0 items-center gap-4 sm:gap-6">
+          <p className="hidden items-center gap-2 text-[11px] font-medium tracking-[0.12em] uppercase text-[var(--book-muted)] sm:flex">
             <span
               aria-hidden="true"
-              className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-[var(--book-success)]"
+              className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--book-success)]"
             />
             Secure booking
           </p>
-          <p className="text-xs font-medium text-[var(--book-muted)] sm:hidden">
-            Secure
-          </p>
           <Link
             href={tourPath}
-            className="rounded-full border border-[var(--book-line)] px-3 py-1.5 text-xs font-medium text-[var(--book-muted)] transition hover:border-[var(--book-sea)] hover:text-[var(--book-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
+            className="text-[13px] font-medium text-[var(--book-muted)] transition hover:text-[var(--book-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
           >
             {tourLabel}
           </Link>

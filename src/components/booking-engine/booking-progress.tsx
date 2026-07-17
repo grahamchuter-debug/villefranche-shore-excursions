@@ -13,31 +13,31 @@ export function BookingProgress({ current }: BookingProgressProps) {
 
   if (isConfirmed) {
     return (
-      <p className="text-center text-sm font-medium tracking-wide text-[var(--book-success)]">
-        Booking confirmed
+      <p className="text-center text-xs font-medium tracking-[0.16em] uppercase text-[var(--book-success)]">
+        Confirmed
       </p>
     );
   }
 
   return (
     <nav aria-label="Booking progress" className="w-full">
-      <ol className="flex items-center justify-between gap-1 sm:gap-2">
+      <ol className="mx-auto flex max-w-2xl items-center justify-between gap-2">
         {visibleSteps.map((step, index) => {
           const done = index < currentIndex;
           const active = index === currentIndex;
           return (
             <li
               key={step.id}
-              className="flex min-w-0 flex-1 flex-col items-center gap-1.5"
+              className="flex min-w-0 flex-1 flex-col items-center gap-2"
             >
               <span
                 className={[
-                  "flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold transition sm:h-9 sm:w-9",
+                  "flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold transition sm:h-9 sm:w-9 sm:text-sm",
                   done
                     ? "bg-[var(--book-sea)] text-white"
                     : active
-                      ? "bg-[var(--book-sea-deep)] text-white ring-4 ring-[var(--book-sea)]/20"
-                      : "bg-[var(--book-sand)] text-[var(--book-muted)]",
+                      ? "bg-[var(--book-sea-deep)] text-white"
+                      : "bg-transparent text-[var(--book-muted)] ring-1 ring-[var(--book-line)]",
                 ].join(" ")}
                 aria-current={active ? "step" : undefined}
               >
@@ -45,7 +45,7 @@ export function BookingProgress({ current }: BookingProgressProps) {
               </span>
               <span
                 className={[
-                  "truncate text-[11px] font-medium sm:text-xs",
+                  "truncate text-[10px] font-medium tracking-[0.08em] uppercase sm:text-[11px]",
                   active || done
                     ? "text-[var(--book-ink)]"
                     : "text-[var(--book-muted)]",

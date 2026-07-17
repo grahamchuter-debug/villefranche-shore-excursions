@@ -25,26 +25,44 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Booking engine prototype — calm Riviera palette, scoped to /book */
+/* Booking engine — Phase 2 luxury Riviera palette */
 .booking-engine-root {
-  --book-ink: #132238;
-  --book-muted: #5b6b7c;
-  --book-line: #d7e0ea;
+  --book-ink: #0c1a24;
+  --book-muted: #6a7a88;
+  --book-line: #e4ebe8;
   --book-surface: #ffffff;
-  --book-mist: #f3f7fa;
-  --book-sea: #1a5f7a;
-  --book-sea-deep: #0f3d4f;
-  --book-sand: #e8eef3;
-  --book-success: #1f6b4a;
+  --book-mist: #f7f9f8;
+  --book-sea: #1c4f63;
+  --book-sea-deep: #0d2f3c;
+  --book-sand: #eef2f0;
+  --book-success: #2a6b52;
+  --book-gold: #9a7b4f;
   font-family: var(--font-booking-sans), var(--font-sans), system-ui, sans-serif;
   color: var(--book-ink);
-  background:
-    radial-gradient(1200px 600px at 10% -10%, #dceaf2 0%, transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, #e7f0f4 0%, transparent 50%),
-    var(--book-mist);
+  background: linear-gradient(180deg, #fbfcfb 0%, #f3f6f5 48%, #eef3f2 100%);
 }
 
 .booking-engine-root .book-display {
-  font-family: var(--font-booking-display), Georgia, serif;
+  font-family: var(--font-booking-display), Georgia, "Times New Roman", serif;
   font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+}
+
+.booking-engine-root .book-shell {
+  width: 100%;
+  max-width: 68rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .booking-engine-root .book-shell {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .booking-engine-root .book-shell {
+    padding-inline: 2.5rem;
+  }
 }

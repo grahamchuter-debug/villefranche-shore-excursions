@@ -14,7 +14,7 @@ import { siteImages } from "@/lib/site-images";
 
 const pageMeta = {
   title: "Book Monaco, Monte Carlo & Eze Shore Excursion",
-  description: `Book the small-group Monaco, Monte Carlo and Eze shore excursion from Villefranche. ${formatBookingMoney(bookingPricingConfig.pricePerGuest)} per guest — choose your date and guests in a few calm steps.`,
+  description: `Book Monaco, Monte Carlo and Eze — a small-group French Riviera shore excursion from Villefranche. ${formatBookingMoney(bookingPricingConfig.pricePerGuest)} per guest.`,
   path: featuredTour.bookingPath,
   ogImage: siteImages.monacoHarbour,
   ogImageAlt: bookingPrototypeTour.imageAlt,
