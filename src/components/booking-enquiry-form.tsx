@@ -77,7 +77,7 @@ export function BookingEnquiryForm({ tourName }: BookingEnquiryFormProps) {
           email us directly at{" "}
           <a
             href={`mailto:${siteConfig.bookingEmail}`}
-            className="font-medium text-blue-700 underline"
+            className="w2-link underline"
           >
             {siteConfig.bookingEmail}
           </a>
@@ -86,7 +86,7 @@ export function BookingEnquiryForm({ tourName }: BookingEnquiryFormProps) {
         <button
           type="button"
           onClick={() => setSubmitted(false)}
-          className="mt-4 text-sm font-medium text-blue-700 underline"
+          className="mt-4 text-sm w2-link underline"
         >
           Edit enquiry
         </button>
@@ -108,7 +108,7 @@ export function BookingEnquiryForm({ tourName }: BookingEnquiryFormProps) {
             autoComplete="name"
             value={fields.name}
             onChange={(event) => updateField("name", event.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
           />
         </label>
 
@@ -123,7 +123,7 @@ export function BookingEnquiryForm({ tourName }: BookingEnquiryFormProps) {
             autoComplete="email"
             value={fields.email}
             onChange={(event) => updateField("email", event.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
           />
         </label>
 
@@ -137,7 +137,7 @@ export function BookingEnquiryForm({ tourName }: BookingEnquiryFormProps) {
             autoComplete="tel"
             value={fields.mobile}
             onChange={(event) => updateField("mobile", event.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
           />
         </label>
 
@@ -152,7 +152,7 @@ export function BookingEnquiryForm({ tourName }: BookingEnquiryFormProps) {
             max={20}
             value={fields.guests}
             onChange={(event) => updateField("guests", event.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
           />
         </label>
 
@@ -165,7 +165,7 @@ export function BookingEnquiryForm({ tourName }: BookingEnquiryFormProps) {
             name="cruiseLine"
             value={fields.cruiseLine}
             onChange={(event) => updateField("cruiseLine", event.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
           />
         </label>
 
@@ -178,7 +178,7 @@ export function BookingEnquiryForm({ tourName }: BookingEnquiryFormProps) {
             name="shipName"
             value={fields.shipName}
             onChange={(event) => updateField("shipName", event.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
           />
         </label>
 
@@ -191,7 +191,7 @@ export function BookingEnquiryForm({ tourName }: BookingEnquiryFormProps) {
             name="portDate"
             value={fields.portDate}
             onChange={(event) => updateField("portDate", event.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
           />
         </label>
       </div>
@@ -208,7 +208,7 @@ export function BookingEnquiryForm({ tourName }: BookingEnquiryFormProps) {
           onChange={(event) =>
             updateField("mobilityConcerns", event.target.value)
           }
-          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
         />
       </label>
 
@@ -222,13 +222,13 @@ export function BookingEnquiryForm({ tourName }: BookingEnquiryFormProps) {
           placeholder="Ship arrival and departure times, special requests, or questions about the tour..."
           value={fields.message}
           onChange={(event) => updateField("message", event.target.value)}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-gray-900 shadow-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
         />
       </label>
 
       <button
         type="submit"
-        className="w-full rounded-full bg-blue-600 px-6 py-3.5 text-base font-semibold text-white transition hover:bg-blue-700 sm:w-auto"
+        className="w2-btn w2-btn-primary w-full px-6 py-3.5 text-base sm:w-auto"
       >
         Send booking enquiry
       </button>

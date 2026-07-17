@@ -28,12 +28,18 @@ const MONTH_LABELS = [
   "December",
 ] as const;
 
-export const SHIP_SCHEDULE_YEARS = [2026, 2027] as const;
+export const SHIP_SCHEDULE_YEARS = [2026, 2027, 2028] as const;
 
 /** First month the site publishes schedules — June 2026 (monthIndex 5). */
 export const SHIP_SCHEDULE_START = {
   year: 2026,
   monthIndex: 5,
+} as const;
+
+/** Last published month from the current CruiseTimetables index — November 2028. */
+export const SHIP_SCHEDULE_END = {
+  year: 2028,
+  monthIndex: 10,
 } as const;
 
 export type ShipScheduleYear = (typeof SHIP_SCHEDULE_YEARS)[number];
@@ -85,15 +91,22 @@ function isPublishedScheduleMonth(
   monthIndex: number,
   year: ShipScheduleYear,
 ): boolean {
-  if (year > SHIP_SCHEDULE_START.year) {
-    return true;
-  }
+  const start = SHIP_SCHEDULE_START;
+  const end = SHIP_SCHEDULE_END;
 
-  if (year < SHIP_SCHEDULE_START.year) {
+  if (year < start.year || year > end.year) {
     return false;
   }
 
-  return monthIndex >= SHIP_SCHEDULE_START.monthIndex;
+  if (year === start.year && monthIndex < start.monthIndex) {
+    return false;
+  }
+
+  if (year === end.year && monthIndex > end.monthIndex) {
+    return false;
+  }
+
+  return true;
 }
 
 export const shipScheduleMonths: ShipScheduleMonth[] =
@@ -111,7 +124,9 @@ export const shipScheduleYearHubs = SHIP_SCHEDULE_YEARS.map((year) => ({
   description:
     year === SHIP_SCHEDULE_START.year
       ? `Browse Villefranche-sur-Mer cruise ship schedules from June ${year} onwards. View arrival and departure times for cruise ships visiting Villefranche-sur-Mer on the French Riviera.`
-      : `Browse all ${year} Villefranche-sur-Mer cruise ship schedules by month. View arrival and departure times for cruise ships visiting Villefranche-sur-Mer on the French Riviera.`,
+      : year === SHIP_SCHEDULE_END.year
+        ? `Browse Villefranche-sur-Mer cruise ship schedules for ${year} through November. View arrival and departure times for cruise ships visiting Villefranche-sur-Mer on the French Riviera.`
+        : `Browse all ${year} Villefranche-sur-Mer cruise ship schedules by month. View arrival and departure times for cruise ships visiting Villefranche-sur-Mer on the French Riviera.`,
   label: `${year} Schedules`,
 }));
 

@@ -11,7 +11,7 @@ export function BookingReassurance({
 }: BookingReassuranceProps) {
   return (
     <div
-      className={`rounded-xl border border-blue-100 bg-blue-50/80 ${compact ? "p-4" : "p-5 sm:p-6"} ${className}`}
+      className={`rounded-xl border border-brand-muted bg-brand-soft/80 ${compact ? "p-4" : "p-5 sm:p-6"} ${className}`}
     >
       {!compact ? (
         <p className="text-sm font-semibold text-gray-900 sm:text-base">
@@ -26,7 +26,7 @@ export function BookingReassurance({
           >
             <span
               aria-hidden="true"
-              className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600"
+              className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand"
             />
             {item}
           </li>

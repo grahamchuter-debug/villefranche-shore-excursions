@@ -96,7 +96,7 @@ export function CruiseShipDetailPage({ ship }: CruiseShipDetailPageProps) {
                 See our{" "}
                 <Link
                   href={cruiseLinePage.path}
-                  className="font-medium text-blue-700 underline underline-offset-2"
+                  className="w2-link underline underline-offset-2"
                 >
                   {cruiseLinePage.cruiseLineName} Villefranche-sur-Mer guide
                 </Link>{" "}
@@ -146,7 +146,7 @@ export function CruiseShipDetailPage({ ship }: CruiseShipDetailPageProps) {
                   </p>
                   <Link
                     href={excursion.href}
-                    className="mt-4 text-sm font-medium text-blue-700 underline underline-offset-2"
+                    className="mt-4 text-sm w2-link underline underline-offset-2"
                   >
                     View details →
                   </Link>
@@ -164,7 +164,7 @@ export function CruiseShipDetailPage({ ship }: CruiseShipDetailPageProps) {
         </section>
 
         <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-          <div className="space-y-10 text-gray-700 [&_a]:font-medium [&_a]:text-blue-700 [&_a]:underline [&_a]:underline-offset-2 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-gray-900 [&_li]:leading-7 [&_p]:leading-7 [&_section]:space-y-4 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
+          <div className="space-y-10 text-gray-700 [&_a]:font-medium [&_a]:text-link [&_a]:underline [&_a]:underline-offset-2 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-gray-900 [&_li]:leading-7 [&_p]:leading-7 [&_section]:space-y-4 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
             <section>
               <h2>Tender information for {ship.name}</h2>
               <p>

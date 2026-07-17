@@ -1,22 +1,19 @@
 date,ship,arrival,departure,cruiseline
 2027-05-01,Royal Clipper,,,Star Clippers
-2027-05-08,Royal Clipper,,,Star Clippers
+2027-05-08,Norwegian Prima,09:30,19:00,Norwegian Cruise Line
 2027-05-09,SeaDream II,,,SeaDream Yacht Club
-2027-05-14,Marella Voyager,,,Marella
-2027-05-15,Celebrity Xcel,,,Celebrity Cruises
-2027-05-15,Royal Clipper,,,Star Clippers
-2027-05-17,Celebrity Equinox,,,Celebrity Cruises
-2027-05-17,Silver Shadow,,,Silversea
-2027-05-18,Norwegian Epic,,,Norwegian Cruise Line
-2027-05-21,Renaissance,,,CFC Croisieres
+2027-05-12,Celebrity Constellation,07:00,19:00,Celebrity Cruises
+2027-05-14,Marella Voyager,08:00,18:00,Marella Cruises
+2027-05-15,Celebrity Xcel,07:00,18:00,Celebrity Cruises
+2027-05-17,Celebrity Equinox,07:00,18:00,Celebrity Cruises
+2027-05-17,Silver Shadow,08:00,,Silversea Cruises
+2027-05-18,Norwegian Epic,07:00,18:00,Norwegian Cruise Line
+2027-05-21,Renaissance,08:00,18:00,CFC Croisieres
 2027-05-22,Royal Clipper,,,Star Clippers
 2027-05-23,SeaDream II,,,SeaDream Yacht Club
-2027-05-24,Resilient Lady,,,Virgin Voyages
-2027-05-24,Silver Shadow,,,Silversea
-2027-05-26,Marella Discovery,,,Marella
-2027-05-27,Europa,,,Hapag Lloyd
-2027-05-27,Explorer Of The Seas,,,Royal Caribbean
-2027-05-28,Marella Voyager,,,Marella
-2027-05-30,Norwegian Prima,,,Norwegian Cruise Line
-2027-05-31,Europa,,,Hapag Lloyd
-2027-05-31,SeaDream II,,,SeaDream Yacht Club
+2027-05-24,Resilient Lady,10:00,18:00,Virgin Voyages
+2027-05-26,Marella Discovery,08:00,18:00,Marella Cruises
+2027-05-27,Europa,06:00,,Hapag Lloyd
+2027-05-27,Explorer Of The Seas,07:00,18:00,Royal Caribbean Cruises
+2027-05-28,Marella Voyager,08:00,18:00,Marella Cruises
+2027-05-30,Norwegian Prima,07:00,16:30,Norwegian Cruise Line

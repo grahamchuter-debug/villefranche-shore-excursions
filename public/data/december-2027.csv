@@ -1,16 +1,14 @@
 date,ship,arrival,departure,cruiseline
-2027-12-04,Viking Vela,,,Viking
-2027-12-05,Viking Saturn,,,Viking
-2027-12-07,Azamara Journey,,,Azamara
-2027-12-07,Star Explorer,,,Windstar
-2027-12-08,Azamara Journey,,,Azamara
-2027-12-08,Star Explorer,,,Windstar
-2027-12-09,Viking Star,,,Viking
-2027-12-10,Viking Vesta,,,Viking
-2027-12-18,Viking Libra,,,Viking
-2027-12-19,Viking Mira,,,Viking
-2027-12-24,Viking Astrea,,,Viking
-2027-12-26,Viking Neptune,,,Viking
-2027-12-27,Viking Saturn,,,Viking
-2027-12-28,Explora V,,,Explora Journeys
-2027-12-31,Viking Vela,,,Viking
+2027-12-04,Viking Vela,,,Viking Cruises
+2027-12-05,Viking Saturn,,,Viking Cruises
+2027-12-07,Azamara Journey,08:00,,Azamara Cruises
+2027-12-07,Star Explorer,18:00,,Windstar Cruises
+2027-12-09,Viking Star,,,Viking Cruises
+2027-12-10,Viking Vesta,,,Viking Cruises
+2027-12-18,Viking Libra,,,Viking Cruises
+2027-12-19,Viking Mira,,,Viking Cruises
+2027-12-24,Viking Astrea,,,Viking Cruises
+2027-12-26,Viking Neptune,,,Viking Cruises
+2027-12-27,Viking Saturn,,,Viking Cruises
+2027-12-28,Explora V,09:00,19:00,Explora Journeys
+2027-12-31,Viking Vela,,,Viking Cruises

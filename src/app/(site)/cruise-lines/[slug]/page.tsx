@@ -110,14 +110,14 @@ export default async function CruiseLineVillefranchePage({ params }: PageProps) 
               Read our full{" "}
               <Link
                 href={cruiseLineVillefrancheRelatedPaths.tenderInfoPath}
-                className="font-medium text-blue-700 underline underline-offset-2"
+                className="w2-link underline underline-offset-2"
               >
                 Villefranche tender information
               </Link>{" "}
               guide and{" "}
               <Link
                 href={cruiseLineVillefrancheRelatedPaths.meetingPointPath}
-                className="font-medium text-blue-700 underline underline-offset-2"
+                className="w2-link underline underline-offset-2"
               >
                 meeting point directions
               </Link>{" "}
@@ -134,7 +134,7 @@ export default async function CruiseLineVillefranchePage({ params }: PageProps) 
               Use the{" "}
               <Link
                 href={cruiseLineVillefrancheRelatedPaths.cruisePlannerPath}
-                className="font-medium text-blue-700 underline underline-offset-2"
+                className="w2-link underline underline-offset-2"
               >
                 cruise planner
               </Link>{" "}
@@ -182,7 +182,7 @@ export default async function CruiseLineVillefranchePage({ params }: PageProps) 
                   <li key={ship.slug}>
                     <Link
                       href={getCruiseShipPath(ship.slug)}
-                      className="font-medium text-blue-700 underline underline-offset-2"
+                      className="w2-link underline underline-offset-2"
                     >
                       {ship.name}
                     </Link>
@@ -205,14 +205,14 @@ export default async function CruiseLineVillefranchePage({ params }: PageProps) 
                 in our ship schedules. Browse the{" "}
                 <Link
                   href={cruiseLineVillefrancheRelatedPaths.shipSchedulesPath}
-                  className="font-medium text-blue-700 underline underline-offset-2"
+                  className="w2-link underline underline-offset-2"
                 >
                   Villefranche ship schedule hub
                 </Link>{" "}
                 and{" "}
                 <Link
                   href="/cruise-ships"
-                  className="font-medium text-blue-700 underline underline-offset-2"
+                  className="w2-link underline underline-offset-2"
                 >
                   cruise ships directory
                 </Link>{" "}
@@ -227,7 +227,7 @@ export default async function CruiseLineVillefranchePage({ params }: PageProps) 
               <li>
                 <Link
                   href={cruiseLineVillefrancheRelatedPaths.shipSchedulesPath}
-                  className="font-medium text-blue-700 underline underline-offset-2"
+                  className="w2-link underline underline-offset-2"
                 >
                   Villefranche ship schedules
                 </Link>
@@ -235,7 +235,7 @@ export default async function CruiseLineVillefranchePage({ params }: PageProps) 
               <li>
                 <Link
                   href={cruiseLineVillefrancheRelatedPaths.tenderInfoPath}
-                  className="font-medium text-blue-700 underline underline-offset-2"
+                  className="w2-link underline underline-offset-2"
                 >
                   Tender information
                 </Link>
@@ -243,7 +243,7 @@ export default async function CruiseLineVillefranchePage({ params }: PageProps) 
               <li>
                 <Link
                   href={cruiseLineVillefrancheRelatedPaths.meetingPointPath}
-                  className="font-medium text-blue-700 underline underline-offset-2"
+                  className="w2-link underline underline-offset-2"
                 >
                   Meeting point directions
                 </Link>
@@ -251,7 +251,7 @@ export default async function CruiseLineVillefranchePage({ params }: PageProps) 
               <li>
                 <Link
                   href={cruiseLineVillefrancheRelatedPaths.cruisePlannerPath}
-                  className="font-medium text-blue-700 underline underline-offset-2"
+                  className="w2-link underline underline-offset-2"
                 >
                   Cruise planner
                 </Link>
@@ -259,7 +259,7 @@ export default async function CruiseLineVillefranchePage({ params }: PageProps) 
               <li>
                 <Link
                   href={siteConfig.excursionsHubPath}
-                  className="font-medium text-blue-700 underline underline-offset-2"
+                  className="w2-link underline underline-offset-2"
                 >
                   All Villefranche shore excursions
                 </Link>

@@ -96,28 +96,28 @@ export function ShipScheduleMonthPage({ monthSlug }: ShipScheduleMonthPageProps)
               Browse{" "}
               <Link
                 href={siteConfig.excursionsHubPath}
-                className="font-medium text-blue-700 underline underline-offset-2"
+                className="w2-link underline underline-offset-2"
               >
                 Villefranche-sur-Mer shore excursions
               </Link>
               , read the{" "}
               <Link
                 href={portGuidePath}
-                className="font-medium text-blue-700 underline underline-offset-2"
+                className="w2-link underline underline-offset-2"
               >
                 port guide
               </Link>
               , check{" "}
               <Link
                 href="/villefranche-tender-information"
-                className="font-medium text-blue-700 underline underline-offset-2"
+                className="w2-link underline underline-offset-2"
               >
                 tender information
               </Link>
               , or plan your day with our{" "}
               <Link
                 href="/one-day-in-villefranche"
-                className="font-medium text-blue-700 underline underline-offset-2"
+                className="w2-link underline underline-offset-2"
               >
                 one day in Villefranche-sur-Mer
               </Link>{" "}

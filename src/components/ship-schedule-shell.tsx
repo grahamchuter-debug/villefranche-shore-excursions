@@ -69,7 +69,7 @@ export function ShipScheduleShell({
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <Link
               href={ctaHref}
-              className="inline-block rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold transition hover:bg-blue-500 sm:px-8 sm:py-3.5 sm:text-base"
+              className="w2-btn w2-btn-primary px-6 py-3 text-sm sm:px-8 sm:py-3.5 sm:text-base"
             >
               {ctaLabel}
             </Link>

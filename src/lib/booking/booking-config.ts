@@ -224,7 +224,7 @@ export const bookingSteps = [
 export type BookingStepId = (typeof bookingSteps)[number]["id"];
 
 export function bookingSessionStorageKey(tourId: string): string {
-  return `vf-booking:v5:${tourId}`;
+  return `vf-booking:v6:${tourId}`;
 }
 
 /** Resolve display start time for a selected ISO date. */

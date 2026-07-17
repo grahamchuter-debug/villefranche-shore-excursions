@@ -85,7 +85,7 @@ export function SiteFooter() {
           </p>
           <Link
             href={featuredTour.bookingPath}
-            className="mt-6 inline-block rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-950/30 transition hover:bg-sky-400 sm:text-base"
+            className="w2-btn w2-btn-primary mt-6 px-6 py-3 text-sm sm:text-base"
           >
             Book Now
           </Link>

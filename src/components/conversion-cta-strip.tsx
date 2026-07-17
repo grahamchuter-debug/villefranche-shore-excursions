@@ -21,8 +21,8 @@ export function ConversionCtaStrip({
         href={featuredTour.path}
         className={
           isDark
-            ? "rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500 sm:px-6 sm:py-3 sm:text-base"
-            : "rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 sm:px-6 sm:py-3 sm:text-base"
+            ? "w2-btn w2-btn-primary px-5 py-2.5 text-sm sm:px-6 sm:py-3 sm:text-base"
+            : "w2-btn w2-btn-primary px-5 py-2.5 text-sm sm:px-6 sm:py-3 sm:text-base"
         }
       >
         View Small Group Tour
@@ -31,8 +31,8 @@ export function ConversionCtaStrip({
         href={featuredTour.bookingPath}
         className={
           isDark
-            ? "rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
-            : "rounded-full border border-blue-600 px-5 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-blue-50 sm:px-6 sm:py-3 sm:text-base"
+            ? "w2-btn rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
+            : "w2-btn w2-btn-secondary px-5 py-2.5 text-sm sm:px-6 sm:py-3 sm:text-base"
         }
       >
         Check Availability
@@ -41,8 +41,8 @@ export function ConversionCtaStrip({
         href="/cruise-planner"
         className={
           isDark
-            ? "rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white/90 transition hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
-            : "rounded-full border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-800 transition hover:bg-gray-50 sm:px-6 sm:py-3 sm:text-base"
+            ? "w2-btn rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white/90 transition hover:bg-white/10 sm:px-6 sm:py-3 sm:text-base"
+            : "w2-btn rounded-full border border-[var(--w2-border)] px-5 py-2.5 text-sm font-semibold text-[var(--w2-navy)] transition hover:bg-[var(--w2-grey-light)] sm:px-6 sm:py-3 sm:text-base"
         }
       >
         Plan your Villefranche cruise day

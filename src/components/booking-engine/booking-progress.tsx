@@ -34,9 +34,9 @@ export function BookingProgress({ current }: BookingProgressProps) {
                 className={[
                   "flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold transition sm:h-9 sm:w-9 sm:text-sm",
                   done
-                    ? "bg-[var(--book-sea)] text-white"
+                    ? "bg-[var(--w2-primary)] text-white"
                     : active
-                      ? "bg-[var(--book-sea-deep)] text-white"
+                      ? "bg-[var(--w2-primary-hover)] text-white"
                       : "bg-transparent text-[var(--book-muted)] ring-1 ring-[var(--book-line)]",
                 ].join(" ")}
                 aria-current={active ? "step" : undefined}

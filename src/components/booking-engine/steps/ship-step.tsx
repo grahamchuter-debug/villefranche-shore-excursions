@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 
 import { BookingPrimaryButton } from "@/components/booking-engine/booking-primary-button";
 import { bookingContactPath } from "@/lib/booking/booking-config";
 import { formatBookingDate } from "@/lib/booking/booking-format";
 import {
+  createCustomBookingShipVisit,
   formatVerifiedShipTimingLine,
+  isCustomBookingShip,
   type BookingShipVisit,
 } from "@/lib/booking/booking-ship-types";
 
@@ -19,6 +21,9 @@ type ShipStepProps = {
   onContinue: () => void;
   onBack: () => void;
 };
+
+const PERSONALISATION_LINE =
+  "We'll tailor your meeting instructions to your cruise ship.";
 
 function ShipCardButton({
   ship,
@@ -109,28 +114,33 @@ function ShipFeatureButton({
             alt=""
             width={image.width}
             height={image.height}
-            className="book-ship-feature-image absolute inset-0 h-full w-full object-cover object-center"
+            className="book-ship-feature-image absolute inset-0 h-full w-full object-cover"
+            style={{
+              objectPosition: image.imagePosition ?? "center",
+            }}
             decoding="async"
           />
         </picture>
         <div
-          className="absolute inset-0 bg-gradient-to-t from-[var(--book-ink)]/85 via-[var(--book-ink)]/45 to-[var(--book-ink)]/15"
+          className="absolute inset-0 bg-gradient-to-t from-[var(--book-ink)]/90 via-[var(--book-ink)]/50 to-[var(--book-ink)]/10"
           aria-hidden="true"
         />
         <div className="relative z-10 flex min-h-[14rem] flex-col justify-end px-6 py-7 sm:min-h-[17rem] sm:px-8 sm:py-8">
-          <p className="text-[11px] font-medium tracking-[0.18em] text-white/70 uppercase">
+          <p className="text-[11px] font-medium tracking-[0.18em] text-white/75 uppercase">
             Your cruise
           </p>
-          <p className="book-display mt-2 text-3xl font-medium leading-tight text-white sm:text-4xl">
+          <p className="book-display mt-2 text-3xl font-medium leading-[1.15] text-white drop-shadow-[0_1px_12px_rgba(0,0,0,0.35)] sm:text-4xl">
             {ship.name}
           </p>
-          <p className="mt-2 text-[15px] text-white/85">{ship.cruiseLine}</p>
+          <p className="mt-2 text-[15px] font-medium text-white/90">
+            {ship.cruiseLine}
+          </p>
           {timing ? (
-            <p className="mt-3 text-sm text-white/75">{timing}</p>
+            <p className="mt-3 text-sm text-white/80">{timing}</p>
           ) : null}
           <p
             className={[
-              "text-[12px] font-medium tracking-[0.12em] text-white/90 uppercase",
+              "text-[12px] font-medium tracking-[0.12em] text-white/95 uppercase",
               timing ? "mt-5" : "mt-6",
             ].join(" ")}
           >
@@ -139,6 +149,73 @@ function ShipFeatureButton({
         </div>
       </div>
     </button>
+  );
+}
+
+function CustomShipOption({
+  selected,
+  customName,
+  onSelect,
+  onNameChange,
+}: {
+  selected: boolean;
+  customName: string;
+  onSelect: () => void;
+  onNameChange: (name: string) => void;
+}) {
+  const fieldId = useId();
+
+  return (
+    <div
+      className={[
+        "rounded-[1.25rem] border transition",
+        selected
+          ? "border-[var(--book-sea-deep)]/40 bg-[var(--book-surface)]"
+          : "border-transparent",
+      ].join(" ")}
+    >
+      <button
+        type="button"
+        onClick={onSelect}
+        aria-pressed={selected}
+        className={[
+          "book-btn flex w-full items-center justify-between gap-3 rounded-[1.25rem] px-5 py-4 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)] sm:px-6",
+          selected
+            ? "text-[var(--book-ink)]"
+            : "text-[var(--book-muted)] hover:text-[var(--book-ink)]",
+        ].join(" ")}
+      >
+        <span className="text-[15px] font-medium tracking-wide">
+          My ship isn&apos;t listed
+        </span>
+        {selected ? (
+          <span className="text-[11px] font-medium tracking-[0.12em] text-[var(--book-sea-deep)] uppercase">
+            Selected
+          </span>
+        ) : null}
+      </button>
+
+      {selected ? (
+        <div className="border-t border-[var(--book-line)]/70 px-5 pt-4 pb-5 sm:px-6">
+          <label
+            htmlFor={fieldId}
+            className="mb-1.5 block text-sm text-[var(--book-muted)]"
+          >
+            Cruise ship name
+          </label>
+          <input
+            id={fieldId}
+            type="text"
+            name="customCruiseShip"
+            autoComplete="off"
+            value={customName}
+            onChange={(event) => onNameChange(event.target.value)}
+            placeholder="e.g. Riviera"
+            className="w-full rounded-xl border border-[var(--book-line)] bg-white px-4 py-3.5 text-base text-[var(--book-ink)] outline-none transition focus:border-[var(--book-sea)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
+          />
+        </div>
+      ) : null}
+    </div>
   );
 }
 
@@ -152,8 +229,16 @@ export function ShipStep({
 }: ShipStepProps) {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const singleShip = ships.length === 1;
-  const canContinue = Boolean(selectedShip);
+  const multipleShips = ships.length > 1;
+  const customSelected = isCustomBookingShip(selectedShip);
+  const [customName, setCustomName] = useState(
+    () => (customSelected ? selectedShip?.name ?? "" : ""),
+  );
   const didAutoSelect = useRef(false);
+
+  const canContinue = customSelected
+    ? customName.trim().length > 0
+    : Boolean(selectedShip);
 
   useEffect(() => {
     headingRef.current?.focus({ preventScroll: true });
@@ -162,6 +247,12 @@ export function ShipStep({
   useEffect(() => {
     didAutoSelect.current = false;
   }, [date]);
+
+  useEffect(() => {
+    if (customSelected) {
+      setCustomName(selectedShip?.name ?? "");
+    }
+  }, [customSelected, selectedShip?.name]);
 
   useEffect(() => {
     if (!singleShip || !ships[0] || didAutoSelect.current) return;
@@ -173,6 +264,19 @@ export function ShipStep({
     onSelectShip(ships[0]);
   }, [singleShip, ships, selectedShip, onSelectShip]);
 
+  const formattedDate = formatBookingDate(date);
+  const showPersonalisation =
+    Boolean(selectedShip) && (!customSelected || customName.trim().length > 0);
+
+  const handleCustomSelect = () => {
+    onSelectShip(createCustomBookingShipVisit(customName));
+  };
+
+  const handleCustomNameChange = (name: string) => {
+    setCustomName(name);
+    onSelectShip(createCustomBookingShipVisit(name));
+  };
+
   return (
     <div className="mx-auto max-w-2xl space-y-10">
       <header className="space-y-3 text-center">
@@ -182,11 +286,28 @@ export function ShipStep({
           id="booking-ship-heading"
           className="book-display text-4xl font-medium text-[var(--book-ink)] outline-none sm:text-5xl"
         >
-          Which cruise ship?
+          {singleShip ? "Your cruise ship" : "Which cruise ship?"}
         </h2>
-        <p className="text-lg text-[var(--book-muted)]">
-          Ships visiting Villefranche on {formatBookingDate(date)}.
-        </p>
+        {singleShip ? (
+          <>
+            <p className="text-lg text-[var(--book-muted)]">
+              We&apos;ve matched the only ship visiting Villefranche on your
+              selected date.
+            </p>
+            <p className="text-[15px] text-[var(--book-muted)]">
+              Visiting Villefranche on {formattedDate}
+            </p>
+          </>
+        ) : (
+          <>
+            <p className="text-lg text-[var(--book-muted)]">
+              Select the ship you&apos;ll be arriving on in Villefranche.
+            </p>
+            <p className="text-[15px] text-[var(--book-muted)]">
+              {formattedDate}
+            </p>
+          </>
+        )}
       </header>
 
       {ships.length === 0 ? (
@@ -199,7 +320,7 @@ export function ShipStep({
           <p className="mt-5">
             <Link
               href={bookingContactPath}
-              className="font-medium text-[var(--book-sea)] underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
+              className="book-text-link underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--w2-focus-ring)]"
             >
               Contact us
             </Link>
@@ -209,34 +330,69 @@ export function ShipStep({
         <fieldset className="space-y-3 border-0 p-0">
           <legend className="sr-only">Cruise ship</legend>
           {ships.map((ship) => {
-            const selected = selectedShip?.slug === ship.slug;
+            const selected =
+              !customSelected && selectedShip?.slug === ship.slug;
             const showFeature = selected && Boolean(ship.image);
 
             if (showFeature) {
               return (
-                <ShipFeatureButton
-                  key={ship.slug}
-                  ship={ship}
-                  onSelect={() => onSelectShip(ship)}
-                />
+                <div key={ship.slug} className="space-y-3">
+                  <ShipFeatureButton
+                    ship={ship}
+                    onSelect={() => onSelectShip(ship)}
+                  />
+                  {showPersonalisation ? (
+                    <p className="px-1 text-center text-sm text-[var(--book-muted)] sm:text-left">
+                      {PERSONALISATION_LINE}
+                    </p>
+                  ) : null}
+                </div>
               );
             }
 
             return (
-              <ShipCardButton
-                key={ship.slug}
-                ship={ship}
-                selected={selected}
-                onSelect={() => onSelectShip(ship)}
-              />
+              <div key={ship.slug} className="space-y-3">
+                <ShipCardButton
+                  ship={ship}
+                  selected={selected}
+                  onSelect={() => onSelectShip(ship)}
+                />
+                {selected && showPersonalisation ? (
+                  <p className="px-1 text-center text-sm text-[var(--book-muted)] sm:text-left">
+                    {PERSONALISATION_LINE}
+                  </p>
+                ) : null}
+              </div>
             );
           })}
+
+          {multipleShips ? (
+            <div className="space-y-3 pt-2">
+              <CustomShipOption
+                selected={customSelected}
+                customName={customName}
+                onSelect={handleCustomSelect}
+                onNameChange={handleCustomNameChange}
+              />
+              {customSelected && showPersonalisation ? (
+                <p className="px-1 text-center text-sm text-[var(--book-muted)] sm:text-left">
+                  {PERSONALISATION_LINE}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
         </fieldset>
       )}
 
-      {ships.length > 1 && !selectedShip ? (
+      {multipleShips && !selectedShip ? (
         <p className="text-center text-sm text-[var(--book-muted)]" role="status">
           Please select your cruise ship to continue.
+        </p>
+      ) : null}
+
+      {multipleShips && customSelected && !customName.trim() ? (
+        <p className="text-center text-sm text-[var(--book-muted)]" role="status">
+          Enter your cruise ship name to continue.
         </p>
       ) : null}
 

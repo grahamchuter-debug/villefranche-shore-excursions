@@ -76,28 +76,28 @@ export default function ShipSchedulesHubPage() {
             Planning your port day? Browse{" "}
             <Link
               href="/cruise-ships"
-              className="font-medium text-blue-700 underline underline-offset-2"
+              className="w2-link underline underline-offset-2"
             >
               cruise ship planning guides
             </Link>
             , read our{" "}
             <Link
               href="/villefranche-tender-information"
-              className="font-medium text-blue-700 underline underline-offset-2"
+              className="w2-link underline underline-offset-2"
             >
               tender information
             </Link>
             , check{" "}
             <Link
               href={meetingPointPath}
-              className="font-medium text-blue-700 underline underline-offset-2"
+              className="w2-link underline underline-offset-2"
             >
               meeting points
             </Link>
             , and use the{" "}
             <Link
               href="/cruise-planner"
-              className="font-medium text-blue-700 underline underline-offset-2"
+              className="w2-link underline underline-offset-2"
             >
               cruise planner
             </Link>{" "}

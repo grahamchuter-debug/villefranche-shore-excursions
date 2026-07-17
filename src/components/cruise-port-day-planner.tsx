@@ -15,13 +15,13 @@ import {
 } from "@/lib/cruise-port-day-planner";
 
 const plannerPrimaryButtonClass =
-  "inline-flex items-center justify-center rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2";
+  "w2-btn w2-btn-primary px-5 py-2.5 text-sm";
 
 const plannerSecondaryButtonClass =
-  "inline-flex items-center justify-center rounded-full border-2 border-gray-900 bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm transition hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2";
+  "w2-btn rounded-full border border-[var(--w2-navy)] bg-white px-5 py-2.5 text-sm font-semibold text-[var(--w2-navy)] transition hover:bg-[var(--w2-grey-light)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--w2-focus-ring)]";
 
 const plannerLinkButtonClass =
-  "inline-flex items-center justify-center rounded-full border-2 border-blue-700 bg-white px-4 py-2 text-sm font-semibold text-blue-900 shadow-sm transition hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2";
+  "w2-btn w2-btn-secondary px-4 py-2 text-sm";
 
 const plannerBadges = [
   "Tender-aware",
@@ -468,7 +468,7 @@ export function CruisePortDayPlanner() {
                   <li>
                     <Link
                       href="/villefranche-tender-information"
-                      className="font-medium text-blue-700 underline"
+                      className="w2-link underline"
                     >
                       Tender information
                     </Link>
@@ -476,7 +476,7 @@ export function CruisePortDayPlanner() {
                   <li>
                     <Link
                       href="/villefranche-meeting-point"
-                      className="font-medium text-blue-700 underline"
+                      className="w2-link underline"
                     >
                       Meeting points
                     </Link>
@@ -484,7 +484,7 @@ export function CruisePortDayPlanner() {
                   <li>
                     <Link
                       href="/what-if-my-tender-is-late"
-                      className="font-medium text-blue-700 underline"
+                      className="w2-link underline"
                     >
                       What if my tender is late?
                     </Link>
@@ -492,7 +492,7 @@ export function CruisePortDayPlanner() {
                   <li>
                     <Link
                       href={featuredTour.path}
-                      className="font-medium text-blue-700 underline"
+                      className="w2-link underline"
                     >
                       Main Villefranche excursion
                     </Link>
@@ -500,7 +500,7 @@ export function CruisePortDayPlanner() {
                   <li>
                     <Link
                       href={featuredTour.bookingPath}
-                      className="font-medium text-blue-700 underline"
+                      className="w2-link underline"
                     >
                       Check availability
                     </Link>

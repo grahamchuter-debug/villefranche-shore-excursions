@@ -17,6 +17,7 @@ type CruiseDaySummaryProps = {
   guests: number;
   cruiseShip: BookingShipVisit;
   heading?: string;
+  onChangeShip?: () => void;
 };
 
 export function CruiseDaySummary({
@@ -24,17 +25,13 @@ export function CruiseDaySummary({
   guests,
   cruiseShip,
   heading = "Your Cruise Day",
+  onChangeShip,
 }: CruiseDaySummaryProps) {
   /** Excursion start — never derived from ship arrival */
   const tourStartTime = getBookingStartTimeLabel(date);
   const total = formatBookingMoney(calculateBookingTotal(guests));
 
   const rows = [
-    {
-      label: "Cruise Ship",
-      value: cruiseShip.name,
-      note: cruiseShip.cruiseLine,
-    },
     {
       label: "Date",
       value: formatBookingDate(date),
@@ -84,6 +81,29 @@ export function CruiseDaySummary({
       </header>
 
       <dl className="space-y-7">
+        <div className="grid gap-1 sm:grid-cols-[11rem_1fr] sm:gap-6">
+          <dt className="flex items-baseline gap-3 text-[13px] tracking-wide text-[var(--book-muted)]">
+            <span>Cruise Ship</span>
+            {onChangeShip ? (
+              <button
+                type="button"
+                onClick={onChangeShip}
+                className="book-btn book-text-link text-[12px] tracking-wide underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--w2-focus-ring)]"
+              >
+                Change
+              </button>
+            ) : null}
+          </dt>
+          <dd className="book-display text-[1.35rem] font-medium leading-snug text-[var(--book-ink)] sm:text-[1.5rem]">
+            {cruiseShip.name}
+            {cruiseShip.cruiseLine ? (
+              <span className="mt-1.5 block font-sans text-sm font-normal leading-relaxed text-[var(--book-muted)]">
+                {cruiseShip.cruiseLine}
+              </span>
+            ) : null}
+          </dd>
+        </div>
+
         {rows.map((row) => (
           <div
             key={row.label}

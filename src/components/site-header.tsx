@@ -29,7 +29,7 @@ export function SiteHeader() {
 
         <Link
           href={featuredTour.bookingPath}
-          className="rounded-full bg-blue-600 px-3.5 py-1.5 text-xs font-semibold transition hover:bg-blue-500 sm:px-4 sm:py-2 sm:text-sm"
+          className="w2-btn w2-btn-primary px-3.5 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm"
         >
           Book a Tour
         </Link>

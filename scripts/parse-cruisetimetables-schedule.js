@@ -87,6 +87,7 @@ function inferPortItineraryLabel(url) {
   if (/trondheim/i.test(url)) return "Trondheim, Norway";
   if (/skjolden/i.test(url)) return "Skjolden, Norway";
   if (/tromso|troms[oø]/i.test(url)) return "Tromso, Norway";
+  if (/villefranche/i.test(url)) return "Villefranche (Nice), France";
   return null;
 }
 

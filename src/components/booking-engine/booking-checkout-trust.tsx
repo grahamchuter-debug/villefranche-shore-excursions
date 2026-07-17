@@ -13,7 +13,7 @@ export function BookingCheckoutTrust() {
         {bookingCheckoutCopy.supportLine}{" "}
         <Link
           href={bookingContactPath}
-          className="font-medium text-[var(--book-sea)] underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
+          className="book-text-link underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--w2-focus-ring)]"
         >
           {bookingCheckoutCopy.supportLinkLabel}
         </Link>

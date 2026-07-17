@@ -82,7 +82,7 @@ export default function CruiseShipsHubPage() {
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Link
               href="/excursions"
-              className="inline-flex items-center justify-center rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+              className="w2-btn w2-btn-primary px-6 py-3 text-sm"
             >
               View Villefranche shore excursions
             </Link>
@@ -99,7 +99,7 @@ export default function CruiseShipsHubPage() {
             timetables, visit the{" "}
             <Link
               href="/ship-schedules"
-              className="font-medium text-blue-700 underline underline-offset-2"
+              className="w2-link underline underline-offset-2"
             >
               Villefranche ship schedule hub
             </Link>

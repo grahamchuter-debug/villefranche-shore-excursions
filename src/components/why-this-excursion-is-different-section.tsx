@@ -16,9 +16,9 @@ export function WhyThisExcursionIsDifferentSection({
 }: WhyThisExcursionIsDifferentSectionProps) {
   const bgClass =
     variant === "muted"
-      ? "border-y border-blue-100 bg-blue-50/60"
+      ? "border-y border-brand-muted bg-brand-soft/60"
       : variant === "dark"
-        ? "border-y border-white/10 bg-gray-900 text-white"
+        ? "border-y border-white/10 bg-navy-deep text-white"
         : "border-y border-gray-200 bg-white";
 
   const textClass =
@@ -26,7 +26,7 @@ export function WhyThisExcursionIsDifferentSection({
   const headingClass =
     variant === "dark" ? "text-white" : "text-gray-900";
   const eyebrowClass =
-    variant === "dark" ? "text-sky-300" : "text-blue-600";
+    variant === "dark" ? "text-brand-muted" : "text-brand";
 
   return (
     <section className={`${bgClass} ${className}`}>
@@ -52,16 +52,16 @@ export function WhyThisExcursionIsDifferentSection({
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href={featuredTour.path}
-              className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+              className="w2-btn w2-btn-primary px-5 py-2.5 text-sm"
             >
               View Tour
             </Link>
             <Link
               href={featuredTour.bookingPath}
-              className={`rounded-full border px-5 py-2.5 text-sm font-semibold transition ${
+              className={`w2-btn px-5 py-2.5 text-sm font-semibold ${
                 variant === "dark"
-                  ? "border-white/30 text-white hover:bg-white/10"
-                  : "border-blue-600 text-blue-700 hover:bg-blue-50"
+                  ? "rounded-full border border-white/30 text-white hover:bg-white/10"
+                  : "w2-btn-secondary"
               }`}
             >
               Check Availability

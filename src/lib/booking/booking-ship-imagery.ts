@@ -12,12 +12,18 @@ export type BookingShipImage = {
   alt: string;
   width: number;
   height: number;
+  /**
+   * CSS object-position for the feature crop (e.g. "center 55%").
+   * Prefer per-vessel framing over one fixed crop for every ship.
+   */
+  imagePosition?: string;
 };
 
 function shipImage(
   slug: string,
   alt: string,
   dims: { width: number; height: number },
+  imagePosition?: string,
 ): BookingShipImage {
   const base = `/images/ships/${slug}`;
   return {
@@ -27,6 +33,7 @@ function shipImage(
     alt,
     width: dims.width,
     height: dims.height,
+    ...(imagePosition ? { imagePosition } : {}),
   };
 }
 
@@ -39,21 +46,25 @@ export const bookingShipImagery: Record<string, BookingShipImage> = {
     "norwegian-epic",
     "Norwegian Epic on open Mediterranean water under a clear blue sky",
     { width: 1920, height: 1080 },
+    "center 42%",
   ),
   "celebrity-equinox": shipImage(
     "celebrity-equinox",
     "Celebrity Equinox in a sunlit Mediterranean harbour",
     { width: 1920, height: 1293 },
+    "center 48%",
   ),
   "azamara-journey": shipImage(
     "azamara-journey",
     "Azamara Journey approaching a Mediterranean harbour in warm daylight",
     { width: 1920, height: 1280 },
+    "center 40%",
   ),
   "silver-shadow": shipImage(
     "silver-shadow",
     "Silversea Silver Shadow in profile on calm harbour water",
     { width: 1920, height: 682 },
+    "center 55%",
   ),
 };
 

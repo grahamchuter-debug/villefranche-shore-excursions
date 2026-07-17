@@ -176,7 +176,7 @@ export function ShipScheduleTable({
                     {linkShipNames ? (
                       <Link
                         href={getCruiseShipPath(slugifyShipName(entry.ship))}
-                        className="font-medium text-blue-700 underline underline-offset-2 hover:text-blue-800"
+                        className="w2-link underline underline-offset-2"
                       >
                         {entry.ship}
                       </Link>

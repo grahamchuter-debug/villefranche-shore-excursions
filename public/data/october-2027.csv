@@ -1,22 +1,21 @@
 date,ship,arrival,departure,cruiseline
-2027-10-01,Norwegian Epic,,,Norwegian Cruise Line
-2027-10-02,Seven Seas Prestige,,,Regent Seven Seas
+2027-10-01,Norwegian Epic,07:00,18:00,Norwegian Cruise Line
+2027-10-02,Seven Seas Prestige,08:00,20:00,Regent Seven Seas Cruises
 2027-10-02,Star Clipper,,,Star Clippers
-2027-10-04,Celebrity Equinox,,,Celebrity Cruises
-2027-10-05,Norwegian Epic,,,Norwegian Cruise Line
-2027-10-08,Viking Sea,,,Viking
-2027-10-09,Marella Voyager,,,Marella
+2027-10-04,Celebrity Equinox,07:00,18:00,Celebrity Cruises
+2027-10-05,Norwegian Epic,07:00,18:00,Norwegian Cruise Line
+2027-10-08,Viking Sea,,,Viking Cruises
+2027-10-09,Marella Voyager,08:00,18:00,Marella Cruises
 2027-10-09,Star Clipper,,,Star Clippers
-2027-10-10,Seven Seas Prestige,,,Regent Seven Seas
-2027-10-11,Viking Saturn,,,Viking
-2027-10-14,Explora I,,,Explora Journeys
-2027-10-15,Norwegian Epic,,,Norwegian Cruise Line
-2027-10-16,Celebrity Xcel,,,Celebrity Cruises
+2027-10-10,Seven Seas Prestige,08:00,18:00,Regent Seven Seas Cruises
+2027-10-11,Viking Saturn,,,Viking Cruises
+2027-10-12,Balmoral,,,Fred Olsen Cruise Lines
+2027-10-14,Explora I,09:00,19:00,Explora Journeys
+2027-10-15,Norwegian Epic,07:00,18:00,Norwegian Cruise Line
+2027-10-16,Celebrity Xcel,07:00,18:00,Celebrity Cruises
 2027-10-16,Star Clipper,,,Star Clippers
-2027-10-17,SeaDream II,,,SeaDream Yacht Club
-2027-10-19,Viking Star,,,Viking
-2027-10-20,Star Clipper,,,Star Clippers
-2027-10-24,Volendam,,,Holland America Line
-2027-10-25,Norwegian Viva,,,Norwegian Cruise Line
-2027-10-27,Viking Libra,,,Viking
-2027-10-29,Norwegian Epic,,,Norwegian Cruise Line
+2027-10-19,Viking Star,,,Viking Cruises
+2027-10-24,Volendam,11:00,21:00,Holland America Line
+2027-10-25,Norwegian Viva,07:00,17:00,Norwegian Cruise Line
+2027-10-27,Viking Libra,,,Viking Cruises
+2027-10-29,Norwegian Epic,07:00,18:00,Norwegian Cruise Line

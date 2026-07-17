@@ -25,6 +25,7 @@ type PaymentStepProps = {
   cruiseShip: BookingShipVisit;
   onPay: () => void;
   onBack: () => void;
+  onChangeShip?: () => void;
 };
 
 type GuestDetails = {
@@ -48,6 +49,7 @@ export function PaymentStep({
   cruiseShip,
   onPay,
   onBack,
+  onChangeShip,
 }: PaymentStepProps) {
   const formId = useId();
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -116,6 +118,7 @@ export function PaymentStep({
         guests={guests}
         cruiseShip={cruiseShip}
         heading={copy.cruiseDayHeading}
+        onChangeShip={onChangeShip}
       />
 
       <CruiseReassurance />

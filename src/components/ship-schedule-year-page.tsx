@@ -99,14 +99,14 @@ export function ShipScheduleYearPage({ yearSlug }: ShipScheduleYearPageProps) {
             Need help matching excursions to your ship? Use our{" "}
             <Link
               href="/cruise-planner"
-              className="font-medium text-blue-700 underline underline-offset-2"
+              className="w2-link underline underline-offset-2"
             >
               cruise planner
             </Link>{" "}
             or read{" "}
             <Link
               href="/villefranche-tender-information"
-              className="font-medium text-blue-700 underline underline-offset-2"
+              className="w2-link underline underline-offset-2"
             >
               tender information
             </Link>{" "}

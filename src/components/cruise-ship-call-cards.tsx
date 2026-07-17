@@ -82,7 +82,7 @@ export function CruiseShipCallCards({ calls, shipName }: CruiseShipCallCardsProp
             View the full{" "}
             <Link
               href={getShipScheduleMonthPath(call.scheduleMonthSlug)}
-              className="font-medium text-blue-700 underline underline-offset-2"
+              className="w2-link underline underline-offset-2"
             >
               {call.scheduleMonthLabel} schedule
             </Link>

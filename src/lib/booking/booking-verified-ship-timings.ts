@@ -1,9 +1,8 @@
 /**
- * Optional verified ship arrival/departure overrides for booking.
+ * Optional per-call overrides for booking.
  *
- * Current Villefranche CSV schedule does not contain verified operational times.
- * When Mediterranean times are confirmed, add entries here (or import into this
- * structure) with verified: true — the booking UI will then display them.
+ * Bulk Villefranche times come from the CruiseTimetables import into
+ * `public/data/*.csv`. Use this file only for hand-verified corrections.
  *
  * Never invent, estimate, or default times.
  */
@@ -16,8 +15,7 @@ export type VerifiedShipTiming = {
 };
 
 /**
- * Populate only with independently verified Villefranche call times.
- * Empty until a verified import is available.
+ * Hand-verified overrides only. Empty when the CSV import is authoritative.
  */
 export const bookingVerifiedShipTimings: readonly VerifiedShipTiming[] = [];
 

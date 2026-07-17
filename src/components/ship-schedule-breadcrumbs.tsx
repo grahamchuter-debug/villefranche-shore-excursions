@@ -35,7 +35,7 @@ export function ShipScheduleBreadcrumbs({
               ) : (
                 <Link
                   href={item.href}
-                  className="font-medium text-blue-700 underline-offset-2 transition hover:text-blue-800 hover:underline"
+                  className="w2-link underline-offset-2 transition hover:underline"
                 >
                   {item.label}
                 </Link>

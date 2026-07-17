@@ -121,7 +121,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Link
                   href={featuredTour.path}
-                  className="inline-block rounded-full bg-blue-600 px-6 py-3 text-base font-semibold transition hover:bg-blue-700 sm:px-8 sm:py-4 sm:text-lg"
+                  className="w2-btn w2-btn-primary px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg"
                 >
                   View Small Group Tour
                 </Link>
@@ -149,7 +149,7 @@ export default function Home() {
 
         <section
           id="recommended-tour"
-          className="border-b bg-gradient-to-b from-blue-50 to-white"
+          className="border-b bg-gradient-to-b from-brand-soft to-white"
         >
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
             <h2 className="mb-3 text-3xl font-bold text-gray-900 sm:text-4xl">
@@ -160,7 +160,7 @@ export default function Home() {
               above all others for cruise passengers with enough usable time
               ashore after tendering.
             </p>
-            <div className="overflow-hidden rounded-2xl border-2 border-blue-600 bg-white shadow-lg">
+            <div className="overflow-hidden rounded-2xl border-2 border-brand bg-white shadow-lg">
               <div className="grid grid-cols-1 lg:grid-cols-2 lg:items-start">
                 <div className="h-56 w-full overflow-hidden sm:h-64 lg:h-72">
                   <img
@@ -170,7 +170,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex flex-col p-6 sm:p-8 lg:p-7">
-                  <p className="mb-4 inline-flex w-fit rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">
+                  <p className="mb-4 inline-flex w-fit rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white">
                     Most Popular Cruise Excursion
                   </p>
                   <h3 className="mb-3 text-2xl font-bold text-gray-900 sm:text-3xl">
@@ -181,7 +181,7 @@ export default function Home() {
                       <li key={bullet} className="flex items-start gap-2">
                         <span
                           aria-hidden="true"
-                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600"
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand"
                         />
                         {bullet}
                       </li>
@@ -190,13 +190,13 @@ export default function Home() {
                   <div className="flex flex-wrap gap-3">
                     <Link
                       href={featuredTour.path}
-                      className="rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 sm:text-base"
+                      className="w2-btn w2-btn-primary px-6 py-3 text-sm sm:text-base"
                     >
                       View Tour
                     </Link>
                     <Link
                       href={featuredTour.bookingPath}
-                      className="rounded-full border border-blue-600 bg-white px-6 py-3 text-sm font-semibold text-blue-700 transition hover:bg-blue-50 sm:text-base"
+                      className="w2-btn w2-btn-secondary px-6 py-3 text-sm sm:text-base"
                     >
                       Check Availability
                     </Link>
@@ -226,7 +226,7 @@ export default function Home() {
             these alternatives may suit — but most passengers book the{" "}
             <Link
               href={featuredTour.path}
-              className="font-medium text-blue-700 underline"
+              className="w2-link underline"
             >
               {featuredTour.cardName}
             </Link>{" "}
@@ -301,14 +301,14 @@ export default function Home() {
               Read our{" "}
               <Link
                 href="/villefranche-tender-information"
-                className="font-medium text-blue-700 underline"
+                className="w2-link underline"
               >
                 tender information guide
               </Link>{" "}
               before port day, and see our{" "}
               <Link
                 href={featuredTour.path}
-                className="font-medium text-blue-700 underline"
+                className="w2-link underline"
               >
                 {featuredTour.cardName}
               </Link>{" "}
@@ -331,7 +331,7 @@ export default function Home() {
               <li>
                 <Link
                   href={featuredTour.bookingPath}
-                  className="rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-800 transition hover:border-blue-300"
+                  className="rounded-full border border-brand-muted bg-brand-soft px-4 py-2 text-sm font-medium text-brand-pressed transition hover:border-brand"
                 >
                   Check availability
                 </Link>
@@ -339,7 +339,7 @@ export default function Home() {
               <li>
                 <Link
                   href={featuredTour.path}
-                  className="rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-800 transition hover:border-blue-300"
+                  className="rounded-full border border-brand-muted bg-brand-soft px-4 py-2 text-sm font-medium text-brand-pressed transition hover:border-brand"
                 >
                   View main excursion
                 </Link>

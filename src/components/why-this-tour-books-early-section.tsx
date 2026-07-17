@@ -16,15 +16,15 @@ export function WhyThisTourBooksEarlySection({
 }: WhyThisTourBooksEarlySectionProps) {
   const bgClass =
     variant === "muted"
-      ? "border-y border-blue-100 bg-blue-50/60"
+      ? "border-y border-brand-muted bg-brand-soft/60"
       : variant === "bordered"
-        ? "rounded-2xl border border-blue-200 bg-blue-50/40"
+        ? "rounded-2xl border border-brand-muted bg-brand-soft/40"
         : "border-y border-gray-200 bg-white";
 
   return (
     <section className={`${bgClass} ${className}`}>
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-600">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand">
           Small-group availability
         </p>
         <h2 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl">
@@ -39,7 +39,7 @@ export function WhyThisTourBooksEarlySection({
             <li key={point} className="flex items-start gap-3">
               <span
                 aria-hidden="true"
-                className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600"
+                className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand"
               />
               {point}
             </li>
@@ -49,13 +49,13 @@ export function WhyThisTourBooksEarlySection({
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href={featuredTour.path}
-              className="rounded-full bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800"
+              className="w2-btn w2-btn-primary px-5 py-2.5 text-sm"
             >
               View Small Group Tour
             </Link>
             <Link
               href={featuredTour.bookingPath}
-              className="rounded-full border-2 border-gray-900 bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm transition hover:bg-gray-50"
+              className="w2-btn w2-btn-secondary px-5 py-2.5 text-sm"
             >
               Check Availability
             </Link>

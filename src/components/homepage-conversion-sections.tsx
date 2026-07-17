@@ -120,7 +120,7 @@ export function FeaturedTourSampleItinerarySection() {
             <div key={step.title} role="listitem" className="flex gap-4">
               <span
                 aria-hidden="true"
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white"
               >
                 {index + 1}
               </span>
@@ -137,7 +137,7 @@ export function FeaturedTourSampleItinerarySection() {
         <div className="mx-auto mt-8 max-w-3xl text-center">
           <Link
             href={featuredTour.path}
-            className="text-sm font-medium text-blue-700 underline underline-offset-2"
+            className="w2-link text-sm underline underline-offset-2"
           >
             See full tour details, inclusions and FAQs
           </Link>

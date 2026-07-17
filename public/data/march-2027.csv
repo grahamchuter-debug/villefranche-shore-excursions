@@ -1,15 +1,12 @@
 date,ship,arrival,departure,cruiseline
-2027-03-01,Viking Vesta,,,Viking
-2027-03-02,Viking Neptune,,,Viking
-2027-03-06,Star Explorer,,,Windstar
-2027-03-07,Azamara Onward,,,Azamara
-2027-03-07,Star Explorer,,,Windstar
-2027-03-13,Viking Star,,,Viking
-2027-03-15,Azamara Onward,,,Azamara
-2027-03-23,Viking Sea,,,Viking
-2027-03-24,Wind Spirit,,,Windstar
-2027-03-25,Wind Spirit,,,Windstar
-2027-03-27,Star Legend,,,Windstar
-2027-03-27,Viking Star,,,Viking
-2027-03-28,Star Legend,,,Windstar
-2027-03-31,Viking Saturn,,,Viking
+2027-03-01,Viking Vesta,,,Viking Cruises
+2027-03-02,Viking Neptune,,,Viking Cruises
+2027-03-06,Star Explorer,16:00,,Windstar Cruises
+2027-03-07,Azamara Onward,08:00,22:00,Azamara Cruises
+2027-03-13,Viking Star,,,Viking Cruises
+2027-03-15,Azamara Onward,08:00,22:00,Azamara Cruises
+2027-03-23,Viking Sea,,,Viking Cruises
+2027-03-24,Wind Spirit,07:00,,Windstar Cruises
+2027-03-27,Star Legend,16:00,,Windstar Cruises
+2027-03-27,Viking Star,,,Viking Cruises
+2027-03-31,Viking Saturn,,,Viking Cruises

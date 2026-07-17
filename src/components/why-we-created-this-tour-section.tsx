@@ -37,13 +37,13 @@ export function WhyWeCreatedThisTourSection({
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href={featuredTour.path}
-              className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+              className="w2-btn w2-btn-primary px-5 py-2.5 text-sm"
             >
               View Small Group Tour
             </Link>
             <Link
               href={featuredTour.bookingPath}
-              className="rounded-full border border-blue-600 px-5 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-blue-50"
+              className="w2-btn w2-btn-secondary px-5 py-2.5 text-sm"
             >
               Check Availability
             </Link>

@@ -97,14 +97,14 @@ export function ExcursionDetailPage({ excursion }: ExcursionDetailPageProps) {
                     href={excursion.bookingHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold transition hover:bg-blue-500 sm:text-base"
+                    className="w2-btn w2-btn-primary px-6 py-3 text-sm sm:text-base"
                   >
                     {excursion.bookingLabel ?? "Book this excursion"}
                   </a>
                 ) : (
                   <Link
                     href={excursion.bookingHref ?? siteConfig.excursionsHubPath}
-                    className="inline-block rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold transition hover:bg-blue-500 sm:text-base"
+                    className="w2-btn w2-btn-primary px-6 py-3 text-sm sm:text-base"
                   >
                     {excursion.bookingLabel ?? "Book this excursion"}
                   </Link>
@@ -271,21 +271,21 @@ export function ExcursionDetailPage({ excursion }: ExcursionDetailPageProps) {
                 Review our{" "}
                 <Link
                   href="/villefranche-tender-information"
-                  className="font-medium text-blue-700 underline underline-offset-2"
+                  className="w2-link underline underline-offset-2"
                 >
                   tender information
                 </Link>
                 , check{" "}
                 <Link
                   href={meetingPointPath}
-                  className="font-medium text-blue-700 underline underline-offset-2"
+                  className="w2-link underline underline-offset-2"
                 >
                   meeting point guide
                 </Link>
                 , and plan your day with our{" "}
                 <Link
                   href="/cruise-planner"
-                  className="font-medium text-blue-700 underline underline-offset-2"
+                  className="w2-link underline underline-offset-2"
                 >
                   cruise planner
                 </Link>
@@ -344,14 +344,14 @@ export function ExcursionDetailPage({ excursion }: ExcursionDetailPageProps) {
                   href={excursion.bookingHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold transition hover:bg-blue-500 sm:px-8 sm:py-3.5 sm:text-base"
+                  className="w2-btn w2-btn-primary px-6 py-3 text-sm sm:px-8 sm:py-3.5 sm:text-base"
                 >
                   {excursion.bookingLabel ?? "Book this excursion"}
                 </a>
               ) : (
                 <Link
                   href={excursion.bookingHref ?? siteConfig.excursionsHubPath}
-                  className="inline-block rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold transition hover:bg-blue-500 sm:px-8 sm:py-3.5 sm:text-base"
+                  className="w2-btn w2-btn-primary px-6 py-3 text-sm sm:px-8 sm:py-3.5 sm:text-base"
                 >
                   {excursion.bookingLabel ?? "Book this excursion"}
                 </Link>

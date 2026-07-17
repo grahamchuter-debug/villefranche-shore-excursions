@@ -1,9 +1,9 @@
 date,ship,arrival,departure,cruiseline
-2026-11-02,Europa,,,Hapag Lloyd
-2026-11-02,Oosterdam,,,Holland America Line
-2026-11-04,Azamara Onward,,,Azamara
-2026-11-07,Celebrity Eclipse,,,Celebrity Cruises
-2026-11-12,Celebrity Infinity,,,Celebrity Cruises
-2026-11-21,Viking Mira,,,Viking
-2026-11-29,Viking Mira,,,Viking
-2026-11-30,Azamara Onward,,,Azamara
+2026-11-02,Europa,08:00,19:00,Hapag Lloyd
+2026-11-02,Oosterdam,08:00,17:00,Holland America Line
+2026-11-04,Azamara Onward,08:00,20:00,Azamara Cruises
+2026-11-07,Celebrity Eclipse,07:00,19:00,Celebrity Cruises
+2026-11-12,Celebrity Infinity,07:00,18:00,Celebrity Cruises
+2026-11-21,Viking Mira,,,Viking Cruises
+2026-11-29,Viking Mira,,,Viking Cruises
+2026-11-30,Azamara Onward,09:00,,Azamara Cruises

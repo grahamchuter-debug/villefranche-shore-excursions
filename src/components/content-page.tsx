@@ -103,7 +103,7 @@ export function ContentPage({
         {belowHero}
 
         <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-          <div className="space-y-10 text-gray-700 [&_a]:font-medium [&_a]:text-blue-700 [&_a]:underline [&_a]:underline-offset-2 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-gray-900 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-gray-900 [&_li]:leading-7 [&_p]:leading-7 [&_section]:space-y-4 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
+          <div className="space-y-10 text-gray-700 [&_a]:font-medium [&_a]:text-link [&_a]:underline [&_a]:underline-offset-2 [&_a]:hover:text-link-hover [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-gray-900 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-gray-900 [&_li]:leading-7 [&_p]:leading-7 [&_section]:space-y-4 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
             {children}
           </div>
         </article>
@@ -117,7 +117,7 @@ export function ContentPage({
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href={ctaHref}
-                className="inline-block rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold transition hover:bg-blue-500 sm:px-8 sm:py-3.5 sm:text-base"
+                className="w2-btn w2-btn-primary px-6 py-3 text-sm sm:px-8 sm:py-3.5 sm:text-base"
               >
                 {ctaLabel}
               </Link>

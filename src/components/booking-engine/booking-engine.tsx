@@ -21,9 +21,10 @@ import {
   createPrototypeBookingReference,
   formatBookingDate,
 } from "@/lib/booking/booking-format";
-import type {
-  BookingShipVisit,
-  BookingShipsByDate,
+import {
+  isCustomBookingShip,
+  type BookingShipVisit,
+  type BookingShipsByDate,
 } from "@/lib/booking/booking-ship-types";
 
 type BookingState = {
@@ -44,6 +45,7 @@ const LEGACY_KEYS = [
   `vf-booking:v2:${bookingPrototypeTour.id}`,
   `vf-booking:v3:${bookingPrototypeTour.id}`,
   `vf-booking:v4:${bookingPrototypeTour.id}`,
+  `vf-booking:v5:${bookingPrototypeTour.id}`,
 ] as const;
 const STORAGE_KEY = bookingSessionStorageKey(bookingPrototypeTour.id);
 
@@ -70,7 +72,8 @@ function isShipVisit(value: unknown): value is BookingShipVisit {
   return (
     typeof ship.name === "string" &&
     typeof ship.slug === "string" &&
-    typeof ship.cruiseLine === "string"
+    typeof ship.cruiseLine === "string" &&
+    (ship.isCustom === undefined || typeof ship.isCustom === "boolean")
   );
 }
 
@@ -141,7 +144,7 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
   useEffect(() => {
     const stored = loadState();
     if (stored) {
-      if (stored.cruiseShip && stored.date) {
+      if (stored.cruiseShip && stored.date && !isCustomBookingShip(stored.cruiseShip)) {
         const match = shipsByDate[stored.date]?.find(
           (ship) => ship.slug === stored.cruiseShip?.slug,
         );
@@ -182,6 +185,7 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
   /** Re-bind selected ship from current schedule so times/images stay authoritative. */
   useEffect(() => {
     if (!state.date || !state.cruiseShip) return;
+    if (isCustomBookingShip(state.cruiseShip)) return;
     const match = shipsForSelectedDate.find(
       (ship) => ship.slug === state.cruiseShip?.slug,
     );
@@ -193,7 +197,8 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
       match.arrivalTime !== state.cruiseShip.arrivalTime ||
       match.departureTime !== state.cruiseShip.departureTime ||
       match.timesVerified !== state.cruiseShip.timesVerified ||
-      match.image?.src !== state.cruiseShip.image?.src
+      match.image?.src !== state.cruiseShip.image?.src ||
+      match.image?.imagePosition !== state.cruiseShip.image?.imagePosition
     ) {
       setState((prev) => ({ ...prev, cruiseShip: match }));
     }
@@ -329,6 +334,12 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
                 onSelectShip={handleSelectShip}
                 onContinue={() => {
                   if (!state.cruiseShip) return;
+                  if (
+                    isCustomBookingShip(state.cruiseShip) &&
+                    !state.cruiseShip.name.trim()
+                  ) {
+                    return;
+                  }
                   go("guests");
                 }}
                 onBack={() =>
@@ -375,6 +386,7 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
                 cruiseShip={state.cruiseShip}
                 onPay={handlePay}
                 onBack={() => go("guests")}
+                onChangeShip={() => go("ship")}
               />
             ) : null}
 

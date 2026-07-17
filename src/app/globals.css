@@ -1,22 +1,30 @@
 @import "tailwindcss";
+@import "../styles/world-2-tokens.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--w2-bg);
+  --foreground: var(--w2-navy);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand: var(--w2-primary);
+  --color-brand-hover: var(--w2-primary-hover);
+  --color-brand-pressed: var(--w2-primary-pressed);
+  --color-brand-soft: var(--w2-primary-soft);
+  --color-brand-muted: var(--w2-primary-muted);
+  --color-navy: var(--w2-navy);
+  --color-navy-deep: var(--w2-navy-deep);
+  --color-link: var(--w2-link);
+  --color-link-hover: var(--w2-link-hover);
+  --color-muted: var(--w2-muted);
+  --color-border-subtle: var(--w2-border);
+  --color-success: var(--w2-success);
+  --color-warning: var(--w2-warning);
+  --color-danger: var(--w2-error);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
@@ -25,21 +33,26 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Booking engine — Version 3 desire-led Riviera experience */
+/* Booking engine — Version 3 desire-led Riviera experience
+ * --book-* aliases consume World 2.0 tokens (primary blue, not legacy teal). */
 .booking-engine-root {
-  --book-ink: #0c1a24;
-  --book-muted: #6a7a88;
-  --book-line: #e4ebe8;
-  --book-surface: #ffffff;
-  --book-mist: #f7f9f8;
-  --book-sea: #1c4f63;
-  --book-sea-deep: #0d2f3c;
-  --book-sand: #eef2f0;
-  --book-success: #2a6b52;
-  --book-gold: #9a7b4f;
+  --book-ink: var(--w2-navy);
+  --book-muted: var(--w2-muted);
+  --book-line: var(--w2-border);
+  --book-surface: var(--w2-surface);
+  --book-mist: var(--w2-grey-light);
+  --book-sea: var(--w2-primary);
+  --book-sea-deep: var(--w2-primary-hover);
+  --book-sand: var(--w2-grey-light);
+  --book-success: var(--w2-success);
+  --book-gold: var(--w2-gold);
+  --book-warning: var(--w2-warning);
+  --book-error: var(--w2-error);
+  --book-link: var(--w2-link);
+  --book-link-hover: var(--w2-link-hover);
   font-family: var(--font-booking-sans), var(--font-sans), system-ui, sans-serif;
   color: var(--book-ink);
-  background: #fbfcfb;
+  background: var(--w2-bg-warm);
 }
 
 .booking-engine-root .book-display {
@@ -81,17 +94,17 @@ body {
 
 .booking-engine-root .book-btn-primary:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 10px 28px -14px rgba(12, 26, 36, 0.5);
+  box-shadow: var(--w2-btn-shadow);
 }
 
 .booking-engine-root .book-btn-primary:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: 0 4px 14px -10px rgba(12, 26, 36, 0.35);
+  box-shadow: var(--w2-btn-shadow-active);
 }
 
 .booking-engine-root .book-btn-secondary:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px -14px rgba(12, 26, 36, 0.28);
+  box-shadow: 0 8px 20px -14px color-mix(in srgb, var(--w2-navy) 28%, transparent);
 }
 
 .booking-engine-root .book-reassure-item {
@@ -329,7 +342,22 @@ body {
 }
 
 .booking-engine-root .book-reassure-featured {
-  box-shadow: 0 20px 50px -40px rgba(13, 47, 60, 0.35);
+  box-shadow: 0 20px 50px -40px color-mix(in srgb, var(--w2-primary) 35%, transparent);
+}
+
+/* Booking text links — same colour + hover as site .w2-link */
+.booking-engine-root a.book-text-link,
+.booking-engine-root .book-text-link {
+  color: var(--book-link);
+  font-weight: 500;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.booking-engine-root a.book-text-link:hover,
+.booking-engine-root .book-text-link:hover {
+  color: var(--book-link-hover);
+  text-decoration: underline;
 }
 
 .booking-engine-root .book-ship-feature {
@@ -462,7 +490,7 @@ body {
 
 .booking-engine-root .book-day-btn[aria-pressed="true"] {
   transform: scale(1.06);
-  box-shadow: 0 8px 18px -10px rgba(13, 47, 60, 0.45);
+  box-shadow: 0 8px 18px -10px color-mix(in srgb, var(--w2-primary) 45%, transparent);
 }
 
 .booking-engine-root .book-guest-count {

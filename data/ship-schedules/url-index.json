@@ -1,0 +1,195 @@
+{
+  "source": "Villefranche Ship Schedule.xlsx",
+  "portCount": 1,
+  "urlCount": 29,
+  "noVisitCount": 1,
+  "ports": [
+    {
+      "sheet": "Villefranche",
+      "name": "Villefranche",
+      "slug": "villefranche",
+      "months": [
+        {
+          "month": "2026-07",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-jul2026.html",
+          "rawDate": "46204.0"
+        },
+        {
+          "month": "2026-08",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-aug2026.html",
+          "rawDate": "46235.0"
+        },
+        {
+          "month": "2026-09",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-sep2026.html",
+          "rawDate": "46266.0"
+        },
+        {
+          "month": "2026-10",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-oct2026.html",
+          "rawDate": "46296.0"
+        },
+        {
+          "month": "2026-11",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-nov2026.html",
+          "rawDate": "46327.0"
+        },
+        {
+          "month": "2026-12",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-dec2026.html",
+          "rawDate": "46357.0"
+        },
+        {
+          "month": "2027-01",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-jan2027.html",
+          "rawDate": "46388.0"
+        },
+        {
+          "month": "2027-02",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-feb2027.html",
+          "rawDate": "46419.0"
+        },
+        {
+          "month": "2027-03",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-mar2027.html",
+          "rawDate": "46447.0"
+        },
+        {
+          "month": "2027-04",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-apr2027.html",
+          "rawDate": "46478.0"
+        },
+        {
+          "month": "2027-05",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-may2027.html",
+          "rawDate": "46508.0"
+        },
+        {
+          "month": "2027-06",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-jun2027.html",
+          "rawDate": "46539.0"
+        },
+        {
+          "month": "2027-07",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-jul2027.html",
+          "rawDate": "46569.0"
+        },
+        {
+          "month": "2027-08",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-aug2027.html",
+          "rawDate": "46600.0"
+        },
+        {
+          "month": "2027-09",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-sep2027.html",
+          "rawDate": "Sept 2027"
+        },
+        {
+          "month": "2027-10",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-oct2027.html",
+          "rawDate": "46661.0"
+        },
+        {
+          "month": "2027-11",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-nov2027.html",
+          "rawDate": "46692.0"
+        },
+        {
+          "month": "2027-12",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-dec2027.html",
+          "rawDate": "46722.0"
+        },
+        {
+          "month": "2028-01",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-jan2028.html",
+          "rawDate": "46753.0"
+        },
+        {
+          "month": "2028-02",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-feb2028.html",
+          "rawDate": "46784.0"
+        },
+        {
+          "month": "2028-03",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-mar2028.html",
+          "rawDate": "46813.0"
+        },
+        {
+          "month": "2028-04",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-apr2028.html",
+          "rawDate": "46844.0"
+        },
+        {
+          "month": "2028-05",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-may2028.html",
+          "rawDate": "46874.0"
+        },
+        {
+          "month": "2028-06",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-jun2028.html",
+          "rawDate": "46905.0"
+        },
+        {
+          "month": "2028-07",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-jul2028.html",
+          "rawDate": "46935.0"
+        },
+        {
+          "month": "2028-08",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-aug2028.html",
+          "rawDate": "46966.0"
+        },
+        {
+          "month": "2028-09",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-sep2028.html",
+          "rawDate": "Sept 2028"
+        },
+        {
+          "month": "2028-10",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-oct2028.html",
+          "rawDate": "47027.0"
+        },
+        {
+          "month": "2028-11",
+          "status": "url",
+          "url": "https://www.cruisetimetables.com/visitingvillefranchenicefrance-nov2028.html",
+          "rawDate": "Nove 2028"
+        },
+        {
+          "month": "2028-12",
+          "status": "no_visits",
+          "url": null,
+          "rawDate": "47088.0"
+        }
+      ]
+    }
+  ]
+}

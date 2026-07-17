@@ -4,3 +4,7 @@ out/
 .DS_Store
 .env
 .env.local
+data/ship-schedules/raw/
+data/ship-schedules/fetch-progress.json
+data/ship-schedules/fetch.log
+scripts/__pycache__/

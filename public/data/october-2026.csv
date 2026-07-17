@@ -1,18 +1,17 @@
 date,ship,arrival,departure,cruiseline
-2026-10-02,Norwegian Epic,,,Norwegian Cruise Line
+2026-10-02,Norwegian Epic,07:00,18:00,Norwegian Cruise Line
 2026-10-03,Royal Clipper,,,Star Clippers
 2026-10-03,SeaDream II,,,SeaDream Yacht Club
-2026-10-06,Norwegian Epic,,,Norwegian Cruise Line
-2026-10-10,Celebrity Xcel,,,Celebrity Cruises
-2026-10-10,SeaDream II,,,SeaDream Yacht Club
-2026-10-12,Norwegian Viva,,,Norwegian Cruise Line
-2026-10-13,Marella Explorer,,,Marella
-2026-10-14,Explora I,,,Explora Journeys
-2026-10-16,Norwegian Epic,,,Norwegian Cruise Line
-2026-10-18,Celebrity Equinox,,,Celebrity Cruises
-2026-10-20,Norwegian Epic,,,Norwegian Cruise Line
-2026-10-21,Viking Star,,,Viking
-2026-10-21,Volendam,,,Holland America Line
-2026-10-24,Viking Vesta,,,Viking
-2026-10-27,Marella Explorer,,,Marella
-2026-10-30,Norwegian Epic,,,Norwegian Cruise Line
+2026-10-06,Norwegian Epic,07:00,18:00,Norwegian Cruise Line
+2026-10-10,Celebrity Xcel,07:00,20:00,Celebrity Cruises
+2026-10-12,Norwegian Viva,07:00,16:30,Norwegian Cruise Line
+2026-10-13,Marella Explorer,08:00,18:00,Marella Cruises
+2026-10-14,Explora I,09:00,19:00,Explora Journeys
+2026-10-16,Norwegian Epic,07:00,18:00,Norwegian Cruise Line
+2026-10-18,Celebrity Equinox,07:00,20:00,Celebrity Cruises
+2026-10-20,Norwegian Epic,07:00,18:00,Norwegian Cruise Line
+2026-10-21,Viking Star,,,Viking Cruises
+2026-10-21,Volendam,11:00,21:00,Holland America Line
+2026-10-24,Viking Vesta,,,Viking Cruises
+2026-10-27,Marella Explorer,08:00,18:00,Marella Cruises
+2026-10-30,Norwegian Epic,07:00,18:00,Norwegian Cruise Line
