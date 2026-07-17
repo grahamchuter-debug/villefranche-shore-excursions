@@ -29,7 +29,13 @@ export const cruiseShipsHub = {
 function parseMinutesFromTime(value: string): number | null {
   const normalized = value.trim().toLowerCase();
 
-  if (!normalized || normalized === "tbc" || normalized === "tb") {
+  if (
+    !normalized ||
+    normalized === "tbc" ||
+    normalized === "tb" ||
+    normalized === "00:00" ||
+    normalized === "0:00"
+  ) {
     return null;
   }
 

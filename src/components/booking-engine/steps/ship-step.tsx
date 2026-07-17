@@ -7,7 +7,7 @@ import { BookingPrimaryButton } from "@/components/booking-engine/booking-primar
 import { bookingContactPath } from "@/lib/booking/booking-config";
 import { formatBookingDate } from "@/lib/booking/booking-format";
 import {
-  formatShipPortTime,
+  formatVerifiedShipTimingLine,
   type BookingShipVisit,
 } from "@/lib/booking/booking-ship-types";
 
@@ -20,36 +20,24 @@ type ShipStepProps = {
   onBack: () => void;
 };
 
-function ShipTimingLine({ ship }: { ship: BookingShipVisit }) {
-  const arrival = formatShipPortTime(ship.arrival);
-  const departure = formatShipPortTime(ship.departure);
-  const parts = [
-    arrival ? `Arrives ${arrival}` : null,
-    departure ? `Departs ${departure}` : null,
-  ].filter(Boolean);
-
-  if (parts.length === 0) return null;
-  return <span>{parts.join(" · ")}</span>;
-}
-
 function ShipCardButton({
   ship,
   selected,
-  singleShip,
   onSelect,
 }: {
   ship: BookingShipVisit;
   selected: boolean;
-  singleShip: boolean;
   onSelect: () => void;
 }) {
+  const timing = formatVerifiedShipTimingLine(ship);
+
   return (
     <button
       type="button"
       onClick={onSelect}
       aria-pressed={selected}
       className={[
-        "book-btn flex w-full flex-col items-start gap-1 rounded-[1.25rem] border px-5 py-5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)] sm:px-6",
+        "book-btn flex w-full flex-col items-start rounded-[1.25rem] border px-5 py-5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)] sm:px-6",
         selected
           ? "border-[var(--book-sea-deep)] bg-[var(--book-sea-deep)] text-white shadow-[0_16px_40px_-28px_rgba(13,47,60,0.55)]"
           : "border-[var(--book-line)] bg-[var(--book-surface)] text-[var(--book-ink)] hover:border-[var(--book-ink)]/20",
@@ -58,23 +46,25 @@ function ShipCardButton({
       <span className="text-lg font-semibold tracking-wide">{ship.name}</span>
       <span
         className={[
-          "text-sm",
+          "mt-1 text-sm",
           selected ? "text-white/75" : "text-[var(--book-muted)]",
         ].join(" ")}
       >
         {ship.cruiseLine}
-        {formatShipPortTime(ship.arrival)
-          ? ` · Arrives ${formatShipPortTime(ship.arrival)}`
-          : null}
       </span>
-      {selected ? (
+      {timing ? (
         <span
           className={[
-            "mt-2 text-[11px] font-medium tracking-[0.14em] uppercase",
-            selected ? "text-white/70" : "text-[var(--book-muted)]",
+            "mt-2 text-sm",
+            selected ? "text-white/80" : "text-[var(--book-muted)]",
           ].join(" ")}
         >
-          {singleShip ? "Selected for your cruise day ✓" : "Selected ✓"}
+          {timing}
+        </span>
+      ) : null}
+      {selected ? (
+        <span className="mt-4 text-[11px] font-medium tracking-[0.14em] text-white/80 uppercase">
+          Selected for your cruise day ✓
         </span>
       ) : null}
     </button>
@@ -89,6 +79,7 @@ function ShipFeatureButton({
   onSelect: () => void;
 }) {
   const image = ship.image;
+  const timing = formatVerifiedShipTimingLine(ship);
   if (!image) return null;
 
   return (
@@ -134,10 +125,15 @@ function ShipFeatureButton({
             {ship.name}
           </p>
           <p className="mt-2 text-[15px] text-white/85">{ship.cruiseLine}</p>
-          <p className="mt-3 text-sm text-white/75">
-            <ShipTimingLine ship={ship} />
-          </p>
-          <p className="mt-5 text-[12px] font-medium tracking-[0.12em] text-white/90 uppercase">
+          {timing ? (
+            <p className="mt-3 text-sm text-white/75">{timing}</p>
+          ) : null}
+          <p
+            className={[
+              "text-[12px] font-medium tracking-[0.12em] text-white/90 uppercase",
+              timing ? "mt-5" : "mt-6",
+            ].join(" ")}
+          >
             Selected for your cruise day ✓
           </p>
         </div>
@@ -231,7 +227,6 @@ export function ShipStep({
                 key={ship.slug}
                 ship={ship}
                 selected={selected}
-                singleShip={singleShip}
                 onSelect={() => onSelectShip(ship)}
               />
             );
@@ -247,7 +242,7 @@ export function ShipStep({
 
       <div className="mx-auto max-w-md space-y-3">
         <BookingPrimaryButton onClick={onContinue} disabled={!canContinue}>
-          Continue
+          Continue to Guests
         </BookingPrimaryButton>
         <BookingPrimaryButton variant="ghost" onClick={onBack}>
           Back

@@ -7,7 +7,11 @@ import {
 import { loadAllVillefrancheScheduleEntries } from "@/lib/villefranche-cruise-ships";
 
 export type { BookingShipVisit, BookingShipsByDate } from "@/lib/booking/booking-ship-types";
-export { formatShipPortTime, toBookingShipVisit } from "@/lib/booking/booking-ship-types";
+export {
+  formatVerifiedShipTime,
+  formatVerifiedShipTimingLine,
+  toBookingShipVisit,
+} from "@/lib/booking/booking-ship-types";
 
 /** Ships calling at Villefranche on an ISO date (deduped by ship name). */
 export function getVillefrancheShipsOnDate(

@@ -1,9 +1,9 @@
 date,ship,arrival,departure,cruiseline
-2027-02-06,Viking Vesta,tbc,tbc,Viking
-2027-02-08,Viking Neptune,tbc,tbc,Viking
-2027-02-11,Star Explorer,08:00,tbc,Windstar
-2027-02-12,Star Explorer,13:00,tbc,Windstar
-2027-02-12,Viking Saturn,tbc,tbc,Viking
-2027-02-21,Viking Mira,tbc,tbc,Viking
-2027-02-23,Viking Mars,tbc,tbc,Viking
-2027-02-27,Viking Star,tbc,tbc,Viking
+2027-02-06,Viking Vesta,,,Viking
+2027-02-08,Viking Neptune,,,Viking
+2027-02-11,Star Explorer,,,Windstar
+2027-02-12,Star Explorer,,,Windstar
+2027-02-12,Viking Saturn,,,Viking
+2027-02-21,Viking Mira,,,Viking
+2027-02-23,Viking Mars,,,Viking
+2027-02-27,Viking Star,,,Viking

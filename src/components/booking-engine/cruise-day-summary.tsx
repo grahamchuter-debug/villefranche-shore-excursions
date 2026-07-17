@@ -25,7 +25,8 @@ export function CruiseDaySummary({
   cruiseShip,
   heading = "Your Cruise Day",
 }: CruiseDaySummaryProps) {
-  const startTime = getBookingStartTimeLabel(date);
+  /** Excursion start — never derived from ship arrival */
+  const tourStartTime = getBookingStartTimeLabel(date);
   const total = formatBookingMoney(calculateBookingTotal(guests));
 
   const rows = [
@@ -35,17 +36,17 @@ export function CruiseDaySummary({
       note: cruiseShip.cruiseLine,
     },
     {
-      label: bookingMeetingConfig.label,
-      value: bookingMeetingConfig.place,
-      note: bookingMeetingConfig.instructionsNote,
+      label: "Date",
+      value: formatBookingDate(date),
     },
     {
       label: bookingStartTimeConfig.label,
-      value: startTime,
+      value: tourStartTime,
     },
     {
-      label: "Date",
-      value: formatBookingDate(date),
+      label: bookingMeetingConfig.label,
+      value: bookingMeetingConfig.place,
+      note: bookingMeetingConfig.instructionsNote,
     },
     {
       label: "Guests",

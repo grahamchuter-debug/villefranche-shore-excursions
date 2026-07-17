@@ -1,22 +1,22 @@
 date,ship,arrival,departure,cruiseline
-2027-06-01,Azamara Onward,08:00,20:00,Azamara
-2027-06-01,Norwegian Epic,07:00,18:00,Norwegian Cruise Line
-2027-06-01,Silver Shadow,07:00,00:00,Silversea
-2027-06-04,Celebrity Xcel,07:00,18:00,Celebrity Cruises
-2027-06-05,Azamara Onward,09:00,tbc,Azamara
-2027-06-05,Wind Spirit,04:00,tbc,Windstar
-2027-06-06,Azamara Onward,21:00,tbc,Azamara
-2027-06-06,Wind Spirit,22:00,tbc,Windstar
-2027-06-07,SeaDream II,tbc,tbc,SeaDream Yacht Club
-2027-06-09,Renaissance,09:00,17:00,CFC Croisieres
-2027-06-11,Norwegian Epic,07:00,18:00,Norwegian Cruise Line
-2027-06-12,Borealis,tbc,tbc,Fred Olsen Cruise Lines
-2027-06-12,Silver Shadow,07:00,00:00,Silversea
-2027-06-15,Crystal Symphony,07:00,19:00,Crystal
-2027-06-16,Marella Discovery,08:00,18:00,Marella
-2027-06-17,Explorer Of The Seas,07:00,18:00,Royal Caribbean
-2027-06-20,Seven Seas Prestige,08:00,18:00,Regent Seven Seas
-2027-06-24,Explora I,09:00,19:00,Explora Journeys
-2027-06-25,Marella Voyager,08:00,18:00,Marella
-2027-06-28,Resilient Lady,10:00,tbc,Virgin Voyages
-2027-06-29,Norwegian Epic,07:00,18:00,Norwegian Cruise Line
+2027-06-01,Azamara Onward,,,Azamara
+2027-06-01,Norwegian Epic,,,Norwegian Cruise Line
+2027-06-01,Silver Shadow,,,Silversea
+2027-06-04,Celebrity Xcel,,,Celebrity Cruises
+2027-06-05,Azamara Onward,,,Azamara
+2027-06-05,Wind Spirit,,,Windstar
+2027-06-06,Azamara Onward,,,Azamara
+2027-06-06,Wind Spirit,,,Windstar
+2027-06-07,SeaDream II,,,SeaDream Yacht Club
+2027-06-09,Renaissance,,,CFC Croisieres
+2027-06-11,Norwegian Epic,,,Norwegian Cruise Line
+2027-06-12,Borealis,,,Fred Olsen Cruise Lines
+2027-06-12,Silver Shadow,,,Silversea
+2027-06-15,Crystal Symphony,,,Crystal
+2027-06-16,Marella Discovery,,,Marella
+2027-06-17,Explorer Of The Seas,,,Royal Caribbean
+2027-06-20,Seven Seas Prestige,,,Regent Seven Seas
+2027-06-24,Explora I,,,Explora Journeys
+2027-06-25,Marella Voyager,,,Marella
+2027-06-28,Resilient Lady,,,Virgin Voyages
+2027-06-29,Norwegian Epic,,,Norwegian Cruise Line

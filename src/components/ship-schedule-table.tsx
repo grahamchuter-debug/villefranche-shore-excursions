@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 
 import {
   formatScheduleDate,
+  formatScheduleTimeCell,
   type CruiseScheduleEntry,
 } from "@/lib/cruise-schedule-types";
 import { getCruiseShipPath, slugifyShipName } from "@/lib/cruise-ship-utils";
@@ -184,10 +185,10 @@ export function ShipScheduleTable({
                     )}
                   </td>
                   <td className="whitespace-nowrap px-4 py-3 text-gray-700">
-                    {entry.arrival}
+                    {formatScheduleTimeCell(entry.arrival)}
                   </td>
                   <td className="whitespace-nowrap px-4 py-3 text-gray-700">
-                    {entry.departure}
+                    {formatScheduleTimeCell(entry.departure)}
                   </td>
                   <td className="whitespace-nowrap px-4 py-3 text-gray-700">
                     {entry.cruiseLine || "Not listed"}

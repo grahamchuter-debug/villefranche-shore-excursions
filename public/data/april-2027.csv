@@ -1,11 +1,11 @@
 date,ship,arrival,departure,cruiseline
-2027-04-01,Silver Shadow,07:00,19:00,Silversea
-2027-04-08,Oceania Marina,07:00,17:00,Oceania
-2027-04-11,Silver Nova,08:00,23:00,Silversea
-2027-04-13,Silver Shadow,07:00,19:00,Silversea
-2027-04-19,Norwegian Prima,09:00,19:00,Norwegian Cruise Line
-2027-04-24,Oosterdam,10:00,19:00,Holland America Line
-2027-04-24,Royal Clipper,tbc,tbc,Star Clippers
-2027-04-25,Silver Shadow,07:00,00:00,Silversea
-2027-04-27,Norwegian Gem,10:00,20:00,Norwegian Cruise Line
-2027-04-30,Norwegian Sun,09:00,19:00,Norwegian Cruise Line
+2027-04-01,Silver Shadow,,,Silversea
+2027-04-08,Oceania Marina,,,Oceania
+2027-04-11,Silver Nova,,,Silversea
+2027-04-13,Silver Shadow,,,Silversea
+2027-04-19,Norwegian Prima,,,Norwegian Cruise Line
+2027-04-24,Oosterdam,,,Holland America Line
+2027-04-24,Royal Clipper,,,Star Clippers
+2027-04-25,Silver Shadow,,,Silversea
+2027-04-27,Norwegian Gem,,,Norwegian Cruise Line
+2027-04-30,Norwegian Sun,,,Norwegian Cruise Line

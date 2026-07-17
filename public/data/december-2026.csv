@@ -1,10 +1,10 @@
 date,ship,arrival,departure,cruiseline
-2026-12-01,Azamara Onward,20:00,tbc,Azamara
-2026-12-05,Viking Neptune,tbc,tbc,Viking
-2026-12-07,Explora II,08:00,20:00,Explora Journeys
-2026-12-08,Viking Saturn,tbc,tbc,Viking
-2026-12-10,Viking Vela,tbc,tbc,Viking
-2026-12-19,Viking Mira,tbc,tbc,Viking
-2026-12-23,Viking Libra,tbc,tbc,Viking
-2026-12-27,Viking Mira,tbc,tbc,Viking
-2026-12-31,Viking Saturn,tbc,tbc,Viking
+2026-12-01,Azamara Onward,,,Azamara
+2026-12-05,Viking Neptune,,,Viking
+2026-12-07,Explora II,,,Explora Journeys
+2026-12-08,Viking Saturn,,,Viking
+2026-12-10,Viking Vela,,,Viking
+2026-12-19,Viking Mira,,,Viking
+2026-12-23,Viking Libra,,,Viking
+2026-12-27,Viking Mira,,,Viking
+2026-12-31,Viking Saturn,,,Viking

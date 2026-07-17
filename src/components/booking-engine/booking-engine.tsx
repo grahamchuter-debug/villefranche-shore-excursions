@@ -43,6 +43,7 @@ const LEGACY_KEYS = [
   `vf-booking:${bookingPrototypeTour.id}`,
   `vf-booking:v2:${bookingPrototypeTour.id}`,
   `vf-booking:v3:${bookingPrototypeTour.id}`,
+  `vf-booking:v4:${bookingPrototypeTour.id}`,
 ] as const;
 const STORAGE_KEY = bookingSessionStorageKey(bookingPrototypeTour.id);
 
@@ -177,6 +178,26 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
     if (!state.date) return [] as BookingShipVisit[];
     return shipsByDate[state.date] ?? [];
   }, [shipsByDate, state.date]);
+
+  /** Re-bind selected ship from current schedule so times/images stay authoritative. */
+  useEffect(() => {
+    if (!state.date || !state.cruiseShip) return;
+    const match = shipsForSelectedDate.find(
+      (ship) => ship.slug === state.cruiseShip?.slug,
+    );
+    if (!match) {
+      setState((prev) => ({ ...prev, cruiseShip: null }));
+      return;
+    }
+    if (
+      match.arrivalTime !== state.cruiseShip.arrivalTime ||
+      match.departureTime !== state.cruiseShip.departureTime ||
+      match.timesVerified !== state.cruiseShip.timesVerified ||
+      match.image?.src !== state.cruiseShip.image?.src
+    ) {
+      setState((prev) => ({ ...prev, cruiseShip: match }));
+    }
+  }, [state.date, state.cruiseShip, shipsForSelectedDate]);
 
   const go = (step: BookingStepId) =>
     setState((prev) => ({ ...prev, step }));

@@ -1,7 +1,10 @@
 import Link from "next/link";
 
 import type { CruiseShipCall } from "@/lib/cruise-ship-types";
-import { formatScheduleDate } from "@/lib/cruise-schedule-types";
+import {
+  formatScheduleDate,
+  formatScheduleTimeCell,
+} from "@/lib/cruise-schedule-types";
 import { getShipScheduleMonthPath } from "@/lib/ship-schedule-months";
 import {
   villefrancheArrivalPortLabel,
@@ -26,9 +29,14 @@ export function CruiseShipCallCards({ calls, shipName }: CruiseShipCallCardsProp
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-      {calls.map((call) => (
+      {calls.map((call) => {
+        const arrival = formatScheduleTimeCell(call.arrival);
+        const departure = formatScheduleTimeCell(call.departure);
+        const hasVerifiedTimes = arrival !== "—" && departure !== "—";
+
+        return (
         <article
-          key={`${call.date}-${call.arrival}-${call.departure}`}
+          key={`${call.date}-${call.ship}`}
           className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm"
         >
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -40,24 +48,28 @@ export function CruiseShipCallCards({ calls, shipName }: CruiseShipCallCardsProp
                 {formatScheduleDate(call.date)}
               </h3>
             </div>
-            <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
-              {call.timeInPort}
-            </span>
+            {hasVerifiedTimes ? (
+              <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                {call.timeInPort}
+              </span>
+            ) : null}
           </div>
 
           <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
             <div>
               <dt className="text-gray-500">Arrival</dt>
-              <dd className="font-medium text-gray-900">{call.arrival}</dd>
+              <dd className="font-medium text-gray-900">{arrival}</dd>
             </div>
             <div>
               <dt className="text-gray-500">Departure</dt>
-              <dd className="font-medium text-gray-900">{call.departure}</dd>
+              <dd className="font-medium text-gray-900">{departure}</dd>
             </div>
+            {hasVerifiedTimes ? (
             <div>
               <dt className="text-gray-500">Time in port</dt>
               <dd className="font-medium text-gray-900">{call.timeInPort}</dd>
             </div>
+            ) : null}
             <div>
               <dt className="text-gray-500">Passenger capacity</dt>
               <dd className="font-medium text-gray-900">
@@ -77,7 +89,8 @@ export function CruiseShipCallCards({ calls, shipName }: CruiseShipCallCardsProp
             .
           </p>
         </article>
-      ))}
+        );
+      })}
     </div>
   );
 }
