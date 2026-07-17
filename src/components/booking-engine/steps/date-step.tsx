@@ -137,10 +137,10 @@ export function DateStep({
         aria-hidden="true"
       >
         <img
-          src="/images/booking/monaco-harbour-1280.webp"
+          src="/images/booking/monaco-port-hercule-1280.webp"
           alt=""
           width={1280}
-          height={887}
+          height={580}
           className="h-28 w-full object-cover object-center sm:h-36"
           decoding="async"
           loading="lazy"

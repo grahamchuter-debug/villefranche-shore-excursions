@@ -19,6 +19,7 @@ type GuestsStepProps = {
   onContinue: () => void;
   onBack: () => void;
   selectedDateLabel?: string | null;
+  cruiseShipName?: string | null;
 };
 
 export function GuestsStep({
@@ -27,6 +28,7 @@ export function GuestsStep({
   onContinue,
   onBack,
   selectedDateLabel,
+  cruiseShipName,
 }: GuestsStepProps) {
   const { minGuests, capacityLabel, overCapacityContactHref } =
     bookingCapacityConfig;
@@ -50,8 +52,10 @@ export function GuestsStep({
           How many guests?
         </h2>
         <p className="text-lg text-[var(--book-muted)]">{capacityLabel}</p>
-        {selectedDateLabel ? (
-          <p className="text-sm text-[var(--book-muted)]">{selectedDateLabel}</p>
+        {cruiseShipName || selectedDateLabel ? (
+          <p className="text-sm text-[var(--book-muted)]">
+            {[cruiseShipName, selectedDateLabel].filter(Boolean).join(" · ")}
+          </p>
         ) : null}
       </header>
 

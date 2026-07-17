@@ -5,6 +5,7 @@ import {
   bookingStartTimeConfig,
   getBookingStartTimeLabel,
 } from "@/lib/booking/booking-config";
+import type { BookingShipVisit } from "@/lib/booking/booking-ships";
 import {
   calculateBookingTotal,
   formatBookingDate,
@@ -14,18 +15,25 @@ import {
 type CruiseDaySummaryProps = {
   date: string;
   guests: number;
+  cruiseShip: BookingShipVisit;
   heading?: string;
 };
 
 export function CruiseDaySummary({
   date,
   guests,
+  cruiseShip,
   heading = "Your Cruise Day",
 }: CruiseDaySummaryProps) {
   const startTime = getBookingStartTimeLabel(date);
   const total = formatBookingMoney(calculateBookingTotal(guests));
 
   const rows = [
+    {
+      label: "Cruise Ship",
+      value: cruiseShip.name,
+      note: cruiseShip.cruiseLine,
+    },
     {
       label: bookingMeetingConfig.label,
       value: bookingMeetingConfig.place,
@@ -64,7 +72,7 @@ export function CruiseDaySummary({
     >
       <header className="mb-9 max-w-xl space-y-2">
         <p className="text-[11px] font-medium tracking-[0.18em] text-[var(--book-gold)] uppercase">
-          Reservation overview
+          Your cruise itinerary
         </p>
         <h3
           id="cruise-day-heading"
@@ -76,7 +84,10 @@ export function CruiseDaySummary({
 
       <dl className="space-y-7">
         {rows.map((row) => (
-          <div key={row.label} className="grid gap-1 sm:grid-cols-[11rem_1fr] sm:gap-6">
+          <div
+            key={row.label}
+            className="grid gap-1 sm:grid-cols-[11rem_1fr] sm:gap-6"
+          >
             <dt className="text-[13px] tracking-wide text-[var(--book-muted)]">
               {row.label}
             </dt>

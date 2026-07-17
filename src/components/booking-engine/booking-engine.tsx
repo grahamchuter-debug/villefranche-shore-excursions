@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { BookingCheckoutHeader } from "@/components/booking-engine/booking-checkout-header";
 import { BookingProgress } from "@/components/booking-engine/booking-progress";
@@ -8,6 +8,7 @@ import { ConfirmationStep } from "@/components/booking-engine/steps/confirmation
 import { DateStep } from "@/components/booking-engine/steps/date-step";
 import { GuestsStep } from "@/components/booking-engine/steps/guests-step";
 import { PaymentStep } from "@/components/booking-engine/steps/payment-step";
+import { ShipStep } from "@/components/booking-engine/steps/ship-step";
 import { TourIntroStep } from "@/components/booking-engine/steps/tour-intro-step";
 import {
   bookingCapacityConfig,
@@ -20,24 +21,35 @@ import {
   createPrototypeBookingReference,
   formatBookingDate,
 } from "@/lib/booking/booking-format";
+import type {
+  BookingShipVisit,
+  BookingShipsByDate,
+} from "@/lib/booking/booking-ships";
 
 type BookingState = {
   step: BookingStepId;
   date: string | null;
+  cruiseShip: BookingShipVisit | null;
   guests: number;
   bookingReference: string | null;
+};
+
+type BookingEngineProps = {
+  shipsByDate: BookingShipsByDate;
 };
 
 const LEGACY_KEYS = [
   "vf-booking-prototype-v1",
   `vf-booking:${bookingPrototypeTour.id}`,
   `vf-booking:v2:${bookingPrototypeTour.id}`,
+  `vf-booking:v3:${bookingPrototypeTour.id}`,
 ] as const;
 const STORAGE_KEY = bookingSessionStorageKey(bookingPrototypeTour.id);
 
 const VALID_STEPS = new Set<BookingStepId>([
   "tour",
   "date",
+  "ship",
   "guests",
   "payment",
   "confirmed",
@@ -51,6 +63,16 @@ function prefersReducedMotion(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
+function isShipVisit(value: unknown): value is BookingShipVisit {
+  if (!value || typeof value !== "object") return false;
+  const ship = value as BookingShipVisit;
+  return (
+    typeof ship.name === "string" &&
+    typeof ship.slug === "string" &&
+    typeof ship.cruiseLine === "string"
+  );
+}
+
 function loadState(): BookingState | null {
   if (typeof window === "undefined") return null;
   try {
@@ -62,6 +84,7 @@ function loadState(): BookingState | null {
     const parsed = JSON.parse(raw) as {
       step: string;
       date: string | null;
+      cruiseShip?: unknown;
       guests: number;
       bookingReference: string | null;
     };
@@ -82,6 +105,7 @@ function loadState(): BookingState | null {
     return {
       step: parsed.step as BookingStepId,
       date: parsed.date,
+      cruiseShip: isShipVisit(parsed.cruiseShip) ? parsed.cruiseShip : null,
       guests: parsed.guests,
       bookingReference: parsed.bookingReference,
     };
@@ -101,11 +125,12 @@ function saveState(state: BookingState) {
 const initialState: BookingState = {
   step: "tour",
   date: null,
+  cruiseShip: null,
   guests: 2,
   bookingReference: null,
 };
 
-export function BookingEngine() {
+export function BookingEngine({ shipsByDate }: BookingEngineProps) {
   const [state, setState] = useState<BookingState>(initialState);
   const [hydrated, setHydrated] = useState(false);
   const [heroExiting, setHeroExiting] = useState(false);
@@ -140,6 +165,11 @@ export function BookingEngine() {
     };
   }, []);
 
+  const shipsForSelectedDate = useMemo(() => {
+    if (!state.date) return [] as BookingShipVisit[];
+    return shipsByDate[state.date] ?? [];
+  }, [shipsByDate, state.date]);
+
   const go = (step: BookingStepId) =>
     setState((prev) => ({ ...prev, step }));
 
@@ -166,12 +196,24 @@ export function BookingEngine() {
 
   const handleDateConfirmed = (isoDate: string) => {
     const label = formatBookingDate(isoDate);
-    setLiveMessage(`${label} selected. Continuing to guest selection.`);
+    const ships = shipsByDate[isoDate] ?? [];
+    const autoShip = ships.length === 1 ? ships[0] : null;
+
+    setLiveMessage(
+      autoShip
+        ? `${label} selected. ${autoShip.name} is visiting Villefranche. Continuing to confirm your ship.`
+        : `${label} selected. Continuing to cruise ship selection.`,
+    );
     setState((prev) => ({
       ...prev,
       date: isoDate,
-      step: "guests",
+      cruiseShip: autoShip,
+      step: "ship",
     }));
+  };
+
+  const handleSelectShip = (ship: BookingShipVisit) => {
+    setState((prev) => ({ ...prev, cruiseShip: ship }));
   };
 
   const handlePay = () => {
@@ -228,7 +270,9 @@ export function BookingEngine() {
           <div
             key={state.step}
             className={
-              state.step === "guests" || state.step === "payment"
+              state.step === "ship" ||
+              state.step === "guests" ||
+              state.step === "payment"
                 ? DATE_TO_GUESTS_ENTER
                 : "book-step-enter"
             }
@@ -237,10 +281,34 @@ export function BookingEngine() {
               <DateStep
                 selectedDate={state.date}
                 onSelectDate={(date) =>
-                  setState((prev) => ({ ...prev, date }))
+                  setState((prev) => ({
+                    ...prev,
+                    date,
+                    cruiseShip: null,
+                  }))
                 }
                 onDateConfirmed={handleDateConfirmed}
                 onBack={() => go("tour")}
+              />
+            ) : null}
+
+            {state.step === "ship" && state.date ? (
+              <ShipStep
+                date={state.date}
+                ships={shipsForSelectedDate}
+                selectedShip={state.cruiseShip}
+                onSelectShip={handleSelectShip}
+                onContinue={() => {
+                  if (!state.cruiseShip) return;
+                  go("guests");
+                }}
+                onBack={() =>
+                  setState((prev) => ({
+                    ...prev,
+                    step: "date",
+                    cruiseShip: null,
+                  }))
+                }
               />
             ) : null}
 
@@ -248,6 +316,7 @@ export function BookingEngine() {
               <GuestsStep
                 guests={state.guests}
                 selectedDateLabel={selectedDateLabel}
+                cruiseShipName={state.cruiseShip?.name}
                 onChangeGuests={(guests) =>
                   setState((prev) => ({
                     ...prev,
@@ -257,15 +326,24 @@ export function BookingEngine() {
                     ),
                   }))
                 }
-                onContinue={() => go("payment")}
-                onBack={() => go("date")}
+                onContinue={() => {
+                  if (!state.cruiseShip) {
+                    go("ship");
+                    return;
+                  }
+                  go("payment");
+                }}
+                onBack={() => go("ship")}
               />
             ) : null}
 
-            {state.step === "payment" && state.date ? (
+            {state.step === "payment" &&
+            state.date &&
+            state.cruiseShip ? (
               <PaymentStep
                 date={state.date}
                 guests={state.guests}
+                cruiseShip={state.cruiseShip}
                 onPay={handlePay}
                 onBack={() => go("guests")}
               />
@@ -273,11 +351,13 @@ export function BookingEngine() {
 
             {state.step === "confirmed" &&
             state.date &&
+            state.cruiseShip &&
             state.bookingReference ? (
               <ConfirmationStep
                 bookingReference={state.bookingReference}
                 date={state.date}
                 guests={state.guests}
+                cruiseShip={state.cruiseShip}
                 onBookAgain={reset}
               />
             ) : null}

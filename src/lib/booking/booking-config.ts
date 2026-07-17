@@ -36,9 +36,9 @@ function bookingHeroSlide(
     id,
     width: dims.width,
     height: dims.height,
-    fallbackSrc: `${base}-1280.webp`,
-    webpSrcSet: `${base}-1280.webp 1280w, ${base}-1920.webp 1920w`,
-    avifSrcSet: `${base}-1280.avif 1280w, ${base}-1920.avif 1920w`,
+    fallbackSrc: `${base}-1920.webp`,
+    webpSrcSet: `${base}-1280.webp 1280w, ${base}-1920.webp 1920w, ${base}-2560.webp 2560w`,
+    avifSrcSet: `${base}-1280.avif 1280w, ${base}-1920.avif 1920w, ${base}-2560.avif 2560w`,
     priority,
   };
 }
@@ -59,17 +59,23 @@ export const bookingPrototypeTour = {
   bookingPath: featuredTour.bookingPath,
   image: siteImages.hero,
   imageAlt:
-    "Sunlit Port Hercules in Monaco with luxury yachts and the Monte Carlo skyline on the French Riviera",
+    "Sunlit Port Hercule in Monaco with luxury yachts and the Monte Carlo skyline on the French Riviera",
+  /**
+   * Opening gallery — excursion day story only (Monaco → Monte Carlo → Èze).
+   * Sources: Wikimedia Commons daylight photographs of Port Hercule,
+   * Casino de Monte-Carlo, Èze village, and Èze Exotic Garden viewpoints.
+   * Portofino / Italian Riviera imagery must never appear here.
+   */
   heroGallery: [
-    bookingHeroSlide("monaco-harbour", { width: 1920, height: 1331 }, true),
-    bookingHeroSlide("eze-village", { width: 1920, height: 1187 }),
-    bookingHeroSlide("villefranche-harbour", { width: 1920, height: 1292 }),
-    bookingHeroSlide("riviera-coast", { width: 1920, height: 1256 }),
+    bookingHeroSlide("monaco-port-hercule", { width: 2560, height: 1160 }, true),
+    bookingHeroSlide("monte-carlo-casino", { width: 2560, height: 1967 }),
+    bookingHeroSlide("eze-village", { width: 2560, height: 1356 }),
+    bookingHeroSlide("eze-viewpoint", { width: 2560, height: 1347 }),
   ] as const,
-  /** Soft panorama used just before payment */
-  checkoutReconnectImage: "/images/booking/riviera-coast-1920.webp",
+  /** Soft panorama used just before payment — Èze Mediterranean viewpoint */
+  checkoutReconnectImage: "/images/booking/eze-viewpoint-1920.webp",
   checkoutReconnectImageAlt:
-    "Bright panoramic view of the French Riviera coastline",
+    "Panoramic Mediterranean view from Èze across the French Riviera coastline",
   ctaLabel: "Choose Your Cruise Date",
   /** Prototype duration for design review — replace with approved figure. */
   durationLabel: "Approximately 6–7 hours",
@@ -209,6 +215,7 @@ export const bookingPaymentMethods = [
 export const bookingSteps = [
   { id: "tour", label: "Experience" },
   { id: "date", label: "Date" },
+  { id: "ship", label: "Ship" },
   { id: "guests", label: "Guests" },
   { id: "payment", label: "Booking" },
   { id: "confirmed", label: "Confirmed" },
@@ -217,7 +224,7 @@ export const bookingSteps = [
 export type BookingStepId = (typeof bookingSteps)[number]["id"];
 
 export function bookingSessionStorageKey(tourId: string): string {
-  return `vf-booking:v3:${tourId}`;
+  return `vf-booking:v4:${tourId}`;
 }
 
 /** Resolve display start time for a selected ISO date. */

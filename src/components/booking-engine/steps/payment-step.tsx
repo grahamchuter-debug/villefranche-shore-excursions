@@ -12,6 +12,7 @@ import {
   bookingPaymentMethods,
   bookingPrototypeTour,
 } from "@/lib/booking/booking-config";
+import type { BookingShipVisit } from "@/lib/booking/booking-ships";
 import {
   calculateBookingTotal,
   formatBookingDate,
@@ -21,6 +22,7 @@ import {
 type PaymentStepProps = {
   date: string;
   guests: number;
+  cruiseShip: BookingShipVisit;
   onPay: () => void;
   onBack: () => void;
 };
@@ -43,6 +45,7 @@ function isValidEmail(value: string): boolean {
 export function PaymentStep({
   date,
   guests,
+  cruiseShip,
   onPay,
   onBack,
 }: PaymentStepProps) {
@@ -108,7 +111,12 @@ export function PaymentStep({
         <p className="text-lg text-[var(--book-muted)]">{copy.supportingLine}</p>
       </header>
 
-      <CruiseDaySummary date={date} guests={guests} heading={copy.cruiseDayHeading} />
+      <CruiseDaySummary
+        date={date}
+        guests={guests}
+        cruiseShip={cruiseShip}
+        heading={copy.cruiseDayHeading}
+      />
 
       <CruiseReassurance />
 
@@ -120,8 +128,9 @@ export function PaymentStep({
       >
         <p className="text-center text-[15px] text-[var(--book-muted)] sm:text-left">
           <span className="sr-only">Booking summary: </span>
-          {bookingPrototypeTour.experienceName} · {formatBookingDate(date)} ·{" "}
-          {guests} {guests === 1 ? "guest" : "guests"} · {total}
+          {bookingPrototypeTour.experienceName} · {cruiseShip.name} ·{" "}
+          {formatBookingDate(date)} · {guests}{" "}
+          {guests === 1 ? "guest" : "guests"} · {total}
         </p>
 
         <div className="rounded-[1.75rem] border border-[var(--book-line)]/80 bg-[var(--book-surface)] p-6 sm:p-9">

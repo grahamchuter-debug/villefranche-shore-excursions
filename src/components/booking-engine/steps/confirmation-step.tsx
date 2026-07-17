@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { BookingPrimaryButton } from "@/components/booking-engine/booking-primary-button";
 import { bookingPrototypeTour } from "@/lib/booking/booking-config";
+import type { BookingShipVisit } from "@/lib/booking/booking-ships";
 import {
   formatBookingDate,
   formatBookingMoney,
@@ -15,6 +16,7 @@ type ConfirmationStepProps = {
   bookingReference: string;
   date: string;
   guests: number;
+  cruiseShip: BookingShipVisit;
   onBookAgain: () => void;
 };
 
@@ -27,6 +29,7 @@ export function ConfirmationStep({
   bookingReference,
   date,
   guests,
+  cruiseShip,
   onBookAgain,
 }: ConfirmationStepProps) {
   const formId = useId();
@@ -70,7 +73,15 @@ export function ConfirmationStep({
         </div>
 
         <div className="space-y-8 px-6 py-10 text-left sm:px-10">
-          <dl className="grid gap-4 sm:grid-cols-3">
+          <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <dt className="text-[11px] tracking-[0.14em] text-[var(--book-muted)] uppercase">
+                Cruise Ship
+              </dt>
+              <dd className="mt-1 font-medium text-[var(--book-ink)]">
+                {cruiseShip.name}
+              </dd>
+            </div>
             <div>
               <dt className="text-[11px] tracking-[0.14em] text-[var(--book-muted)] uppercase">
                 Tour
@@ -103,7 +114,10 @@ export function ConfirmationStep({
               What happens next
             </h3>
             <ol className="mt-4 space-y-3 text-[15px] leading-7 text-[var(--book-muted)]">
-              <li>We prepare your meeting details for the tender landing.</li>
+              <li>
+                We prepare meeting details for {cruiseShip.name} at Villefranche
+                Cruise Port.
+              </li>
               <li>
                 Closer to port day, you receive exact meeting instructions.
               </li>
@@ -121,11 +135,11 @@ export function ConfirmationStep({
           Optional · after booking
         </p>
         <h3 className="book-display mt-2 text-2xl font-medium text-[var(--book-ink)] sm:text-3xl">
-          Tell us about your cruise
+          Add a mobile number
         </h3>
         <p className="mt-2 max-w-xl text-[15px] leading-7 text-[var(--book-muted)]">
-          Not part of payment — simply helps us prepare meeting and return
-          timing.
+          Not part of payment — helps us reach you with meeting updates for{" "}
+          {cruiseShip.name}.
         </p>
 
         {cruiseSaved ? (
@@ -133,91 +147,53 @@ export function ConfirmationStep({
             className="mt-6 rounded-xl bg-[var(--book-success)]/10 px-4 py-4 text-[var(--book-success)]"
             role="status"
           >
-            <p className="font-medium">Thank you — cruise details noted.</p>
+            <p className="font-medium">Thank you — details noted.</p>
           </div>
         ) : (
           <form className="mt-6 space-y-4" onSubmit={handleCruiseSubmit}>
             <div>
               <label
-                htmlFor={`${formId}-ship`}
+                htmlFor={`${formId}-mobile`}
                 className="mb-1.5 block text-sm text-[var(--book-muted)]"
               >
-                Ship
+                Mobile number
               </label>
               <input
-                id={`${formId}-ship`}
-                name="ship"
-                type="text"
-                placeholder="e.g. Celebrity Edge"
+                id={`${formId}-mobile`}
+                name="mobile"
+                type="tel"
+                placeholder="Including country code"
                 className={fieldClass}
               />
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div>
-                <label
-                  htmlFor={`${formId}-mobile`}
-                  className="mb-1.5 block text-sm text-[var(--book-muted)]"
-                >
-                  Mobile number
-                </label>
-                <input
-                  id={`${formId}-mobile`}
-                  name="mobile"
-                  type="tel"
-                  placeholder="Including country code"
-                  className={fieldClass}
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor={`${formId}-whatsapp`}
-                  className="mb-1.5 block text-sm text-[var(--book-muted)]"
-                >
-                  WhatsApp{" "}
-                  <span className="font-normal">(optional)</span>
-                </label>
-                <input
-                  id={`${formId}-whatsapp`}
-                  name="whatsapp"
-                  type="tel"
-                  placeholder="If different"
-                  className={fieldClass}
-                />
-              </div>
-            </div>
             <div>
               <label
-                htmlFor={`${formId}-requirements`}
+                htmlFor={`${formId}-notes`}
                 className="mb-1.5 block text-sm text-[var(--book-muted)]"
               >
-                Special requirements
+                Notes for your guide (optional)
               </label>
               <textarea
-                id={`${formId}-requirements`}
-                name="requirements"
+                id={`${formId}-notes`}
+                name="notes"
                 rows={3}
-                placeholder="Mobility needs, celebration, timing notes…"
-                className={`${fieldClass} resize-y`}
+                className={fieldClass}
               />
             </div>
-            <BookingPrimaryButton type="submit" variant="secondary">
-              Save cruise details
-            </BookingPrimaryButton>
+            <BookingPrimaryButton type="submit">Save details</BookingPrimaryButton>
           </form>
         )}
       </section>
 
-      <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-        <div className="sm:w-56">
-          <BookingPrimaryButton variant="secondary" onClick={onBookAgain}>
-            Book another date
-          </BookingPrimaryButton>
-        </div>
+      <div className="mx-auto max-w-md space-y-3 text-center">
+        <BookingPrimaryButton onClick={onBookAgain}>
+          Book another day
+        </BookingPrimaryButton>
         <Link
           href={bookingPrototypeTour.path}
-          className="inline-flex items-center justify-center px-6 py-4 text-[15px] font-medium text-[var(--book-sea)] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
+          className="inline-block text-sm font-medium text-[var(--book-muted)] hover:text-[var(--book-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
         >
-          Back to tour
+          Back to tour details
         </Link>
       </div>
     </div>

@@ -6,6 +6,7 @@ import {
   bookingPricingConfig,
   bookingPrototypeTour,
 } from "@/lib/booking/booking-config";
+import { buildBookingShipsByDate } from "@/lib/booking/booking-ships";
 import { formatBookingMoney } from "@/lib/booking/booking-format";
 import { featuredTour } from "@/lib/featured-tour";
 import { buildPageMetadata } from "@/lib/site-metadata";
@@ -24,13 +25,14 @@ export const metadata: Metadata = buildPageMetadata(pageMeta);
 
 export default function BookFeaturedTourPage() {
   const firstHero = bookingPrototypeTour.heroGallery[0];
+  const shipsByDate = buildBookingShipsByDate();
 
   return (
     <>
       <link
         rel="preload"
         as="image"
-        href="/images/booking/monaco-harbour-1280.avif"
+        href="/images/booking/monaco-port-hercule-1280.avif"
         type="image/avif"
         imageSrcSet={firstHero.avifSrcSet}
         imageSizes="100vw"
@@ -46,7 +48,7 @@ export default function BookFeaturedTourPage() {
         ]}
       />
       <main className="flex-1">
-        <BookingEngine />
+        <BookingEngine shipsByDate={shipsByDate} />
       </main>
     </>
   );
