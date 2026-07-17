@@ -105,7 +105,7 @@ export function PaymentStep({
       </header>
 
       <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-10">
-        <aside className="rounded-[1.5rem] bg-[var(--book-surface)] p-6 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.3)] sm:p-8 lg:sticky lg:top-6">
+        <aside className="book-surface-card rounded-[1.5rem] bg-[var(--book-surface)] p-6 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.3)] sm:p-8 lg:sticky lg:top-6">
           <p className="text-[11px] font-medium tracking-[0.16em] text-[var(--book-gold)] uppercase">
             Your reservation
           </p>
@@ -159,7 +159,7 @@ export function PaymentStep({
           </ul>
         </aside>
 
-        <div className="rounded-[1.5rem] bg-[var(--book-surface)] p-6 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.3)] sm:p-8">
+        <div className="book-surface-card rounded-[1.5rem] bg-[var(--book-surface)] p-6 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.3)] sm:p-8">
           <fieldset className="space-y-4 border-0 p-0">
             <legend className="mb-1 text-[11px] font-medium tracking-[0.16em] text-[var(--book-muted)] uppercase">
               Guest details
@@ -283,7 +283,7 @@ export function PaymentStep({
                     onClick={() => setMethod(item.id)}
                     aria-pressed={selected}
                     className={[
-                      "rounded-full border px-4 py-2.5 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]",
+                      "book-btn rounded-full border px-4 py-2.5 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]",
                       selected
                         ? "border-[var(--book-sea-deep)] bg-[var(--book-sea-deep)] text-white"
                         : "border-[var(--book-line)] bg-white text-[var(--book-ink)] hover:border-[var(--book-ink)]/25",

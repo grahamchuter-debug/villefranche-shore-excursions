@@ -38,7 +38,7 @@ export function GuestsStep({
         <p className="text-lg text-[var(--book-muted)]">{capacityLabel}</p>
       </header>
 
-      <div className="rounded-[1.75rem] bg-[var(--book-surface)] px-6 py-12 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.35)] sm:px-12">
+      <div className="book-surface-card rounded-[1.75rem] bg-[var(--book-surface)] px-6 py-12 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.35)] sm:px-12">
         <div
           className="flex items-center justify-center gap-8 sm:gap-12"
           role="group"
@@ -49,14 +49,15 @@ export function GuestsStep({
             aria-label="Fewer guests"
             disabled={guests <= minGuests}
             onClick={() => onChangeGuests(Math.max(minGuests, guests - 1))}
-            className="flex h-14 w-14 items-center justify-center rounded-full border border-[var(--book-line)] text-2xl text-[var(--book-ink)] transition hover:border-[var(--book-ink)]/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)] disabled:opacity-30"
+            className="book-guest-control flex h-14 w-14 items-center justify-center rounded-full border border-[var(--book-line)] text-2xl text-[var(--book-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)] disabled:opacity-30"
           >
             −
           </button>
           <div className="min-w-[6rem] text-center">
             <p
               id="guest-count-label"
-              className="book-display text-7xl font-medium leading-none text-[var(--book-ink)]"
+              key={guests}
+              className="book-guest-count book-display text-7xl font-medium leading-none text-[var(--book-ink)]"
               aria-live="polite"
             >
               {guests}
@@ -70,7 +71,7 @@ export function GuestsStep({
             aria-label="More guests"
             disabled={guests >= maxGuests}
             onClick={() => onChangeGuests(Math.min(maxGuests, guests + 1))}
-            className="flex h-14 w-14 items-center justify-center rounded-full border border-[var(--book-line)] text-2xl text-[var(--book-ink)] transition hover:border-[var(--book-ink)]/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)] disabled:opacity-30"
+            className="book-guest-control flex h-14 w-14 items-center justify-center rounded-full border border-[var(--book-line)] text-2xl text-[var(--book-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)] disabled:opacity-30"
           >
             +
           </button>
@@ -91,7 +92,10 @@ export function GuestsStep({
           <p className="text-sm text-[var(--book-muted)]">
             {formatBookingMoney(bookingPricingConfig.pricePerGuest)} × {guests}
           </p>
-          <p className="book-display mt-1 text-4xl font-medium text-[var(--book-ink)]">
+          <p
+            key={total}
+            className="book-guest-count book-display mt-1 text-4xl font-medium text-[var(--book-ink)]"
+          >
             {formatBookingMoney(total)}
           </p>
         </div>

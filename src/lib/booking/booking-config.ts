@@ -34,6 +34,28 @@ export const bookingPrototypeTour = {
   image: siteImages.hero,
   imageAlt:
     "Sunlit Port Hercules in Monaco with luxury yachts and the Monte Carlo skyline on the French Riviera",
+  /**
+   * Soft crossfade gallery for the experience hero.
+   * Daytime Riviera only — harbour, Èze, coastline.
+   */
+  heroGallery: [
+    {
+      src: siteImages.hero,
+      alt: "Sunlit Port Hercules in Monaco with luxury yachts on the French Riviera",
+    },
+    {
+      src: siteImages.ezeVillage,
+      alt: "The medieval hilltop village of Èze above the Mediterranean",
+    },
+    {
+      src: siteImages.villefrancheHarbour,
+      alt: "Villefranche-sur-Mer harbour and bay on a bright Mediterranean day",
+    },
+    {
+      src: siteImages.frenchRivieraCoast,
+      alt: "French Riviera coastline under warm sunshine",
+    },
+  ] as const,
   ctaLabel: "Choose your cruise date",
   reassurance: [
     "Maximum 6 guests",

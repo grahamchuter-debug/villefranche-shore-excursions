@@ -86,7 +86,7 @@ export function DateStep({
         </p>
       </header>
 
-      <div className="rounded-[1.75rem] bg-[var(--book-surface)] p-6 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.35)] sm:p-10">
+      <div className="book-surface-card rounded-[1.75rem] bg-[var(--book-surface)] p-6 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.35)] sm:p-10">
         <div className="mb-6 flex items-center justify-between gap-3">
           <button
             type="button"
@@ -94,12 +94,15 @@ export function DateStep({
               setView(new Date(view.getFullYear(), view.getMonth() - 1, 1))
             }
             disabled={!canGoPrev}
-            className="rounded-full px-4 py-2 text-sm font-medium text-[var(--book-sea)] disabled:opacity-25"
+            className="book-btn rounded-full px-4 py-2 text-sm font-medium text-[var(--book-sea)] disabled:opacity-25"
             aria-label="Previous month"
           >
             ←
           </button>
-          <p className="book-display text-2xl font-medium text-[var(--book-ink)]">
+          <p
+            key={monthLabel}
+            className="book-selected-date book-display text-2xl font-medium text-[var(--book-ink)]"
+          >
             {monthLabel}
           </p>
           <button
@@ -107,7 +110,7 @@ export function DateStep({
             onClick={() =>
               setView(new Date(view.getFullYear(), view.getMonth() + 1, 1))
             }
-            className="rounded-full px-4 py-2 text-sm font-medium text-[var(--book-sea)]"
+            className="book-btn rounded-full px-4 py-2 text-sm font-medium text-[var(--book-sea)]"
             aria-label="Next month"
           >
             →
@@ -122,7 +125,10 @@ export function DateStep({
           ))}
         </div>
 
-        <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
+        <div
+          key={`${view.getFullYear()}-${view.getMonth()}`}
+          className="book-calendar-grid grid grid-cols-7 gap-1.5 sm:gap-2"
+        >
           {cells.map((date, index) => {
             if (!date) {
               return <span key={`empty-${index}`} className="aspect-square" />;
@@ -139,7 +145,7 @@ export function DateStep({
                 aria-label={formatBookingDate(iso)}
                 aria-pressed={selected}
                 className={[
-                  "aspect-square rounded-2xl text-base font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]",
+                  "book-day-btn aspect-square rounded-2xl text-base font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]",
                   disabled
                     ? "cursor-not-allowed text-[var(--book-line)]"
                     : selected
@@ -154,7 +160,10 @@ export function DateStep({
         </div>
 
         {selectedDate ? (
-          <p className="mt-8 text-center text-base text-[var(--book-ink)]">
+          <p
+            key={selectedDate}
+            className="book-selected-date mt-8 text-center text-base text-[var(--book-ink)]"
+          >
             {formatBookingDate(selectedDate)}
           </p>
         ) : null}

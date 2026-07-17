@@ -167,55 +167,57 @@ export function BookingEngine() {
             </div>
           ) : null}
 
-          {state.step === "date" ? (
-            <DateStep
-              selectedDate={state.date}
-              onSelectDate={(date) =>
-                setState((prev) => ({ ...prev, date }))
-              }
-              onContinue={() => {
-                if (state.date) go("guests");
-              }}
-              onBack={() => go("tour")}
-            />
-          ) : null}
+          <div key={state.step} className="book-step-enter">
+            {state.step === "date" ? (
+              <DateStep
+                selectedDate={state.date}
+                onSelectDate={(date) =>
+                  setState((prev) => ({ ...prev, date }))
+                }
+                onContinue={() => {
+                  if (state.date) go("guests");
+                }}
+                onBack={() => go("tour")}
+              />
+            ) : null}
 
-          {state.step === "guests" ? (
-            <GuestsStep
-              guests={state.guests}
-              onChangeGuests={(guests) =>
-                setState((prev) => ({
-                  ...prev,
-                  guests: Math.min(
-                    bookingCheckoutGuestLimit,
-                    Math.max(bookingCapacityConfig.minGuests, guests),
-                  ),
-                }))
-              }
-              onContinue={() => go("payment")}
-              onBack={() => go("date")}
-            />
-          ) : null}
+            {state.step === "guests" ? (
+              <GuestsStep
+                guests={state.guests}
+                onChangeGuests={(guests) =>
+                  setState((prev) => ({
+                    ...prev,
+                    guests: Math.min(
+                      bookingCheckoutGuestLimit,
+                      Math.max(bookingCapacityConfig.minGuests, guests),
+                    ),
+                  }))
+                }
+                onContinue={() => go("payment")}
+                onBack={() => go("date")}
+              />
+            ) : null}
 
-          {state.step === "payment" && state.date ? (
-            <PaymentStep
-              date={state.date}
-              guests={state.guests}
-              onPay={handlePay}
-              onBack={() => go("guests")}
-            />
-          ) : null}
+            {state.step === "payment" && state.date ? (
+              <PaymentStep
+                date={state.date}
+                guests={state.guests}
+                onPay={handlePay}
+                onBack={() => go("guests")}
+              />
+            ) : null}
 
-          {state.step === "confirmed" &&
-          state.date &&
-          state.bookingReference ? (
-            <ConfirmationStep
-              bookingReference={state.bookingReference}
-              date={state.date}
-              guests={state.guests}
-              onBookAgain={reset}
-            />
-          ) : null}
+            {state.step === "confirmed" &&
+            state.date &&
+            state.bookingReference ? (
+              <ConfirmationStep
+                bookingReference={state.bookingReference}
+                date={state.date}
+                guests={state.guests}
+                onBookAgain={reset}
+              />
+            ) : null}
+          </div>
         </div>
       )}
     </div>
