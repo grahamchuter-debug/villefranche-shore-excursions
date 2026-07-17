@@ -50,6 +50,11 @@ export const bookingShipImagery: Record<string, BookingShipImage> = {
     "Azamara Journey approaching a Mediterranean harbour in warm daylight",
     { width: 1920, height: 1280 },
   ),
+  "silver-shadow": shipImage(
+    "silver-shadow",
+    "Silversea Silver Shadow in profile on calm harbour water",
+    { width: 1920, height: 682 },
+  ),
 };
 
 export function getBookingShipImage(
