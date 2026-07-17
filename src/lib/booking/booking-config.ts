@@ -11,19 +11,14 @@ export const bookingPrototypeTour = {
   id: "monaco-monte-carlo-eze-small-group",
   slug: featuredTour.slug,
   name: "Monaco, Monte Carlo & Eze",
-  /** Overlay label on the experience hero */
-  experienceLabel: "Small Group Shore Excursion",
   /**
-   * Display title — rendered as stacked elegant lines on the hero.
+   * Display title — stacked lines on the opening desire scene.
    * Uses Èze for the authentic Riviera spelling in the aspirational moment.
    */
   experienceTitleLines: ["Monaco,", "Monte Carlo", "& Èze"] as const,
   /**
-   * Sub-heading candidates:
-   * 1. "Three iconic Riviera destinations. One unforgettable day."
-   * 2. "Harbour light. Hilltop silence. One perfect day ashore."
-   * 3. "The Côte d'Azur, arranged for a single luminous day."
-   * Chosen: 1 — clear desire, understated, matches the brief.
+   * One supporting sentence for the opening scene.
+   * Booking chrome (dates, guests, payment) appears only after the CTA.
    */
   experienceSubheading:
     "Three iconic Riviera destinations. One unforgettable day.",
@@ -35,7 +30,7 @@ export const bookingPrototypeTour = {
   imageAlt:
     "Sunlit Port Hercules in Monaco with luxury yachts and the Monte Carlo skyline on the French Riviera",
   /**
-   * Soft crossfade gallery for the experience hero.
+   * Soft crossfade gallery for the opening scene.
    * Daytime Riviera only — harbour, Èze, coastline.
    */
   heroGallery: [
@@ -56,13 +51,8 @@ export const bookingPrototypeTour = {
       alt: "French Riviera coastline under warm sunshine",
     },
   ] as const,
-  ctaLabel: "Choose your cruise date",
-  reassurance: [
-    "Maximum 6 guests",
-    "Designed for cruise passengers",
-    "Free cancellation",
-    "Return to ship guarantee",
-  ],
+  /** Desire commitment — booking UI follows after this choice. */
+  ctaLabel: "I want this day",
 } as const;
 
 /**

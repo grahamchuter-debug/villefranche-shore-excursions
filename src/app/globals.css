@@ -146,28 +146,27 @@ body {
   }
 }
 
-/* Hero gently yields to the calendar */
+/* Opening scene gently yields once desire is confirmed */
 .booking-engine-root .book-hero-exiting .book-hero-panel {
   animation: book-hero-retreat 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.booking-engine-root .book-hero-exiting .book-hero-copy,
-.booking-engine-root .book-hero-exiting .book-hero-cta-strip {
+.booking-engine-root .book-hero-exiting .book-hero-copy {
   animation: book-fade-out-soft 0.45s ease forwards;
 }
 
 @keyframes book-hero-retreat {
   to {
-    min-height: 28vh;
-    opacity: 0.35;
-    filter: saturate(0.85);
+    opacity: 0.28;
+    filter: saturate(0.8);
+    transform: scale(1.02);
   }
 }
 
 @keyframes book-fade-out-soft {
   to {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px);
   }
 }
 
@@ -296,7 +295,15 @@ body {
 }
 
 .booking-engine-root .book-hero-copy {
-  animation: book-hero-copy-enter 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+  animation: book-hero-copy-enter 1s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+
+.booking-engine-root .book-opening-brand {
+  animation: book-hero-copy-enter 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.booking-engine-root .book-opening-cta {
+  animation: book-hero-copy-enter 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
 }
 
 @keyframes book-hero-copy-enter {
@@ -401,6 +408,8 @@ body {
   .booking-engine-root .book-step-enter,
   .booking-engine-root .book-step-enter-forward,
   .booking-engine-root .book-hero-copy,
+  .booking-engine-root .book-opening-brand,
+  .booking-engine-root .book-opening-cta,
   .booking-engine-root .book-calendar-grid,
   .booking-engine-root .book-guest-count,
   .booking-engine-root .book-selected-date,
@@ -408,7 +417,6 @@ body {
   .booking-engine-root .book-hero-layer img,
   .booking-engine-root .book-hero-exiting .book-hero-panel,
   .booking-engine-root .book-hero-exiting .book-hero-copy,
-  .booking-engine-root .book-hero-exiting .book-hero-cta-strip,
   .booking-engine-root .book-date-hero-remnant,
   .booking-engine-root .book-date-stage,
   .booking-engine-root .book-day-confirming {

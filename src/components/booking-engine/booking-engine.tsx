@@ -210,7 +210,7 @@ export function BookingEngine() {
         {liveMessage}
       </div>
 
-      <BookingCheckoutHeader immersive={isExperience && !heroExiting} />
+      <BookingCheckoutHeader mode={isExperience ? "scene" : "booking"} />
 
       {isExperience ? (
         <TourIntroStep
