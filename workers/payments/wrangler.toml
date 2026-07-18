@@ -6,7 +6,7 @@ compatibility_flags = ["nodejs_compat"]
 [[d1_databases]]
 binding = "DB"
 database_name = "villefranche-bookings"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "8ae3a711-07a0-411c-aba0-75d86ac4bf5e"
 migrations_dir = "migrations"
 
 [vars]
