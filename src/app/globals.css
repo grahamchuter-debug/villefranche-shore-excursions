@@ -198,7 +198,14 @@ body {
 
 @media (min-width: 1024px) {
   .booking-engine-root .book-date-hero-remnant {
-    height: 400px;
+    /* Compact column image — calendar owns the wider desktop pane */
+    height: 280px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .booking-engine-root .book-date-hero-remnant {
+    height: 300px;
   }
 }
 
