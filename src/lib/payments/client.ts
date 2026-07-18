@@ -5,20 +5,21 @@
 
 export type CreateCheckoutSessionRequest = {
   excursionId: string;
-  excursionName: string;
+  /** Display hint only — Worker overwrites from its catalogue. */
+  excursionName?: string;
   excursionDate: string;
   shipId?: string | null;
-  shipName: string;
+  /** Required for custom ships; overwritten for scheduled ships. */
+  shipName?: string;
   adults?: number;
   children?: number;
   totalGuests: number;
   customerEmail: string;
   customerName: string;
   bookingSessionId?: string | null;
+  /** Ignored in v1 — Worker does not price cancellation protection. */
   cancellationProtection?: boolean;
   clientDisplayedTotalEur?: number;
-  successUrl: string;
-  cancelUrl: string;
 };
 
 export type CreateCheckoutSessionResponse = {
@@ -32,6 +33,8 @@ export type VerifyCheckoutSessionResponse = {
   paymentStatus: string | null;
   sessionStatus: string | null;
   paid: boolean;
+  /** True when D1 status is paid/confirmed (webhook finalised). */
+  bookingFinalised: boolean;
   bookingReference: string | null;
   bookingStatus: string | null;
   amountTotal: number | null;
@@ -114,5 +117,8 @@ export async function verifyCheckoutSession(
     );
   }
 
-  return data;
+  return {
+    ...data,
+    bookingFinalised: Boolean(data.bookingFinalised),
+  };
 }

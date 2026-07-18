@@ -14,6 +14,8 @@ migrations_dir = "migrations"
 CHECKOUT_CURRENCY = "eur"
 ORIGINATING_SITE = "villefrancheshoreexcursions.com"
 ORIGINATING_PORT = "Villefranche"
+# Trusted public site origin — Checkout success/cancel URLs are built from this only.
+SITE_BASE_URL = "https://villefrancheshoreexcursions.com"
 SITE_ORIGIN = "https://villefrancheshoreexcursions.com"
 # Comma-separated extra CORS origins for local Next (http://localhost:3000 is always allowed)
 CORS_ALLOWED_ORIGINS = "http://localhost:3000,http://127.0.0.1:3000"

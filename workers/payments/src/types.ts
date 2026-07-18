@@ -17,27 +17,47 @@ export type PaymentsEnv = {
   CHECKOUT_CURRENCY?: string;
   ORIGINATING_SITE?: string;
   ORIGINATING_PORT?: string;
+  /**
+   * Trusted public site origin for Checkout success/cancel redirects
+   * (e.g. https://villefrancheshoreexcursions.com or http://localhost:3000).
+   * Preferred over SITE_ORIGIN when both are set.
+   */
+  SITE_BASE_URL?: string;
   SITE_ORIGIN?: string;
   CORS_ALLOWED_ORIGINS?: string;
 };
 
 export type CreateCheckoutBody = {
   excursionId: string;
-  excursionName: string;
+  /** Display hint only — Worker overwrites from catalogue. */
+  excursionName?: string;
   excursionDate: string;
   shipId?: string | null;
-  shipName: string;
+  /** Required for custom / not-listed ships; overwritten for scheduled ships. */
+  shipName?: string;
   adults?: number;
   children?: number;
   totalGuests: number;
   customerEmail: string;
   customerName: string;
   bookingSessionId?: string | null;
+  /**
+   * Ignored in v1 — cancellation protection is disabled until server-priced.
+   * @deprecated
+   */
   cancellationProtection?: boolean;
   /** Browser-reported total — ignored for charging; logged only if mismatch. */
   clientDisplayedTotalEur?: number;
-  successUrl: string;
-  cancelUrl: string;
+  /**
+   * Ignored — redirects are built from SITE_BASE_URL + catalogue paths only.
+   * @deprecated
+   */
+  successUrl?: string;
+  /**
+   * Ignored — redirects are built from SITE_BASE_URL + catalogue paths only.
+   * @deprecated
+   */
+  cancelUrl?: string;
 };
 
 export type BookingRow = {

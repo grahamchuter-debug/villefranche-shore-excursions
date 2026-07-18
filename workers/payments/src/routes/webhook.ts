@@ -6,10 +6,9 @@ import {
   getBookingByCheckoutSessionId,
   getBookingByPaymentIntentId,
   getBookingByReference,
-  markEmailSent,
   updateBookingStatus,
 } from "../db";
-import { sendBookingEmailStub } from "../email";
+import { enqueueAndDeliverBookingEmails } from "../email";
 import { createStripe } from "../stripe-client";
 import type { BookingStatus, PaymentsEnv } from "../types";
 
@@ -43,8 +42,6 @@ export async function handleStripeWebhook(
 
   const bookingRefHint = extractBookingReference(event);
 
-  // Claim after handling so a failed run can be retried by Stripe.
-  // Side effects below are themselves idempotent (status guards + email columns).
   const alreadyProcessed = await env.DB.prepare(
     `SELECT event_id FROM processed_events WHERE event_id = ? LIMIT 1`,
   )
@@ -127,7 +124,6 @@ async function fulfillCheckoutSession(
   eventType: string,
 ): Promise<void> {
   if (session.payment_status !== "paid" && eventType === "checkout.session.completed") {
-    // Card payments are typically paid immediately; async methods wait for async_payment_succeeded.
     if (session.payment_status === "unpaid") {
       console.log(
         JSON.stringify({
@@ -147,8 +143,11 @@ async function fulfillCheckoutSession(
   }
 
   if (booking.status === "confirmed" || booking.status === "paid") {
-    // Still attempt email stubs if somehow status set without emails (idempotent columns).
-    await maybeSendEmails(env, booking.booking_reference, booking.customer_email);
+    await enqueueAndDeliverBookingEmails(
+      env,
+      booking.booking_reference,
+      booking.customer_email,
+    );
     return;
   }
 
@@ -165,37 +164,11 @@ async function fulfillCheckoutSession(
     customerName: session.customer_details?.name ?? null,
   });
 
-  // Intermediate paid → confirmed in one step for v1 (email stubs fire once).
-  await maybeSendEmails(env, booking.booking_reference, session.customer_details?.email ?? booking.customer_email);
-}
-
-async function maybeSendEmails(
-  env: PaymentsEnv,
-  bookingReference: string,
-  customerEmail: string | null | undefined,
-): Promise<void> {
-  const confirmationClaimed = await markEmailSent(
+  await enqueueAndDeliverBookingEmails(
     env,
-    bookingReference,
-    "confirmation",
+    booking.booking_reference,
+    session.customer_details?.email ?? booking.customer_email,
   );
-  if (confirmationClaimed) {
-    await sendBookingEmailStub({
-      kind: "booking_confirmation",
-      bookingReference,
-      to: customerEmail,
-      payload: { bookingReference },
-    });
-  }
-
-  const supplierClaimed = await markEmailSent(env, bookingReference, "supplier");
-  if (supplierClaimed) {
-    await sendBookingEmailStub({
-      kind: "supplier_notification",
-      bookingReference,
-      payload: { bookingReference },
-    });
-  }
 }
 
 async function markPaymentFailedFromSession(
@@ -260,7 +233,6 @@ async function handleRefundUpdated(
   const booking = await getBookingByPaymentIntentId(env, paymentIntentId);
   if (!booking) return;
 
-  // Without charge expansion we cannot always know partial vs full; prefer partially_refunded unless already refunded.
   if (booking.status === "refunded") return;
   await updateBookingStatus(env, booking.booking_reference, "partially_refunded");
 }

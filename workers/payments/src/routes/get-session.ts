@@ -3,7 +3,7 @@ import { getBookingByCheckoutSessionId } from "../db";
 import { createStripe } from "../stripe-client";
 import type { PaymentsEnv } from "../types";
 
-const PAID_STATUSES = new Set(["paid", "confirmed"]);
+const FINAL_BOOKING_STATUSES = new Set(["paid", "confirmed"]);
 
 export async function handleGetCheckoutSession(
   request: Request,
@@ -30,7 +30,11 @@ export async function handleGetCheckoutSession(
     const sessionStatus = session.status;
     const paid =
       paymentStatus === "paid" ||
-      (booking ? PAID_STATUSES.has(booking.status) : false);
+      (booking ? FINAL_BOOKING_STATUSES.has(booking.status) : false);
+
+    const bookingStatus = booking?.status ?? null;
+    const bookingFinalised =
+      bookingStatus != null && FINAL_BOOKING_STATUSES.has(bookingStatus);
 
     return jsonResponse(
       {
@@ -38,12 +42,14 @@ export async function handleGetCheckoutSession(
         paymentStatus,
         sessionStatus,
         paid,
+        /** True only when D1 reflects webhook-confirmed paid/confirmed. */
+        bookingFinalised,
         bookingReference:
           booking?.booking_reference ??
           session.client_reference_id ??
           session.metadata?.booking_ref ??
           null,
-        bookingStatus: booking?.status ?? null,
+        bookingStatus,
         amountTotal: session.amount_total,
         currency: session.currency,
         customerEmail:

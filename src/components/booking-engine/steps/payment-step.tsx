@@ -153,10 +153,6 @@ export function PaymentStep({
 
     setIsPaying(true);
     const customerName = `${details.firstName.trim()} ${details.lastName.trim()}`.trim();
-    const origin = window.location.origin;
-    const bookingPath = bookingPrototypeTour.bookingPath;
-    const successUrl = `${origin}${bookingPath}/success?session_id={CHECKOUT_SESSION_ID}`;
-    const cancelUrl = `${origin}${bookingPath}?checkout=cancelled`;
 
     trackBookingEvent("checkout_started", {
       excursionId: bookingPrototypeTour.id,
@@ -180,8 +176,6 @@ export function PaymentStep({
         customerName,
         bookingSessionId,
         clientDisplayedTotalEur: calculateBookingTotal(guests),
-        successUrl,
-        cancelUrl,
       });
       window.location.assign(session.url);
     } catch (err) {

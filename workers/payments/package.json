@@ -7,6 +7,9 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "types": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "sync:ships": "node scripts/sync-ships-by-date.mjs",
     "db:migrate:local": "wrangler d1 migrations apply villefranche-bookings --local",
     "db:migrate:remote": "wrangler d1 migrations apply villefranche-bookings --remote"
   },
@@ -16,6 +19,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250705.0",
     "typescript": "^5.8.3",
+    "vitest": "^3.2.7",
     "wrangler": "^4.24.0"
   }
 }

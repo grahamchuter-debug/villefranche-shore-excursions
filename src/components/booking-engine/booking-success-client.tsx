@@ -19,7 +19,8 @@ type LoadState =
   | { status: "loading" }
   | { status: "error"; message: string }
   | { status: "pending"; data: VerifyCheckoutSessionResponse }
-  | { status: "paid"; data: VerifyCheckoutSessionResponse };
+  | { status: "finalising"; data: VerifyCheckoutSessionResponse }
+  | { status: "confirmed"; data: VerifyCheckoutSessionResponse };
 
 function shipFromSession(data: VerifyCheckoutSessionResponse): BookingShipVisit {
   return {
@@ -67,13 +68,19 @@ export function BookingSuccessClient() {
             currency: data.currency?.toUpperCase(),
             bookingReference: data.bookingReference ?? undefined,
           });
-          trackBookingEvent("booking_confirmed", {
-            excursionId: data.metadata.excursion_id,
-            bookingReference: data.bookingReference ?? undefined,
-            sailingDate: data.excursionDate ?? undefined,
-            guestCount: data.totalGuests ?? undefined,
-          });
-          setState({ status: "paid", data });
+
+          if (data.bookingFinalised) {
+            trackBookingEvent("booking_confirmed", {
+              excursionId: data.metadata.excursion_id,
+              bookingReference: data.bookingReference ?? undefined,
+              sailingDate: data.excursionDate ?? undefined,
+              guestCount: data.totalGuests ?? undefined,
+            });
+            setState({ status: "confirmed", data });
+            return;
+          }
+
+          setState({ status: "finalising", data });
           return;
         }
 
@@ -162,7 +169,27 @@ export function BookingSuccessClient() {
           </div>
         ) : null}
 
-        {state.status === "paid" &&
+        {state.status === "finalising" ? (
+          <div className="mx-auto max-w-lg space-y-6 text-center">
+            <h1 className="book-display text-3xl font-medium text-[var(--book-ink)]">
+              Payment received — finalising your booking
+            </h1>
+            <p className="text-[var(--book-muted)]">
+              Stripe has confirmed your payment. We are finishing your booking
+              record — this page is safe to refresh in a moment.
+            </p>
+            {state.data.bookingReference ? (
+              <p className="font-medium text-[var(--book-ink)]">
+                Reference: {state.data.bookingReference}
+              </p>
+            ) : null}
+            <BookingPrimaryButton onClick={() => window.location.reload()}>
+              Refresh status
+            </BookingPrimaryButton>
+          </div>
+        ) : null}
+
+        {state.status === "confirmed" &&
         state.data.bookingReference &&
         state.data.excursionDate ? (
           <ConfirmationStep
