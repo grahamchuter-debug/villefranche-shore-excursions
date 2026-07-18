@@ -5,7 +5,6 @@ import { startTransition, useEffect, useMemo, useRef, useState } from "react";
 import { BookingCheckoutHeader } from "@/components/booking-engine/booking-checkout-header";
 import { BookingProgress } from "@/components/booking-engine/booking-progress";
 import { BookingResumePanel } from "@/components/booking-engine/booking-resume-panel";
-import { ConfirmationStep } from "@/components/booking-engine/steps/confirmation-step";
 import { DateStep } from "@/components/booking-engine/steps/date-step";
 import { GuestsStep } from "@/components/booking-engine/steps/guests-step";
 import { formatVerifiedShipTimingLine } from "@/lib/booking/booking-ship-types";
@@ -19,15 +18,13 @@ import {
   bookingSessionStorageKey,
   type BookingStepId,
 } from "@/lib/booking/booking-config";
-import {
-  createPrototypeBookingReference,
-  formatBookingDate,
-} from "@/lib/booking/booking-format";
+import { formatBookingDate } from "@/lib/booking/booking-format";
 import {
   isCustomBookingShip,
   type BookingShipVisit,
   type BookingShipsByDate,
 } from "@/lib/booking/booking-ship-types";
+import { trackBookingEvent } from "@/lib/payments/analytics";
 
 type BookingState = {
   step: BookingStepId;
@@ -35,6 +32,8 @@ type BookingState = {
   cruiseShip: BookingShipVisit | null;
   guests: number;
   bookingReference: string | null;
+  /** Stable client session id for Stripe idempotency / metadata. */
+  bookingSessionId: string;
   /** Editing from payment — return there after the edit path completes. */
   returnToPayment: boolean;
 };
@@ -50,6 +49,7 @@ const LEGACY_KEYS = [
   `vf-booking:v3:${bookingPrototypeTour.id}`,
   `vf-booking:v4:${bookingPrototypeTour.id}`,
   `vf-booking:v5:${bookingPrototypeTour.id}`,
+  `vf-booking:v6:${bookingPrototypeTour.id}`,
 ] as const;
 const STORAGE_KEY = bookingSessionStorageKey(bookingPrototypeTour.id);
 
@@ -59,8 +59,14 @@ const VALID_STEPS = new Set<BookingStepId>([
   "ship",
   "guests",
   "payment",
-  "confirmed",
 ]);
+
+function createBookingSessionId(): string {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+    return crypto.randomUUID();
+  }
+  return `sess-${Date.now().toString(36)}`;
+}
 
 const HERO_EXIT_MS = 720;
 const DATE_TO_GUESTS_ENTER = "book-step-enter-forward";
@@ -99,7 +105,7 @@ function resolveShipForDate(
 
 /** Payment-ready session that should offer a resume choice on re-entry. */
 function shouldOfferResume(state: BookingState): boolean {
-  if (state.step === "confirmed" || state.step === "tour") return false;
+  if (state.step === "tour") return false;
   if (state.returnToPayment) return false;
   if (!state.date || !state.cruiseShip) return false;
   return state.step === "payment" || state.step === "guests";
@@ -119,9 +125,12 @@ function loadState(): BookingState | null {
       cruiseShip?: unknown;
       guests: number;
       bookingReference: string | null;
+      bookingSessionId?: string;
       returnToPayment?: boolean;
     };
-    if (parsed.step === "summary") parsed.step = "payment";
+    if (parsed.step === "summary" || parsed.step === "confirmed") {
+      parsed.step = "payment";
+    }
     if (!VALID_STEPS.has(parsed.step as BookingStepId)) {
       parsed.step = "tour";
     }
@@ -135,6 +144,10 @@ function loadState(): BookingState | null {
       cruiseShip: isShipVisit(parsed.cruiseShip) ? parsed.cruiseShip : null,
       guests,
       bookingReference: parsed.bookingReference,
+      bookingSessionId:
+        typeof parsed.bookingSessionId === "string" && parsed.bookingSessionId
+          ? parsed.bookingSessionId
+          : createBookingSessionId(),
       returnToPayment: Boolean(parsed.returnToPayment),
     };
   } catch {
@@ -156,6 +169,7 @@ const initialState: BookingState = {
   cruiseShip: null,
   guests: 2,
   bookingReference: null,
+  bookingSessionId: "",
   returnToPayment: false,
 };
 
@@ -165,11 +179,21 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
   const [heroExiting, setHeroExiting] = useState(false);
   const [liveMessage, setLiveMessage] = useState("");
   const [resumeOpen, setResumeOpen] = useState(false);
+  const [checkoutCancelled, setCheckoutCancelled] = useState(false);
   const heroExitTimer = useRef<number | null>(null);
+  const startedTracked = useRef(false);
 
   useEffect(() => {
     const stored = loadState();
+    const params = new URLSearchParams(window.location.search);
+    const cancelled = params.get("checkout") === "cancelled";
+
     startTransition(() => {
+      if (cancelled) {
+        setCheckoutCancelled(true);
+        window.history.replaceState({}, "", window.location.pathname);
+      }
+
       if (stored) {
         if (
           stored.cruiseShip &&
@@ -186,16 +210,35 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
           }
         }
 
-        if (shouldOfferResume(stored)) {
+        if (cancelled && stored.date && stored.cruiseShip) {
+          setState({
+            ...stored,
+            step: "payment",
+            returnToPayment: false,
+          });
+        } else if (shouldOfferResume(stored) && !cancelled) {
           setResumeOpen(true);
           setState({ ...stored, step: "tour", returnToPayment: false });
         } else {
           setState(stored);
         }
+      } else {
+        setState({
+          ...initialState,
+          bookingSessionId: createBookingSessionId(),
+        });
       }
       setHydrated(true);
     });
   }, [shipsByDate]);
+
+  useEffect(() => {
+    if (!hydrated || startedTracked.current) return;
+    startedTracked.current = true;
+    trackBookingEvent("booking_started", {
+      excursionId: bookingPrototypeTour.id,
+    });
+  }, [hydrated]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -301,10 +344,14 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
   };
 
   const reset = () => {
-    setState(initialState);
+    setState({
+      ...initialState,
+      bookingSessionId: createBookingSessionId(),
+    });
     setHeroExiting(false);
     setLiveMessage("");
     setResumeOpen(false);
+    setCheckoutCancelled(false);
     try {
       window.sessionStorage.removeItem(STORAGE_KEY);
     } catch {
@@ -325,6 +372,11 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
   const handleDateConfirmed = (isoDate: string) => {
     const label = formatBookingDate(isoDate);
     const ships = shipsByDate[isoDate] ?? [];
+
+    trackBookingEvent("date_selected", {
+      excursionId: bookingPrototypeTour.id,
+      sailingDate: isoDate,
+    });
 
     setState((prev) => {
       let nextShip = resolveShipForDate(prev.cruiseShip, ships);
@@ -363,6 +415,11 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
   };
 
   const handleSelectShip = (ship: BookingShipVisit) => {
+    trackBookingEvent("ship_selected", {
+      excursionId: bookingPrototypeTour.id,
+      shipId: ship.slug,
+      sailingDate: state.date ?? undefined,
+    });
     setState((prev) => ({ ...prev, cruiseShip: ship }));
   };
 
@@ -383,6 +440,12 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
   };
 
   const handleGuestsContinue = () => {
+    trackBookingEvent("guest_count_selected", {
+      excursionId: bookingPrototypeTour.id,
+      shipId: state.cruiseShip?.slug,
+      sailingDate: state.date ?? undefined,
+      guestCount: state.guests,
+    });
     setState((prev) => {
       if (!prev.cruiseShip) {
         return { ...prev, step: "ship" };
@@ -393,15 +456,6 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
         returnToPayment: false,
       };
     });
-  };
-
-  const handlePay = () => {
-    setState((prev) => ({
-      ...prev,
-      step: "confirmed",
-      bookingReference: createPrototypeBookingReference(),
-      returnToPayment: false,
-    }));
   };
 
   const paymentReady = Boolean(
@@ -474,7 +528,7 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
         />
       ) : (
         <div className="book-shell py-8 sm:py-12 lg:py-14">
-          {state.step !== "confirmed" ? (
+          {state.step !== "tour" ? (
             <div className="mb-8 sm:mb-10">
               <BookingProgress
                 current={state.step}
@@ -585,25 +639,13 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
                 date={state.date}
                 guests={state.guests}
                 cruiseShip={state.cruiseShip}
-                onPay={handlePay}
+                bookingSessionId={state.bookingSessionId}
+                checkoutCancelled={checkoutCancelled}
                 onBack={() => go("guests")}
                 onChangeDate={() => beginEdit("date")}
                 onChangeShip={() => beginEdit("ship")}
                 onChangeGuests={() => beginEdit("guests")}
                 canPay={paymentReady}
-              />
-            ) : null}
-
-            {state.step === "confirmed" &&
-            state.date &&
-            state.cruiseShip &&
-            state.bookingReference ? (
-              <ConfirmationStep
-                bookingReference={state.bookingReference}
-                date={state.date}
-                guests={state.guests}
-                cruiseShip={state.cruiseShip}
-                onBookAgain={reset}
               />
             ) : null}
           </div>

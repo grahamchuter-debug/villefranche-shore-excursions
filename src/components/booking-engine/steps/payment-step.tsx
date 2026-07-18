@@ -11,6 +11,7 @@ import { CruiseDaySummary } from "@/components/booking-engine/cruise-day-summary
 import { CruiseReassurance } from "@/components/booking-engine/cruise-reassurance";
 import {
   bookingCheckoutCopy,
+  bookingPricingConfig,
   bookingPrototypeTour,
 } from "@/lib/booking/booking-config";
 import type { BookingShipVisit } from "@/lib/booking/booking-ship-types";
@@ -19,12 +20,15 @@ import {
   formatBookingDate,
   formatBookingMoney,
 } from "@/lib/booking/booking-format";
+import { trackBookingEvent } from "@/lib/payments/analytics";
+import { createCheckoutSession } from "@/lib/payments/client";
 
 type PaymentStepProps = {
   date: string;
   guests: number;
   cruiseShip: BookingShipVisit;
-  onPay: () => void;
+  bookingSessionId: string;
+  checkoutCancelled?: boolean;
   onBack: () => void;
   onChangeDate?: () => void;
   onChangeShip?: () => void;
@@ -85,7 +89,8 @@ export function PaymentStep({
   date,
   guests,
   cruiseShip,
-  onPay,
+  bookingSessionId,
+  checkoutCancelled = false,
   onBack,
   onChangeDate,
   onChangeShip,
@@ -95,6 +100,7 @@ export function PaymentStep({
   const formId = useId();
   const headingRef = useRef<HTMLHeadingElement>(null);
   const [isPaying, setIsPaying] = useState(false);
+  const [payError, setPayError] = useState<string | null>(null);
   const [details, setDetails] = useState<GuestDetails>({
     firstName: "",
     lastName: "",
@@ -105,10 +111,26 @@ export function PaymentStep({
 
   const total = formatBookingMoney(calculateBookingTotal(guests));
   const copy = bookingCheckoutCopy;
+  const priceReady = bookingPricingConfig.priceConfigured;
+  const paymentsReady = Boolean(
+    process.env.NEXT_PUBLIC_PAYMENTS_API_URL?.trim(),
+  );
 
   useEffect(() => {
     headingRef.current?.focus({ preventScroll: true });
   }, []);
+
+  useEffect(() => {
+    if (checkoutCancelled) {
+      trackBookingEvent("checkout_cancelled", {
+        excursionId: bookingPrototypeTour.id,
+        shipId: cruiseShip.slug,
+        sailingDate: date,
+        guestCount: guests,
+        bookingValue: calculateBookingTotal(guests),
+      });
+    }
+  }, [checkoutCancelled, cruiseShip.slug, date, guests]);
 
   const validate = (next: GuestDetails): FieldErrors => {
     const nextErrors: FieldErrors = {};
@@ -121,17 +143,62 @@ export function PaymentStep({
     return nextErrors;
   };
 
-  const handlePay = () => {
-    if (!canPay) return;
+  const handlePay = async () => {
+    if (!canPay || !priceReady || !paymentsReady || isPaying) return;
     setAttempted(true);
+    setPayError(null);
     const nextErrors = validate(details);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
     setIsPaying(true);
-    window.setTimeout(() => {
-      onPay();
-    }, 900);
+    const customerName = `${details.firstName.trim()} ${details.lastName.trim()}`.trim();
+    const origin = window.location.origin;
+    const bookingPath = bookingPrototypeTour.bookingPath;
+    const successUrl = `${origin}${bookingPath}/success?session_id={CHECKOUT_SESSION_ID}`;
+    const cancelUrl = `${origin}${bookingPath}?checkout=cancelled`;
+
+    trackBookingEvent("checkout_started", {
+      excursionId: bookingPrototypeTour.id,
+      shipId: cruiseShip.slug,
+      sailingDate: date,
+      guestCount: guests,
+      bookingValue: calculateBookingTotal(guests),
+    });
+
+    try {
+      const session = await createCheckoutSession({
+        excursionId: bookingPrototypeTour.id,
+        excursionName: bookingPrototypeTour.experienceName,
+        excursionDate: date,
+        shipId: cruiseShip.slug,
+        shipName: cruiseShip.name,
+        adults: guests,
+        children: 0,
+        totalGuests: guests,
+        customerEmail: details.email.trim(),
+        customerName,
+        bookingSessionId,
+        clientDisplayedTotalEur: calculateBookingTotal(guests),
+        successUrl,
+        cancelUrl,
+      });
+      window.location.assign(session.url);
+    } catch (err) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : "We could not start secure payment. Please try again.";
+      setPayError(message);
+      setIsPaying(false);
+      trackBookingEvent("payment_failed", {
+        excursionId: bookingPrototypeTour.id,
+        shipId: cruiseShip.slug,
+        sailingDate: date,
+        guestCount: guests,
+        bookingValue: calculateBookingTotal(guests),
+      });
+    }
   };
 
   const updateField = (key: keyof GuestDetails, value: string) => {
@@ -139,6 +206,9 @@ export function PaymentStep({
     setDetails(next);
     if (attempted) setErrors(validate(next));
   };
+
+  const payBlocked =
+    !canPay || !priceReady || !paymentsReady || isPaying;
 
   return (
     <div className="mx-auto max-w-4xl space-y-14 sm:space-y-16 lg:space-y-20">
@@ -153,6 +223,15 @@ export function PaymentStep({
         </h2>
         <p className="text-lg text-[var(--book-muted)]">{copy.supportingLine}</p>
       </header>
+
+      {checkoutCancelled ? (
+        <p
+          className="mx-auto max-w-2xl rounded-xl border border-[var(--book-line)] bg-[var(--book-mist)]/80 px-4 py-3 text-center text-sm text-[var(--book-ink)]"
+          role="status"
+        >
+          {copy.checkoutCancelledNote}
+        </p>
+      ) : null}
 
       <CruiseDaySummary
         date={date}
@@ -271,7 +350,7 @@ export function PaymentStep({
                 id={`${formId}-email-hint`}
                 className="mt-1.5 text-sm text-[var(--book-muted)]"
               >
-                For your confirmation and voucher.
+                For your confirmation and voucher. Phone is collected securely on the next step.
               </p>
               {errors.email ? (
                 <p
@@ -329,14 +408,26 @@ export function PaymentStep({
           </div>
 
           <div className="mt-8 space-y-3">
+            {!priceReady || !paymentsReady ? (
+              <p className="text-center text-sm text-red-700 sm:text-left" role="alert">
+                {copy.priceNotConfiguredNote}
+              </p>
+            ) : null}
             {!canPay ? (
               <p className="text-center text-sm text-red-700 sm:text-left" role="alert">
                 Review your date, ship, and guests before continuing to payment.
               </p>
             ) : null}
+            {payError ? (
+              <p className="text-center text-sm text-red-700 sm:text-left" role="alert">
+                {payError}
+              </p>
+            ) : null}
             <BookingPrimaryButton
-              onClick={handlePay}
-              disabled={isPaying || !canPay}
+              onClick={() => {
+                void handlePay();
+              }}
+              disabled={payBlocked}
             >
               {isPaying ? copy.payingLabel : copy.payButtonLabel}
             </BookingPrimaryButton>

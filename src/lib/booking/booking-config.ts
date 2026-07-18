@@ -122,14 +122,22 @@ export const bookingCheckoutGuestLimit =
   bookingCapacityConfig.guestsPerVehicle *
   bookingCapacityConfig.maxVehiclesSelectableAtCheckout;
 
+import {
+  bookingPricePerGuestEur,
+  isBookingPriceConfigured,
+} from "@/lib/payments/pricing-display";
+
 /**
- * NOT AN APPROVED RETAIL PRICE.
- * Temporary €149 for design/testing only.
+ * Display pricing — must match Worker `BOOKING_PRICE_PER_GUEST_EUR`.
+ * Source: `NEXT_PUBLIC_BOOKING_PRICE_PER_GUEST_EUR` (approved retail: 149).
+ * Checkout pay CTA stays blocked until this env is set.
  */
 export const bookingPricingConfig = {
   currencyCode: "EUR",
   currencySymbol: "€",
-  pricePerGuest: 149,
+  /** Major EUR units per guest; 0 when env not configured (UI should gate pay). */
+  pricePerGuest: bookingPricePerGuestEur ?? 0,
+  priceConfigured: isBookingPriceConfigured,
   freeCancellationLabel: "Free Cancellation",
   freeCancellationDetail: "Full refund up to 24 hours before departure.",
   returnGuaranteeLabel: "Return to Ship Guarantee",
@@ -185,13 +193,17 @@ export const bookingCheckoutCopy = {
   cruiseDayHeading: "Your Cruise Day",
   reconnectLine: "Your Riviera day is almost booked.",
   payButtonLabel: "Continue to Secure Payment",
-  payingLabel: "Preparing…",
+  payingLabel: "Redirecting to secure payment…",
   securePaymentHeading: "Secure payment",
   securePaymentNote:
-    "You will complete payment on the next step. No charge is taken on this screen.",
-  /** Launch payment method — card only via Stripe; no brand/wallet picker. */
+    "You will complete payment on Stripe’s secure checkout. No charge is taken on this screen.",
+  /** Launch payment method — card via Stripe Checkout (wallets where available). */
   paymentMethodLabel: "Credit or debit card",
   paymentProviderNote: "Secure payment powered by Stripe",
+  checkoutCancelledNote:
+    "Payment was cancelled. Your selections are still here — you can try again when ready.",
+  priceNotConfiguredNote:
+    "Online booking is not available until the retail price is configured. Please contact us to reserve.",
   supportLine: "Need help before booking? Contact our cruise excursion team.",
   supportLinkLabel: "Contact us",
 } as const;
@@ -219,7 +231,7 @@ export const bookingSteps = [
 export type BookingStepId = (typeof bookingSteps)[number]["id"];
 
 export function bookingSessionStorageKey(tourId: string): string {
-  return `vf-booking:v6:${tourId}`;
+  return `vf-booking:v7:${tourId}`;
 }
 
 /** Resolve display start time for a selected ISO date. */

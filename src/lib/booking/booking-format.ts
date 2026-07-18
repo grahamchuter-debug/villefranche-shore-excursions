@@ -1,6 +1,9 @@
 import { bookingPricingConfig } from "@/lib/booking/booking-config";
 
 export function formatBookingMoney(amount: number): string {
+  if (!bookingPricingConfig.priceConfigured && amount === 0) {
+    return "Price on request";
+  }
   const { currencyCode, currencySymbol } = bookingPricingConfig;
   try {
     return new Intl.NumberFormat("en-GB", {
@@ -26,12 +29,8 @@ export function formatBookingDate(isoDate: string): string {
 }
 
 export function calculateBookingTotal(guests: number): number {
+  if (!bookingPricingConfig.priceConfigured) return 0;
   return guests * bookingPricingConfig.pricePerGuest;
-}
-
-export function createPrototypeBookingReference(): string {
-  const stamp = Date.now().toString(36).toUpperCase().slice(-6);
-  return `VF-${stamp}`;
 }
 
 /** Local calendar YYYY-MM-DD (avoids UTC off-by-one). */

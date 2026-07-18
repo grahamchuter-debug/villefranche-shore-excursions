@@ -18,19 +18,19 @@ type ConfirmationStepProps = {
   date: string;
   guests: number;
   cruiseShip: BookingShipVisit;
+  customerEmail?: string | null;
   onBookAgain: () => void;
 };
 
 const fieldClass =
   "w-full rounded-xl border border-[var(--book-line)] bg-white px-4 py-3.5 text-base text-[var(--book-ink)] outline-none focus:border-[var(--book-sea)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]";
 
-const isDevelopment = process.env.NODE_ENV === "development";
-
 export function ConfirmationStep({
   bookingReference,
   date,
   guests,
   cruiseShip,
+  customerEmail,
   onBookAgain,
 }: ConfirmationStepProps) {
   const formId = useId();
@@ -43,15 +43,6 @@ export function ConfirmationStep({
 
   return (
     <div className="mx-auto max-w-3xl space-y-12">
-      {isDevelopment ? (
-        <p
-          className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-center text-sm font-medium text-amber-950"
-          role="status"
-        >
-          Prototype complete — no payment has been taken.
-        </p>
-      ) : null}
-
       <section className="overflow-hidden rounded-[1.75rem] bg-[var(--book-surface)] text-center shadow-[0_30px_80px_-40px_rgba(12,26,36,0.4)]">
         <div className="relative min-h-[14rem] overflow-hidden sm:min-h-[18rem]">
           <img
@@ -74,6 +65,20 @@ export function ConfirmationStep({
         </div>
 
         <div className="space-y-8 px-6 py-10 text-left sm:px-10">
+          <p className="text-center text-[15px] leading-7 text-[var(--book-muted)] sm:text-left">
+            Payment received. We are preparing your meeting details
+            {customerEmail ? (
+              <>
+                {" "}
+                and will email confirmation to{" "}
+                <span className="font-medium text-[var(--book-ink)]">
+                  {customerEmail}
+                </span>
+              </>
+            ) : null}
+            .
+          </p>
+
           <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div>
               <dt className="text-[11px] tracking-[0.14em] text-[var(--book-muted)] uppercase">
@@ -176,11 +181,11 @@ export function ConfirmationStep({
           Optional · after booking
         </p>
         <h3 className="book-display mt-2 text-2xl font-medium text-[var(--book-ink)] sm:text-3xl">
-          Add a mobile number
+          Add notes for your guide
         </h3>
         <p className="mt-2 max-w-xl text-[15px] leading-7 text-[var(--book-muted)]">
-          Not part of payment — helps us reach you with meeting updates for{" "}
-          {cruiseShip.name}.
+          Your phone number was collected during payment. Use this only for
+          optional notes about {cruiseShip.name}.
         </p>
 
         {cruiseSaved ? (
@@ -192,21 +197,6 @@ export function ConfirmationStep({
           </div>
         ) : (
           <form className="mt-6 space-y-4" onSubmit={handleCruiseSubmit}>
-            <div>
-              <label
-                htmlFor={`${formId}-mobile`}
-                className="mb-1.5 block text-sm text-[var(--book-muted)]"
-              >
-                Mobile number
-              </label>
-              <input
-                id={`${formId}-mobile`}
-                name="mobile"
-                type="tel"
-                placeholder="Including country code"
-                className={fieldClass}
-              />
-            </div>
             <div>
               <label
                 htmlFor={`${formId}-notes`}

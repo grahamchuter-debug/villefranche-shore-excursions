@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "payments:dev": "npm run dev --prefix workers/payments",
+    "payments:types": "npm run types --prefix workers/payments",
     "audit:ship-images": "node scripts/audit-ship-images.cjs",
     "audit:schedule-data": "node scripts/audit-schedule-data.cjs",
     "search:ship-images": "node scripts/search-wikimedia-ship-images.cjs",

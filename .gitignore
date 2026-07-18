@@ -3,8 +3,14 @@ node_modules/
 out/
 .DS_Store
 .env
-.env.local
+.env.*
+!.env.example
+.dev.vars
+**/.dev.vars
+workers/**/node_modules/
+workers/**/.wrangler/
 data/ship-schedules/raw/
 data/ship-schedules/fetch-progress.json
 data/ship-schedules/fetch.log
 scripts/__pycache__/
+tsconfig.tsbuildinfo
