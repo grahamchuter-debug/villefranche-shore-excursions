@@ -5,7 +5,7 @@
  * source/licence fields are filled. Sister ships and unverified files
  * must never be assigned silently.
  *
- * Synced from data/ship-images/wikimedia-inbox/*.meta.json after Commons import.
+ * Synced from data/ship-images/wikimedia-inbox/*.meta.json after import.
  */
 
 export type ShipImageMetadata = {
@@ -150,6 +150,20 @@ export const shipImageMetadataCatalog: readonly ShipImageMetadata[] = [
     attributionText: "Andrew J Bryson / Wikimedia Commons / Public domain",
     verifiedExactShip: true,
     imagePosition: "center 45%",
+  },
+  {
+    shipName: "Celestyal Discovery",
+    cruiseLine: "Celestyal Cruises",
+    slug: "celestyal-discovery",
+    file: "celestyal-discovery-1920.webp",
+    sourceName: "Operator-supplied booking photograph",
+    sourcePage: "Local asset: Celestyal_Discovery (provided for Villefranche Shore Excursions booking use)",
+    author: "Provided by site operator",
+    licence: "All rights reserved — used with permission for this website",
+    attributionRequired: true,
+    attributionText: "Celestyal Discovery photograph used with permission for Villefranche Shore Excursions",
+    verifiedExactShip: true,
+    imagePosition: "center 40%",
   },
   {
     shipName: "Crystal Serenity",
@@ -488,6 +502,20 @@ export const shipImageMetadataCatalog: readonly ShipImageMetadata[] = [
     imagePosition: "center 45%",
   },
   {
+    shipName: "Seven Seas Prestige",
+    cruiseLine: "Regent Seven Seas Cruises",
+    slug: "seven-seas-prestige",
+    file: "seven-seas-prestige-1920.webp",
+    sourceName: "Operator-supplied booking photograph",
+    sourcePage: "Local asset: Seven_Seas_Prestige (provided for Villefranche Shore Excursions booking use)",
+    author: "Provided by site operator",
+    licence: "All rights reserved — used with permission for this website",
+    attributionRequired: true,
+    attributionText: "Seven Seas Prestige photograph used with permission for Villefranche Shore Excursions",
+    verifiedExactShip: true,
+    imagePosition: "center 45%",
+  },
+  {
     shipName: "Silver Nova",
     cruiseLine: "Silversea Cruises",
     slug: "silver-nova",
@@ -584,6 +612,20 @@ export const shipImageMetadataCatalog: readonly ShipImageMetadata[] = [
     attributionText: "Philippe Alès / Wikimedia Commons / CC BY-SA 4.0",
     verifiedExactShip: true,
     imagePosition: "center 48%",
+  },
+  {
+    shipName: "Viking Mira",
+    cruiseLine: "Viking Cruises",
+    slug: "viking-mira",
+    file: "viking-mira-1920.webp",
+    sourceName: "Operator-supplied booking photograph",
+    sourcePage: "Local asset provided as Viking_Libra filename; hull reads Viking Mira — assigned to Mira only",
+    author: "Provided by site operator",
+    licence: "All rights reserved — used with permission for this website",
+    attributionRequired: true,
+    attributionText: "Viking Mira photograph used with permission for Villefranche Shore Excursions",
+    verifiedExactShip: true,
+    imagePosition: "35% center",
   },
   {
     shipName: "Viking Neptune",

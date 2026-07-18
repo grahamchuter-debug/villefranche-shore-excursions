@@ -1,12 +1,12 @@
 # Villefranche ship-image audit
 
-Generated: 2026-07-18T10:05:24.357Z
+Generated: 2026-07-18T10:28:15.708Z
 
 ## Summary
 
 - Total ships referenced: **74**
-- Ships with verified publishable images: **48**
-- Ships missing images / using fallbacks: **26**
+- Ships with verified publishable images: **51**
+- Ships missing images / using fallbacks: **23**
 - Catalogue entries missing source or licence: **0**
 - Orphan disk files not in catalogue: **0**
 
@@ -33,7 +33,7 @@ Publish only when `verifiedExactShip` and complete source/licence metadata are s
 | Celebrity Equinox | Celebrity Cruises | 11 | celebrity-equinox-1920.webp | yes | yes | — |
 | Celebrity Infinity | Celebrity Cruises | 1 | celebrity-infinity-1920.webp | yes | yes | — |
 | Celebrity Xcel | Celebrity Cruises | 13 | — | no | no | — |
-| Celestyal Discovery | Celestyal Cruises | 4 | — | no | no | — |
+| Celestyal Discovery | Celestyal Cruises | 4 | celestyal-discovery-1920.webp | yes | yes | — |
 | Crystal Serenity | Crystal / Crystal Cruises | 2 | crystal-serenity-1920.webp | yes | yes | — |
 | Crystal Symphony | Crystal Cruises | 1 | — | no | no | — |
 | Europa | Hapag Lloyd | 2 | — | no | no | — |
@@ -71,7 +71,7 @@ Publish only when `verifiedExactShip` and complete source/licence metadata are s
 | Seven Seas Explorer | Regent Seven Seas Cruises | 1 | seven-seas-explorer-1920.webp | yes | yes | — |
 | Seven Seas Grandeur | Regent Seven Seas Cruises | 2 | seven-seas-grandeur-1920.webp | yes | yes | — |
 | Seven Seas Mariner | Regent Seven Seas Cruises | 1 | seven-seas-mariner-1920.webp | yes | yes | — |
-| Seven Seas Prestige | Regent Seven Seas Cruises | 5 | — | no | no | — |
+| Seven Seas Prestige | Regent Seven Seas Cruises | 5 | seven-seas-prestige-1920.webp | yes | yes | — |
 | Silver Nova | Silversea Cruises | 1 | silver-nova-1920.webp | yes | yes | — |
 | Silver Ray | Silversea Cruises | 1 | — | no | no | — |
 | Silver Shadow | Silversea / Silversea Cruises | 15 | silver-shadow-1920.webp | yes | yes | — |
@@ -83,7 +83,7 @@ Publish only when `verifiedExactShip` and complete source/licence metadata are s
 | Viking Jupiter | Viking Cruises | 2 | viking-jupiter-1920.webp | yes | yes | — |
 | Viking Libra | Viking Cruises | 4 | — | no | no | — |
 | Viking Mars | Viking Cruises | 3 | viking-mars-1920.webp | yes | yes | — |
-| Viking Mira | Viking Cruises | 11 | — | no | no | — |
+| Viking Mira | Viking Cruises | 11 | viking-mira-1920.webp | yes | yes | — |
 | Viking Neptune | Viking Cruises | 4 | viking-neptune-1920.webp | yes | yes | — |
 | Viking Saturn | Viking Cruises | 8 | viking-saturn-1920.webp | yes | yes | — |
 | Viking Sea | Viking Cruises | 3 | viking-sea-1920.webp | yes | yes | — |

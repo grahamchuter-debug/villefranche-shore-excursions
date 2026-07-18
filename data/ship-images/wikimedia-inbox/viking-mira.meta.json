@@ -1,0 +1,15 @@
+{
+  "shipName": "Viking Mira",
+  "cruiseLine": "Viking Cruises",
+  "slug": "viking-mira",
+  "file": "viking-mira-1920.webp",
+  "sourceName": "Operator-supplied booking photograph",
+  "sourcePage": "Local asset provided as Viking_Libra filename; hull reads Viking Mira — assigned to Mira only",
+  "author": "Provided by site operator",
+  "licence": "All rights reserved — used with permission for this website",
+  "attributionRequired": true,
+  "attributionText": "Viking Mira photograph used with permission for Villefranche Shore Excursions",
+  "verifiedExactShip": true,
+  "imagePosition": "35% center",
+  "notes": "Filename was Viking_Libra but hull branding reads Viking Mira. Exact-vessel rule: published as viking-mira only. Viking Libra remains without image."
+}

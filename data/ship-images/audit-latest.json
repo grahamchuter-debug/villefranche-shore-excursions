@@ -1,12 +1,12 @@
 {
   "summary": {
-    "generatedAt": "2026-07-18T10:05:24.357Z",
+    "generatedAt": "2026-07-18T10:28:15.708Z",
     "totalShipsReferenced": 74,
-    "shipsWithVerifiedPublishableImages": 48,
-    "shipsMissingImages": 26,
-    "shipsUsingFallbacks": 26,
+    "shipsWithVerifiedPublishableImages": 51,
+    "shipsMissingImages": 23,
+    "shipsUsingFallbacks": 23,
     "imagesMissingSourceOrLicence": 0,
-    "catalogueEntries": 48,
+    "catalogueEntries": 51,
     "orphanDiskFiles": [],
     "possibleDuplicateOrIncorrectMatches": []
   },
@@ -454,16 +454,30 @@
         "2028-02-21"
       ],
       "dateCount": 4,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "celestyal-discovery-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "celestyal-discovery-1280.avif",
+        "celestyal-discovery-1280.webp",
+        "celestyal-discovery-1920.avif",
+        "celestyal-discovery-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Operator-supplied booking photograph",
+        "sourcePage": "Local asset: Celestyal_Discovery (provided for Villefranche Shore Excursions booking use)",
+        "author": "Provided by site operator",
+        "licence": "All rights reserved — used with permission for this website",
+        "attributionRequired": true,
+        "attributionText": "Celestyal Discovery photograph used with permission for Villefranche Shore Excursions",
+        "imagePosition": "center 40%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Crystal Serenity",
@@ -1622,16 +1636,30 @@
         "2027-10-10"
       ],
       "dateCount": 5,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "seven-seas-prestige-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "seven-seas-prestige-1280.avif",
+        "seven-seas-prestige-1280.webp",
+        "seven-seas-prestige-1920.avif",
+        "seven-seas-prestige-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Operator-supplied booking photograph",
+        "sourcePage": "Local asset: Seven_Seas_Prestige (provided for Villefranche Shore Excursions booking use)",
+        "author": "Provided by site operator",
+        "licence": "All rights reserved — used with permission for this website",
+        "attributionRequired": true,
+        "attributionText": "Seven Seas Prestige photograph used with permission for Villefranche Shore Excursions",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Silver Nova",
@@ -1989,16 +2017,30 @@
         "2028-03-26"
       ],
       "dateCount": 11,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "viking-mira-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "viking-mira-1280.avif",
+        "viking-mira-1280.webp",
+        "viking-mira-1920.avif",
+        "viking-mira-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Operator-supplied booking photograph",
+        "sourcePage": "Local asset provided as Viking_Libra filename; hull reads Viking Mira — assigned to Mira only",
+        "author": "Provided by site operator",
+        "licence": "All rights reserved — used with permission for this website",
+        "attributionRequired": true,
+        "attributionText": "Viking Mira photograph used with permission for Villefranche Shore Excursions",
+        "imagePosition": "35% center",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Viking Neptune",
