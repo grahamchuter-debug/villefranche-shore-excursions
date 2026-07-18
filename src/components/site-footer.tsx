@@ -46,6 +46,7 @@ const legalLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Contact Us", href: "/contact" },
   { label: "Return to Ship Guarantee", href: "/return-to-ship-guarantee" },
+  { label: "Image Credits", href: "/image-credits" },
 ] as const;
 
 const trustBullets = [

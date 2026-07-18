@@ -375,6 +375,53 @@ body {
   transform: scale(1.03);
 }
 
+.booking-engine-root .book-ship-fallback {
+  box-shadow: 0 28px 60px -40px rgba(12, 26, 36, 0.45);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.booking-engine-root .book-ship-fallback:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 32px 70px -40px rgba(12, 26, 36, 0.5);
+}
+
+.booking-engine-root .book-ship-fallback-surface {
+  background:
+    radial-gradient(
+      120% 80% at 12% 18%,
+      color-mix(in srgb, var(--w2-primary) 55%, transparent),
+      transparent 55%
+    ),
+    linear-gradient(
+      155deg,
+      var(--w2-navy-deep) 0%,
+      color-mix(in srgb, var(--w2-primary) 45%, var(--w2-navy)) 48%,
+      var(--w2-navy) 100%
+    );
+}
+
+.booking-engine-root .book-ship-fallback-texture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image:
+    repeating-linear-gradient(
+      -12deg,
+      transparent 0,
+      transparent 14px,
+      color-mix(in srgb, white 8%, transparent) 14px,
+      color-mix(in srgb, white 8%, transparent) 15px
+    ),
+    radial-gradient(
+      circle at 78% 72%,
+      color-mix(in srgb, white 18%, transparent),
+      transparent 42%
+    );
+  pointer-events: none;
+}
+
 @keyframes book-ken-burns {
   from {
     transform: scale(1);
@@ -498,7 +545,9 @@ body {
   .booking-engine-root .book-ship-feature,
   .booking-engine-root .book-ship-feature:hover,
   .booking-engine-root .book-ship-feature-image,
-  .booking-engine-root .book-ship-feature:hover .book-ship-feature-image {
+  .booking-engine-root .book-ship-feature:hover .book-ship-feature-image,
+  .booking-engine-root .book-ship-fallback,
+  .booking-engine-root .book-ship-fallback:hover {
     transition: none !important;
     transform: none !important;
     box-shadow: none !important;

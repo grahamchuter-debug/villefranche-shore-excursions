@@ -1,11 +1,17 @@
 /**
  * Optional ship photography for the booking ship-selection step.
  *
- * Progressive enhancement: ships without an entry fall back to the quiet card.
- * Add new entries keyed by slug as photography becomes available.
+ * Exact-vessel rule: imagery is only returned when catalogue metadata is
+ * publishable (verified vessel + complete source/licence). Ships without a
+ * publishable entry use the premium fallback card — never another vessel.
  */
+import {
+  getShipImageMetadata,
+  isShipImageMetadataPublishable,
+} from "@/lib/booking/ship-image-metadata";
+
 export type BookingShipImage = {
-  /** Primary WebP (or AVIF via picture) path */
+  /** Primary WebP path */
   src: string;
   srcSet: string;
   avifSrcSet?: string;
@@ -19,7 +25,7 @@ export type BookingShipImage = {
   imagePosition?: string;
 };
 
-function shipImage(
+function buildShipImagePaths(
   slug: string,
   alt: string,
   dims: { width: number; height: number },
@@ -37,39 +43,21 @@ function shipImage(
   };
 }
 
-/**
- * Ship-specific imagery registry.
- * Prefer Villefranche Bay / Mediterranean daylight photography when available.
- */
-export const bookingShipImagery: Record<string, BookingShipImage> = {
-  "norwegian-epic": shipImage(
-    "norwegian-epic",
-    "Norwegian Epic on open Mediterranean water under a clear blue sky",
-    { width: 1920, height: 1080 },
-    "center 42%",
-  ),
-  "celebrity-equinox": shipImage(
-    "celebrity-equinox",
-    "Celebrity Equinox in a sunlit Mediterranean harbour",
-    { width: 1920, height: 1293 },
-    "center 48%",
-  ),
-  "azamara-journey": shipImage(
-    "azamara-journey",
-    "Azamara Journey approaching a Mediterranean harbour in warm daylight",
-    { width: 1920, height: 1280 },
-    "center 40%",
-  ),
-  "silver-shadow": shipImage(
-    "silver-shadow",
-    "Silversea Silver Shadow in profile on calm harbour water",
-    { width: 1920, height: 682 },
-    "center 55%",
-  ),
-};
+/** Default dimensions for ship-card crops until measured per asset. */
+const DEFAULT_DIMS = { width: 1920, height: 1080 } as const;
 
 export function getBookingShipImage(
   slug: string,
 ): BookingShipImage | undefined {
-  return bookingShipImagery[slug];
+  const meta = getShipImageMetadata(slug);
+  if (!meta || !isShipImageMetadataPublishable(meta)) {
+    return undefined;
+  }
+
+  return buildShipImagePaths(
+    meta.slug,
+    `${meta.shipName} cruise ship`,
+    DEFAULT_DIMS,
+    meta.imagePosition,
+  );
 }

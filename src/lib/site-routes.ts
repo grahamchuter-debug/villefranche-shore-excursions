@@ -117,6 +117,11 @@ export const siteRoutes = [
     changeFrequency: "yearly" as const,
   },
   {
+    path: "/image-credits",
+    priority: 0.3,
+    changeFrequency: "yearly" as const,
+  },
+  {
     path: shipScheduleHub.path,
     priority: 0.8,
     changeFrequency: "weekly" as const,

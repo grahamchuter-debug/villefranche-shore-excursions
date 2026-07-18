@@ -76,6 +76,52 @@ function ShipCardButton({
   );
 }
 
+function ShipFallbackFeatureButton({
+  ship,
+  onSelect,
+}: {
+  ship: BookingShipVisit;
+  onSelect: () => void;
+}) {
+  const timing = formatVerifiedShipTimingLine(ship);
+
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      aria-pressed="true"
+      aria-label={`${ship.name}, ${ship.cruiseLine}, selected for your cruise day`}
+      className="book-ship-fallback group relative w-full overflow-hidden rounded-[1.5rem] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
+    >
+      <div className="book-ship-fallback-surface relative min-h-[14rem] sm:min-h-[17rem]">
+        <div className="book-ship-fallback-texture" aria-hidden="true" />
+        <div className="relative z-10 flex min-h-[14rem] flex-col justify-end px-6 py-7 sm:min-h-[17rem] sm:px-8 sm:py-8">
+          <p className="text-[11px] font-medium tracking-[0.18em] text-white/70 uppercase">
+            Your cruise
+          </p>
+          <p className="book-display mt-2 text-3xl font-medium leading-[1.15] text-white sm:text-4xl">
+            {ship.name}
+          </p>
+          <p className="mt-2 text-[15px] font-medium text-white/85">
+            {ship.cruiseLine}
+          </p>
+          {timing ? (
+            <p className="mt-3 text-sm text-white/75">{timing}</p>
+          ) : null}
+          <p
+            className={[
+              "text-[12px] font-medium tracking-[0.12em] text-white/90 uppercase",
+              timing ? "mt-5" : "mt-6",
+            ].join(" ")}
+          >
+            Selected for your cruise day ✓
+          </p>
+        </div>
+      </div>
+    </button>
+  );
+}
+
 function ShipFeatureButton({
   ship,
   onSelect,
@@ -111,7 +157,7 @@ function ShipFeatureButton({
           />
           <img
             src={image.src}
-            alt=""
+            alt={image.alt}
             width={image.width}
             height={image.height}
             className="book-ship-feature-image absolute inset-0 h-full w-full object-cover"
@@ -332,12 +378,29 @@ export function ShipStep({
           {ships.map((ship) => {
             const selected =
               !customSelected && selectedShip?.slug === ship.slug;
-            const showFeature = selected && Boolean(ship.image);
+            const showPhotoFeature = selected && Boolean(ship.image);
+            const showFallbackFeature = selected && !ship.image;
 
-            if (showFeature) {
+            if (showPhotoFeature) {
               return (
                 <div key={ship.slug} className="space-y-3">
                   <ShipFeatureButton
+                    ship={ship}
+                    onSelect={() => onSelectShip(ship)}
+                  />
+                  {showPersonalisation ? (
+                    <p className="px-1 text-center text-sm text-[var(--book-muted)] sm:text-left">
+                      {PERSONALISATION_LINE}
+                    </p>
+                  ) : null}
+                </div>
+              );
+            }
+
+            if (showFallbackFeature) {
+              return (
+                <div key={ship.slug} className="space-y-3">
+                  <ShipFallbackFeatureButton
                     ship={ship}
                     onSelect={() => onSelectShip(ship)}
                   />
