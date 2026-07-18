@@ -212,7 +212,7 @@ export const bookingSteps = [
   { id: "date", label: "Date" },
   { id: "ship", label: "Ship" },
   { id: "guests", label: "Guests" },
-  { id: "payment", label: "Booking" },
+  { id: "payment", label: "Payment" },
   { id: "confirmed", label: "Confirmed" },
 ] as const;
 

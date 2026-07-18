@@ -25,6 +25,7 @@ type GuestsStepProps = {
   cruiseShipName?: string | null;
   /** Optional verified Arrives / Departs line from the central schedule */
   cruiseShipTimingLine?: string | null;
+  continueLabel?: string;
 };
 
 export function GuestsStep({
@@ -35,6 +36,7 @@ export function GuestsStep({
   selectedDateLabel,
   cruiseShipName,
   cruiseShipTimingLine,
+  continueLabel = "Continue to secure payment",
 }: GuestsStepProps) {
   const { minGuests, capacityLabel, overCapacityContactHref } =
     bookingCapacityConfig;
@@ -146,7 +148,7 @@ export function GuestsStep({
 
           <div className="mt-8">
             <BookingPrimaryButton onClick={onContinue} className="sm:w-full">
-              Continue to secure payment
+              {continueLabel}
             </BookingPrimaryButton>
           </div>
         </div>

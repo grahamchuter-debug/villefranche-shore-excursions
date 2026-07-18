@@ -4,7 +4,6 @@ import { useEffect, useId, useRef, useState } from "react";
 
 import { BookingCheckoutTrust } from "@/components/booking-engine/booking-checkout-trust";
 import {
-  BookingBackLink,
   BookingPrimaryButton,
 } from "@/components/booking-engine/booking-primary-button";
 import { BookingReconnectMoment } from "@/components/booking-engine/booking-reconnect-moment";
@@ -27,7 +26,11 @@ type PaymentStepProps = {
   cruiseShip: BookingShipVisit;
   onPay: () => void;
   onBack: () => void;
+  onChangeDate?: () => void;
   onChangeShip?: () => void;
+  onChangeGuests?: () => void;
+  /** When false, payment CTA is blocked (e.g. capacity / selection invalid). */
+  canPay?: boolean;
 };
 
 type GuestDetails = {
@@ -84,7 +87,10 @@ export function PaymentStep({
   cruiseShip,
   onPay,
   onBack,
+  onChangeDate,
   onChangeShip,
+  onChangeGuests,
+  canPay = true,
 }: PaymentStepProps) {
   const formId = useId();
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -116,6 +122,7 @@ export function PaymentStep({
   };
 
   const handlePay = () => {
+    if (!canPay) return;
     setAttempted(true);
     const nextErrors = validate(details);
     setErrors(nextErrors);
@@ -152,7 +159,9 @@ export function PaymentStep({
         guests={guests}
         cruiseShip={cruiseShip}
         heading={copy.cruiseDayHeading}
+        onChangeDate={onChangeDate}
         onChangeShip={onChangeShip}
+        onChangeGuests={onChangeGuests}
       />
 
       <CruiseReassurance />
@@ -320,7 +329,15 @@ export function PaymentStep({
           </div>
 
           <div className="mt-8 space-y-3">
-            <BookingPrimaryButton onClick={handlePay} disabled={isPaying}>
+            {!canPay ? (
+              <p className="text-center text-sm text-red-700 sm:text-left" role="alert">
+                Review your date, ship, and guests before continuing to payment.
+              </p>
+            ) : null}
+            <BookingPrimaryButton
+              onClick={handlePay}
+              disabled={isPaying || !canPay}
+            >
               {isPaying ? copy.payingLabel : copy.payButtonLabel}
             </BookingPrimaryButton>
             <BookingPrimaryButton

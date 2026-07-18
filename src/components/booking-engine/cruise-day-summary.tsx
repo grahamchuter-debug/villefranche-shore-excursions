@@ -20,15 +20,37 @@ type CruiseDaySummaryProps = {
   guests: number;
   cruiseShip: BookingShipVisit;
   heading?: string;
+  onChangeDate?: () => void;
   onChangeShip?: () => void;
+  onChangeGuests?: () => void;
 };
+
+function SummaryChangeButton({
+  label,
+  onClick,
+}: {
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="book-btn book-text-link shrink-0 text-[12px] tracking-wide underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--w2-focus-ring)]"
+    >
+      {label}
+    </button>
+  );
+}
 
 export function CruiseDaySummary({
   date,
   guests,
   cruiseShip,
   heading = "Your Cruise Day",
+  onChangeDate,
   onChangeShip,
+  onChangeGuests,
 }: CruiseDaySummaryProps) {
   /** Excursion start — never derived from ship arrival */
   const tourStartTime = getBookingStartTimeLabel(date);
@@ -36,14 +58,27 @@ export function CruiseDaySummary({
   const shipArrival = formatVerifiedShipTime(cruiseShip.arrivalTime);
   const shipDeparture = formatVerifiedShipTime(cruiseShip.departureTime);
 
-  const rows: Array<{
+  type SummaryRow = {
     label: string;
     value: string;
     note?: string;
-  }> = [
+    changeLabel?: string;
+    onChange?: () => void;
+  };
+
+  const rows: SummaryRow[] = [
     {
       label: "Date",
       value: formatBookingDate(date),
+      changeLabel: "Change date",
+      onChange: onChangeDate,
+    },
+    {
+      label: "Cruise Ship",
+      value: cruiseShip.name,
+      note: cruiseShip.cruiseLine || undefined,
+      changeLabel: "Change ship",
+      onChange: onChangeShip,
     },
   ];
 
@@ -76,6 +111,8 @@ export function CruiseDaySummary({
     {
       label: "Guests",
       value: `${guests} ${guests === 1 ? "guest" : "guests"}`,
+      changeLabel: "Change guests",
+      onChange: onChangeGuests,
     },
     {
       label: "Experience",
@@ -98,7 +135,7 @@ export function CruiseDaySummary({
     >
       <header className="mb-8 max-w-xl space-y-2 sm:mb-9">
         <p className="text-[11px] font-medium tracking-[0.18em] text-[var(--book-gold)] uppercase">
-          Your cruise itinerary
+          Your booking
         </p>
         <h3
           id="cruise-day-heading"
@@ -109,41 +146,36 @@ export function CruiseDaySummary({
       </header>
 
       <dl className="divide-y divide-[var(--book-line)]">
-        <div className="grid gap-1 py-5 first:pt-0 sm:grid-cols-[11rem_1fr] sm:gap-6">
-          <dt className="flex items-baseline gap-3 text-[13px] tracking-wide text-[var(--book-muted)]">
-            <span>Cruise Ship</span>
-            {onChangeShip ? (
-              <button
-                type="button"
-                onClick={onChangeShip}
-                className="book-btn book-text-link text-[12px] tracking-wide underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--w2-focus-ring)]"
-              >
-                Change
-              </button>
-            ) : null}
-          </dt>
-          <dd className="book-display text-[1.35rem] font-medium leading-snug text-[var(--book-ink)] sm:text-[1.5rem]">
-            {cruiseShip.name}
-            {cruiseShip.cruiseLine ? (
-              <span className="mt-1.5 block font-sans text-sm font-normal leading-relaxed text-[var(--book-muted)]">
-                {cruiseShip.cruiseLine}
-              </span>
-            ) : null}
-          </dd>
-        </div>
-
         {rows.map((row) => (
           <div
             key={row.label}
-            className="grid gap-1 py-5 sm:grid-cols-[11rem_1fr] sm:gap-6"
+            className="grid gap-1 py-5 first:pt-0 sm:grid-cols-[11rem_1fr] sm:gap-6"
           >
-            <dt className="text-[13px] tracking-wide text-[var(--book-muted)]">
-              {row.label}
+            <dt className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[13px] tracking-wide text-[var(--book-muted)]">
+              <span>{row.label}</span>
+              {row.onChange && row.changeLabel ? (
+                <SummaryChangeButton
+                  label={row.changeLabel}
+                  onClick={row.onChange}
+                />
+              ) : null}
             </dt>
-            <dd className="text-[17px] font-medium leading-snug text-[var(--book-ink)] sm:text-lg">
+            <dd
+              className={
+                row.label === "Cruise Ship"
+                  ? "book-display text-[1.35rem] font-medium leading-snug text-[var(--book-ink)] sm:text-[1.5rem]"
+                  : "text-[17px] font-medium leading-snug text-[var(--book-ink)] sm:text-lg"
+              }
+            >
               {row.value}
               {row.note ? (
-                <span className="mt-1.5 block text-sm font-normal leading-relaxed text-[var(--book-muted)]">
+                <span
+                  className={
+                    row.label === "Cruise Ship"
+                      ? "mt-1.5 block font-sans text-sm font-normal leading-relaxed text-[var(--book-muted)]"
+                      : "mt-1.5 block text-sm font-normal leading-relaxed text-[var(--book-muted)]"
+                  }
+                >
                   {row.note}
                 </span>
               ) : null}

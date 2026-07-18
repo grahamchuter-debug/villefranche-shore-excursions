@@ -23,6 +23,7 @@ type ShipStepProps = {
   onSelectShip: (ship: BookingShipVisit) => void;
   onContinue: () => void;
   onBack: () => void;
+  continueLabel?: string;
 };
 
 const PERSONALISATION_LINE =
@@ -275,6 +276,7 @@ export function ShipStep({
   onSelectShip,
   onContinue,
   onBack,
+  continueLabel = "Continue to Guests",
 }: ShipStepProps) {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const singleShip = ships.length === 1;
@@ -454,7 +456,7 @@ export function ShipStep({
 
       <div className="flex justify-center pt-2">
         <BookingPrimaryButton onClick={onContinue} disabled={!canContinue}>
-          Continue to Guests
+          {continueLabel}
         </BookingPrimaryButton>
       </div>
     </div>

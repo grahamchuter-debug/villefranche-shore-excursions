@@ -4,6 +4,9 @@ import { bookingSteps, type BookingStepId } from "@/lib/booking/booking-config";
 
 type BookingProgressProps = {
   current: BookingStepId;
+  /** Steps the customer may jump to (completed / reachable). */
+  canNavigateTo?: (step: BookingStepId) => boolean;
+  onNavigate?: (step: BookingStepId) => void;
 };
 
 const FLOW_STEPS = bookingSteps.filter(
@@ -11,10 +14,14 @@ const FLOW_STEPS = bookingSteps.filter(
 );
 
 /**
- * Quiet progress instrument: a thin fill + "Step x of y" label rather than
- * numbered-circle wizard chrome. Still driven entirely by `bookingSteps`.
+ * Restrained progress: numbered step labels. Completed steps are clickable
+ * for editing; future steps stay inert until required info exists.
  */
-export function BookingProgress({ current }: BookingProgressProps) {
+export function BookingProgress({
+  current,
+  canNavigateTo,
+  onNavigate,
+}: BookingProgressProps) {
   if (current === "confirmed") {
     return (
       <p className="text-center text-xs font-medium tracking-[0.16em] uppercase text-[var(--book-success)]">
@@ -44,12 +51,51 @@ export function BookingProgress({ current }: BookingProgressProps) {
           style={{ width: `${progressPercent}%` }}
         />
       </div>
-      <p className="mt-3 flex items-baseline justify-between text-[11px] font-medium tracking-[0.14em] text-[var(--book-muted)] uppercase">
-        <span>
-          Step {stepNumber} of {total}
-        </span>
-        <span className="text-[var(--book-ink)]">{currentLabel}</span>
-      </p>
+
+      <nav
+        className="mt-3"
+        aria-label="Booking steps"
+      >
+        <ol className="flex flex-wrap items-center justify-between gap-x-2 gap-y-2 text-[11px] font-medium tracking-[0.12em] text-[var(--book-muted)] uppercase">
+          {FLOW_STEPS.map((step, index) => {
+            const isCurrent = step.id === current;
+            const reachable = Boolean(canNavigateTo?.(step.id));
+            const clickable =
+              reachable && !isCurrent && typeof onNavigate === "function";
+            const label = `${index + 1}.${step.label}`;
+
+            if (clickable) {
+              return (
+                <li key={step.id}>
+                  <button
+                    type="button"
+                    onClick={() => onNavigate(step.id)}
+                    className="book-btn rounded-sm text-[var(--book-sea)] underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--w2-focus-ring)]"
+                  >
+                    {label}
+                  </button>
+                </li>
+              );
+            }
+
+            return (
+              <li
+                key={step.id}
+                className={
+                  isCurrent
+                    ? "text-[var(--book-ink)]"
+                    : reachable
+                      ? "text-[var(--book-muted)]"
+                      : "text-[var(--book-line)]"
+                }
+                aria-current={isCurrent ? "step" : undefined}
+              >
+                {label}
+              </li>
+            );
+          })}
+        </ol>
+      </nav>
     </div>
   );
 }

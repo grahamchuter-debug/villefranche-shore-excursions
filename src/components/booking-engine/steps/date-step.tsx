@@ -13,7 +13,7 @@ import {
 
 type DateStepProps = {
   selectedDate: string | null;
-  onSelectDate: (isoDate: string | null) => void;
+  onSelectDate?: (isoDate: string | null) => void;
   /** Called after polished confirmation pause — advances to guests */
   onDateConfirmed: (isoDate: string) => void;
   onBack: () => void;
@@ -106,7 +106,7 @@ export function DateStep({
 
     clearAdvanceTimer();
     setPendingDate(iso);
-    onSelectDate(iso);
+    onSelectDate?.(iso);
 
     const label = formatBookingDate(iso);
     setAnnouncement(`${label} selected`);
@@ -206,7 +206,7 @@ export function DateStep({
                   clearAdvanceTimer();
                   setPendingDate(null);
                   setAnnouncement("");
-                  onSelectDate(null);
+                  onSelectDate?.(null);
                   setView(new Date(view.getFullYear(), view.getMonth() - 1, 1));
                 }}
                 disabled={!canGoPrev}
@@ -227,7 +227,7 @@ export function DateStep({
                   clearAdvanceTimer();
                   setPendingDate(null);
                   setAnnouncement("");
-                  onSelectDate(null);
+                  onSelectDate?.(null);
                   setView(new Date(view.getFullYear(), view.getMonth() + 1, 1));
                 }}
                 className="book-btn rounded-full px-4 py-2 text-sm font-medium text-[var(--book-sea)]"
