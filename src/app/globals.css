@@ -183,8 +183,23 @@ body {
   }
 }
 
+/* Date intro panel: compact, cover-filled stage (not image + grey stack) */
 .booking-engine-root .book-date-hero-remnant {
+  position: relative;
+  height: 240px;
   animation: book-date-remnant-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (min-width: 640px) {
+  .booking-engine-root .book-date-hero-remnant {
+    height: 360px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .booking-engine-root .book-date-hero-remnant {
+    height: 400px;
+  }
 }
 
 .booking-engine-root .book-date-stage {

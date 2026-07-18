@@ -2,7 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import { BookingHeroMedia } from "@/components/booking-engine/booking-hero-media";
 import { BookingBackLink } from "@/components/booking-engine/booking-primary-button";
+import { bookingPrototypeTour } from "@/lib/booking/booking-config";
 import {
   formatBookingDate,
   startOfLocalDay,
@@ -131,41 +133,34 @@ export function DateStep({
 
   return (
     <div className="book-date-stage mx-auto max-w-3xl">
-      <BookingBackLink onClick={handleBack} className="mb-6 sm:mb-8" />
+      <BookingBackLink onClick={handleBack} className="mb-4 sm:mb-5" />
 
-      {/* Photographic band — the journey continues from the hero, heading rides on it */}
-      <div
-        className="book-date-hero-remnant relative overflow-hidden rounded-[1.25rem]"
-      >
-        <img
-          src="/images/booking/monaco-port-hercule-1280.webp"
-          alt=""
-          width={1280}
-          height={580}
-          className="h-40 w-full object-cover object-center sm:h-56"
-          decoding="async"
-          loading="lazy"
-        />
+      {/*
+        Single integrated photo panel: fixed height, images cover the full
+        card, heading sits over a bottom gradient — never a stacked grey half.
+      */}
+      <div className="book-date-hero-remnant relative overflow-hidden rounded-[1.25rem]">
+        <BookingHeroMedia slides={bookingPrototypeTour.heroGallery} />
         <div
-          className="absolute inset-0 bg-gradient-to-t from-[var(--book-ink)]/80 via-[var(--book-ink)]/25 to-transparent"
+          className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-[var(--book-ink)]/78 via-[var(--book-ink)]/28 to-transparent"
           aria-hidden="true"
         />
-        <div className="relative z-10 flex min-h-[10rem] flex-col justify-end px-6 py-7 sm:min-h-[14rem] sm:px-10 sm:py-9">
-          <p className="text-[11px] font-medium tracking-[0.18em] text-white/70 uppercase">
+        <div className="absolute inset-x-0 bottom-0 z-[3] px-5 pb-5 pt-10 sm:px-8 sm:pb-7 sm:pt-12">
+          <p className="text-[11px] font-medium tracking-[0.18em] text-white/75 uppercase">
             Villefranche-sur-Mer
           </p>
           <h2
             ref={headingRef}
             tabIndex={-1}
             id="booking-date-heading"
-            className="book-display mt-2 max-w-md text-3xl font-medium leading-[1.05] text-white outline-none sm:text-5xl"
+            className="book-display mt-1.5 max-w-lg text-[1.65rem] font-medium leading-[1.08] text-white outline-none sm:mt-2 sm:text-4xl"
           >
             Choose your cruise date
           </h2>
         </div>
       </div>
 
-      <p className="mt-5 max-w-md text-[15px] leading-6 text-[var(--book-muted)] sm:text-base">
+      <p className="mt-4 max-w-md text-[15px] leading-6 text-[var(--book-muted)] sm:text-base">
         The day your ship calls at port.
       </p>
 
@@ -177,9 +172,9 @@ export function DateStep({
         {announcement}
       </div>
 
-      <div className="mt-9 border-t border-[var(--book-line)] pt-8 sm:mt-10 sm:pt-9">
+      <div className="mt-5 border-t border-[var(--book-line)] pt-5 sm:mt-6 sm:pt-6">
         <div className="mx-auto max-w-md">
-          <div className="mb-6 flex items-center justify-between gap-3">
+          <div className="mb-4 flex items-center justify-between gap-3 sm:mb-5">
             <button
               type="button"
               onClick={() => {
@@ -263,13 +258,13 @@ export function DateStep({
           {displayDate ? (
             <p
               key={displayDate}
-              className="book-selected-date mt-8 text-center text-base font-medium text-[var(--book-ink)]"
+              className="book-selected-date mt-5 text-center text-base font-medium text-[var(--book-ink)]"
               aria-hidden="true"
             >
               {formatBookingDate(displayDate)} selected
             </p>
           ) : (
-            <p className="mt-8 text-center text-sm text-[var(--book-muted)]">
+            <p className="mt-5 text-center text-sm text-[var(--book-muted)]">
               Select a date to continue
             </p>
           )}
