@@ -3,7 +3,10 @@
 import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 
-import { BookingPrimaryButton } from "@/components/booking-engine/booking-primary-button";
+import {
+  BookingBackLink,
+  BookingPrimaryButton,
+} from "@/components/booking-engine/booking-primary-button";
 import { bookingContactPath } from "@/lib/booking/booking-config";
 import { formatBookingDate } from "@/lib/booking/booking-format";
 import {
@@ -324,8 +327,13 @@ export function ShipStep({
   };
 
   return (
-    <div className="mx-auto max-w-2xl space-y-10">
+    <div className="mx-auto max-w-2xl space-y-9">
+      <BookingBackLink onClick={onBack} />
+
       <header className="space-y-3 text-center">
+        <p className="text-[11px] font-medium tracking-[0.18em] text-[var(--book-muted)] uppercase">
+          {formattedDate}
+        </p>
         <h2
           ref={headingRef}
           tabIndex={-1}
@@ -334,26 +342,11 @@ export function ShipStep({
         >
           {singleShip ? "Your cruise ship" : "Which cruise ship?"}
         </h2>
-        {singleShip ? (
-          <>
-            <p className="text-lg text-[var(--book-muted)]">
-              We&apos;ve matched the only ship visiting Villefranche on your
-              selected date.
-            </p>
-            <p className="text-[15px] text-[var(--book-muted)]">
-              Visiting Villefranche on {formattedDate}
-            </p>
-          </>
-        ) : (
-          <>
-            <p className="text-lg text-[var(--book-muted)]">
-              Select the ship you&apos;ll be arriving on in Villefranche.
-            </p>
-            <p className="text-[15px] text-[var(--book-muted)]">
-              {formattedDate}
-            </p>
-          </>
-        )}
+        <p className="mx-auto max-w-md text-lg text-[var(--book-muted)]">
+          {singleShip
+            ? "We've matched the only ship visiting Villefranche on your selected date."
+            : "Select the ship you'll be arriving on in Villefranche."}
+        </p>
       </header>
 
       {ships.length === 0 ? (
@@ -459,12 +452,9 @@ export function ShipStep({
         </p>
       ) : null}
 
-      <div className="mx-auto max-w-md space-y-3">
+      <div className="flex justify-center pt-2">
         <BookingPrimaryButton onClick={onContinue} disabled={!canContinue}>
           Continue to Guests
-        </BookingPrimaryButton>
-        <BookingPrimaryButton variant="ghost" onClick={onBack}>
-          Back
         </BookingPrimaryButton>
       </div>
     </div>

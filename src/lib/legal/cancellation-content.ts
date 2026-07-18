@@ -1,10 +1,13 @@
 import { BUSINESS_DECISION_REQUIRED } from "@/lib/legal/constants";
+import { businessIdentity } from "@/lib/legal/business-identity";
 import type { CancellationPolicyContent } from "@/lib/legal/types";
-import { siteConfig } from "@/lib/site-config";
 
 /**
  * Cancellation policy draft. Refund windows and percentages remain unset until
  * business approval — unresolved fields are omitted from customer rendering.
+ *
+ * Supplier-cancellation and refund wording uses the shared preferred language
+ * from businessIdentity so we do not imply Wow A Tour Ltd operates the excursion.
  */
 export const cancellationContent: CancellationPolicyContent = {
   path: "/cancellation-policy",
@@ -41,8 +44,8 @@ export const cancellationContent: CancellationPolicyContent = {
     },
     {
       id: "supplier-cancellation",
-      label: "Supplier cancellation",
-      value: BUSINESS_DECISION_REQUIRED,
+      label: "If the local provider cancels, or the booking cannot be fulfilled",
+      value: `${businessIdentity.cancellationLanguage.triggerStatement}, we will contact you as soon as practical. Where a refund is due, ${businessIdentity.cancellationLanguage.refundStatement.charAt(0).toLowerCase()}${businessIdentity.cancellationLanguage.refundStatement.slice(1)}`,
     },
     {
       id: "weather-cancellation",
@@ -57,7 +60,7 @@ export const cancellationContent: CancellationPolicyContent = {
   ],
   closingParagraphs: [
     "Specific cancellation windows and refund amounts will be confirmed in your booking confirmation once the final policy values are approved.",
-    `If you need to cancel or change a booking, contact us at ${siteConfig.bookingEmail} as soon as possible so we can review your request.`,
+    `If you need to cancel or change a booking, contact us at ${businessIdentity.customerServiceEmail} as soon as possible so we can review your request.`,
     "This cancellation policy should be read together with our Booking Terms and Conditions.",
   ],
 };

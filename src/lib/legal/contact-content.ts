@@ -1,10 +1,10 @@
 import { BUSINESS_DECISION_REQUIRED } from "@/lib/legal/constants";
+import { businessIdentity } from "@/lib/legal/business-identity";
 import type { ContactPageContent } from "@/lib/legal/types";
-import { siteConfig } from "@/lib/site-config";
 
 /**
  * Contact page — only verified details are shown.
- * Telephone, WhatsApp, hours and company details remain pending.
+ * Telephone and WhatsApp remain pending until supplied and confirmed.
  */
 export const contactContent: ContactPageContent = {
   path: "/contact",
@@ -12,13 +12,13 @@ export const contactContent: ContactPageContent = {
   metaDescription:
     "Contact the Villefranche Shore Excursions cruise excursion team for booking help and port-day questions.",
   lastUpdated: BUSINESS_DECISION_REQUIRED,
-  lead: "Need help before booking? Our cruise excursion team is here to assist with availability, ships schedules and meeting arrangements.",
+  lead: "Need help before booking? Our cruise excursion team is here to assist with availability, ship schedules and meeting arrangements.",
   details: [
     {
       id: "email",
       label: "Customer-service email",
-      value: siteConfig.bookingEmail,
-      href: `mailto:${siteConfig.bookingEmail}`,
+      value: businessIdentity.customerServiceEmail,
+      href: businessIdentity.customerServiceEmailHref,
     },
     {
       id: "telephone",
@@ -43,10 +43,11 @@ export const contactContent: ContactPageContent = {
     {
       id: "company-details",
       label: "Company details",
-      value: BUSINESS_DECISION_REQUIRED,
+      value: businessIdentity.companyDisclosure,
     },
   ],
   closingParagraphs: [
     "Please include your cruise date, ship name and guest numbers when you write to us so we can help more quickly.",
+    businessIdentity.agentStatus,
   ],
 };

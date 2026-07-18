@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { BookingPrimaryButton } from "@/components/booking-engine/booking-primary-button";
+import { BookingBackLink } from "@/components/booking-engine/booking-primary-button";
 import {
   formatBookingDate,
   startOfLocalDay,
@@ -130,37 +130,44 @@ export function DateStep({
   const displayDate = pendingDate ?? selectedDate;
 
   return (
-    <div className="book-date-stage mx-auto max-w-3xl space-y-8">
-      {/* Soft photographic remnant — journey continues from the hero */}
+    <div className="book-date-stage mx-auto max-w-3xl">
+      <BookingBackLink onClick={handleBack} className="mb-6 sm:mb-8" />
+
+      {/* Photographic band — the journey continues from the hero, heading rides on it */}
       <div
         className="book-date-hero-remnant relative overflow-hidden rounded-[1.25rem]"
-        aria-hidden="true"
       >
         <img
           src="/images/booking/monaco-port-hercule-1280.webp"
           alt=""
           width={1280}
           height={580}
-          className="h-28 w-full object-cover object-center sm:h-36"
+          className="h-40 w-full object-cover object-center sm:h-56"
           decoding="async"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--book-ink)]/50 to-[var(--book-ink)]/10" />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-[var(--book-ink)]/80 via-[var(--book-ink)]/25 to-transparent"
+          aria-hidden="true"
+        />
+        <div className="relative z-10 flex min-h-[10rem] flex-col justify-end px-6 py-7 sm:min-h-[14rem] sm:px-10 sm:py-9">
+          <p className="text-[11px] font-medium tracking-[0.18em] text-white/70 uppercase">
+            Villefranche-sur-Mer
+          </p>
+          <h2
+            ref={headingRef}
+            tabIndex={-1}
+            id="booking-date-heading"
+            className="book-display mt-2 max-w-md text-3xl font-medium leading-[1.05] text-white outline-none sm:text-5xl"
+          >
+            Choose your cruise date
+          </h2>
+        </div>
       </div>
 
-      <header className="space-y-3 text-center">
-        <h2
-          ref={headingRef}
-          tabIndex={-1}
-          id="booking-date-heading"
-          className="book-display text-4xl font-medium text-[var(--book-ink)] outline-none sm:text-5xl"
-        >
-          Choose your cruise date
-        </h2>
-        <p className="text-lg text-[var(--book-muted)]">
-          The day your ship calls at Villefranche-sur-Mer.
-        </p>
-      </header>
+      <p className="mt-5 max-w-md text-[15px] leading-6 text-[var(--book-muted)] sm:text-base">
+        The day your ship calls at port.
+      </p>
 
       <div
         className="sr-only"
@@ -170,107 +177,103 @@ export function DateStep({
         {announcement}
       </div>
 
-      <div className="book-surface-card rounded-[1.75rem] bg-[var(--book-surface)] p-6 shadow-[0_24px_60px_-36px_rgba(12,26,36,0.35)] sm:p-10">
-        <div className="mb-6 flex items-center justify-between gap-3">
-          <button
-            type="button"
-            onClick={() => {
-              clearAdvanceTimer();
-              setPendingDate(null);
-              setAnnouncement("");
-              onSelectDate(null);
-              setView(new Date(view.getFullYear(), view.getMonth() - 1, 1));
-            }}
-            disabled={!canGoPrev}
-            className="book-btn rounded-full px-4 py-2 text-sm font-medium text-[var(--book-sea)] disabled:opacity-25"
-            aria-label="Previous month"
+      <div className="mt-9 border-t border-[var(--book-line)] pt-8 sm:mt-10 sm:pt-9">
+        <div className="mx-auto max-w-md">
+          <div className="mb-6 flex items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                clearAdvanceTimer();
+                setPendingDate(null);
+                setAnnouncement("");
+                onSelectDate(null);
+                setView(new Date(view.getFullYear(), view.getMonth() - 1, 1));
+              }}
+              disabled={!canGoPrev}
+              className="book-btn rounded-full px-4 py-2 text-sm font-medium text-[var(--book-sea)] disabled:opacity-25"
+              aria-label="Previous month"
+            >
+              ←
+            </button>
+            <p
+              key={monthLabel}
+              className="book-selected-date book-display text-2xl font-medium text-[var(--book-ink)]"
+            >
+              {monthLabel}
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                clearAdvanceTimer();
+                setPendingDate(null);
+                setAnnouncement("");
+                onSelectDate(null);
+                setView(new Date(view.getFullYear(), view.getMonth() + 1, 1));
+              }}
+              className="book-btn rounded-full px-4 py-2 text-sm font-medium text-[var(--book-sea)]"
+              aria-label="Next month"
+            >
+              →
+            </button>
+          </div>
+
+          <div className="mb-2 grid grid-cols-7 gap-1 text-center text-[11px] font-medium tracking-[0.12em] uppercase text-[var(--book-muted)]">
+            {WEEKDAYS.map((day) => (
+              <span key={day} className="py-2">
+                {day}
+              </span>
+            ))}
+          </div>
+
+          <div
+            key={`${view.getFullYear()}-${view.getMonth()}`}
+            className="book-calendar-grid grid grid-cols-7 gap-1.5 sm:gap-2"
           >
-            ←
-          </button>
-          <p
-            key={monthLabel}
-            className="book-selected-date book-display text-2xl font-medium text-[var(--book-ink)]"
-          >
-            {monthLabel}
-          </p>
-          <button
-            type="button"
-            onClick={() => {
-              clearAdvanceTimer();
-              setPendingDate(null);
-              setAnnouncement("");
-              onSelectDate(null);
-              setView(new Date(view.getFullYear(), view.getMonth() + 1, 1));
-            }}
-            className="book-btn rounded-full px-4 py-2 text-sm font-medium text-[var(--book-sea)]"
-            aria-label="Next month"
-          >
-            →
-          </button>
+            {cells.map((date, index) => {
+              if (!date) {
+                return <span key={`empty-${index}`} className="aspect-square" />;
+              }
+              const iso = toLocalIsoDate(date);
+              const disabled = date < today;
+              const selected = displayDate === iso;
+              return (
+                <button
+                  key={iso}
+                  type="button"
+                  disabled={disabled || Boolean(pendingDate)}
+                  onClick={() => handleSelectDate(iso, date)}
+                  aria-label={formatBookingDate(iso)}
+                  aria-pressed={selected}
+                  className={[
+                    "book-day-btn aspect-square rounded-2xl text-base font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]",
+                    disabled
+                      ? "cursor-not-allowed text-[var(--book-line)]"
+                      : selected
+                        ? "bg-[var(--book-sea-deep)] text-white"
+                        : "text-[var(--book-ink)] hover:bg-[var(--book-mist)]",
+                    pendingDate && selected ? "book-day-confirming" : "",
+                  ].join(" ")}
+                >
+                  {date.getDate()}
+                </button>
+              );
+            })}
+          </div>
+
+          {displayDate ? (
+            <p
+              key={displayDate}
+              className="book-selected-date mt-8 text-center text-base font-medium text-[var(--book-ink)]"
+              aria-hidden="true"
+            >
+              {formatBookingDate(displayDate)} selected
+            </p>
+          ) : (
+            <p className="mt-8 text-center text-sm text-[var(--book-muted)]">
+              Select a date to continue
+            </p>
+          )}
         </div>
-
-        <div className="mb-2 grid grid-cols-7 gap-1 text-center text-[11px] font-medium tracking-[0.12em] uppercase text-[var(--book-muted)]">
-          {WEEKDAYS.map((day) => (
-            <span key={day} className="py-2">
-              {day}
-            </span>
-          ))}
-        </div>
-
-        <div
-          key={`${view.getFullYear()}-${view.getMonth()}`}
-          className="book-calendar-grid grid grid-cols-7 gap-1.5 sm:gap-2"
-        >
-          {cells.map((date, index) => {
-            if (!date) {
-              return <span key={`empty-${index}`} className="aspect-square" />;
-            }
-            const iso = toLocalIsoDate(date);
-            const disabled = date < today;
-            const selected = displayDate === iso;
-            return (
-              <button
-                key={iso}
-                type="button"
-                disabled={disabled || Boolean(pendingDate)}
-                onClick={() => handleSelectDate(iso, date)}
-                aria-label={formatBookingDate(iso)}
-                aria-pressed={selected}
-                className={[
-                  "book-day-btn aspect-square rounded-2xl text-base font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]",
-                  disabled
-                    ? "cursor-not-allowed text-[var(--book-line)]"
-                    : selected
-                      ? "bg-[var(--book-sea-deep)] text-white"
-                      : "text-[var(--book-ink)] hover:bg-[var(--book-mist)]",
-                  pendingDate && selected ? "book-day-confirming" : "",
-                ].join(" ")}
-              >
-                {date.getDate()}
-              </button>
-            );
-          })}
-        </div>
-
-        {displayDate ? (
-          <p
-            key={displayDate}
-            className="book-selected-date mt-8 text-center text-base font-medium text-[var(--book-ink)]"
-            aria-hidden="true"
-          >
-            {formatBookingDate(displayDate)} selected
-          </p>
-        ) : (
-          <p className="mt-8 text-center text-sm text-[var(--book-muted)]">
-            Select a date to continue
-          </p>
-        )}
-      </div>
-
-      <div className="mx-auto max-w-md">
-        <BookingPrimaryButton variant="ghost" onClick={handleBack}>
-          Back
-        </BookingPrimaryButton>
       </div>
     </div>
   );

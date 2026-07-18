@@ -4,6 +4,7 @@ import { Cormorant_Garamond } from "next/font/google";
 import { JsonLd } from "@/components/json-ld";
 import { featuredTour } from "@/lib/featured-tour";
 import { legalNavLinks } from "@/lib/legal";
+import { businessIdentity } from "@/lib/legal/business-identity";
 import { formatLastUpdated } from "@/lib/legal/resolve";
 import { buildBreadcrumbSchema, buildWebPageSchema } from "@/lib/site-schema";
 
@@ -73,7 +74,7 @@ export function LegalPolicyPage({
         <header className="border-b border-[var(--w2-border)] bg-[var(--w2-bg-warm)]">
           <div className="mx-auto max-w-3xl px-6 py-14 sm:px-8 sm:py-20">
             <p className="text-[11px] font-medium tracking-[0.18em] text-[var(--w2-primary)] uppercase">
-              Villefranche Shore Excursions
+              {businessIdentity.tradingName}
             </p>
             <h1
               className={`${display.className} mt-3 text-4xl font-medium tracking-tight sm:text-5xl`}
@@ -184,6 +185,12 @@ export function LegalPolicyPage({
                 ))}
               </div>
             ) : null}
+
+            <aside className="border-t border-[var(--w2-border)] pt-8">
+              <p className="text-xs leading-5 text-[var(--w2-muted)]">
+                {businessIdentity.companyDisclosure}
+              </p>
+            </aside>
 
             <div className="border-t border-[var(--w2-border)] pt-10">
               <p className="text-[11px] font-medium tracking-[0.16em] text-[var(--w2-muted)] uppercase">

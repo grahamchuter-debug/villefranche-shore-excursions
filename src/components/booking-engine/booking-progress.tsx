@@ -6,12 +6,16 @@ type BookingProgressProps = {
   current: BookingStepId;
 };
 
-export function BookingProgress({ current }: BookingProgressProps) {
-  const currentIndex = bookingSteps.findIndex((step) => step.id === current);
-  const visibleSteps = bookingSteps.filter((step) => step.id !== "confirmed");
-  const isConfirmed = current === "confirmed";
+const FLOW_STEPS = bookingSteps.filter(
+  (step) => step.id !== "tour" && step.id !== "confirmed",
+);
 
-  if (isConfirmed) {
+/**
+ * Quiet progress instrument: a thin fill + "Step x of y" label rather than
+ * numbered-circle wizard chrome. Still driven entirely by `bookingSteps`.
+ */
+export function BookingProgress({ current }: BookingProgressProps) {
+  if (current === "confirmed") {
     return (
       <p className="text-center text-xs font-medium tracking-[0.16em] uppercase text-[var(--book-success)]">
         Confirmed
@@ -19,44 +23,33 @@ export function BookingProgress({ current }: BookingProgressProps) {
     );
   }
 
+  const currentIndex = FLOW_STEPS.findIndex((step) => step.id === current);
+  const stepNumber = currentIndex + 1;
+  const total = FLOW_STEPS.length;
+  const currentLabel = FLOW_STEPS[currentIndex]?.label ?? "";
+  const progressPercent = total > 0 ? (stepNumber / total) * 100 : 0;
+
   return (
-    <nav aria-label="Booking progress" className="w-full">
-      <ol className="mx-auto flex max-w-2xl items-center justify-between gap-2">
-        {visibleSteps.map((step, index) => {
-          const done = index < currentIndex;
-          const active = index === currentIndex;
-          return (
-            <li
-              key={step.id}
-              className="flex min-w-0 flex-1 flex-col items-center gap-2"
-            >
-              <span
-                className={[
-                  "flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold transition sm:h-9 sm:w-9 sm:text-sm",
-                  done
-                    ? "bg-[var(--w2-primary)] text-white"
-                    : active
-                      ? "bg-[var(--w2-primary-hover)] text-white"
-                      : "bg-transparent text-[var(--book-muted)] ring-1 ring-[var(--book-line)]",
-                ].join(" ")}
-                aria-current={active ? "step" : undefined}
-              >
-                {done ? "✓" : index + 1}
-              </span>
-              <span
-                className={[
-                  "truncate text-[10px] font-medium tracking-[0.08em] uppercase sm:text-[11px]",
-                  active || done
-                    ? "text-[var(--book-ink)]"
-                    : "text-[var(--book-muted)]",
-                ].join(" ")}
-              >
-                {step.label}
-              </span>
-            </li>
-          );
-        })}
-      </ol>
-    </nav>
+    <div className="w-full">
+      <div
+        className="h-[3px] w-full overflow-hidden rounded-full bg-[var(--book-line)]"
+        role="progressbar"
+        aria-valuemin={1}
+        aria-valuemax={total}
+        aria-valuenow={stepNumber}
+        aria-valuetext={`Step ${stepNumber} of ${total}: ${currentLabel}`}
+      >
+        <div
+          className="book-progress-fill h-full rounded-full bg-[var(--w2-primary)]"
+          style={{ width: `${progressPercent}%` }}
+        />
+      </div>
+      <p className="mt-3 flex items-baseline justify-between text-[11px] font-medium tracking-[0.14em] text-[var(--book-muted)] uppercase">
+        <span>
+          Step {stepNumber} of {total}
+        </span>
+        <span className="text-[var(--book-ink)]">{currentLabel}</span>
+      </p>
+    </div>
   );
 }

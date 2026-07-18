@@ -4,6 +4,7 @@ import { Cormorant_Garamond } from "next/font/google";
 
 import { JsonLd } from "@/components/json-ld";
 import { featuredTour } from "@/lib/featured-tour";
+import { businessIdentity } from "@/lib/legal/business-identity";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { buildBreadcrumbSchema, buildWebPageSchema } from "@/lib/site-schema";
 import { siteImages, villefrancheCruisePortAlt } from "@/lib/site-images";
@@ -234,6 +235,19 @@ export default function ReturnToShipGuaranteePage() {
             <Link href="/terms-and-conditions" className="w2-link">
               Booking Terms and Conditions
             </Link>
+            .
+          </p>
+          <p className="mt-6 max-w-2xl text-xs leading-5 text-[var(--w2-muted)]">
+            {businessIdentity.companyDisclosure}
+          </p>
+          <p className="mt-3 max-w-2xl text-xs leading-5 text-[var(--w2-muted)]">
+            {businessIdentity.agentStatus} Questions:{" "}
+            <a
+              href={businessIdentity.customerServiceEmailHref}
+              className="w2-link"
+            >
+              {businessIdentity.customerServiceEmail}
+            </a>
             .
           </p>
 

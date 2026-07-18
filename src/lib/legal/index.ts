@@ -1,4 +1,5 @@
 import { BUSINESS_DECISION_REQUIRED } from "@/lib/legal/constants";
+import { businessIdentity } from "@/lib/legal/business-identity";
 import { cancellationContent } from "@/lib/legal/cancellation-content";
 import { contactContent } from "@/lib/legal/contact-content";
 import { privacyContent } from "@/lib/legal/privacy-content";
@@ -7,6 +8,7 @@ import type { LegalText } from "@/lib/legal/types";
 import { isPendingText } from "@/lib/legal/types";
 
 export {
+  businessIdentity,
   cancellationContent,
   contactContent,
   privacyContent,

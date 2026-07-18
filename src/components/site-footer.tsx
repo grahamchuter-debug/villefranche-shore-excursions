@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { featuredTour } from "@/lib/featured-tour";
 import { cruiseLineVillefrancheHubLinks } from "@/lib/cruise-line-villefranche-pages";
+import { businessIdentity } from "@/lib/legal/business-identity";
 import { portGuidePath, meetingPointPath } from "@/lib/site-paths";
 import { siteConfig } from "@/lib/site-config";
 
@@ -235,7 +236,11 @@ export function SiteFooter() {
             ))}
           </div>
 
-          <p className="mt-4 text-xs leading-5 text-slate-500">
+          <p className="mt-5 max-w-3xl text-[11px] leading-5 text-slate-600">
+            {businessIdentity.companyDisclosure}
+          </p>
+
+          <p className="mt-3 text-xs leading-5 text-slate-500">
             © 2026 {siteConfig.copyrightEntity}. Independent cruise excursion
             guide.
           </p>

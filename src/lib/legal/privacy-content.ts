@@ -1,10 +1,10 @@
 import { BUSINESS_DECISION_REQUIRED } from "@/lib/legal/constants";
+import { businessIdentity } from "@/lib/legal/business-identity";
 import type { LegalPageContent } from "@/lib/legal/types";
-import { siteConfig } from "@/lib/site-config";
 
 /**
- * Privacy policy draft. Does not invent registered office, ICO number,
- * or retention periods — those remain BUSINESS_DECISION_REQUIRED.
+ * Privacy policy draft. Does not invent ICO number or retention periods —
+ * those remain BUSINESS_DECISION_REQUIRED.
  */
 export const privacyContent: LegalPageContent = {
   path: "/privacy-policy",
@@ -12,14 +12,15 @@ export const privacyContent: LegalPageContent = {
   metaDescription:
     "How Villefranche Shore Excursions collects and uses personal information when you enquire about or book a shore excursion.",
   lastUpdated: BUSINESS_DECISION_REQUIRED,
-  lead: `This privacy notice explains how ${siteConfig.name} handles personal information when you use our website or make a booking enquiry.`,
+  lead: `This privacy notice explains how ${businessIdentity.tradingName} handles personal information when you use our website or make a booking enquiry.`,
   sections: [
     {
       id: "who-controls-data",
       title: "Who controls the data",
       paragraphs: [
-        `${siteConfig.name} handles the personal information you provide through this website for booking and customer-service purposes.`,
-        BUSINESS_DECISION_REQUIRED, // legal controller entity / registered details
+        `${businessIdentity.tradingName} handles the personal information you provide through this website for booking and customer-service purposes.`,
+        businessIdentity.legalEntityStatement,
+        `${businessIdentity.legalCompanyName} is registered in ${businessIdentity.registeredJurisdiction} under company number ${businessIdentity.companyNumber}. Registered office: ${businessIdentity.registeredOffice.formatted}.`,
       ],
     },
     {
@@ -66,7 +67,7 @@ export const privacyContent: LegalPageContent = {
       id: "suppliers-and-providers",
       title: "Suppliers and service providers",
       paragraphs: [
-        "We may share booking details with the local excursion operator and service providers who help us deliver the tour, process payments or host the website.",
+        "We may share booking details with the local excursion provider and service providers who help us deliver the tour, process payments or host the website.",
         "We only share what is needed to provide the service you requested.",
       ],
     },
@@ -91,7 +92,7 @@ export const privacyContent: LegalPageContent = {
       title: "Customer rights",
       paragraphs: [
         "Depending on applicable law, you may have rights to access, correct or delete personal information we hold about you, or to ask us about how it is used.",
-        `To make a privacy request, contact ${siteConfig.bookingEmail}.`,
+        `To make a privacy request, contact ${businessIdentity.customerServiceEmail}.`,
         BUSINESS_DECISION_REQUIRED, // formal rights list / supervisory authority
       ],
     },
@@ -99,8 +100,8 @@ export const privacyContent: LegalPageContent = {
       id: "contact-details",
       title: "Contact details",
       paragraphs: [
-        `Privacy enquiries: ${siteConfig.bookingEmail}`,
-        BUSINESS_DECISION_REQUIRED, // postal address / DPO if any
+        `Privacy enquiries: ${businessIdentity.customerServiceEmail}`,
+        businessIdentity.companyDisclosure,
       ],
     },
   ],

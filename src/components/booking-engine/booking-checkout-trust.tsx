@@ -5,6 +5,7 @@ import {
   bookingCheckoutLinks,
   bookingContactPath,
 } from "@/lib/booking/booking-config";
+import { businessIdentity } from "@/lib/legal/business-identity";
 
 export function BookingCheckoutTrust() {
   return (
@@ -35,6 +36,9 @@ export function BookingCheckoutTrust() {
             </li>
           ))}
         </ul>
+        <p className="mx-auto mt-5 max-w-md text-[12px] leading-5 text-[var(--book-muted)]">
+          {businessIdentity.agentStatus}
+        </p>
       </nav>
     </footer>
   );

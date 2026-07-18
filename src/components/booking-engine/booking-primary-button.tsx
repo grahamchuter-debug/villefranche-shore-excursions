@@ -7,6 +7,11 @@ type BookingPrimaryButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "secondary" | "ghost" | "onDark";
 };
 
+/**
+ * Full-width on mobile; content-sized (with a comfortable minimum) from
+ * `sm:` up. Pass a width utility in `className` (e.g. `sm:w-full`) for the
+ * rare case a desktop CTA should still span its container.
+ */
 export const BookingPrimaryButton = forwardRef<
   HTMLButtonElement,
   BookingPrimaryButtonProps
@@ -15,7 +20,7 @@ export const BookingPrimaryButton = forwardRef<
   ref,
 ) {
   const base =
-    "book-btn w2-btn inline-flex w-full items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-40 sm:text-base";
+    "book-btn w2-btn inline-flex w-full items-center justify-center rounded-full px-8 py-4 text-[15px] font-semibold tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto sm:min-w-[14rem] sm:text-base";
 
   const variants = {
     primary:
@@ -39,3 +44,35 @@ export const BookingPrimaryButton = forwardRef<
     </button>
   );
 });
+
+type BookingBackLinkProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  children?: ReactNode;
+};
+
+/**
+ * Quiet wayfinding for mid-flow steps — replaces a second full-width pill
+ * with an inline, text-weight action so each screen has one clear primary
+ * move.
+ */
+export function BookingBackLink({
+  children = "Back",
+  className = "",
+  type = "button",
+  ...props
+}: BookingBackLinkProps) {
+  return (
+    <button
+      type={type}
+      className={`book-back-link group inline-flex items-center gap-1.5 text-sm font-medium text-[var(--book-muted)] outline-none hover:text-[var(--book-ink)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--w2-focus-ring)] disabled:cursor-not-allowed disabled:opacity-40 ${className}`}
+      {...props}
+    >
+      <span
+        aria-hidden="true"
+        className="book-back-link-arrow inline-block"
+      >
+        ←
+      </span>
+      {children}
+    </button>
+  );
+}

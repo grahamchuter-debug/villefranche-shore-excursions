@@ -65,10 +65,10 @@ export function CruiseDaySummary({
 
   return (
     <section
-      className="book-cruise-day book-checkout-enter rounded-[1.75rem] bg-[var(--book-surface)] px-6 py-9 shadow-[0_28px_70px_-42px_rgba(12,26,36,0.32)] sm:px-10 sm:py-11"
+      className="book-cruise-day book-checkout-enter"
       aria-labelledby="cruise-day-heading"
     >
-      <header className="mb-9 max-w-xl space-y-2">
+      <header className="mb-8 max-w-xl space-y-2 sm:mb-9">
         <p className="text-[11px] font-medium tracking-[0.18em] text-[var(--book-gold)] uppercase">
           Your cruise itinerary
         </p>
@@ -80,8 +80,8 @@ export function CruiseDaySummary({
         </h3>
       </header>
 
-      <dl className="space-y-7">
-        <div className="grid gap-1 sm:grid-cols-[11rem_1fr] sm:gap-6">
+      <dl className="divide-y divide-[var(--book-line)]">
+        <div className="grid gap-1 py-5 first:pt-0 sm:grid-cols-[11rem_1fr] sm:gap-6">
           <dt className="flex items-baseline gap-3 text-[13px] tracking-wide text-[var(--book-muted)]">
             <span>Cruise Ship</span>
             {onChangeShip ? (
@@ -107,7 +107,7 @@ export function CruiseDaySummary({
         {rows.map((row) => (
           <div
             key={row.label}
-            className="grid gap-1 sm:grid-cols-[11rem_1fr] sm:gap-6"
+            className="grid gap-1 py-5 sm:grid-cols-[11rem_1fr] sm:gap-6"
           >
             <dt className="text-[13px] tracking-wide text-[var(--book-muted)]">
               {row.label}
@@ -123,7 +123,7 @@ export function CruiseDaySummary({
           </div>
         ))}
 
-        <div className="grid gap-1 border-t border-[var(--book-line)] pt-7 sm:grid-cols-[11rem_1fr] sm:gap-6">
+        <div className="grid gap-1 py-6 sm:grid-cols-[11rem_1fr] sm:gap-6">
           <dt className="text-[13px] tracking-wide text-[var(--book-muted)]">
             Total
           </dt>

@@ -296,7 +296,7 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
       ) : (
         <div className="book-shell py-8 sm:py-12 lg:py-14">
           {state.step !== "confirmed" ? (
-            <div className="mb-10 sm:mb-12">
+            <div className="mb-8 sm:mb-10">
               <BookingProgress current={state.step} />
             </div>
           ) : null}

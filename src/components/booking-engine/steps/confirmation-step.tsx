@@ -11,6 +11,7 @@ import {
   formatBookingMoney,
   calculateBookingTotal,
 } from "@/lib/booking/booking-format";
+import { businessIdentity } from "@/lib/legal/business-identity";
 
 type ConfirmationStepProps = {
   bookingReference: string;
@@ -61,7 +62,7 @@ export function ConfirmationStep({
           <div className="absolute inset-0 bg-[var(--book-ink)]/55" />
           <div className="relative flex h-full min-h-[14rem] flex-col items-center justify-center px-6 py-12 text-white sm:min-h-[18rem] sm:px-10">
             <p className="mb-3 text-[11px] font-medium tracking-[0.2em] text-white/70 uppercase">
-              Reserved for you
+              {businessIdentity.tradingName}
             </p>
             <h2 className="book-display max-w-xl text-3xl font-medium leading-tight sm:text-5xl">
               Your Riviera day awaits
@@ -73,18 +74,18 @@ export function ConfirmationStep({
         </div>
 
         <div className="space-y-8 px-6 py-10 text-left sm:px-10">
-          <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div>
               <dt className="text-[11px] tracking-[0.14em] text-[var(--book-muted)] uppercase">
-                Cruise Ship
+                Booking reference
               </dt>
               <dd className="mt-1 font-medium text-[var(--book-ink)]">
-                {cruiseShip.name}
+                {bookingReference}
               </dd>
             </div>
             <div>
               <dt className="text-[11px] tracking-[0.14em] text-[var(--book-muted)] uppercase">
-                Tour
+                Experience
               </dt>
               <dd className="mt-1 font-medium text-[var(--book-ink)]">
                 {bookingPrototypeTour.name}
@@ -100,11 +101,27 @@ export function ConfirmationStep({
             </div>
             <div>
               <dt className="text-[11px] tracking-[0.14em] text-[var(--book-muted)] uppercase">
-                Total
+                Cruise ship
               </dt>
               <dd className="mt-1 font-medium text-[var(--book-ink)]">
-                {formatBookingMoney(calculateBookingTotal(guests))} · {guests}{" "}
-                {guests === 1 ? "guest" : "guests"}
+                {cruiseShip.name}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-[11px] tracking-[0.14em] text-[var(--book-muted)] uppercase">
+                Guests
+              </dt>
+              <dd className="mt-1 font-medium text-[var(--book-ink)]">
+                {guests} {guests === 1 ? "guest" : "guests"} ·{" "}
+                {formatBookingMoney(calculateBookingTotal(guests))}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-[11px] tracking-[0.14em] text-[var(--book-muted)] uppercase">
+                Local excursion provider
+              </dt>
+              <dd className="mt-1 font-medium text-[var(--book-ink)]">
+                {businessIdentity.localProviderPlaceholder}
               </dd>
             </div>
           </dl>
@@ -126,6 +143,30 @@ export function ConfirmationStep({
                 time for your ship.
               </li>
             </ol>
+          </div>
+
+          <div className="space-y-3 border-t border-[var(--book-line)] pt-6 text-sm leading-6 text-[var(--book-muted)]">
+            <p>
+              Questions about this booking?{" "}
+              <a
+                href={businessIdentity.customerServiceEmailHref}
+                className="book-text-link font-medium underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
+              >
+                {businessIdentity.customerServiceEmail}
+              </a>
+            </p>
+            <p>
+              Cancellation terms:{" "}
+              <Link
+                href="/cancellation-policy"
+                className="book-text-link font-medium underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]"
+              >
+                Cancellation Policy
+              </Link>
+            </p>
+            <p className="text-xs leading-5 text-[var(--book-muted)]">
+              {businessIdentity.companyDisclosure}
+            </p>
           </div>
         </div>
       </section>

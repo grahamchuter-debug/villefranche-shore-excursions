@@ -336,7 +336,7 @@ body {
 }
 
 .booking-engine-root .book-reassure-featured {
-  box-shadow: 0 20px 50px -40px color-mix(in srgb, var(--w2-primary) 35%, transparent);
+  box-shadow: none;
 }
 
 /* Booking text links — same colour + hover as site .w2-link */
@@ -521,6 +521,21 @@ body {
   }
 }
 
+/* ——— Quiet progress instrument ——— */
+.booking-engine-root .book-progress-fill {
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ——— Back link: arrow nudges left on hover/focus, not a decorative flourish ——— */
+.booking-engine-root .book-back-link-arrow {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.booking-engine-root .book-back-link:hover .book-back-link-arrow,
+.booking-engine-root .book-back-link:focus-visible .book-back-link-arrow {
+  transform: translateX(-2px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .booking-engine-root .book-btn,
   .booking-engine-root .book-btn-primary:hover:not(:disabled),
@@ -535,7 +550,9 @@ body {
   .booking-engine-root .book-day-btn[aria-pressed="true"],
   .booking-engine-root .book-guest-control,
   .booking-engine-root .book-guest-control:hover:not(:disabled),
-  .booking-engine-root .book-guest-control:active:not(:disabled) {
+  .booking-engine-root .book-guest-control:active:not(:disabled),
+  .booking-engine-root .book-progress-fill,
+  .booking-engine-root .book-back-link-arrow {
     transition: none !important;
     transform: none !important;
     box-shadow: none !important;
