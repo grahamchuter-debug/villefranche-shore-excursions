@@ -1,12 +1,12 @@
 # Villefranche ship-image audit
 
-Generated: 2026-07-18T10:28:15.708Z
+Generated: 2026-07-18T10:42:26.700Z
 
 ## Summary
 
 - Total ships referenced: **74**
-- Ships with verified publishable images: **51**
-- Ships missing images / using fallbacks: **23**
+- Ships with verified publishable images: **53**
+- Ships missing images / using fallbacks: **21**
 - Catalogue entries missing source or licence: **0**
 - Orphan disk files not in catalogue: **0**
 
@@ -32,13 +32,13 @@ Publish only when `verifiedExactShip` and complete source/licence metadata are s
 | Celebrity Eclipse | Celebrity Cruises | 2 | celebrity-eclipse-1920.webp | yes | yes | — |
 | Celebrity Equinox | Celebrity Cruises | 11 | celebrity-equinox-1920.webp | yes | yes | — |
 | Celebrity Infinity | Celebrity Cruises | 1 | celebrity-infinity-1920.webp | yes | yes | — |
-| Celebrity Xcel | Celebrity Cruises | 13 | — | no | no | — |
+| Celebrity Xcel | Celebrity Cruises | 13 | celebrity-xcel-1920.webp | yes | yes | — |
 | Celestyal Discovery | Celestyal Cruises | 4 | celestyal-discovery-1920.webp | yes | yes | — |
 | Crystal Serenity | Crystal / Crystal Cruises | 2 | crystal-serenity-1920.webp | yes | yes | — |
 | Crystal Symphony | Crystal Cruises | 1 | — | no | no | — |
 | Europa | Hapag Lloyd | 2 | — | no | no | — |
 | Explora I | Explora Journeys | 9 | explora-i-1920.webp | yes | yes | — |
-| Explora II | Explora Journeys | 3 | — | no | no | — |
+| Explora II | Explora Journeys | 3 | explora-ii-1920.webp | yes | yes | — |
 | Explora III | Explora Journeys | 1 | — | no | no | — |
 | Explora V | Explora Journeys | 2 | — | no | no | — |
 | Explorer Of The Seas | Royal Caribbean Cruises | 6 | explorer-of-the-seas-1920.webp | yes | yes | — |

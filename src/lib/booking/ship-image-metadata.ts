@@ -152,6 +152,20 @@ export const shipImageMetadataCatalog: readonly ShipImageMetadata[] = [
     imagePosition: "center 45%",
   },
   {
+    shipName: "Celebrity Xcel",
+    cruiseLine: "Celebrity Cruises",
+    slug: "celebrity-xcel",
+    file: "celebrity-xcel-1920.webp",
+    sourceName: "Operator-supplied booking photograph",
+    sourcePage: "Local asset: Celebrity_Xcel (provided for Villefranche Shore Excursions booking use)",
+    author: "Provided by site operator",
+    licence: "All rights reserved — used with permission for this website",
+    attributionRequired: true,
+    attributionText: "Celebrity Xcel photograph used with permission for Villefranche Shore Excursions",
+    verifiedExactShip: true,
+    imagePosition: "center 45%",
+  },
+  {
     shipName: "Celestyal Discovery",
     cruiseLine: "Celestyal Cruises",
     slug: "celestyal-discovery",
@@ -192,6 +206,20 @@ export const shipImageMetadataCatalog: readonly ShipImageMetadata[] = [
     attributionText: "JanDragon / Wikimedia Commons / CC BY-SA 4.0",
     verifiedExactShip: true,
     imagePosition: "center 48%",
+  },
+  {
+    shipName: "Explora II",
+    cruiseLine: "Explora Journeys",
+    slug: "explora-ii",
+    file: "explora-ii-1920.webp",
+    sourceName: "Operator-supplied booking photograph",
+    sourcePage: "Local asset: Explora_II (provided for Villefranche Shore Excursions booking use)",
+    author: "Provided by site operator",
+    licence: "All rights reserved — used with permission for this website",
+    attributionRequired: true,
+    attributionText: "Explora II photograph used with permission for Villefranche Shore Excursions",
+    verifiedExactShip: true,
+    imagePosition: "center 42%",
   },
   {
     shipName: "Explorer Of The Seas",
@@ -739,7 +767,7 @@ export const shipImageMetadataCatalog: readonly ShipImageMetadata[] = [
     verifiedExactShip: true,
     imagePosition: "center 40%",
   },
-] as const;
+];
 
 export function getShipImageMetadata(slug: string): ShipImageMetadata | undefined {
   return shipImageMetadataCatalog.find((entry) => entry.slug === slug);

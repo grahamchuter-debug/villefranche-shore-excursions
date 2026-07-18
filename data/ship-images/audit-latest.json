@@ -1,12 +1,12 @@
 {
   "summary": {
-    "generatedAt": "2026-07-18T10:28:15.708Z",
+    "generatedAt": "2026-07-18T10:42:26.700Z",
     "totalShipsReferenced": 74,
-    "shipsWithVerifiedPublishableImages": 51,
-    "shipsMissingImages": 23,
-    "shipsUsingFallbacks": 23,
+    "shipsWithVerifiedPublishableImages": 53,
+    "shipsMissingImages": 21,
+    "shipsUsingFallbacks": 21,
     "imagesMissingSourceOrLicence": 0,
-    "catalogueEntries": 51,
+    "catalogueEntries": 53,
     "orphanDiskFiles": [],
     "possibleDuplicateOrIncorrectMatches": []
   },
@@ -432,16 +432,30 @@
         "2027-10-16"
       ],
       "dateCount": 13,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "celebrity-xcel-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "celebrity-xcel-1280.avif",
+        "celebrity-xcel-1280.webp",
+        "celebrity-xcel-1920.avif",
+        "celebrity-xcel-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Operator-supplied booking photograph",
+        "sourcePage": "Local asset: Celebrity_Xcel (provided for Villefranche Shore Excursions booking use)",
+        "author": "Provided by site operator",
+        "licence": "All rights reserved — used with permission for this website",
+        "attributionRequired": true,
+        "attributionText": "Celebrity Xcel photograph used with permission for Villefranche Shore Excursions",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Celestyal Discovery",
@@ -603,16 +617,30 @@
         "2027-01-31"
       ],
       "dateCount": 3,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "explora-ii-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "explora-ii-1280.avif",
+        "explora-ii-1280.webp",
+        "explora-ii-1920.avif",
+        "explora-ii-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Operator-supplied booking photograph",
+        "sourcePage": "Local asset: Explora_II (provided for Villefranche Shore Excursions booking use)",
+        "author": "Provided by site operator",
+        "licence": "All rights reserved — used with permission for this website",
+        "attributionRequired": true,
+        "attributionText": "Explora II photograph used with permission for Villefranche Shore Excursions",
+        "imagePosition": "center 42%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Explora III",
