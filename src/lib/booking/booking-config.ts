@@ -189,6 +189,9 @@ export const bookingCheckoutCopy = {
   securePaymentHeading: "Secure payment",
   securePaymentNote:
     "You will complete payment on the next step. No charge is taken on this screen.",
+  /** Launch payment method — card only via Stripe; no brand/wallet picker. */
+  paymentMethodLabel: "Credit or debit card",
+  paymentProviderNote: "Secure payment powered by Stripe",
   supportLine: "Need help before booking? Contact our cruise excursion team.",
   supportLinkLabel: "Contact us",
 } as const;
@@ -203,14 +206,6 @@ export const bookingCheckoutLinks = [
 ] as const;
 
 export const bookingContactPath = "/contact" as const;
-
-export const bookingPaymentMethods = [
-  { id: "visa", label: "Visa" },
-  { id: "mastercard", label: "Mastercard" },
-  { id: "apple-pay", label: "Apple Pay" },
-  { id: "google-pay", label: "Google Pay" },
-  { id: "paypal", label: "PayPal" },
-] as const;
 
 export const bookingSteps = [
   { id: "tour", label: "Experience" },

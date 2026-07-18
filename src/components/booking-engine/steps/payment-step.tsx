@@ -9,7 +9,6 @@ import { CruiseDaySummary } from "@/components/booking-engine/cruise-day-summary
 import { CruiseReassurance } from "@/components/booking-engine/cruise-reassurance";
 import {
   bookingCheckoutCopy,
-  bookingPaymentMethods,
   bookingPrototypeTour,
 } from "@/lib/booking/booking-config";
 import type { BookingShipVisit } from "@/lib/booking/booking-ship-types";
@@ -43,6 +42,39 @@ function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function CardIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className="h-6 w-6 shrink-0 text-[var(--book-sea)]"
+    >
+      <rect
+        x="2.75"
+        y="5.75"
+        width="18.5"
+        height="12.5"
+        rx="2.25"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M3 10h18"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M7 15h4"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export function PaymentStep({
   date,
   guests,
@@ -53,7 +85,6 @@ export function PaymentStep({
 }: PaymentStepProps) {
   const formId = useId();
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const [method, setMethod] = useState<string>("visa");
   const [isPaying, setIsPaying] = useState(false);
   const [details, setDetails] = useState<GuestDetails>({
     firstName: "",
@@ -259,37 +290,29 @@ export function PaymentStep({
             </div>
           </div>
 
-          <div className="mt-8">
-            <p className="mb-3 text-[11px] font-medium tracking-[0.16em] text-[var(--book-muted)] uppercase">
-              {copy.securePaymentHeading}
-            </p>
-            <p className="mb-4 text-sm leading-6 text-[var(--book-muted)]">
-              {copy.securePaymentNote}
-            </p>
+          <div className="mt-8 space-y-5">
+            <div>
+              <p className="text-[11px] font-medium tracking-[0.16em] text-[var(--book-muted)] uppercase">
+                {copy.securePaymentHeading}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-[var(--book-muted)]">
+                {copy.securePaymentNote}
+              </p>
+            </div>
+
             <div
-              className="flex flex-wrap gap-2"
-              role="group"
-              aria-label="Payment method placeholder"
+              className="flex items-center gap-4 rounded-2xl border border-[var(--book-line)] bg-[var(--book-mist)]/60 px-5 py-4 sm:px-6 sm:py-5"
+              role="status"
             >
-              {bookingPaymentMethods.map((item) => {
-                const selected = method === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => setMethod(item.id)}
-                    aria-pressed={selected}
-                    className={[
-                      "book-btn rounded-full border px-4 py-2.5 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--book-sea)]",
-                      selected
-                        ? "border-[var(--book-sea-deep)] bg-[var(--book-sea-deep)] text-white"
-                        : "border-[var(--book-line)] bg-white text-[var(--book-ink)] hover:border-[var(--book-ink)]/25",
-                    ].join(" ")}
-                  >
-                    {item.label}
-                  </button>
-                );
-              })}
+              <CardIcon />
+              <div className="min-w-0">
+                <p className="text-[15px] font-medium text-[var(--book-ink)] sm:text-base">
+                  {copy.paymentMethodLabel}
+                </p>
+                <p className="mt-0.5 text-sm text-[var(--book-muted)]">
+                  {copy.paymentProviderNote}
+                </p>
+              </div>
             </div>
           </div>
 
