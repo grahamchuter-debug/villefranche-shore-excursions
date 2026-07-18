@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 import { LegalPolicyPage } from "@/components/legal-policy-page";
-import { cancellationContent } from "@/lib/legal";
-import { resolveCancellationPage } from "@/lib/legal/resolve";
+import { privacyContent } from "@/lib/legal";
+import { resolveLegalPage } from "@/lib/legal/resolve";
 import { buildPageMetadata } from "@/lib/site-metadata";
 
-const page = resolveCancellationPage(cancellationContent);
+const page = resolveLegalPage(privacyContent);
 
 export const metadata: Metadata = buildPageMetadata({
   title: page.title,
@@ -13,7 +13,7 @@ export const metadata: Metadata = buildPageMetadata({
   path: page.path,
 });
 
-export default function CancellationPolicyPage() {
+export default function PrivacyPolicyPage() {
   return (
     <LegalPolicyPage
       path={page.path}
@@ -21,8 +21,7 @@ export default function CancellationPolicyPage() {
       metaDescription={page.metaDescription}
       lead={page.lead}
       lastUpdated={page.lastUpdated}
-      fields={page.fields}
-      closingParagraphs={page.closingParagraphs}
+      sections={page.sections}
     />
   );
 }

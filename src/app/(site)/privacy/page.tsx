@@ -1,28 +1,33 @@
-import {
-  BookingPolicyPlaceholder,
-  buildPolicyMetadata,
-} from "@/components/booking-policy-placeholder";
+import type { Metadata } from "next";
+import Link from "next/link";
 
-const path = "/privacy";
+import { buildPageMetadata } from "@/lib/site-metadata";
 
-export const metadata = buildPolicyMetadata(
-  "Privacy Policy",
-  "Privacy policy for Villefranche Shore Excursions. Full policy text will be published here.",
-  path,
-);
+/** Legacy path — canonical document lives at /privacy-policy. */
+export const metadata: Metadata = {
+  ...buildPageMetadata({
+    title: "Privacy Policy",
+    description: "Privacy policy for Villefranche Shore Excursions.",
+    path: "/privacy",
+  }),
+  robots: { index: false, follow: true },
+};
 
-export default function PrivacyPage() {
+export default function PrivacyLegacyAliasPage() {
   return (
-    <BookingPolicyPlaceholder
-      title="Privacy Policy"
-      path={path}
-      description=""
-      lead="This page will describe how guest details are collected and protected during booking."
-    >
-      <p>
-        Placeholder content for design and navigation. The final privacy
-        document will replace this text before public launch.
+    <main className="mx-auto max-w-2xl px-6 py-24 text-[var(--w2-navy)]">
+      <h1 className="text-3xl font-medium tracking-tight">Privacy Policy</h1>
+      <p className="mt-4 text-lg leading-8 text-[var(--w2-muted)]">
+        Continue to our Privacy Policy.
       </p>
-    </BookingPolicyPlaceholder>
+      <p className="mt-8">
+        <Link
+          href="/privacy-policy"
+          className="w2-btn w2-btn-primary px-6 py-3 text-sm"
+        >
+          View Privacy Policy
+        </Link>
+      </p>
+    </main>
   );
 }

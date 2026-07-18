@@ -1,36 +1,28 @@
-import {
-  BookingPolicyPlaceholder,
-  buildPolicyMetadata,
-} from "@/components/booking-policy-placeholder";
-import { siteConfig } from "@/lib/site-config";
+import type { Metadata } from "next";
 
-const path = "/contact";
+import { LegalPolicyPage } from "@/components/legal-policy-page";
+import { contactContent } from "@/lib/legal";
+import { resolveContactPage } from "@/lib/legal/resolve";
+import { buildPageMetadata } from "@/lib/site-metadata";
 
-export const metadata = buildPolicyMetadata(
-  "Contact Us",
-  "Contact the Villefranche Shore Excursions cruise excursion team.",
-  path,
-);
+const page = resolveContactPage(contactContent);
+
+export const metadata: Metadata = buildPageMetadata({
+  title: page.title,
+  description: page.metaDescription,
+  path: page.path,
+});
 
 export default function ContactPage() {
   return (
-    <BookingPolicyPlaceholder
-      title="Contact Us"
-      path={path}
-      description=""
-      lead="Need help before booking? Our cruise excursion team is here to assist."
-    >
-      <p>
-        Email{" "}
-        <a
-          href={`mailto:${siteConfig.bookingEmail}`}
-          className="font-medium text-teal-800 underline-offset-2 hover:underline"
-        >
-          {siteConfig.bookingEmail}
-        </a>
-        . A fuller contact page will replace this placeholder when final
-        details are ready.
-      </p>
-    </BookingPolicyPlaceholder>
+    <LegalPolicyPage
+      path={page.path}
+      title={page.title}
+      metaDescription={page.metaDescription}
+      lead={page.lead}
+      lastUpdated={page.lastUpdated}
+      details={page.details}
+      closingParagraphs={page.closingParagraphs}
+    />
   );
 }

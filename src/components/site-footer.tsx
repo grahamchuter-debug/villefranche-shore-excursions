@@ -40,6 +40,14 @@ const whyBookWithUs = [
   "Return-to-ship reliability",
 ] as const;
 
+const legalLinks = [
+  { label: "Terms & Conditions", href: "/terms-and-conditions" },
+  { label: "Cancellation Policy", href: "/cancellation-policy" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Return to Ship Guarantee", href: "/return-to-ship-guarantee" },
+] as const;
+
 const trustBullets = [
   "Return-to-ship friendly itineraries",
   "Tender port specialists",
@@ -214,7 +222,19 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <p className="mt-8 border-t border-white/8 pt-6 text-xs leading-5 text-slate-500">
+          <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/8 pt-6 text-xs text-slate-500">
+            {legalLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="transition hover:text-white"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          <p className="mt-4 text-xs leading-5 text-slate-500">
             © 2026 {siteConfig.copyrightEntity}. Independent cruise excursion
             guide.
           </p>

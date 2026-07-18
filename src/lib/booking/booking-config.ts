@@ -198,9 +198,9 @@ export const bookingCheckoutCopy = {
 
 /** Understated policy / support routes — pages ship as clear placeholders. */
 export const bookingCheckoutLinks = [
-  { label: "Terms & Conditions", href: "/terms" },
+  { label: "Terms & Conditions", href: "/terms-and-conditions" },
   { label: "Cancellation Policy", href: "/cancellation-policy" },
-  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Return to Ship Guarantee", href: "/return-to-ship-guarantee" },
   { label: "Contact Us", href: "/contact" },
 ] as const;
