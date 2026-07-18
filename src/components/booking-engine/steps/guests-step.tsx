@@ -23,6 +23,8 @@ type GuestsStepProps = {
   onBack: () => void;
   selectedDateLabel?: string | null;
   cruiseShipName?: string | null;
+  /** Optional verified Arrives / Departs line from the central schedule */
+  cruiseShipTimingLine?: string | null;
 };
 
 export function GuestsStep({
@@ -32,6 +34,7 @@ export function GuestsStep({
   onBack,
   selectedDateLabel,
   cruiseShipName,
+  cruiseShipTimingLine,
 }: GuestsStepProps) {
   const { minGuests, capacityLabel, overCapacityContactHref } =
     bookingCapacityConfig;
@@ -62,9 +65,18 @@ export function GuestsStep({
               {capacityLabel}
             </p>
             {cruiseShipName || selectedDateLabel ? (
-              <p className="text-sm text-[var(--book-muted)]">
-                {[cruiseShipName, selectedDateLabel].filter(Boolean).join(" · ")}
-              </p>
+              <div className="space-y-1 text-sm text-[var(--book-muted)]">
+                <p>
+                  {[cruiseShipName, selectedDateLabel]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </p>
+                {cruiseShipTimingLine ? (
+                  <p className="text-[13px] leading-5 text-[var(--book-muted)]">
+                    {cruiseShipTimingLine}
+                  </p>
+                ) : null}
+              </div>
             ) : null}
           </header>
 

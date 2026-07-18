@@ -47,19 +47,21 @@ export function buildShipScheduleMonthMetadata(monthSlug: string): Metadata {
 }
 
 export function getShipScheduleMonthOverview(month: ShipScheduleMonth): string {
-  return `This ${month.label} timetable shows every cruise ship scheduled to visit Villefranche-sur-Mer, with arrival and departure times to help you plan shore excursions around your port day. Search by ship name, date, or cruise line, then sort any column to find your call quickly.`;
+  return `This ${month.label} timetable lists every cruise ship scheduled to call at Villefranche-sur-Mer, with published arrival and departure times where available. Use it to match shore plans to your port day — then confirm times in your cruise line app before you go ashore.`;
 }
 
-export function getShipScheduleMonthPlanning(month: ShipScheduleMonth): string[] {
+export function getShipScheduleMonthPlanning(
+  month: ShipScheduleMonth,
+): string[] {
   return [
-    `Use this ${month.label} schedule to match Villefranche shore excursions to your ship's hours ashore. Treat your cruise line app as the source of truth for all aboard times, and build a personal buffer before that deadline to allow for the return tender queue.`,
-    `On busy days when multiple ships visit Villefranche-sur-Mer, disembark early and head straight to your excursion meeting point. Compare overlapping calls across months if your itinerary is flexible.`,
-    `Times listed here are indicative for planning. Weather, sea conditions, and operational changes can shift arrival or departure after schedules are published.`,
+    `Villefranche-sur-Mer is commonly accessed by tender. Follow your cruise line’s disembarkation instructions for tender numbers, meeting decks, and all-aboard timing.`,
+    `Scheduled arrival and departure times can change with weather, sea conditions, and operational decisions. Treat the figures on this ${month.label} page as planning guidance, not a guarantee.`,
+    `If you book an independent shore excursion, allow appropriate time to return to the tender embarkation point before all aboard. Villefranche Shore Excursions does not control ship schedules or tender operations.`,
   ];
 }
 
 export function getShipScheduleMonthLead(month: ShipScheduleMonth): string {
-  return `Plan your ${month.label.split(" ")[0]} port day at Villefranche-sur-Mer with arrival and departure times for every cruise call. Match small-group shore excursions to your ship's hours ashore.`;
+  return `Plan your ${month.label} port day at Villefranche-sur-Mer with ship names, cruise lines, and published arrival and departure times. Match small-group shore excursions to your hours ashore — and leave a sensible buffer for the tender return.`;
 }
 
 export function getShipScheduleYearLead(year: number): string {

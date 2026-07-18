@@ -1,0 +1,16 @@
+{
+  "shipName": "Royal Clipper",
+  "cruiseLine": "Star Clippers",
+  "slug": "royal-clipper",
+  "file": "royal-clipper-1920.webp",
+  "sourceName": "Wikimedia Commons",
+  "sourcePage": "https://commons.wikimedia.org/wiki/File:Royal_Clipper_in_M%C3%A1laga.jpg",
+  "author": "Daniel Capilla",
+  "licence": "CC BY-SA 4.0",
+  "attributionRequired": true,
+  "attributionText": "Daniel Capilla / Wikimedia Commons / CC BY-SA 4.0",
+  "verifiedExactShip": true,
+  "imagePosition": "center 40%",
+  "commonsFileTitle": "File:Royal Clipper in Málaga.jpg",
+  "notes": "Exact vessel Royal Clipper in Málaga."
+}

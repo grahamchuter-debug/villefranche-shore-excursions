@@ -1,17 +1,18 @@
+import type { CruiseScheduleEntry } from "@/lib/cruise-schedule-types";
 import {
   getBookingShipImage,
   type BookingShipImage,
 } from "@/lib/booking/booking-ship-imagery";
 import { findVerifiedShipTiming } from "@/lib/booking/booking-verified-ship-timings";
 import { slugifyShipName } from "@/lib/cruise-ship-utils";
-import type { CruiseScheduleEntry } from "@/lib/cruise-schedule-types";
 
 /** Stable slug for the “My ship isn’t listed” prototype option. */
 export const BOOKING_CUSTOM_SHIP_SLUG = "not-listed";
 
 /**
  * Ship visiting Villefranche on a bookable date — stored with the booking.
- * Arrival/departure are independently optional and only set when verified.
+ * Arrival/departure are independently optional and only set when present in
+ * the verified central schedule (or an explicit override).
  */
 export type BookingShipVisit = {
   name: string;
@@ -21,7 +22,7 @@ export type BookingShipVisit = {
   arrivalTime: string | null;
   /** Verified departure only — null when unknown */
   departureTime: string | null;
-  /** True only when times come from a verified import */
+  /** True when at least one verified clock time is available */
   timesVerified: boolean;
   /** Present when optional ship photography exists for this exact vessel */
   image?: BookingShipImage;
@@ -74,7 +75,10 @@ export function formatVerifiedShipTime(
 
 /** Build Arrives / Departs line only from verified times. */
 export function formatVerifiedShipTimingLine(
-  ship: Pick<BookingShipVisit, "arrivalTime" | "departureTime" | "timesVerified">,
+  ship: Pick<
+    BookingShipVisit,
+    "arrivalTime" | "departureTime" | "timesVerified"
+  >,
 ): string | null {
   if (!ship.timesVerified) return null;
   const arrival = formatVerifiedShipTime(ship.arrivalTime);
@@ -84,6 +88,30 @@ export function formatVerifiedShipTimingLine(
     departure ? `Departs ${departure}` : null,
   ].filter(Boolean);
   return parts.length > 0 ? parts.join(" · ") : null;
+}
+
+function completeness(entry: CruiseScheduleEntry): number {
+  return (
+    (formatVerifiedShipTime(entry.arrival) ? 1 : 0) +
+    (formatVerifiedShipTime(entry.departure) ? 1 : 0)
+  );
+}
+
+/**
+ * When the same ship appears more than once on a date, pick one row for
+ * booking without inventing times. Prefer the more complete row; hard
+ * conflicts remain listed in the data-quality audit.
+ */
+export function selectScheduleEntryForBooking(
+  candidates: readonly CruiseScheduleEntry[],
+): CruiseScheduleEntry {
+  if (candidates.length === 0) {
+    throw new Error(
+      "selectScheduleEntryForBooking requires at least one entry",
+    );
+  }
+  if (candidates.length === 1) return candidates[0]!;
+  return [...candidates].sort((a, b) => completeness(b) - completeness(a))[0]!;
 }
 
 export function toBookingShipVisit(

@@ -174,6 +174,7 @@ export const smallGroupMonacoMonteCarloEzeExcursion: ExcursionData = {
   ],
   relatedLinks: [
     { label: "Book this tour", href: featuredTour.bookingPath },
+    { label: "Villefranche ship schedules", href: "/ship-schedules" },
     { label: "Port guide", href: portGuidePath },
     { label: "Tender information", href: "/villefranche-tender-information" },
     { label: "Meeting point", href: meetingPointPath },

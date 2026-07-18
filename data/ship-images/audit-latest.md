@@ -1,13 +1,13 @@
 # Villefranche ship-image audit
 
-Generated: 2026-07-18T09:00:09.965Z
+Generated: 2026-07-18T10:05:24.357Z
 
 ## Summary
 
 - Total ships referenced: **74**
-- Ships with verified publishable images: **0**
-- Ships missing images / using fallbacks: **74**
-- Catalogue entries missing source or licence: **4**
+- Ships with verified publishable images: **48**
+- Ships missing images / using fallbacks: **26**
+- Catalogue entries missing source or licence: **0**
 - Orphan disk files not in catalogue: **0**
 
 ## Exact vessel rule
@@ -19,77 +19,77 @@ Publish only when `verifiedExactShip` and complete source/licence metadata are s
 
 | Ship | Line | Dates | Image | On disk | Publishable | Missing meta |
 | --- | --- | ---: | --- | --- | --- | --- |
-| Azamara Journey | Azamara / Azamara Cruises | 5 | azamara-journey-1920.webp | yes | no | sourceName, sourcePage, author, licence, attributionText |
-| Azamara Onward | Azamara / Azamara Cruises | 11 | — | no | no | — |
-| Azamara Quest | Azamara Cruises | 3 | — | no | no | — |
+| Azamara Journey | Azamara / Azamara Cruises | 5 | azamara-journey-1920.webp | yes | yes | — |
+| Azamara Onward | Azamara / Azamara Cruises | 11 | azamara-onward-1920.webp | yes | yes | — |
+| Azamara Quest | Azamara Cruises | 3 | azamara-quest-1920.webp | yes | yes | — |
 | Azura | P & O Cruises | 1 | — | no | no | — |
 | Balmoral | Fred Olsen Cruise Lines | 1 | — | no | no | — |
 | Bolette | Fred Olsen Cruise Lines | 1 | — | no | no | — |
 | Borealis | Fred Olsen Cruise Lines | 1 | — | no | no | — |
-| Brilliance Of The Seas | Royal Caribbean / Royal Caribbean Cruises | 2 | — | no | no | — |
-| Celebrity Apex | Celebrity Cruises | 1 | — | no | no | — |
-| Celebrity Constellation | Celebrity Cruises | 1 | — | no | no | — |
-| Celebrity Eclipse | Celebrity Cruises | 2 | — | no | no | — |
-| Celebrity Equinox | Celebrity Cruises | 11 | celebrity-equinox-1920.webp | yes | no | sourceName, sourcePage, author, licence, attributionText |
-| Celebrity Infinity | Celebrity Cruises | 1 | — | no | no | — |
+| Brilliance Of The Seas | Royal Caribbean / Royal Caribbean Cruises | 2 | brilliance-of-the-seas-1920.webp | yes | yes | — |
+| Celebrity Apex | Celebrity Cruises | 1 | celebrity-apex-1920.webp | yes | yes | — |
+| Celebrity Constellation | Celebrity Cruises | 1 | celebrity-constellation-1920.webp | yes | yes | — |
+| Celebrity Eclipse | Celebrity Cruises | 2 | celebrity-eclipse-1920.webp | yes | yes | — |
+| Celebrity Equinox | Celebrity Cruises | 11 | celebrity-equinox-1920.webp | yes | yes | — |
+| Celebrity Infinity | Celebrity Cruises | 1 | celebrity-infinity-1920.webp | yes | yes | — |
 | Celebrity Xcel | Celebrity Cruises | 13 | — | no | no | — |
 | Celestyal Discovery | Celestyal Cruises | 4 | — | no | no | — |
-| Crystal Serenity | Crystal / Crystal Cruises | 2 | — | no | no | — |
+| Crystal Serenity | Crystal / Crystal Cruises | 2 | crystal-serenity-1920.webp | yes | yes | — |
 | Crystal Symphony | Crystal Cruises | 1 | — | no | no | — |
 | Europa | Hapag Lloyd | 2 | — | no | no | — |
-| Explora I | Explora Journeys | 9 | — | no | no | — |
+| Explora I | Explora Journeys | 9 | explora-i-1920.webp | yes | yes | — |
 | Explora II | Explora Journeys | 3 | — | no | no | — |
 | Explora III | Explora Journeys | 1 | — | no | no | — |
 | Explora V | Explora Journeys | 2 | — | no | no | — |
-| Explorer Of The Seas | Royal Caribbean Cruises | 6 | — | no | no | — |
-| Marella Discovery | Marella Cruises | 5 | — | no | no | — |
+| Explorer Of The Seas | Royal Caribbean Cruises | 6 | explorer-of-the-seas-1920.webp | yes | yes | — |
+| Marella Discovery | Marella Cruises | 5 | marella-discovery-1920.webp | yes | yes | — |
 | Marella Discovery 2 | Marella Cruises | 2 | — | no | no | — |
-| Marella Explorer | Marella / Marella Cruises | 7 | — | no | no | — |
+| Marella Explorer | Marella / Marella Cruises | 7 | marella-explorer-1920.webp | yes | yes | — |
 | Marella Voyager | Marella Cruises | 9 | — | no | no | — |
-| Mariner Of The Seas | Royal Caribbean Cruises | 2 | — | no | no | — |
-| Norwegian Dawn | Norwegian Cruise Line | 1 | — | no | no | — |
-| Norwegian Epic | Norwegian Cruise Line | 36 | norwegian-epic-1920.webp | yes | no | sourceName, sourcePage, author, licence, attributionText |
-| Norwegian Gem | Norwegian Cruise Line | 1 | — | no | no | — |
-| Norwegian Prima | Norwegian Cruise Line | 3 | — | no | no | — |
+| Mariner Of The Seas | Royal Caribbean Cruises | 2 | mariner-of-the-seas-1920.webp | yes | yes | — |
+| Norwegian Dawn | Norwegian Cruise Line | 1 | norwegian-dawn-1920.webp | yes | yes | — |
+| Norwegian Epic | Norwegian Cruise Line | 36 | norwegian-epic-1920.webp | yes | yes | — |
+| Norwegian Gem | Norwegian Cruise Line | 1 | norwegian-gem-1920.webp | yes | yes | — |
+| Norwegian Prima | Norwegian Cruise Line | 3 | norwegian-prima-1920.webp | yes | yes | — |
 | Norwegian Sky | Norwegian Cruise Line | 1 | — | no | no | — |
-| Norwegian Sun | Norwegian Cruise Line | 1 | — | no | no | — |
-| Norwegian Viva | Norwegian Cruise Line | 10 | — | no | no | — |
+| Norwegian Sun | Norwegian Cruise Line | 1 | norwegian-sun-1920.webp | yes | yes | — |
+| Norwegian Viva | Norwegian Cruise Line | 10 | norwegian-viva-1920.webp | yes | yes | — |
 | Oceania Aurelia | Oceania Cruises | 1 | — | no | no | — |
 | Oceania Marina | Oceania Cruises | 1 | — | no | no | — |
 | Oceania Sirena | Oceania Cruises | 2 | — | no | no | — |
 | Oceania Sonata | Oceania Cruises | 2 | — | no | no | — |
-| Oceania Vista | Oceania Cruises | 1 | — | no | no | — |
-| Oosterdam | Holland America Line | 3 | — | no | no | — |
-| Queen Elizabeth | Cunard Line | 1 | — | no | no | — |
-| Queen Victoria | Cunard Line | 3 | — | no | no | — |
+| Oceania Vista | Oceania Cruises | 1 | oceania-vista-1920.webp | yes | yes | — |
+| Oosterdam | Holland America Line | 3 | oosterdam-1920.webp | yes | yes | — |
+| Queen Elizabeth | Cunard Line | 1 | queen-elizabeth-1920.webp | yes | yes | — |
+| Queen Victoria | Cunard Line | 3 | queen-victoria-1920.webp | yes | yes | — |
 | Renaissance | CFC Croisieres | 2 | — | no | no | — |
-| Resilient Lady | Virgin Voyages | 3 | — | no | no | — |
-| Royal Clipper | Star Clippers | 5 | — | no | no | — |
-| Scarlet Lady | Virgin Voyages | 1 | — | no | no | — |
-| SeaDream I | SeaDream Yacht Club | 4 | — | no | no | — |
-| SeaDream II | SeaDream Yacht Club | 6 | — | no | no | — |
-| Seven Seas Explorer | Regent Seven Seas Cruises | 1 | — | no | no | — |
-| Seven Seas Grandeur | Regent Seven Seas Cruises | 2 | — | no | no | — |
-| Seven Seas Mariner | Regent Seven Seas Cruises | 1 | — | no | no | — |
+| Resilient Lady | Virgin Voyages | 3 | resilient-lady-1920.webp | yes | yes | — |
+| Royal Clipper | Star Clippers | 5 | royal-clipper-1920.webp | yes | yes | — |
+| Scarlet Lady | Virgin Voyages | 1 | scarlet-lady-1920.webp | yes | yes | — |
+| SeaDream I | SeaDream Yacht Club | 4 | seadream-i-1920.webp | yes | yes | — |
+| SeaDream II | SeaDream Yacht Club | 6 | seadream-ii-1920.webp | yes | yes | — |
+| Seven Seas Explorer | Regent Seven Seas Cruises | 1 | seven-seas-explorer-1920.webp | yes | yes | — |
+| Seven Seas Grandeur | Regent Seven Seas Cruises | 2 | seven-seas-grandeur-1920.webp | yes | yes | — |
+| Seven Seas Mariner | Regent Seven Seas Cruises | 1 | seven-seas-mariner-1920.webp | yes | yes | — |
 | Seven Seas Prestige | Regent Seven Seas Cruises | 5 | — | no | no | — |
-| Silver Nova | Silversea Cruises | 1 | — | no | no | — |
+| Silver Nova | Silversea Cruises | 1 | silver-nova-1920.webp | yes | yes | — |
 | Silver Ray | Silversea Cruises | 1 | — | no | no | — |
-| Silver Shadow | Silversea / Silversea Cruises | 15 | silver-shadow-1920.webp | yes | no | sourceName, sourcePage, author, licence, attributionText |
-| Star Clipper | Star Clippers | 3 | — | no | no | — |
+| Silver Shadow | Silversea / Silversea Cruises | 15 | silver-shadow-1920.webp | yes | yes | — |
+| Star Clipper | Star Clippers | 3 | star-clipper-1920.webp | yes | yes | — |
 | Star Explorer | Windstar Cruises | 7 | — | no | no | — |
-| Star Legend | Windstar Cruises | 2 | — | no | no | — |
-| Valiant Lady | Virgin Voyages | 2 | — | no | no | — |
+| Star Legend | Windstar Cruises | 2 | star-legend-1920.webp | yes | yes | — |
+| Valiant Lady | Virgin Voyages | 2 | valiant-lady-1920.webp | yes | yes | — |
 | Viking Astrea | Viking Cruises | 2 | — | no | no | — |
-| Viking Jupiter | Viking Cruises | 2 | — | no | no | — |
+| Viking Jupiter | Viking Cruises | 2 | viking-jupiter-1920.webp | yes | yes | — |
 | Viking Libra | Viking Cruises | 4 | — | no | no | — |
-| Viking Mars | Viking Cruises | 3 | — | no | no | — |
+| Viking Mars | Viking Cruises | 3 | viking-mars-1920.webp | yes | yes | — |
 | Viking Mira | Viking Cruises | 11 | — | no | no | — |
-| Viking Neptune | Viking Cruises | 4 | — | no | no | — |
-| Viking Saturn | Viking Cruises | 8 | — | no | no | — |
-| Viking Sea | Viking Cruises | 3 | — | no | no | — |
+| Viking Neptune | Viking Cruises | 4 | viking-neptune-1920.webp | yes | yes | — |
+| Viking Saturn | Viking Cruises | 8 | viking-saturn-1920.webp | yes | yes | — |
+| Viking Sea | Viking Cruises | 3 | viking-sea-1920.webp | yes | yes | — |
 | Viking Sky | Viking Cruises | 1 | — | no | no | — |
-| Viking Star | Viking Cruises | 10 | — | no | no | — |
-| Viking Vela | Viking Cruises | 6 | — | no | no | — |
-| Viking Vesta | Viking Cruises | 6 | — | no | no | — |
-| Volendam | Holland America Line | 2 | — | no | no | — |
-| Wind Spirit | Windstar Cruises | 2 | — | no | no | — |
+| Viking Star | Viking Cruises | 10 | viking-star-1920.webp | yes | yes | — |
+| Viking Vela | Viking Cruises | 6 | viking-vela-1920.webp | yes | yes | — |
+| Viking Vesta | Viking Cruises | 6 | viking-vesta-1920.webp | yes | yes | — |
+| Volendam | Holland America Line | 2 | volendam-1920.webp | yes | yes | — |
+| Wind Spirit | Windstar Cruises | 2 | wind-spirit-1920.webp | yes | yes | — |

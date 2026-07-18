@@ -1,0 +1,284 @@
+{
+  "results": [
+    {
+      "slug": "viking-vela",
+      "shipName": "Viking Vela",
+      "status": "imported",
+      "files": [
+        "viking-vela-1280.webp",
+        "viking-vela-1280.avif",
+        "viking-vela-1920.webp",
+        "viking-vela-1920.avif"
+      ],
+      "metaPath": "/Users/graham.chuter/Desktop/villefranche-next/data/ship-images/wikimedia-inbox/viking-vela.meta.json",
+      "meta": {
+        "shipName": "Viking Vela",
+        "cruiseLine": "Viking Cruises",
+        "slug": "viking-vela",
+        "file": "viking-vela-1920.webp",
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:19_April_2025_Viking_Vela_at_Greenwich_-_08.jpg",
+        "author": "Jodiepedia",
+        "licence": "CC0",
+        "attributionRequired": false,
+        "attributionText": "Jodiepedia / Wikimedia Commons / CC0",
+        "verifiedExactShip": true,
+        "imagePosition": "center 48%",
+        "commonsFileTitle": "File:19 April 2025 Viking Vela at Greenwich - 08.jpg",
+        "notes": "Exact vessel Viking Vela at Greenwich."
+      }
+    },
+    {
+      "slug": "viking-vesta",
+      "shipName": "Viking Vesta",
+      "status": "imported",
+      "files": [
+        "viking-vesta-1280.webp",
+        "viking-vesta-1280.avif",
+        "viking-vesta-1920.webp",
+        "viking-vesta-1920.avif"
+      ],
+      "metaPath": "/Users/graham.chuter/Desktop/villefranche-next/data/ship-images/wikimedia-inbox/viking-vesta.meta.json",
+      "meta": {
+        "shipName": "Viking Vesta",
+        "cruiseLine": "Viking Cruises",
+        "slug": "viking-vesta",
+        "file": "viking-vesta-1920.webp",
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Barcelone_-_ESP_-_2026.03.28_-_Viking_Cruises_-_%C2%AB_Viking_Vesta_%C2%BB_(vue_avant_gauche)_%C2%A9_Anthony_Levrot.jpg",
+        "author": "Anthony Levrot",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Anthony Levrot / Wikimedia Commons / CC BY-SA 4.0",
+        "verifiedExactShip": true,
+        "imagePosition": "center 48%",
+        "commonsFileTitle": "File:Barcelone - ESP - 2026.03.28 - Viking Cruises - « Viking Vesta » (vue avant gauche) © Anthony Levrot.jpg",
+        "notes": "Exact vessel Viking Vesta solo exterior (not dual-ship frame)."
+      }
+    },
+    {
+      "slug": "viking-neptune",
+      "shipName": "Viking Neptune",
+      "status": "imported",
+      "files": [
+        "viking-neptune-1280.webp",
+        "viking-neptune-1280.avif",
+        "viking-neptune-1920.webp",
+        "viking-neptune-1920.avif"
+      ],
+      "metaPath": "/Users/graham.chuter/Desktop/villefranche-next/data/ship-images/wikimedia-inbox/viking-neptune.meta.json",
+      "meta": {
+        "shipName": "Viking Neptune",
+        "cruiseLine": "Viking Cruises",
+        "slug": "viking-neptune",
+        "file": "viking-neptune-1920.webp",
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Viking_Neptune_at_Greenwich.jpg",
+        "author": "Devokewater",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Devokewater / Wikimedia Commons / CC BY-SA 4.0",
+        "verifiedExactShip": true,
+        "imagePosition": "center 48%",
+        "commonsFileTitle": "File:Viking Neptune at Greenwich.jpg",
+        "notes": "Exact vessel Viking Neptune."
+      }
+    },
+    {
+      "slug": "viking-mars",
+      "shipName": "Viking Mars",
+      "status": "imported",
+      "files": [
+        "viking-mars-1280.webp",
+        "viking-mars-1280.avif",
+        "viking-mars-1920.webp",
+        "viking-mars-1920.avif"
+      ],
+      "metaPath": "/Users/graham.chuter/Desktop/villefranche-next/data/ship-images/wikimedia-inbox/viking-mars.meta.json",
+      "meta": {
+        "shipName": "Viking Mars",
+        "cruiseLine": "Viking Cruises",
+        "slug": "viking-mars",
+        "file": "viking-mars-1920.webp",
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:2022_06_Viking_Mars_(1).jpg",
+        "author": "Philippe Alès",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Philippe Alès / Wikimedia Commons / CC BY-SA 4.0",
+        "verifiedExactShip": true,
+        "imagePosition": "center 48%",
+        "commonsFileTitle": "File:2022 06 Viking Mars (1).jpg",
+        "notes": "Exact vessel Viking Mars."
+      }
+    },
+    {
+      "slug": "viking-sea",
+      "shipName": "Viking Sea",
+      "status": "imported",
+      "files": [
+        "viking-sea-1280.webp",
+        "viking-sea-1280.avif",
+        "viking-sea-1920.webp",
+        "viking-sea-1920.avif"
+      ],
+      "metaPath": "/Users/graham.chuter/Desktop/villefranche-next/data/ship-images/wikimedia-inbox/viking-sea.meta.json",
+      "meta": {
+        "shipName": "Viking Sea",
+        "cruiseLine": "Viking Cruises",
+        "slug": "viking-sea",
+        "file": "viking-sea-1920.webp",
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Viking_Sea_at_pier_26_Port_of_Tallinn_27_May_2016.jpg",
+        "author": "Pjotr Mahhonin",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Pjotr Mahhonin / Wikimedia Commons / CC BY-SA 4.0",
+        "verifiedExactShip": true,
+        "imagePosition": "center 48%",
+        "commonsFileTitle": "File:Viking Sea at pier 26 Port of Tallinn 27 May 2016.jpg",
+        "notes": "Exact vessel Viking Sea (not Royal Viking Sea)."
+      }
+    },
+    {
+      "slug": "seadream-i",
+      "shipName": "SeaDream I",
+      "status": "imported",
+      "files": [
+        "seadream-i-1280.webp",
+        "seadream-i-1280.avif",
+        "seadream-i-1920.webp",
+        "seadream-i-1920.avif"
+      ],
+      "metaPath": "/Users/graham.chuter/Desktop/villefranche-next/data/ship-images/wikimedia-inbox/seadream-i.meta.json",
+      "meta": {
+        "shipName": "SeaDream I",
+        "cruiseLine": "SeaDream Yacht Club",
+        "slug": "seadream-i",
+        "file": "seadream-i-1920.webp",
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Seadream_1,_Barbados_-_Flickr_-_A_Guy_Named_Nyal.jpg",
+        "author": "A Guy Named Nyal",
+        "licence": "CC BY-SA 2.0",
+        "attributionRequired": true,
+        "attributionText": "A Guy Named Nyal / Wikimedia Commons / CC BY-SA 2.0",
+        "verifiedExactShip": true,
+        "imagePosition": "center 40%",
+        "commonsFileTitle": "File:Seadream 1, Barbados - Flickr - A Guy Named Nyal.jpg",
+        "notes": "Exact vessel SeaDream 1 / SeaDream I — not SeaDream II."
+      }
+    },
+    {
+      "slug": "wind-spirit",
+      "shipName": "Wind Spirit",
+      "status": "imported",
+      "files": [
+        "wind-spirit-1280.webp",
+        "wind-spirit-1280.avif",
+        "wind-spirit-1920.webp",
+        "wind-spirit-1920.avif"
+      ],
+      "metaPath": "/Users/graham.chuter/Desktop/villefranche-next/data/ship-images/wikimedia-inbox/wind-spirit.meta.json",
+      "meta": {
+        "shipName": "Wind Spirit",
+        "cruiseLine": "Windstar Cruises",
+        "slug": "wind-spirit",
+        "file": "wind-spirit-1920.webp",
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Wind_Spirit_in_Moorea.jpg",
+        "author": "Windstar cruises",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Windstar cruises / Wikimedia Commons / CC BY-SA 4.0",
+        "verifiedExactShip": true,
+        "imagePosition": "center 40%",
+        "commonsFileTitle": "File:Wind Spirit in Moorea.jpg",
+        "notes": "Exact vessel Wind Spirit in Moorea."
+      }
+    },
+    {
+      "slug": "star-clipper",
+      "shipName": "Star Clipper",
+      "status": "imported",
+      "files": [
+        "star-clipper-1280.webp",
+        "star-clipper-1280.avif",
+        "star-clipper-1920.webp",
+        "star-clipper-1920.avif"
+      ],
+      "metaPath": "/Users/graham.chuter/Desktop/villefranche-next/data/ship-images/wikimedia-inbox/star-clipper.meta.json",
+      "meta": {
+        "shipName": "Star Clipper",
+        "cruiseLine": "Star Clippers",
+        "slug": "star-clipper",
+        "file": "star-clipper-1920.webp",
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Star_Clipper_(Schiff_1992).jpg",
+        "author": "kansasphoto",
+        "licence": "CC BY 2.0",
+        "attributionRequired": true,
+        "attributionText": "kansasphoto / Wikimedia Commons / CC BY 2.0",
+        "verifiedExactShip": true,
+        "imagePosition": "center 40%",
+        "commonsFileTitle": "File:Star Clipper (Schiff 1992).jpg",
+        "notes": "Exact vessel Star Clipper."
+      }
+    },
+    {
+      "slug": "star-legend",
+      "shipName": "Star Legend",
+      "status": "imported",
+      "files": [
+        "star-legend-1280.webp",
+        "star-legend-1280.avif",
+        "star-legend-1920.webp",
+        "star-legend-1920.avif"
+      ],
+      "metaPath": "/Users/graham.chuter/Desktop/villefranche-next/data/ship-images/wikimedia-inbox/star-legend.meta.json",
+      "meta": {
+        "shipName": "Star Legend",
+        "cruiseLine": "Windstar Cruises",
+        "slug": "star-legend",
+        "file": "star-legend-1920.webp",
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Windstar-Cruises-Star-Legend.jpg",
+        "author": "David Winchester",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "David Winchester / Wikimedia Commons / CC BY-SA 4.0",
+        "verifiedExactShip": true,
+        "imagePosition": "center 45%",
+        "commonsFileTitle": "File:Windstar-Cruises-Star-Legend.jpg",
+        "notes": "Exact vessel Star Legend."
+      }
+    },
+    {
+      "slug": "seven-seas-explorer",
+      "shipName": "Seven Seas Explorer",
+      "status": "imported",
+      "files": [
+        "seven-seas-explorer-1280.webp",
+        "seven-seas-explorer-1280.avif",
+        "seven-seas-explorer-1920.webp",
+        "seven-seas-explorer-1920.avif"
+      ],
+      "metaPath": "/Users/graham.chuter/Desktop/villefranche-next/data/ship-images/wikimedia-inbox/seven-seas-explorer.meta.json",
+      "meta": {
+        "shipName": "Seven Seas Explorer",
+        "cruiseLine": "Regent Seven Seas Cruises",
+        "slug": "seven-seas-explorer",
+        "file": "seven-seas-explorer-1920.webp",
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Seven_Seas_Explorer.jpg",
+        "author": "Continentaleurope",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Continentaleurope / Wikimedia Commons / CC BY-SA 4.0",
+        "verifiedExactShip": true,
+        "imagePosition": "center 45%",
+        "commonsFileTitle": "File:Seven Seas Explorer.jpg",
+        "notes": "Exact vessel Seven Seas Explorer — verify file exists at import."
+      }
+    }
+  ]
+}

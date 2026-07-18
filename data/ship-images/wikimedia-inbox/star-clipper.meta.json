@@ -1,0 +1,16 @@
+{
+  "shipName": "Star Clipper",
+  "cruiseLine": "Star Clippers",
+  "slug": "star-clipper",
+  "file": "star-clipper-1920.webp",
+  "sourceName": "Wikimedia Commons",
+  "sourcePage": "https://commons.wikimedia.org/wiki/File:Star_Clipper_(Schiff_1992).jpg",
+  "author": "kansasphoto",
+  "licence": "CC BY 2.0",
+  "attributionRequired": true,
+  "attributionText": "kansasphoto / Wikimedia Commons / CC BY 2.0",
+  "verifiedExactShip": true,
+  "imagePosition": "center 40%",
+  "commonsFileTitle": "File:Star Clipper (Schiff 1992).jpg",
+  "notes": "Exact vessel Star Clipper."
+}

@@ -1,12 +1,16 @@
 import type { CruiseScheduleEntry } from "@/lib/cruise-schedule-types";
 import {
+  selectScheduleEntryForBooking,
   toBookingShipVisit,
   type BookingShipVisit,
   type BookingShipsByDate,
 } from "@/lib/booking/booking-ship-types";
 import { loadAllVillefrancheScheduleEntries } from "@/lib/villefranche-cruise-ships";
 
-export type { BookingShipVisit, BookingShipsByDate } from "@/lib/booking/booking-ship-types";
+export type {
+  BookingShipVisit,
+  BookingShipsByDate,
+} from "@/lib/booking/booking-ship-types";
 export {
   formatVerifiedShipTime,
   formatVerifiedShipTimingLine,
@@ -18,35 +22,40 @@ export function getVillefrancheShipsOnDate(
   isoDate: string,
   entries: readonly CruiseScheduleEntry[] = loadAllVillefrancheScheduleEntries(),
 ): BookingShipVisit[] {
-  const seen = new Set<string>();
-  const visits: BookingShipVisit[] = [];
+  const byShip = new Map<string, CruiseScheduleEntry[]>();
 
   for (const entry of entries) {
     if (entry.date !== isoDate) continue;
-    if (seen.has(entry.ship)) continue;
-    seen.add(entry.ship);
-    visits.push(toBookingShipVisit(entry));
+    const list = byShip.get(entry.ship) ?? [];
+    list.push(entry);
+    byShip.set(entry.ship, list);
   }
 
-  return visits.sort((a, b) => a.name.localeCompare(b.name, "en"));
+  return [...byShip.values()]
+    .map((group) => toBookingShipVisit(selectScheduleEntryForBooking(group)))
+    .sort((a, b) => a.name.localeCompare(b.name, "en"));
 }
 
 /** Compact date → ships map for the client booking engine. */
 export function buildBookingShipsByDate(
   entries: readonly CruiseScheduleEntry[] = loadAllVillefrancheScheduleEntries(),
 ): BookingShipsByDate {
-  const map: BookingShipsByDate = {};
+  const grouped = new Map<string, Map<string, CruiseScheduleEntry[]>>();
 
   for (const entry of entries) {
-    const list = map[entry.date] ?? [];
-    if (!list.some((ship) => ship.name === entry.ship)) {
-      list.push(toBookingShipVisit(entry));
-      map[entry.date] = list;
-    }
+    const byShip = grouped.get(entry.date) ?? new Map();
+    const list = byShip.get(entry.ship) ?? [];
+    list.push(entry);
+    byShip.set(entry.ship, list);
+    grouped.set(entry.date, byShip);
   }
 
-  for (const date of Object.keys(map)) {
-    map[date] = map[date].sort((a, b) => a.name.localeCompare(b.name, "en"));
+  const map: BookingShipsByDate = {};
+
+  for (const [date, byShip] of grouped) {
+    map[date] = [...byShip.values()]
+      .map((group) => toBookingShipVisit(selectScheduleEntryForBooking(group)))
+      .sort((a, b) => a.name.localeCompare(b.name, "en"));
   }
 
   return map;

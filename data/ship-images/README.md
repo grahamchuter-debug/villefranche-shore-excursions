@@ -56,11 +56,17 @@ Do **not** add the ship to `shipImageMetadataCatalog` until this JSON is complet
 
 ## Processing after approval
 
-1. Copy the approved original into `public/images/ships/source/` (optional archive).
-2. Generate responsive AVIF/WebP crops (see `scripts/optimize-ship-images.cjs`).
-3. Add/update the entry in `src/lib/booking/ship-image-metadata.ts`.
-4. Re-run `node scripts/audit-ship-images.cjs`.
-5. Confirm the vessel appears on `/image-credits` when publishable.
+1. Curate candidates in `wikimedia-candidates.json` (exact vessel + free licence only).
+2. Run `npm run import:ship-images` (downloads, optimises WebP/AVIF, writes inbox metas).
+3. Sync `src/lib/booking/ship-image-metadata.ts` from inbox metas (or re-run the sync helper used in import workflow).
+4. Re-run `npm run audit:ship-images`.
+5. Confirm vessels appear on `/image-credits` when publishable.
+
+Discovery aid (noisy — always human-curate before import):
+
+```bash
+npm run search:ship-images
+```
 
 ## Publishing gate
 
@@ -71,3 +77,5 @@ Customer-facing booking cards only show an image when metadata is **publishable*
 - primary file exists on disk
 
 Otherwise the premium fallback card is used.
+
+Latest completion numbers: see `completion-report.md`.

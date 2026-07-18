@@ -1,0 +1,16 @@
+{
+  "shipName": "Viking Sea",
+  "cruiseLine": "Viking Cruises",
+  "slug": "viking-sea",
+  "file": "viking-sea-1920.webp",
+  "sourceName": "Wikimedia Commons",
+  "sourcePage": "https://commons.wikimedia.org/wiki/File:Viking_Sea_at_pier_26_Port_of_Tallinn_27_May_2016.jpg",
+  "author": "Pjotr Mahhonin",
+  "licence": "CC BY-SA 4.0",
+  "attributionRequired": true,
+  "attributionText": "Pjotr Mahhonin / Wikimedia Commons / CC BY-SA 4.0",
+  "verifiedExactShip": true,
+  "imagePosition": "center 48%",
+  "commonsFileTitle": "File:Viking Sea at pier 26 Port of Tallinn 27 May 2016.jpg",
+  "notes": "Exact vessel Viking Sea (not Royal Viking Sea)."
+}

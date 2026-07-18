@@ -1,0 +1,16 @@
+{
+  "shipName": "Seven Seas Explorer",
+  "cruiseLine": "Regent Seven Seas Cruises",
+  "slug": "seven-seas-explorer",
+  "file": "seven-seas-explorer-1920.webp",
+  "sourceName": "Wikimedia Commons",
+  "sourcePage": "https://commons.wikimedia.org/wiki/File:Seven_Seas_Explorer.jpg",
+  "author": "Continentaleurope",
+  "licence": "CC BY-SA 4.0",
+  "attributionRequired": true,
+  "attributionText": "Continentaleurope / Wikimedia Commons / CC BY-SA 4.0",
+  "verifiedExactShip": true,
+  "imagePosition": "center 45%",
+  "commonsFileTitle": "File:Seven Seas Explorer.jpg",
+  "notes": "Exact vessel Seven Seas Explorer — verify file exists at import."
+}

@@ -1,0 +1,16 @@
+{
+  "shipName": "Queen Victoria",
+  "cruiseLine": "Cunard Line",
+  "slug": "queen-victoria",
+  "file": "queen-victoria-1920.webp",
+  "sourceName": "Wikimedia Commons",
+  "sourcePage": "https://commons.wikimedia.org/wiki/File:Cruise_ship_%22Queen_Victoria%22_in_the_Solent,_England.jpg",
+  "author": "ITookSomePhotos",
+  "licence": "CC BY-SA 2.0",
+  "attributionRequired": true,
+  "attributionText": "ITookSomePhotos / Wikimedia Commons / CC BY-SA 2.0",
+  "verifiedExactShip": true,
+  "imagePosition": "center 45%",
+  "commonsFileTitle": "File:Cruise ship \"Queen Victoria\" in the Solent, England.jpg",
+  "notes": "Cunard Queen Victoria cruise ship in Solent."
+}

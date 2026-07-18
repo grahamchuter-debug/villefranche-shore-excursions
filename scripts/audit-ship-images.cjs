@@ -17,65 +17,10 @@ const DATA_DIR = path.join(ROOT, "public/data");
 const SHIP_DIR = path.join(ROOT, "public/images/ships");
 const OUT_DIR = path.join(ROOT, "data/ship-images");
 
-/** Keep in sync with src/lib/booking/ship-image-metadata.ts */
-const CATALOG = [
-  {
-    shipName: "Norwegian Epic",
-    cruiseLine: "Norwegian Cruise Line",
-    slug: "norwegian-epic",
-    file: "norwegian-epic-1920.webp",
-    sourceName: "",
-    sourcePage: "",
-    author: "",
-    licence: "",
-    attributionRequired: true,
-    attributionText: "",
-    verifiedExactShip: true,
-    imagePosition: "center 42%",
-  },
-  {
-    shipName: "Celebrity Equinox",
-    cruiseLine: "Celebrity Cruises",
-    slug: "celebrity-equinox",
-    file: "celebrity-equinox-1920.webp",
-    sourceName: "",
-    sourcePage: "",
-    author: "",
-    licence: "",
-    attributionRequired: true,
-    attributionText: "",
-    verifiedExactShip: true,
-    imagePosition: "center 48%",
-  },
-  {
-    shipName: "Azamara Journey",
-    cruiseLine: "Azamara",
-    slug: "azamara-journey",
-    file: "azamara-journey-1920.webp",
-    sourceName: "",
-    sourcePage: "",
-    author: "",
-    licence: "",
-    attributionRequired: true,
-    attributionText: "",
-    verifiedExactShip: true,
-    imagePosition: "center 40%",
-  },
-  {
-    shipName: "Silver Shadow",
-    cruiseLine: "Silversea",
-    slug: "silver-shadow",
-    file: "silver-shadow-1920.webp",
-    sourceName: "",
-    sourcePage: "",
-    author: "",
-    licence: "",
-    attributionRequired: true,
-    attributionText: "",
-    verifiedExactShip: true,
-    imagePosition: "center 55%",
-  },
-];
+/** Synced from wikimedia-inbox metas → data/ship-images/catalog.json */
+const CATALOG = fs.existsSync(path.join(OUT_DIR, "catalog.json"))
+  ? JSON.parse(fs.readFileSync(path.join(OUT_DIR, "catalog.json"), "utf8"))
+  : [];
 
 function slugify(name) {
   return name

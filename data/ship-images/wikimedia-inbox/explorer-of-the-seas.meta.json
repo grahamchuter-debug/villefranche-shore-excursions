@@ -1,0 +1,16 @@
+{
+  "shipName": "Explorer Of The Seas",
+  "cruiseLine": "Royal Caribbean Cruises",
+  "slug": "explorer-of-the-seas",
+  "file": "explorer-of-the-seas-1920.webp",
+  "sourceName": "Wikimedia Commons",
+  "sourcePage": "https://commons.wikimedia.org/wiki/File:Explorer_of_the_Seas_(ship,_2000)_Departs_Port_Canaveral_(February_2026).jpg",
+  "author": "Jack Adamenko",
+  "licence": "CC BY-SA 4.0",
+  "attributionRequired": true,
+  "attributionText": "Jack Adamenko / Wikimedia Commons / CC BY-SA 4.0",
+  "verifiedExactShip": true,
+  "imagePosition": "center 45%",
+  "commonsFileTitle": "File:Explorer of the Seas (ship, 2000) Departs Port Canaveral (February 2026).jpg",
+  "notes": "Exact vessel named with (ship, 2000). Download URL filled at import time via API."
+}

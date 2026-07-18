@@ -7,6 +7,9 @@ import {
 } from "@/lib/booking/booking-config";
 import type { BookingShipVisit } from "@/lib/booking/booking-ship-types";
 import {
+  formatVerifiedShipTime,
+} from "@/lib/booking/booking-ship-types";
+import {
   calculateBookingTotal,
   formatBookingDate,
   formatBookingMoney,
@@ -30,15 +33,40 @@ export function CruiseDaySummary({
   /** Excursion start — never derived from ship arrival */
   const tourStartTime = getBookingStartTimeLabel(date);
   const total = formatBookingMoney(calculateBookingTotal(guests));
+  const shipArrival = formatVerifiedShipTime(cruiseShip.arrivalTime);
+  const shipDeparture = formatVerifiedShipTime(cruiseShip.departureTime);
 
-  const rows = [
+  const rows: Array<{
+    label: string;
+    value: string;
+    note?: string;
+  }> = [
     {
       label: "Date",
       value: formatBookingDate(date),
     },
+  ];
+
+  if (shipArrival) {
+    rows.push({
+      label: "Ship arrival",
+      value: shipArrival,
+      note: "Published cruise schedule — subject to change by your cruise line.",
+    });
+  }
+  if (shipDeparture) {
+    rows.push({
+      label: "Ship departure",
+      value: shipDeparture,
+      note: "Published cruise schedule — subject to change by your cruise line.",
+    });
+  }
+
+  rows.push(
     {
       label: bookingStartTimeConfig.label,
       value: tourStartTime,
+      note: "Excursion start time — separate from your ship’s arrival or departure.",
     },
     {
       label: bookingMeetingConfig.label,
@@ -61,7 +89,7 @@ export function CruiseDaySummary({
       label: "Duration",
       value: bookingPrototypeTour.durationLabel,
     },
-  ] as const;
+  );
 
   return (
     <section
@@ -114,7 +142,7 @@ export function CruiseDaySummary({
             </dt>
             <dd className="text-[17px] font-medium leading-snug text-[var(--book-ink)] sm:text-lg">
               {row.value}
-              {"note" in row && row.note ? (
+              {row.note ? (
                 <span className="mt-1.5 block text-sm font-normal leading-relaxed text-[var(--book-muted)]">
                   {row.note}
                 </span>

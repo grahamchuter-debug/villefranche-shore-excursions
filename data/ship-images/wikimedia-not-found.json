@@ -1,0 +1,324 @@
+{
+  "generatedAt": "2026-07-18T09:53:14.297Z",
+  "count": 53,
+  "ships": [
+    {
+      "shipName": "Norwegian Epic",
+      "cruiseLine": "Norwegian Cruise Line",
+      "dateCount": 36,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Celebrity Xcel",
+      "cruiseLine": "Celebrity Cruises",
+      "dateCount": 13,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Azamara Onward",
+      "cruiseLine": "Azamara / Azamara Cruises",
+      "dateCount": 11,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Celebrity Equinox",
+      "cruiseLine": "Celebrity Cruises",
+      "dateCount": 11,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Viking Mira",
+      "cruiseLine": "Viking Cruises",
+      "dateCount": 11,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Norwegian Viva",
+      "cruiseLine": "Norwegian Cruise Line",
+      "dateCount": 10,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Viking Star",
+      "cruiseLine": "Viking Cruises",
+      "dateCount": 10,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Explora I",
+      "cruiseLine": "Explora Journeys",
+      "dateCount": 9,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Marella Voyager",
+      "cruiseLine": "Marella Cruises",
+      "dateCount": 9,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Viking Saturn",
+      "cruiseLine": "Viking Cruises",
+      "dateCount": 8,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Star Explorer",
+      "cruiseLine": "Windstar Cruises",
+      "dateCount": 7,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Viking Vela",
+      "cruiseLine": "Viking Cruises",
+      "dateCount": 6,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Viking Vesta",
+      "cruiseLine": "Viking Cruises",
+      "dateCount": 6,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Royal Clipper",
+      "cruiseLine": "Star Clippers",
+      "dateCount": 5,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Seven Seas Prestige",
+      "cruiseLine": "Regent Seven Seas Cruises",
+      "dateCount": 5,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Celestyal Discovery",
+      "cruiseLine": "Celestyal Cruises",
+      "dateCount": 4,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Viking Libra",
+      "cruiseLine": "Viking Cruises",
+      "dateCount": 4,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Viking Neptune",
+      "cruiseLine": "Viking Cruises",
+      "dateCount": 4,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Azamara Quest",
+      "cruiseLine": "Azamara Cruises",
+      "dateCount": 3,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Explora II",
+      "cruiseLine": "Explora Journeys",
+      "dateCount": 3,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Norwegian Prima",
+      "cruiseLine": "Norwegian Cruise Line",
+      "dateCount": 3,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Oosterdam",
+      "cruiseLine": "Holland America Line",
+      "dateCount": 3,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Star Clipper",
+      "cruiseLine": "Star Clippers",
+      "dateCount": 3,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Viking Sea",
+      "cruiseLine": "Viking Cruises",
+      "dateCount": 3,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Brilliance Of The Seas",
+      "cruiseLine": "Royal Caribbean / Royal Caribbean Cruises",
+      "dateCount": 2,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Celebrity Eclipse",
+      "cruiseLine": "Celebrity Cruises",
+      "dateCount": 2,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Europa",
+      "cruiseLine": "Hapag Lloyd",
+      "dateCount": 2,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Explora V",
+      "cruiseLine": "Explora Journeys",
+      "dateCount": 2,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Marella Discovery 2",
+      "cruiseLine": "Marella Cruises",
+      "dateCount": 2,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Mariner Of The Seas",
+      "cruiseLine": "Royal Caribbean Cruises",
+      "dateCount": 2,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Oceania Sirena",
+      "cruiseLine": "Oceania Cruises",
+      "dateCount": 2,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Oceania Sonata",
+      "cruiseLine": "Oceania Cruises",
+      "dateCount": 2,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Renaissance",
+      "cruiseLine": "CFC Croisieres",
+      "dateCount": 2,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Star Legend",
+      "cruiseLine": "Windstar Cruises",
+      "dateCount": 2,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Valiant Lady",
+      "cruiseLine": "Virgin Voyages",
+      "dateCount": 2,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Viking Astrea",
+      "cruiseLine": "Viking Cruises",
+      "dateCount": 2,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Wind Spirit",
+      "cruiseLine": "Windstar Cruises",
+      "dateCount": 2,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Azura",
+      "cruiseLine": "P & O Cruises",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Balmoral",
+      "cruiseLine": "Fred Olsen Cruise Lines",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Bolette",
+      "cruiseLine": "Fred Olsen Cruise Lines",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Borealis",
+      "cruiseLine": "Fred Olsen Cruise Lines",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Celebrity Apex",
+      "cruiseLine": "Celebrity Cruises",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Celebrity Constellation",
+      "cruiseLine": "Celebrity Cruises",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Celebrity Infinity",
+      "cruiseLine": "Celebrity Cruises",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Crystal Symphony",
+      "cruiseLine": "Crystal Cruises",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Explora III",
+      "cruiseLine": "Explora Journeys",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Norwegian Sky",
+      "cruiseLine": "Norwegian Cruise Line",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Oceania Aurelia",
+      "cruiseLine": "Oceania Cruises",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Oceania Marina",
+      "cruiseLine": "Oceania Cruises",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Seven Seas Explorer",
+      "cruiseLine": "Regent Seven Seas Cruises",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Seven Seas Mariner",
+      "cruiseLine": "Regent Seven Seas Cruises",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Silver Ray",
+      "cruiseLine": "Silversea Cruises",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    },
+    {
+      "shipName": "Viking Sky",
+      "cruiseLine": "Viking Cruises",
+      "dateCount": 1,
+      "reason": "No free-licence exterior candidate with exact vessel name verified in title"
+    }
+  ]
+}

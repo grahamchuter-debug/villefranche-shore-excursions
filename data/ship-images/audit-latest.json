@@ -1,12 +1,12 @@
 {
   "summary": {
-    "generatedAt": "2026-07-18T09:00:09.965Z",
+    "generatedAt": "2026-07-18T10:05:24.357Z",
     "totalShipsReferenced": 74,
-    "shipsWithVerifiedPublishableImages": 0,
-    "shipsMissingImages": 74,
-    "shipsUsingFallbacks": 74,
-    "imagesMissingSourceOrLicence": 4,
-    "catalogueEntries": 4,
+    "shipsWithVerifiedPublishableImages": 48,
+    "shipsMissingImages": 26,
+    "shipsUsingFallbacks": 26,
+    "imagesMissingSourceOrLicence": 0,
+    "catalogueEntries": 48,
     "orphanDiskFiles": [],
     "possibleDuplicateOrIncorrectMatches": []
   },
@@ -33,26 +33,20 @@
       ],
       "verifiedExactShip": true,
       "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
-      "missingImage": true,
-      "usingFallback": true,
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
       "sourceMetadata": {
-        "sourceName": null,
-        "sourcePage": null,
-        "author": null,
-        "licence": null,
-        "attributionRequired": true,
-        "attributionText": null,
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Azamara_Journey_closing_in_to_dock.jpg",
+        "author": "Szilas",
+        "licence": "Public domain",
+        "attributionRequired": false,
+        "attributionText": "Szilas / Wikimedia Commons / Public domain",
         "imagePosition": "center 40%",
-        "missingFields": [
-          "sourceName",
-          "sourcePage",
-          "author",
-          "licence",
-          "attributionText"
-        ]
+        "missingFields": []
       },
-      "publishable": false
+      "publishable": true
     },
     {
       "shipName": "Azamara Onward",
@@ -72,16 +66,30 @@
         "2028-06-04"
       ],
       "dateCount": 11,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "azamara-onward-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "azamara-onward-1280.avif",
+        "azamara-onward-1280.webp",
+        "azamara-onward-1920.avif",
+        "azamara-onward-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Azamara_Onward_Basseterre_20251207_1.jpg",
+        "author": "Z thomas",
+        "licence": "CC BY 4.0",
+        "attributionRequired": true,
+        "attributionText": "Z thomas / Wikimedia Commons / CC BY 4.0",
+        "imagePosition": "center 42%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Azamara Quest",
@@ -93,16 +101,30 @@
         "2028-09-30"
       ],
       "dateCount": 3,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "azamara-quest-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "azamara-quest-1280.avif",
+        "azamara-quest-1280.webp",
+        "azamara-quest-1920.avif",
+        "azamara-quest-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Azamara_Quest_arriving_Tallinn_28_June_2015.JPG",
+        "author": "Pjotr Mahhonin",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Pjotr Mahhonin / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 42%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Azura",
@@ -189,16 +211,30 @@
         "2026-07-30"
       ],
       "dateCount": 2,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "brilliance-of-the-seas-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "brilliance-of-the-seas-1280.avif",
+        "brilliance-of-the-seas-1280.webp",
+        "brilliance-of-the-seas-1920.avif",
+        "brilliance-of-the-seas-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Brilliance_of_the_Seas_departing_Sydney.jpg",
+        "author": "Dicklyon",
+        "licence": "CC BY 4.0",
+        "attributionRequired": true,
+        "attributionText": "Dicklyon / Wikimedia Commons / CC BY 4.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Celebrity Apex",
@@ -208,16 +244,30 @@
         "2026-09-20"
       ],
       "dateCount": 1,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "celebrity-apex-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "celebrity-apex-1280.avif",
+        "celebrity-apex-1280.webp",
+        "celebrity-apex-1920.avif",
+        "celebrity-apex-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Celebrity_Apex.jpg",
+        "author": "Jakez Bo",
+        "licence": "CC0",
+        "attributionRequired": false,
+        "attributionText": "Jakez Bo / Wikimedia Commons / CC0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Celebrity Constellation",
@@ -227,16 +277,30 @@
         "2027-05-12"
       ],
       "dateCount": 1,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "celebrity-constellation-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "celebrity-constellation-1280.avif",
+        "celebrity-constellation-1280.webp",
+        "celebrity-constellation-1920.avif",
+        "celebrity-constellation-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Celebrity_Constellation_at_Tallinn_15_July_2012.JPG",
+        "author": "Pjotr Mahhonin",
+        "licence": "CC0",
+        "attributionRequired": false,
+        "attributionText": "Pjotr Mahhonin / Wikimedia Commons / CC0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Celebrity Eclipse",
@@ -247,16 +311,30 @@
         "2026-11-07"
       ],
       "dateCount": 2,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "celebrity-eclipse-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "celebrity-eclipse-1280.avif",
+        "celebrity-eclipse-1280.webp",
+        "celebrity-eclipse-1920.avif",
+        "celebrity-eclipse-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Celebrity_Eclipse_at_Circular_Quay_Sydney.jpg",
+        "author": "Dicklyon",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Dicklyon / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Celebrity Equinox",
@@ -286,26 +364,20 @@
       ],
       "verifiedExactShip": true,
       "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
-      "missingImage": true,
-      "usingFallback": true,
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
       "sourceMetadata": {
-        "sourceName": null,
-        "sourcePage": null,
-        "author": null,
-        "licence": null,
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:MS_Celebrity_Equinox_R03.jpg",
+        "author": "Marc Ryckaert",
+        "licence": "CC BY 3.0",
         "attributionRequired": true,
-        "attributionText": null,
+        "attributionText": "Marc Ryckaert / Wikimedia Commons / CC BY 3.0",
         "imagePosition": "center 48%",
-        "missingFields": [
-          "sourceName",
-          "sourcePage",
-          "author",
-          "licence",
-          "attributionText"
-        ]
+        "missingFields": []
       },
-      "publishable": false
+      "publishable": true
     },
     {
       "shipName": "Celebrity Infinity",
@@ -315,16 +387,30 @@
         "2026-11-12"
       ],
       "dateCount": 1,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "celebrity-infinity-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "celebrity-infinity-1280.avif",
+        "celebrity-infinity-1280.webp",
+        "celebrity-infinity-1920.avif",
+        "celebrity-infinity-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:GTS_Celebrity_Infinity.jpg",
+        "author": "Andrew J Bryson",
+        "licence": "Public domain",
+        "attributionRequired": false,
+        "attributionText": "Andrew J Bryson / Wikimedia Commons / Public domain",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Celebrity Xcel",
@@ -388,16 +474,30 @@
         "2028-06-04"
       ],
       "dateCount": 2,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "crystal-serenity-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "crystal-serenity-1280.avif",
+        "crystal-serenity-1280.webp",
+        "crystal-serenity-1920.avif",
+        "crystal-serenity-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Cruise_Liner_Crystal_Serenity_(27701173480).jpg",
+        "author": "Rob Mitchell",
+        "licence": "CC BY 2.0",
+        "attributionRequired": true,
+        "attributionText": "Rob Mitchell / Wikimedia Commons / CC BY 2.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Crystal Symphony",
@@ -454,16 +554,30 @@
         "2027-10-14"
       ],
       "dateCount": 9,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "explora-i-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "explora-i-1280.avif",
+        "explora-i-1280.webp",
+        "explora-i-1920.avif",
+        "explora-i-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Explora_I.jpg",
+        "author": "JanDragon",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "JanDragon / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 48%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Explora II",
@@ -538,16 +652,30 @@
         "2027-09-09"
       ],
       "dateCount": 6,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "explorer-of-the-seas-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "explorer-of-the-seas-1280.avif",
+        "explorer-of-the-seas-1280.webp",
+        "explorer-of-the-seas-1920.avif",
+        "explorer-of-the-seas-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Explorer_of_the_Seas_(ship,_2000)_Departs_Port_Canaveral_(February_2026).jpg",
+        "author": "Jack Adamenko",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Jack Adamenko / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Marella Discovery",
@@ -561,16 +689,30 @@
         "2027-09-22"
       ],
       "dateCount": 5,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "marella-discovery-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "marella-discovery-1280.avif",
+        "marella-discovery-1280.webp",
+        "marella-discovery-1920.avif",
+        "marella-discovery-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Marella_Discovery_at_Argostolion_Port_in_Greece_30.10.2025.jpg",
+        "author": "Littlebigenz1234",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Littlebigenz1234 / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Marella Discovery 2",
@@ -606,16 +748,30 @@
         "2026-10-27"
       ],
       "dateCount": 7,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "marella-explorer-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "marella-explorer-1280.avif",
+        "marella-explorer-1280.webp",
+        "marella-explorer-1920.avif",
+        "marella-explorer-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Madeira._Funchal_cruise_ship_port._The_Marella_Explorer,_a_TUI_ship._(51859892824).jpg",
+        "author": "Anne and David from Kent, England UK",
+        "licence": "CC BY 2.0",
+        "attributionRequired": true,
+        "attributionText": "Anne and David from Kent, England UK / Wikimedia Commons / CC BY 2.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Marella Voyager",
@@ -653,16 +809,30 @@
         "2027-08-23"
       ],
       "dateCount": 2,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "mariner-of-the-seas-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "mariner-of-the-seas-1280.avif",
+        "mariner-of-the-seas-1280.webp",
+        "mariner-of-the-seas-1920.avif",
+        "mariner-of-the-seas-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Mariner_of_the_Seas_Rhodes.jpg",
+        "author": "Jebulon",
+        "licence": "CC0",
+        "attributionRequired": false,
+        "attributionText": "Jebulon / Wikimedia Commons / CC0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Norwegian Dawn",
@@ -672,16 +842,30 @@
         "2027-09-18"
       ],
       "dateCount": 1,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "norwegian-dawn-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "norwegian-dawn-1280.avif",
+        "norwegian-dawn-1280.webp",
+        "norwegian-dawn-1920.avif",
+        "norwegian-dawn-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Norwegian_Dawn_-_Great_Stirrup_Cay.jpg",
+        "author": "Stephan Bleister at de.wikipedia",
+        "licence": "Public domain",
+        "attributionRequired": false,
+        "attributionText": "Stephan Bleister at de.wikipedia / Wikimedia Commons / Public domain",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Norwegian Epic",
@@ -736,26 +920,20 @@
       ],
       "verifiedExactShip": true,
       "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
-      "missingImage": true,
-      "usingFallback": true,
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
       "sourceMetadata": {
-        "sourceName": null,
-        "sourcePage": null,
-        "author": null,
-        "licence": null,
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Norwegian_Epic_2017_Barcelona.jpg",
+        "author": "Jordiferrer",
+        "licence": "CC BY-SA 4.0",
         "attributionRequired": true,
-        "attributionText": null,
+        "attributionText": "Jordiferrer / Wikimedia Commons / CC BY-SA 4.0",
         "imagePosition": "center 42%",
-        "missingFields": [
-          "sourceName",
-          "sourcePage",
-          "author",
-          "licence",
-          "attributionText"
-        ]
+        "missingFields": []
       },
-      "publishable": false
+      "publishable": true
     },
     {
       "shipName": "Norwegian Gem",
@@ -765,16 +943,30 @@
         "2027-04-27"
       ],
       "dateCount": 1,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "norwegian-gem-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "norwegian-gem-1280.avif",
+        "norwegian-gem-1280.webp",
+        "norwegian-gem-1920.avif",
+        "norwegian-gem-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Norwegian_Gem_bow_Pier_88_jeh.jpg",
+        "author": "Jim.henderson",
+        "licence": "CC BY-SA 3.0",
+        "attributionRequired": true,
+        "attributionText": "Jim.henderson / Wikimedia Commons / CC BY-SA 3.0",
+        "imagePosition": "center 40%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Norwegian Prima",
@@ -786,16 +978,30 @@
         "2027-05-30"
       ],
       "dateCount": 3,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "norwegian-prima-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "norwegian-prima-1280.avif",
+        "norwegian-prima-1280.webp",
+        "norwegian-prima-1920.avif",
+        "norwegian-prima-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Norwegian_Prima_in_Amsterdam_(cropped).jpg",
+        "author": "Chrissy85",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Chrissy85 / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Norwegian Sky",
@@ -824,16 +1030,30 @@
         "2027-04-30"
       ],
       "dateCount": 1,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "norwegian-sun-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "norwegian-sun-1280.avif",
+        "norwegian-sun-1280.webp",
+        "norwegian-sun-1920.avif",
+        "norwegian-sun-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Norwegian_Sun_at_sea_on_28_November_2006_(cropped).jpg",
+        "author": "Colorado Locks at English Wikipedia",
+        "licence": "Public domain",
+        "attributionRequired": false,
+        "attributionText": "Colorado Locks at English Wikipedia / Wikimedia Commons / Public domain",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Norwegian Viva",
@@ -852,16 +1072,30 @@
         "2027-10-25"
       ],
       "dateCount": 10,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "norwegian-viva-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "norwegian-viva-1280.avif",
+        "norwegian-viva-1280.webp",
+        "norwegian-viva-1920.avif",
+        "norwegian-viva-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Norwegian_Viva_Mar_1_2024.jpg",
+        "author": "Master0Garfield",
+        "licence": "CC0",
+        "attributionRequired": false,
+        "attributionText": "Master0Garfield / Wikimedia Commons / CC0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Oceania Aurelia",
@@ -949,16 +1183,30 @@
         "2028-05-02"
       ],
       "dateCount": 1,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "oceania-vista-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "oceania-vista-1280.avif",
+        "oceania-vista-1280.webp",
+        "oceania-vista-1920.avif",
+        "oceania-vista-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Carnival_Firenze_(ex._Costa_Firenze)_(ship,_2020)_%26_Oceania_Vista_(ship,_2023)_in_Cabo_San_Lucas_(December_2025).jpg",
+        "author": "Jack Adamenko",
+        "licence": "CC0",
+        "attributionRequired": false,
+        "attributionText": "Jack Adamenko / Wikimedia Commons / CC0",
+        "imagePosition": "55% center",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Oosterdam",
@@ -970,16 +1218,30 @@
         "2027-04-24"
       ],
       "dateCount": 3,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "oosterdam-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "oosterdam-1280.avif",
+        "oosterdam-1280.webp",
+        "oosterdam-1920.avif",
+        "oosterdam-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:MS_Oosterdam,_Tauranga,_2013_(04).jpg",
+        "author": "Bahnfrend",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Bahnfrend / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Queen Elizabeth",
@@ -989,16 +1251,30 @@
         "2027-09-28"
       ],
       "dateCount": 1,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "queen-elizabeth-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "queen-elizabeth-1280.avif",
+        "queen-elizabeth-1280.webp",
+        "queen-elizabeth-1920.avif",
+        "queen-elizabeth-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Vancouver_(BC,_Canada),_Vancouver_Harbour,_Kreuzfahrtschiff_%22Queen_Elizabeth%22_--_2022_--_2181.jpg",
+        "author": "Dietmar Rabich",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Dietmar Rabich / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Queen Victoria",
@@ -1010,16 +1286,30 @@
         "2026-09-17"
       ],
       "dateCount": 3,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "queen-victoria-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "queen-victoria-1280.avif",
+        "queen-victoria-1280.webp",
+        "queen-victoria-1920.avif",
+        "queen-victoria-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Cruise_ship_%22Queen_Victoria%22_in_the_Solent,_England.jpg",
+        "author": "ITookSomePhotos",
+        "licence": "CC BY-SA 2.0",
+        "attributionRequired": true,
+        "attributionText": "ITookSomePhotos / Wikimedia Commons / CC BY-SA 2.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Renaissance",
@@ -1051,16 +1341,30 @@
         "2027-09-13"
       ],
       "dateCount": 3,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "resilient-lady-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "resilient-lady-1280.avif",
+        "resilient-lady-1280.webp",
+        "resilient-lady-1920.avif",
+        "resilient-lady-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Virgin_Voyages_Resilient_Lady_cruise_ship.jpg",
+        "author": "Antoloji",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Antoloji / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Royal Clipper",
@@ -1074,16 +1378,30 @@
         "2027-05-22"
       ],
       "dateCount": 5,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "royal-clipper-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "royal-clipper-1280.avif",
+        "royal-clipper-1280.webp",
+        "royal-clipper-1920.avif",
+        "royal-clipper-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Royal_Clipper_in_M%C3%A1laga.jpg",
+        "author": "Daniel Capilla",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Daniel Capilla / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 40%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Scarlet Lady",
@@ -1093,16 +1411,30 @@
         "2026-07-22"
       ],
       "dateCount": 1,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "scarlet-lady-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "scarlet-lady-1280.avif",
+        "scarlet-lady-1280.webp",
+        "scarlet-lady-1920.avif",
+        "scarlet-lady-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Scarlet_Lady_in_Liverpool_February_2020_(cropped).jpg",
+        "author": "silver-novice ~ ne res adversae impediant",
+        "licence": "CC BY 2.0",
+        "attributionRequired": true,
+        "attributionText": "silver-novice ~ ne res adversae impediant / Wikimedia Commons / CC BY 2.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "SeaDream I",
@@ -1115,16 +1447,30 @@
         "2028-10-14"
       ],
       "dateCount": 4,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "seadream-i-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "seadream-i-1280.avif",
+        "seadream-i-1280.webp",
+        "seadream-i-1920.avif",
+        "seadream-i-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Seadream_1,_Barbados_-_Flickr_-_A_Guy_Named_Nyal.jpg",
+        "author": "A Guy Named Nyal",
+        "licence": "CC BY-SA 2.0",
+        "attributionRequired": true,
+        "attributionText": "A Guy Named Nyal / Wikimedia Commons / CC BY-SA 2.0",
+        "imagePosition": "center 40%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "SeaDream II",
@@ -1139,16 +1485,30 @@
         "2028-10-15"
       ],
       "dateCount": 6,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "seadream-ii-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "seadream-ii-1280.avif",
+        "seadream-ii-1280.webp",
+        "seadream-ii-1920.avif",
+        "seadream-ii-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:SeaDream_II_yacht.jpg",
+        "author": "No machine-readable author provided. Orlovic assumed (based on copyright claims).",
+        "licence": "CC BY-SA 3.0",
+        "attributionRequired": true,
+        "attributionText": "No machine-readable author provided. Orlovic assumed (based on copyright claims). / Wikimedia Commons / CC BY-SA 3.0",
+        "imagePosition": "center 40%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Seven Seas Explorer",
@@ -1158,16 +1518,30 @@
         "2028-08-28"
       ],
       "dateCount": 1,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "seven-seas-explorer-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "seven-seas-explorer-1280.avif",
+        "seven-seas-explorer-1280.webp",
+        "seven-seas-explorer-1920.avif",
+        "seven-seas-explorer-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Seven_Seas_Explorer.jpg",
+        "author": "Continentaleurope",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Continentaleurope / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Seven Seas Grandeur",
@@ -1178,16 +1552,30 @@
         "2028-06-10"
       ],
       "dateCount": 2,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "seven-seas-grandeur-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "seven-seas-grandeur-1280.avif",
+        "seven-seas-grandeur-1280.webp",
+        "seven-seas-grandeur-1920.avif",
+        "seven-seas-grandeur-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Regent_Seven_Seas_Grandeur_(53824101578).jpg",
+        "author": "Mustang Joe",
+        "licence": "CC0",
+        "attributionRequired": false,
+        "attributionText": "Mustang Joe / Wikimedia Commons / CC0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Seven Seas Mariner",
@@ -1197,16 +1585,30 @@
         "2028-05-28"
       ],
       "dateCount": 1,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "seven-seas-mariner-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "seven-seas-mariner-1280.avif",
+        "seven-seas-mariner-1280.webp",
+        "seven-seas-mariner-1920.avif",
+        "seven-seas-mariner-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Seven_Seas_Mariner_Vesuvius.jpg",
+        "author": "Jebulon",
+        "licence": "CC0",
+        "attributionRequired": false,
+        "attributionText": "Jebulon / Wikimedia Commons / CC0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Seven Seas Prestige",
@@ -1239,16 +1641,30 @@
         "2027-04-11"
       ],
       "dateCount": 1,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "silver-nova-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "silver-nova-1280.avif",
+        "silver-nova-1280.webp",
+        "silver-nova-1920.avif",
+        "silver-nova-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Silver_nova.jpg",
+        "author": "Narwhalian1",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Narwhalian1 / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 48%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Silver Ray",
@@ -1301,26 +1717,20 @@
       ],
       "verifiedExactShip": true,
       "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
-      "missingImage": true,
-      "usingFallback": true,
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
       "sourceMetadata": {
-        "sourceName": null,
-        "sourcePage": null,
-        "author": null,
-        "licence": null,
-        "attributionRequired": true,
-        "attributionText": null,
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Silver_shadow_ovik01.jpg",
+        "author": "Petey21",
+        "licence": "Public domain",
+        "attributionRequired": false,
+        "attributionText": "Petey21 / Wikimedia Commons / Public domain",
         "imagePosition": "center 55%",
-        "missingFields": [
-          "sourceName",
-          "sourcePage",
-          "author",
-          "licence",
-          "attributionText"
-        ]
+        "missingFields": []
       },
-      "publishable": false
+      "publishable": true
     },
     {
       "shipName": "Star Clipper",
@@ -1332,16 +1742,30 @@
         "2027-10-16"
       ],
       "dateCount": 3,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "star-clipper-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "star-clipper-1280.avif",
+        "star-clipper-1280.webp",
+        "star-clipper-1920.avif",
+        "star-clipper-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Star_Clipper_(Schiff_1992).jpg",
+        "author": "kansasphoto",
+        "licence": "CC BY 2.0",
+        "attributionRequired": true,
+        "attributionText": "kansasphoto / Wikimedia Commons / CC BY 2.0",
+        "imagePosition": "center 40%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Star Explorer",
@@ -1377,16 +1801,30 @@
         "2027-11-09"
       ],
       "dateCount": 2,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "star-legend-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "star-legend-1280.avif",
+        "star-legend-1280.webp",
+        "star-legend-1920.avif",
+        "star-legend-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Windstar-Cruises-Star-Legend.jpg",
+        "author": "David Winchester",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "David Winchester / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Valiant Lady",
@@ -1397,16 +1835,30 @@
         "2026-07-13"
       ],
       "dateCount": 2,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "valiant-lady-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "valiant-lady-1280.avif",
+        "valiant-lady-1280.webp",
+        "valiant-lady-1920.avif",
+        "valiant-lady-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Barcelone_-_ESP_-_2023.07.02_-_Virgin_Voyages_-_%C2%AB_Valiant_Lady_%C2%BB_%C2%A9_Anthony_Levrot.jpg",
+        "author": "Anthony Levrot",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Anthony Levrot / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Viking Astrea",
@@ -1437,16 +1889,30 @@
         "2028-07-26"
       ],
       "dateCount": 2,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "viking-jupiter-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "viking-jupiter-1280.avif",
+        "viking-jupiter-1280.webp",
+        "viking-jupiter-1920.avif",
+        "viking-jupiter-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Viking_Jupiter_(ship,_2019).jpg",
+        "author": "Abxbay",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Abxbay / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 48%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Viking Libra",
@@ -1480,16 +1946,30 @@
         "2028-05-23"
       ],
       "dateCount": 3,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "viking-mars-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "viking-mars-1280.avif",
+        "viking-mars-1280.webp",
+        "viking-mars-1920.avif",
+        "viking-mars-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:2022_06_Viking_Mars_(1).jpg",
+        "author": "Philippe Alès",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Philippe Alès / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 48%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Viking Mira",
@@ -1531,16 +2011,30 @@
         "2027-12-26"
       ],
       "dateCount": 4,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "viking-neptune-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "viking-neptune-1280.avif",
+        "viking-neptune-1280.webp",
+        "viking-neptune-1920.avif",
+        "viking-neptune-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Viking_Neptune_at_Greenwich.jpg",
+        "author": "Devokewater",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Devokewater / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 48%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Viking Saturn",
@@ -1557,16 +2051,30 @@
         "2027-12-27"
       ],
       "dateCount": 8,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "viking-saturn-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "viking-saturn-1280.avif",
+        "viking-saturn-1280.webp",
+        "viking-saturn-1920.avif",
+        "viking-saturn-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Viking_Saturn,_Bergen.jpg",
+        "author": "Werner Wilmes",
+        "licence": "CC BY 2.0",
+        "attributionRequired": true,
+        "attributionText": "Werner Wilmes / Wikimedia Commons / CC BY 2.0",
+        "imagePosition": "center 48%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Viking Sea",
@@ -1578,16 +2086,30 @@
         "2027-10-08"
       ],
       "dateCount": 3,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "viking-sea-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "viking-sea-1280.avif",
+        "viking-sea-1280.webp",
+        "viking-sea-1920.avif",
+        "viking-sea-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Viking_Sea_at_pier_26_Port_of_Tallinn_27_May_2016.jpg",
+        "author": "Pjotr Mahhonin",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Pjotr Mahhonin / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 48%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Viking Sky",
@@ -1625,16 +2147,30 @@
         "2028-09-06"
       ],
       "dateCount": 10,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "viking-star-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "viking-star-1280.avif",
+        "viking-star-1280.webp",
+        "viking-star-1920.avif",
+        "viking-star-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Cruise_ship_Viking_Star._Geirangerfjord._Norway.jpg",
+        "author": "Tiraspolsky",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Tiraspolsky / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 48%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Viking Vela",
@@ -1649,16 +2185,30 @@
         "2028-03-04"
       ],
       "dateCount": 6,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "viking-vela-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "viking-vela-1280.avif",
+        "viking-vela-1280.webp",
+        "viking-vela-1920.avif",
+        "viking-vela-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:19_April_2025_Viking_Vela_at_Greenwich_-_08.jpg",
+        "author": "Jodiepedia",
+        "licence": "CC0",
+        "attributionRequired": false,
+        "attributionText": "Jodiepedia / Wikimedia Commons / CC0",
+        "imagePosition": "center 48%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Viking Vesta",
@@ -1673,16 +2223,30 @@
         "2027-12-10"
       ],
       "dateCount": 6,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "viking-vesta-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "viking-vesta-1280.avif",
+        "viking-vesta-1280.webp",
+        "viking-vesta-1920.avif",
+        "viking-vesta-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Barcelone_-_ESP_-_2026.03.28_-_Viking_Cruises_-_%C2%AB_Viking_Vesta_%C2%BB_(vue_avant_gauche)_%C2%A9_Anthony_Levrot.jpg",
+        "author": "Anthony Levrot",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Anthony Levrot / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 48%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Volendam",
@@ -1693,16 +2257,30 @@
         "2027-10-24"
       ],
       "dateCount": 2,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "volendam-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "volendam-1280.avif",
+        "volendam-1280.webp",
+        "volendam-1920.avif",
+        "volendam-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:MS_Volendam_in_Juneau.JPG",
+        "author": "Barek",
+        "licence": "Public domain",
+        "attributionRequired": false,
+        "attributionText": "Barek / Wikimedia Commons / Public domain",
+        "imagePosition": "center 45%",
+        "missingFields": []
+      },
+      "publishable": true
     },
     {
       "shipName": "Wind Spirit",
@@ -1713,16 +2291,30 @@
         "2027-06-05"
       ],
       "dateCount": 2,
-      "imageAssigned": null,
-      "imageExistsOnDisk": false,
-      "diskFiles": [],
-      "verifiedExactShip": false,
-      "appearsExactVessel": "no verified exact-vessel image",
-      "missingImage": true,
-      "usingFallback": true,
+      "imageAssigned": "wind-spirit-1920.webp",
+      "imageExistsOnDisk": true,
+      "diskFiles": [
+        "wind-spirit-1280.avif",
+        "wind-spirit-1280.webp",
+        "wind-spirit-1920.avif",
+        "wind-spirit-1920.webp"
+      ],
+      "verifiedExactShip": true,
+      "appearsExactVessel": "catalogue claims exact vessel — human re-check recommended when sourcing",
+      "missingImage": false,
+      "usingFallback": false,
       "duplicateImageUsage": null,
-      "sourceMetadata": null,
-      "publishable": false
+      "sourceMetadata": {
+        "sourceName": "Wikimedia Commons",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Wind_Spirit_in_Moorea.jpg",
+        "author": "Windstar cruises",
+        "licence": "CC BY-SA 4.0",
+        "attributionRequired": true,
+        "attributionText": "Windstar cruises / Wikimedia Commons / CC BY-SA 4.0",
+        "imagePosition": "center 40%",
+        "missingFields": []
+      },
+      "publishable": true
     }
   ]
 }

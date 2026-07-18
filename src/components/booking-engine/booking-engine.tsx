@@ -7,6 +7,7 @@ import { BookingProgress } from "@/components/booking-engine/booking-progress";
 import { ConfirmationStep } from "@/components/booking-engine/steps/confirmation-step";
 import { DateStep } from "@/components/booking-engine/steps/date-step";
 import { GuestsStep } from "@/components/booking-engine/steps/guests-step";
+import { formatVerifiedShipTimingLine } from "@/lib/booking/booking-ship-types";
 import { PaymentStep } from "@/components/booking-engine/steps/payment-step";
 import { ShipStep } from "@/components/booking-engine/steps/ship-step";
 import { TourIntroStep } from "@/components/booking-engine/steps/tour-intro-step";
@@ -357,6 +358,11 @@ export function BookingEngine({ shipsByDate }: BookingEngineProps) {
                 guests={state.guests}
                 selectedDateLabel={selectedDateLabel}
                 cruiseShipName={state.cruiseShip?.name}
+                cruiseShipTimingLine={
+                  state.cruiseShip
+                    ? formatVerifiedShipTimingLine(state.cruiseShip)
+                    : null
+                }
                 onChangeGuests={(guests) =>
                   setState((prev) => ({
                     ...prev,

@@ -1,0 +1,118 @@
+{
+  "generatedAt": "2026-07-18T10:21:09.274Z",
+  "totalRecords": 301,
+  "uniqueShips": 74,
+  "uniqueSailingDates": 278,
+  "datesWithMultipleShips": 20,
+  "recordsMissingArrival": 106,
+  "recordsMissingDeparture": 132,
+  "duplicateRecords": [],
+  "conflictingRecords": [],
+  "unmatchedShipImages": [
+    {
+      "ship": "Celebrity Xcel",
+      "sailings": 13
+    },
+    {
+      "ship": "Viking Mira",
+      "sailings": 11
+    },
+    {
+      "ship": "Marella Voyager",
+      "sailings": 9
+    },
+    {
+      "ship": "Star Explorer",
+      "sailings": 7
+    },
+    {
+      "ship": "Seven Seas Prestige",
+      "sailings": 5
+    },
+    {
+      "ship": "Celestyal Discovery",
+      "sailings": 4
+    },
+    {
+      "ship": "Viking Libra",
+      "sailings": 4
+    },
+    {
+      "ship": "Explora II",
+      "sailings": 3
+    },
+    {
+      "ship": "Oceania Sonata",
+      "sailings": 2
+    },
+    {
+      "ship": "Explora V",
+      "sailings": 2
+    },
+    {
+      "ship": "Viking Astrea",
+      "sailings": 2
+    },
+    {
+      "ship": "Marella Discovery 2",
+      "sailings": 2
+    },
+    {
+      "ship": "Renaissance",
+      "sailings": 2
+    },
+    {
+      "ship": "Europa",
+      "sailings": 2
+    },
+    {
+      "ship": "Oceania Sirena",
+      "sailings": 2
+    },
+    {
+      "ship": "Oceania Marina",
+      "sailings": 1
+    },
+    {
+      "ship": "Azura",
+      "sailings": 1
+    },
+    {
+      "ship": "Explora III",
+      "sailings": 1
+    },
+    {
+      "ship": "Borealis",
+      "sailings": 1
+    },
+    {
+      "ship": "Crystal Symphony",
+      "sailings": 1
+    },
+    {
+      "ship": "Oceania Aurelia",
+      "sailings": 1
+    },
+    {
+      "ship": "Viking Sky",
+      "sailings": 1
+    },
+    {
+      "ship": "Balmoral",
+      "sailings": 1
+    },
+    {
+      "ship": "Norwegian Sky",
+      "sailings": 1
+    },
+    {
+      "ship": "Bolette",
+      "sailings": 1
+    },
+    {
+      "ship": "Silver Ray",
+      "sailings": 1
+    }
+  ],
+  "inconsistentShipSpellings": []
+}

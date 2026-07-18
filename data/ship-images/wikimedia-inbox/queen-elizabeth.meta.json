@@ -1,0 +1,16 @@
+{
+  "shipName": "Queen Elizabeth",
+  "cruiseLine": "Cunard Line",
+  "slug": "queen-elizabeth",
+  "file": "queen-elizabeth-1920.webp",
+  "sourceName": "Wikimedia Commons",
+  "sourcePage": "https://commons.wikimedia.org/wiki/File:Vancouver_(BC,_Canada),_Vancouver_Harbour,_Kreuzfahrtschiff_%22Queen_Elizabeth%22_--_2022_--_2181.jpg",
+  "author": "Dietmar Rabich",
+  "licence": "CC BY-SA 4.0",
+  "attributionRequired": true,
+  "attributionText": "Dietmar Rabich / Wikimedia Commons / CC BY-SA 4.0",
+  "verifiedExactShip": true,
+  "imagePosition": "center 45%",
+  "commonsFileTitle": "File:Vancouver (BC, Canada), Vancouver Harbour, Kreuzfahrtschiff \"Queen Elizabeth\" -- 2022 -- 2181.jpg",
+  "notes": "Cunard Queen Elizabeth cruise ship in Vancouver Harbour."
+}
