@@ -31,7 +31,10 @@ export function TourIntroStep({
       aria-hidden={isExiting || undefined}
     >
       <div className="book-hero-panel relative flex min-h-[100dvh] flex-1 flex-col justify-end overflow-hidden">
-        <BookingHeroMedia slides={tour.heroGallery} />
+        <BookingHeroMedia
+          slides={tour.heroGallery}
+          paused={isExiting}
+        />
 
         <div
           className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--book-ink)]/72 via-[var(--book-ink)]/22 to-[var(--book-ink)]/08"
