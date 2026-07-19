@@ -23,7 +23,7 @@ Set the **same** value in both places:
 
 | Variable | Where | Value |
 |----------|--------|-------|
-| `BOOKING_PRICE_PER_GUEST_EUR` | Worker env / `.dev.vars` / Cloudflare secrets (authoritative for charging) | `149` |
+| `BOOKING_PRICE_PER_GUEST_EUR` | Worker plain var (`wrangler.toml` `[vars]` / dashboard Text) — not a secret | `149` |
 | `NEXT_PUBLIC_BOOKING_PRICE_PER_GUEST_EUR` | Next `.env.local` (display only; baked at build) | `149` |
 
 The Worker **always recalculates** amount as integer minor units: `149 × guests × 100` cents, and ignores any browser-supplied total (mismatches are logged).
@@ -92,7 +92,7 @@ Copy `workers/payments/.dev.vars.example` → `workers/payments/.dev.vars`.
 |------|----------|--------|
 | `STRIPE_SECRET_KEY` | Yes | `sk_test_…` only until launch checklist passes |
 | `STRIPE_WEBHOOK_SECRET` | Yes | `whsec_…` from Stripe CLI or Dashboard endpoint |
-| `BOOKING_PRICE_PER_GUEST_EUR` | Yes | `149` (same as Next public price) |
+| `BOOKING_PRICE_PER_GUEST_EUR` | Yes | `149` as a **plain** Worker var (not a secret); same as Next public price |
 | `SITE_BASE_URL` | Yes for checkout | Trusted site origin for success/cancel redirects |
 | `SITE_ORIGIN` | Recommended | CORS + fallback if `SITE_BASE_URL` unset |
 | `CORS_ALLOWED_ORIGINS` | Optional | Extra origins (localhost already allowed) |
@@ -166,8 +166,7 @@ cd workers/payments
 npm run db:migrate:remote
 npx wrangler secret put STRIPE_SECRET_KEY
 npx wrangler secret put STRIPE_WEBHOOK_SECRET
-npx wrangler secret put BOOKING_PRICE_PER_GUEST_EUR
-# Set SITE_BASE_URL in dashboard vars (or wrangler.toml [vars]) to the production site origin
+# BOOKING_PRICE_PER_GUEST_EUR and SITE_BASE_URL are plain [vars] in wrangler.toml (not secrets)
 npm run deploy
 ```
 
