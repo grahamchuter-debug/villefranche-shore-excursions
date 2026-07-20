@@ -160,13 +160,13 @@ export function DateStep({
                 id="booking-date-heading"
                 className="book-display mt-1.5 max-w-lg text-[1.65rem] font-medium leading-[1.08] text-white outline-none sm:mt-2 sm:text-4xl"
               >
-                Choose your cruise date
+                Choose your day ashore
               </h2>
             </div>
           </div>
 
           <p className="mt-4 max-w-md text-[15px] leading-6 text-[var(--book-muted)] sm:text-base lg:hidden">
-            The day your ship calls at port.
+            Select the day your cruise ship visits Villefranche-sur-Mer.
           </p>
 
           {/* Desktop: typography below a compact image */}
@@ -180,10 +180,10 @@ export function DateStep({
               id="booking-date-heading-desktop"
               className="book-display text-4xl font-medium leading-[1.08] text-[var(--book-ink)] outline-none xl:text-[2.75rem]"
             >
-              Choose your cruise date
+              Choose your day ashore
             </h2>
             <p className="max-w-sm text-base leading-7 text-[var(--book-muted)]">
-              The day your ship calls at port.
+              Select the day your cruise ship visits Villefranche-sur-Mer.
             </p>
           </header>
         </div>
@@ -249,7 +249,7 @@ export function DateStep({
               key={`${view.getFullYear()}-${view.getMonth()}`}
               className="book-calendar-grid grid grid-cols-7 gap-1.5 sm:gap-2"
               role="grid"
-              aria-label={`${monthLabel} — choose your cruise date`}
+              aria-label={`${monthLabel} — choose your day ashore`}
             >
               {cells.map((date, index) => {
                 if (!date) {
