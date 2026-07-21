@@ -1,99 +1,339 @@
 /**
- * Email delivery — outbox-driven stubs ready for a real provider.
- * sent_at / status=sent only after the provider (or stub) accepts the message.
+ * Transactional email via Resend HTTP API (no SDK — Workers-friendly).
+ *
+ * v1: only internal paid-booking alerts.
+ * Customer confirmation / supplier kinds are reserved for a later back-office project.
  */
 
 import {
+  claimEmailOutboxForSend,
   enqueueEmailOutbox,
-  getPendingEmailOutbox,
-  markBookingEmailColumnSent,
+  getBookingByReference,
+  getRetryableEmailOutbox,
+  markBookingInternalEmailSent,
   markEmailOutboxFailed,
   markEmailOutboxSent,
   type EmailOutboxKind,
+  type EmailOutboxRow,
 } from "./db";
-import type { PaymentsEnv } from "./types";
+import { getShipCallTimes } from "./schedule";
+import type { BookingRow, PaymentsEnv } from "./types";
 
-export type EmailKind = "booking_confirmation" | "supplier_notification";
+export const INTERNAL_OUTBOX_KIND: EmailOutboxKind = "internal";
 
-export async function sendBookingEmailStub(args: {
-  kind: EmailKind;
-  bookingReference: string;
-  to?: string | null;
-  payload: Record<string, unknown>;
-}): Promise<{ accepted: boolean; stub: true }> {
-  console.log(
-    JSON.stringify({
-      email_stub: true,
-      kind: args.kind,
-      bookingReference: args.bookingReference,
-      to: args.to ? "[redacted]" : null,
-      keys: Object.keys(args.payload),
-    }),
-  );
-  // Stub always accepts; real providers should throw/return false on rejection.
-  return { accepted: true, stub: true };
+export const MANUAL_CUSTOMER_CONFIRMATION_BANNER =
+  "ACTION REQUIRED: Review this booking and send the customer’s confirmation manually.";
+
+export type ProviderSendResult =
+  | { accepted: true; messageId: string }
+  | { accepted: false; error: string };
+
+/** Build Resend "from" header from separate name + address env vars. */
+export function formatEmailFrom(env: PaymentsEnv): string {
+  const address = (env.EMAIL_FROM ?? "").trim();
+  if (!address) {
+    throw new Error("EMAIL_FROM is required (verified sender address)");
+  }
+  const name = (env.EMAIL_FROM_NAME ?? "Villefranche Shore Excursions").trim();
+  if (address.includes("<")) return address;
+  return `${name} <${address}>`;
 }
 
-function stubKindForOutbox(kind: EmailOutboxKind): EmailKind {
-  return kind === "confirmation"
-    ? "booking_confirmation"
-    : "supplier_notification";
+export function getInternalBookingEmail(env: PaymentsEnv): string {
+  const to = (env.INTERNAL_BOOKING_EMAIL ?? "").trim();
+  if (!to) {
+    throw new Error("INTERNAL_BOOKING_EMAIL is required");
+  }
+  return to;
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function formatMoney(cents: number, currency: string): string {
+  const major = (cents / 100).toFixed(2);
+  return `${currency.toUpperCase()} ${major}`;
+}
+
+export type InternalEmailContent = {
+  subject: string;
+  text: string;
+  html: string;
+};
+
+export function buildInternalBookingEmail(
+  booking: BookingRow,
+  times: { arrival: string | null; departure: string | null },
+): InternalEmailContent {
+  const ref = booking.booking_reference;
+  const date = booking.excursion_date;
+  const subject = `New paid Villefranche booking — ${ref} — ${date}`;
+
+  const customerEmail = booking.customer_email?.trim() || "—";
+  const mailto =
+    customerEmail !== "—"
+      ? `<a href="mailto:${escapeHtml(customerEmail)}">${escapeHtml(customerEmail)}</a>`
+      : "—";
+
+  const rows: Array<[string, string]> = [
+    ["Booking reference", ref],
+    ["Payment status", booking.status],
+    ["Stripe Checkout Session", booking.stripe_checkout_session_id ?? "—"],
+    ["Stripe PaymentIntent", booking.stripe_payment_intent_id ?? "—"],
+    ["Customer name", booking.customer_name ?? "—"],
+    ["Customer email", customerEmail],
+    ["Customer phone", booking.customer_phone ?? "—"],
+    ["Excursion", booking.excursion_name],
+    ["Excursion date", date],
+    ["Cruise ship", booking.ship_name],
+    ["Ship arrival", times.arrival ?? "—"],
+    ["Ship departure", times.departure ?? "—"],
+    ["Guests", String(booking.total_guests)],
+    ["Adults", String(booking.adults)],
+    ["Children", String(booking.children)],
+    ["Total paid", formatMoney(booking.amount_total_cents, booking.currency)],
+    ["Currency", booking.currency.toUpperCase()],
+    ["Booking created (UTC)", booking.created_at],
+    ["Customer notes", "— (not collected in v1)"],
+    ["Originating website", booking.originating_site],
+    ["Port", booking.originating_port ?? "—"],
+  ];
+
+  const textLines = [
+    MANUAL_CUSTOMER_CONFIRMATION_BANNER,
+    "",
+    "Customer confirmation / voucher must be sent manually for this soft launch.",
+    "",
+    ...rows.map(([k, v]) => `${k}: ${v}`),
+  ];
+
+  const htmlRows = rows
+    .map(([k, v]) => {
+      const display =
+        k === "Customer email" && customerEmail !== "—"
+          ? mailto
+          : escapeHtml(v);
+      return `<tr><th align="left" style="padding:4px 12px 4px 0;vertical-align:top;">${escapeHtml(k)}</th><td style="padding:4px 0;">${display}</td></tr>`;
+    })
+    .join("");
+
+  const html = `<!DOCTYPE html>
+<html><body style="font-family:system-ui,sans-serif;line-height:1.45;color:#111;">
+  <p style="padding:12px 14px;background:#fff3cd;border:1px solid #ffc107;font-weight:700;">
+    ${escapeHtml(MANUAL_CUSTOMER_CONFIRMATION_BANNER)}
+  </p>
+  <p>Customer confirmation / voucher must be sent <strong>manually</strong> for this soft launch. No automated customer email was sent.</p>
+  <table cellpadding="0" cellspacing="0" style="border-collapse:collapse;">${htmlRows}</table>
+</body></html>`;
+
+  return { subject, text: textLines.join("\n"), html };
 }
 
 /**
- * Enqueue confirmation + supplier emails (idempotent via unique constraint),
- * then attempt delivery for pending rows. Does not mark sent until accepted.
+ * Send via Resend REST API. Does not log recipient PII or API keys.
  */
-export async function enqueueAndDeliverBookingEmails(
+export async function sendViaResend(
   env: PaymentsEnv,
-  bookingReference: string,
-  customerEmail: string | null | undefined,
-): Promise<void> {
-  const payload = { bookingReference };
-  await enqueueEmailOutbox(env, {
-    bookingReference,
-    kind: "confirmation",
-    payload: { ...payload, to: customerEmail ?? null },
-  });
-  await enqueueEmailOutbox(env, {
-    bookingReference,
-    kind: "supplier",
-    payload,
+  args: {
+    to: string;
+    subject: string;
+    text: string;
+    html: string;
+  },
+): Promise<ProviderSendResult> {
+  const apiKey = env.RESEND_API_KEY?.trim();
+  if (!apiKey) {
+    return { accepted: false, error: "RESEND_API_KEY is not configured" };
+  }
+
+  let from: string;
+  try {
+    from = formatEmailFrom(env);
+  } catch (err) {
+    return { accepted: false, error: String(err) };
+  }
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to: [args.to],
+      subject: args.subject,
+      text: args.text,
+      html: args.html,
+    }),
   });
 
-  await deliverPendingEmails(env, bookingReference, customerEmail);
+  const body = (await response.json().catch(() => ({}))) as {
+    id?: string;
+    message?: string;
+    name?: string;
+    error?: { message?: string };
+  };
+
+  if (!response.ok) {
+    const msg =
+      body.error?.message ||
+      body.message ||
+      body.name ||
+      `Resend HTTP ${response.status}`;
+    console.error(
+      JSON.stringify({
+        email_provider_error: true,
+        status: response.status,
+        // Avoid logging full provider payloads (may include addresses).
+      }),
+    );
+    return { accepted: false, error: String(msg).slice(0, 400) };
+  }
+
+  if (!body.id) {
+    return { accepted: false, error: "Resend accepted but returned no message id" };
+  }
+
+  return { accepted: true, messageId: body.id };
 }
 
-export async function deliverPendingEmails(
+/**
+ * After D1 booking is confirmed: enqueue internal outbox row only (idempotent).
+ * Does not call Resend — caller should schedule deliverInternalOutbox via waitUntil.
+ */
+export async function enqueueInternalBookingNotification(
+  env: PaymentsEnv,
+  booking: BookingRow,
+): Promise<boolean> {
+  const times = getShipCallTimes(
+    booking.excursion_date,
+    booking.ship_id,
+    booking.ship_name,
+  );
+  const content = buildInternalBookingEmail(booking, times);
+
+  return enqueueEmailOutbox(env, {
+    bookingReference: booking.booking_reference,
+    kind: INTERNAL_OUTBOX_KIND,
+    payload: {
+      to: getInternalBookingEmail(env),
+      subject: content.subject,
+      // Snapshot for retries if booking row changes later
+      booking_reference: booking.booking_reference,
+    },
+  });
+}
+
+async function deliverOneInternalRow(
+  env: PaymentsEnv,
+  row: EmailOutboxRow,
+): Promise<void> {
+  if (row.kind !== INTERNAL_OUTBOX_KIND) {
+    // v1 must never auto-send customer/supplier kinds.
+    console.error(
+      JSON.stringify({
+        email_skipped_non_internal: true,
+        kind: row.kind,
+        outboxId: row.id,
+      }),
+    );
+    await markEmailOutboxFailed(
+      env,
+      row.id,
+      "v1 only delivers internal notifications",
+    );
+    return;
+  }
+
+  const claimed = await claimEmailOutboxForSend(env, row.id);
+  if (!claimed) return;
+
+  const booking = await getBookingByReference(env, row.booking_reference);
+  if (!booking) {
+    await markEmailOutboxFailed(env, row.id, "booking_not_found");
+    return;
+  }
+
+  let to: string;
+  try {
+    to = getInternalBookingEmail(env);
+  } catch (err) {
+    await markEmailOutboxFailed(env, row.id, String(err));
+    return;
+  }
+
+  const times = getShipCallTimes(
+    booking.excursion_date,
+    booking.ship_id,
+    booking.ship_name,
+  );
+  const content = buildInternalBookingEmail(booking, times);
+
+  try {
+    const result = await sendViaResend(env, {
+      to,
+      subject: content.subject,
+      text: content.text,
+      html: content.html,
+    });
+
+    if (!result.accepted) {
+      await markEmailOutboxFailed(env, row.id, result.error);
+      return;
+    }
+
+    const marked = await markEmailOutboxSent(env, row.id, result.messageId);
+    if (marked) {
+      await markBookingInternalEmailSent(env, booking.booking_reference);
+      console.log(
+        JSON.stringify({
+          email_internal_sent: true,
+          bookingReference: booking.booking_reference,
+          // message id is an opaque provider token — safe enough for ops logs
+          providerMessageId: result.messageId,
+        }),
+      );
+    }
+  } catch (err) {
+    console.error(
+      JSON.stringify({
+        email_outbox_delivery_failed: true,
+        outboxId: row.id,
+        error: String(err).slice(0, 200),
+      }),
+    );
+    await markEmailOutboxFailed(env, row.id, String(err));
+  }
+}
+
+/** Deliver pending/failed internal rows for one booking (safe for waitUntil). */
+export async function deliverInternalOutboxForBooking(
   env: PaymentsEnv,
   bookingReference: string,
-  customerEmail?: string | null,
 ): Promise<void> {
-  const pending = await getPendingEmailOutbox(env, bookingReference);
-
-  for (const row of pending) {
-    try {
-      const result = await sendBookingEmailStub({
-        kind: stubKindForOutbox(row.kind),
-        bookingReference,
-        to: row.kind === "confirmation" ? customerEmail : null,
-        payload: row.payload_json
-          ? (JSON.parse(row.payload_json) as Record<string, unknown>)
-          : { bookingReference },
-      });
-
-      if (!result.accepted) {
-        await markEmailOutboxFailed(env, row.id, "provider rejected message");
-        continue;
-      }
-
-      const claimed = await markEmailOutboxSent(env, row.id);
-      if (claimed) {
-        await markBookingEmailColumnSent(env, bookingReference, row.kind);
-      }
-    } catch (err) {
-      console.error("email_outbox_delivery_failed", row.id, String(err));
-      await markEmailOutboxFailed(env, row.id, String(err));
-    }
+  const rows = await getRetryableEmailOutbox(env, bookingReference);
+  for (const row of rows) {
+    if (row.kind !== INTERNAL_OUTBOX_KIND) continue;
+    await deliverOneInternalRow(env, row);
   }
+}
+
+/** Deliver all retryable internal rows (used by local retry script / future cron). */
+export async function deliverAllRetryableInternalOutbox(
+  env: PaymentsEnv,
+): Promise<{ attempted: number }> {
+  const rows = await getRetryableEmailOutbox(env, null);
+  let attempted = 0;
+  for (const row of rows) {
+    if (row.kind !== INTERNAL_OUTBOX_KIND) continue;
+    attempted += 1;
+    await deliverOneInternalRow(env, row);
+  }
+  return { attempted };
 }

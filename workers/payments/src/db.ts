@@ -196,12 +196,14 @@ export async function updateBookingStatus(
 export async function markBookingEmailColumnSent(
   env: PaymentsEnv,
   bookingReference: string,
-  kind: "confirmation" | "supplier",
+  kind: "confirmation" | "supplier" | "internal",
 ): Promise<void> {
   const column =
     kind === "confirmation"
       ? "email_confirmation_sent_at"
-      : "email_supplier_sent_at";
+      : kind === "supplier"
+        ? "email_supplier_sent_at"
+        : "email_internal_sent_at";
   const now = new Date().toISOString();
   await env.DB.prepare(
     `UPDATE bookings
@@ -210,6 +212,13 @@ export async function markBookingEmailColumnSent(
   )
     .bind(now, now, bookingReference)
     .run();
+}
+
+export async function markBookingInternalEmailSent(
+  env: PaymentsEnv,
+  bookingReference: string,
+): Promise<void> {
+  await markBookingEmailColumnSent(env, bookingReference, "internal");
 }
 
 /** Returns true if this event ID was newly recorded (should process). */
@@ -233,8 +242,9 @@ export async function claimEvent(
   }
 }
 
-export type EmailOutboxKind = "confirmation" | "supplier";
-export type EmailOutboxStatus = "pending" | "sent" | "failed";
+/** Outbox kinds: v1 delivers only "internal". Others reserved for later automation. */
+export type EmailOutboxKind = "confirmation" | "supplier" | "internal";
+export type EmailOutboxStatus = "pending" | "processing" | "sent" | "failed";
 
 export type EmailOutboxRow = {
   id: string;
@@ -247,6 +257,8 @@ export type EmailOutboxRow = {
   created_at: string;
   updated_at: string;
   sent_at: string | null;
+  last_attempted_at: string | null;
+  provider_message_id: string | null;
 };
 
 /** Idempotent enqueue — unique (booking_reference, kind). Returns true if inserted. */
@@ -263,8 +275,8 @@ export async function enqueueEmailOutbox(
     await env.DB.prepare(
       `INSERT INTO email_outbox (
         id, booking_reference, kind, status, attempts, last_error, payload_json,
-        created_at, updated_at, sent_at
-      ) VALUES (?, ?, ?, 'pending', 0, NULL, ?, ?, ?, NULL)`,
+        created_at, updated_at, sent_at, last_attempted_at, provider_message_id
+      ) VALUES (?, ?, ?, 'pending', 0, NULL, ?, ?, ?, NULL, NULL, NULL)`,
     )
       .bind(
         crypto.randomUUID(),
@@ -281,6 +293,54 @@ export async function enqueueEmailOutbox(
   }
 }
 
+/**
+ * Claim a row for send: pending|failed → processing.
+ * Returns false if another worker already claimed it or it is already sent.
+ */
+export async function claimEmailOutboxForSend(
+  env: PaymentsEnv,
+  outboxId: string,
+): Promise<boolean> {
+  const now = new Date().toISOString();
+  const result = await env.DB.prepare(
+    `UPDATE email_outbox
+     SET status = 'processing',
+         last_attempted_at = ?,
+         updated_at = ?,
+         attempts = attempts + 1,
+         last_error = NULL
+     WHERE id = ? AND status IN ('pending', 'failed')`,
+  )
+    .bind(now, now, outboxId)
+    .run();
+  return (result.meta.changes ?? 0) > 0;
+}
+
+/** Retryable rows for one booking, or all bookings when bookingReference is null. */
+export async function getRetryableEmailOutbox(
+  env: PaymentsEnv,
+  bookingReference: string | null,
+): Promise<EmailOutboxRow[]> {
+  if (bookingReference) {
+    const result = await env.DB.prepare(
+      `SELECT * FROM email_outbox
+       WHERE booking_reference = ? AND status IN ('pending', 'failed')
+       ORDER BY created_at ASC`,
+    )
+      .bind(bookingReference)
+      .all<EmailOutboxRow>();
+    return result.results ?? [];
+  }
+  const result = await env.DB.prepare(
+    `SELECT * FROM email_outbox
+     WHERE status IN ('pending', 'failed')
+     ORDER BY created_at ASC
+     LIMIT 50`,
+  ).all<EmailOutboxRow>();
+  return result.results ?? [];
+}
+
+/** @deprecated Use getRetryableEmailOutbox — kept for older tests. */
 export async function getPendingEmailOutbox(
   env: PaymentsEnv,
   bookingReference: string,
@@ -298,14 +358,19 @@ export async function getPendingEmailOutbox(
 export async function markEmailOutboxSent(
   env: PaymentsEnv,
   outboxId: string,
+  providerMessageId?: string | null,
 ): Promise<boolean> {
   const now = new Date().toISOString();
   const result = await env.DB.prepare(
     `UPDATE email_outbox
-     SET status = 'sent', sent_at = ?, updated_at = ?, attempts = attempts + 1
-     WHERE id = ? AND status = 'pending'`,
+     SET status = 'sent',
+         sent_at = ?,
+         updated_at = ?,
+         provider_message_id = COALESCE(?, provider_message_id),
+         last_error = NULL
+     WHERE id = ? AND status = 'processing'`,
   )
-    .bind(now, now, outboxId)
+    .bind(now, now, providerMessageId ?? null, outboxId)
     .run();
   return (result.meta.changes ?? 0) > 0;
 }
@@ -318,9 +383,12 @@ export async function markEmailOutboxFailed(
   const now = new Date().toISOString();
   await env.DB.prepare(
     `UPDATE email_outbox
-     SET status = 'failed', last_error = ?, updated_at = ?, attempts = attempts + 1
-     WHERE id = ? AND status = 'pending'`,
+     SET status = 'failed',
+         last_error = ?,
+         updated_at = ?,
+         last_attempted_at = COALESCE(last_attempted_at, ?)
+     WHERE id = ? AND status IN ('processing', 'pending')`,
   )
-    .bind(error.slice(0, 500), now, outboxId)
+    .bind(error.slice(0, 500), now, now, outboxId)
     .run();
 }

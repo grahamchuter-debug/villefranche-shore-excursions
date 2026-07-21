@@ -1,7 +1,5 @@
-#!/usr/bin/env node
 /**
- * Sync compact ship-by-date catalogue into the Worker from public/data CSVs.
- * Run from repo root: node workers/payments/scripts/sync-ships-by-date.mjs
+ * Sync ship-by-date catalogue (with times) into the Worker from public/data CSVs.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -35,11 +33,18 @@ for (const file of fs
     const parts = line.split(",");
     const date = parts[0]?.trim();
     const ship = parts[1]?.trim();
+    const arrival = parts[2]?.trim() || null;
+    const departure = parts[3]?.trim() || null;
     if (!date || !ship || !/^\d{4}-\d{2}-\d{2}$/.test(date)) continue;
     const slug = slugifyShipName(ship);
     if (!map[date]) map[date] = [];
     if (!map[date].some((s) => s.slug === slug)) {
-      map[date].push({ slug, name: ship });
+      map[date].push({
+        slug,
+        name: ship,
+        arrival,
+        departure,
+      });
     }
   }
 }

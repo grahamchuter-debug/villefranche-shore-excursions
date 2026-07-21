@@ -34,7 +34,7 @@ function shipFromSession(data: VerifyCheckoutSessionResponse): BookingShipVisit 
 }
 
 const MISSING_SESSION_MESSAGE =
-  "Missing payment session. If you completed payment, check your email for confirmation.";
+  "Missing payment session. If you completed payment, contact us with your booking details — we will email your confirmation shortly.";
 
 export function BookingSuccessClient() {
   const searchParams = useSearchParams();
@@ -95,7 +95,7 @@ export function BookingSuccessClient() {
         setState({
           status: "error",
           message:
-            "We could not confirm this payment yet. If you were charged, your confirmation email will follow shortly.",
+            "We could not confirm this payment yet. If you were charged, contact us with your details — we will email your confirmation shortly.",
         });
       } catch (err) {
         if (cancelled) return;

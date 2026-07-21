@@ -4,7 +4,12 @@
 
 import shipsByDate from "./data/ships-by-date.json";
 
-export type ScheduleShip = { slug: string; name: string };
+export type ScheduleShip = {
+  slug: string;
+  name: string;
+  arrival?: string | null;
+  departure?: string | null;
+};
 
 /** Matches site schedule publication window (June 2026 – November 2028). */
 export const BOOKABLE_WINDOW_START = "2026-06-01";
@@ -121,5 +126,21 @@ export function resolveShipForDate(args: {
       shipName: match.name,
       isCustom: false,
     },
+  };
+}
+
+export function getShipCallTimes(
+  excursionDate: string,
+  shipId: string | null,
+  shipName: string,
+): { arrival: string | null; departure: string | null } {
+  const ships = getShipsOnDate(excursionDate);
+  const slug = shipId?.trim() || slugifyShipName(shipName);
+  const match =
+    ships.find((s) => s.slug === slug) ??
+    ships.find((s) => slugifyShipName(s.name) === slugifyShipName(shipName));
+  return {
+    arrival: match?.arrival ?? null,
+    departure: match?.departure ?? null,
   };
 }

@@ -21,7 +21,12 @@ SITE_ORIGIN = "https://villefrancheshoreexcursions.com"
 # Comma-separated extra CORS origins (localhost always allowed in code).
 # Include www if the site is reachable there — Allow-Origin must echo Origin exactly.
 CORS_ALLOWED_ORIGINS = "http://localhost:3000,http://127.0.0.1:3000,https://www.villefrancheshoreexcursions.com"
+# Internal paid-booking alerts (Resend). From address must be on a verified domain.
+INTERNAL_BOOKING_EMAIL = "info@wowatour.com"
+EMAIL_FROM = "bookings@notifications.wowatour.com"
+EMAIL_FROM_NAME = "Villefranche Shore Excursions"
 
 # Secrets (set via `wrangler secret put` or `.dev.vars` — never commit):
 # STRIPE_SECRET_KEY=sk_test_...
 # STRIPE_WEBHOOK_SECRET=whsec_...
+# RESEND_API_KEY=re_...

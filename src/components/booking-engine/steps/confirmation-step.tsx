@@ -66,11 +66,12 @@ export function ConfirmationStep({
 
         <div className="space-y-8 px-6 py-10 text-left sm:px-10">
           <p className="text-center text-[15px] leading-7 text-[var(--book-muted)] sm:text-left">
-            Booking confirmed. We are preparing your meeting details
+            Booking confirmed. We are preparing your meeting details and will
+            email your confirmation shortly
             {customerEmail ? (
               <>
                 {" "}
-                and will email confirmation to{" "}
+                to{" "}
                 <span className="font-medium text-[var(--book-ink)]">
                   {customerEmail}
                 </span>

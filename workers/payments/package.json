@@ -10,6 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "sync:ships": "node scripts/sync-ships-by-date.mjs",
+    "email:retry-failed": "node scripts/retry-failed-internal-emails.mjs",
     "db:migrate:local": "wrangler d1 migrations apply villefranche-bookings --local",
     "db:migrate:remote": "wrangler d1 migrations apply villefranche-bookings --remote"
   },

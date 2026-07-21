@@ -8,13 +8,19 @@ import {
   getBookingByReference,
   updateBookingStatus,
 } from "../db";
-import { enqueueAndDeliverBookingEmails } from "../email";
+import {
+  deliverInternalOutboxForBooking,
+  enqueueInternalBookingNotification,
+} from "../email";
 import { createStripe } from "../stripe-client";
 import type { BookingStatus, PaymentsEnv } from "../types";
+
+type WaitUntil = (promise: Promise<unknown>) => void;
 
 export async function handleStripeWebhook(
   request: Request,
   env: PaymentsEnv,
+  waitUntil?: WaitUntil,
 ): Promise<Response> {
   if (!env.STRIPE_WEBHOOK_SECRET) {
     return jsonResponse({ error: "Webhook secret not configured" }, 503, request, env);
@@ -51,12 +57,15 @@ export async function handleStripeWebhook(
     return jsonResponse({ received: true, duplicate: true }, 200, request, env);
   }
 
+  const deliverRefs = new Set<string>();
+
   try {
     switch (event.type) {
       case "checkout.session.completed":
       case "checkout.session.async_payment_succeeded": {
         const session = event.data.object as Stripe.Checkout.Session;
-        await fulfillCheckoutSession(env, session, event.type);
+        const ref = await fulfillCheckoutSession(env, session, event.type);
+        if (ref) deliverRefs.add(ref);
         break;
       }
       case "checkout.session.async_payment_failed": {
@@ -89,6 +98,33 @@ export async function handleStripeWebhook(
     return jsonResponse({ error: "Webhook handler failed" }, 500, request, env);
   }
 
+  // Confirm booking + enqueue in-request; deliver Resend in background so Stripe
+  // is not blocked on the email provider.
+  if (waitUntil && deliverRefs.size > 0) {
+    waitUntil(
+      (async () => {
+        for (const ref of deliverRefs) {
+          try {
+            await deliverInternalOutboxForBooking(env, ref);
+          } catch (err) {
+            console.error(
+              JSON.stringify({
+                waituntil_email_error: true,
+                bookingReference: ref,
+                error: String(err).slice(0, 200),
+              }),
+            );
+          }
+        }
+      })(),
+    );
+  } else if (deliverRefs.size > 0) {
+    // Tests / environments without ctx: still attempt delivery after response path.
+    for (const ref of deliverRefs) {
+      await deliverInternalOutboxForBooking(env, ref);
+    }
+  }
+
   return jsonResponse({ received: true }, 200, request, env);
 }
 
@@ -118,11 +154,15 @@ async function resolveBookingFromSession(
   return null;
 }
 
+/**
+ * Mark booking confirmed and enqueue internal ops notification.
+ * Returns booking reference so the caller can waitUntil-deliver email.
+ */
 async function fulfillCheckoutSession(
   env: PaymentsEnv,
   session: Stripe.Checkout.Session,
   eventType: string,
-): Promise<void> {
+): Promise<string | null> {
   if (session.payment_status !== "paid" && eventType === "checkout.session.completed") {
     if (session.payment_status === "unpaid") {
       console.log(
@@ -132,23 +172,19 @@ async function fulfillCheckoutSession(
           payment_status: session.payment_status,
         }),
       );
-      return;
+      return null;
     }
   }
 
-  const booking = await resolveBookingFromSession(env, session);
+  let booking = await resolveBookingFromSession(env, session);
   if (!booking) {
     console.error("fulfill_missing_booking", session.id);
-    return;
+    return null;
   }
 
   if (booking.status === "confirmed" || booking.status === "paid") {
-    await enqueueAndDeliverBookingEmails(
-      env,
-      booking.booking_reference,
-      booking.customer_email,
-    );
-    return;
+    await enqueueInternalBookingNotification(env, booking);
+    return booking.booking_reference;
   }
 
   const paymentIntentId =
@@ -164,11 +200,11 @@ async function fulfillCheckoutSession(
     customerName: session.customer_details?.name ?? null,
   });
 
-  await enqueueAndDeliverBookingEmails(
-    env,
-    booking.booking_reference,
-    session.customer_details?.email ?? booking.customer_email,
-  );
+  booking =
+    (await getBookingByReference(env, booking.booking_reference)) ?? booking;
+
+  await enqueueInternalBookingNotification(env, booking);
+  return booking.booking_reference;
 }
 
 async function markPaymentFailedFromSession(

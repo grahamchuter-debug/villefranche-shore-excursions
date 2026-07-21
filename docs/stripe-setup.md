@@ -68,7 +68,7 @@ npm run sync:ships
 ### Deferred before live launch
 
 - Capacity / seat holds
-- Real email provider (outbox is wired; delivery is still a stub)
+- Automated customer confirmation / voucher email (v1: **manual**; internal Resend alert only — see `docs/ops-bookings.md`)
 - Optional: tighter timezone-aware “today” (Worker currently uses UTC calendar date)
 - Optional: reject custom ships on dates with no published calls (currently allowed when `shipId` is `not-listed`)
 
@@ -205,9 +205,12 @@ If D1 inserts `awaiting_payment` but Stripe Checkout Session creation fails, the
 
 ## Email (outbox)
 
-Webhooks **enqueue** rows into `email_outbox` (`pending` → attempt → `sent` / `failed`). `sent_at` is written only after the stub/provider accepts the message. Unique `(booking_reference, kind)` prevents duplicate sends on webhook retries.
+Webhooks **enqueue** an **internal** ops alert (`kind = internal`) after the booking is `confirmed`, then deliver via Resend in `ctx.waitUntil` so Stripe is not blocked.
 
-Confirmation + supplier deliveries are still **stubs** (logged). Wire a real provider before live launch; keep the same outbox status transitions.
+- Customer confirmation / supplier automation: **not sent in v1** (manual customer email).
+- `sent_at` / `provider_message_id` only after Resend accepts the message.
+- Unique `(booking_reference, kind)` prevents duplicate internal emails on webhook retries.
+- Ops runbook + D1 queries + `npm run email:retry-failed`: **`docs/ops-bookings.md`**.
 
 ## Analytics stubs
 
@@ -251,7 +254,7 @@ Confirmation + supplier deliveries are still **stubs** (logged). Wire a real pro
 - [ ] Rebuild static site with production `NEXT_PUBLIC_*` values
 - [ ] Confirm CORS allows production origin only (plus temporary staging if needed)
 - [ ] Restricted API key considered for production permissions
-- [ ] Real email provider wired (replace stubs) before relying on customer comms
+- [ ] Real email provider wired for **internal** ops alerts (`RESEND_API_KEY`); customer vouchers remain manual until back-office project
 - [ ] Monitor first live payments + webhook delivery in Stripe Workbench
 - [ ] Document rollback: revert Worker deploy + keep accepting enquiries if needed
 

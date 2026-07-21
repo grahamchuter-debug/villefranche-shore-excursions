@@ -25,6 +25,14 @@ export type PaymentsEnv = {
   SITE_BASE_URL?: string;
   SITE_ORIGIN?: string;
   CORS_ALLOWED_ORIGINS?: string;
+  /** Resend API key — Worker secret only. */
+  RESEND_API_KEY?: string;
+  /** Ops inbox for paid-booking alerts (plain var). */
+  INTERNAL_BOOKING_EMAIL?: string;
+  /** Verified sender address, e.g. bookings@notifications.wowatour.com */
+  EMAIL_FROM?: string;
+  /** Display name for From header (brand-specific). */
+  EMAIL_FROM_NAME?: string;
 };
 
 export type CreateCheckoutBody = {
@@ -87,6 +95,7 @@ export type BookingRow = {
   idempotency_key: string;
   email_confirmation_sent_at: string | null;
   email_supplier_sent_at: string | null;
+  email_internal_sent_at?: string | null;
   created_at: string;
   updated_at: string;
 };

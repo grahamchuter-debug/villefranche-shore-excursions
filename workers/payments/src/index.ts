@@ -5,7 +5,11 @@ import { handleStripeWebhook } from "./routes/webhook";
 import type { PaymentsEnv } from "./types";
 
 export default {
-  async fetch(request: Request, env: PaymentsEnv): Promise<Response> {
+  async fetch(
+    request: Request,
+    env: PaymentsEnv,
+    ctx: ExecutionContext,
+  ): Promise<Response> {
     try {
       const url = new URL(request.url);
       const path = url.pathname.replace(/\/+$/, "") || "/";
@@ -34,7 +38,7 @@ export default {
       }
 
       if (path === "/api/stripe/webhook" && request.method === "POST") {
-        return await handleStripeWebhook(request, env);
+        return await handleStripeWebhook(request, env, (p) => ctx.waitUntil(p));
       }
 
       return jsonResponse({ error: "Not found" }, 404, request, env);
