@@ -73,6 +73,7 @@ export function buildInternalBookingEmail(
   const ref = booking.booking_reference;
   const date = booking.excursion_date;
   const subject = `New paid Villefranche booking — ${ref} — ${date}`;
+  const adminUrl = `https://villefrancheshoreexcursions.com/admin/booking/${encodeURIComponent(ref)}`;
 
   const customerEmail = booking.customer_email?.trim() || "—";
   const mailto =
@@ -81,7 +82,6 @@ export function buildInternalBookingEmail(
       : "—";
 
   const rows: Array<[string, string]> = [
-    ["Booking reference", ref],
     ["Payment status", booking.status],
     ["Stripe Checkout Session", booking.stripe_checkout_session_id ?? "—"],
     ["Stripe PaymentIntent", booking.stripe_payment_intent_id ?? "—"],
@@ -105,6 +105,11 @@ export function buildInternalBookingEmail(
   ];
 
   const textLines = [
+    "Booking Reference",
+    ref,
+    "",
+    `Open Booking: ${adminUrl}`,
+    "",
     MANUAL_CUSTOMER_CONFIRMATION_BANNER,
     "",
     "Customer confirmation / voucher must be sent manually for this soft launch.",
@@ -124,6 +129,17 @@ export function buildInternalBookingEmail(
 
   const html = `<!DOCTYPE html>
 <html><body style="font-family:system-ui,sans-serif;line-height:1.45;color:#111;">
+  <p style="margin:0 0 4px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#555;">Booking Reference</p>
+  <p style="margin:0 0 16px;font-size:28px;font-weight:700;letter-spacing:0.02em;">${escapeHtml(ref)}</p>
+  <p style="margin:0 0 8px;">
+    <a href="${escapeHtml(adminUrl)}"
+       style="display:inline-block;padding:12px 20px;background:#0b5fff;color:#ffffff;text-decoration:none;font-weight:600;border-radius:6px;">
+      Open Booking
+    </a>
+  </p>
+  <p style="margin:0 0 20px;font-size:12px;color:#666;word-break:break-all;">
+    ${escapeHtml(adminUrl)}
+  </p>
   <p style="padding:12px 14px;background:#fff3cd;border:1px solid #ffc107;font-weight:700;">
     ${escapeHtml(MANUAL_CUSTOMER_CONFIRMATION_BANNER)}
   </p>

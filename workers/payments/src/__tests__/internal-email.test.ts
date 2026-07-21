@@ -70,6 +70,16 @@ describe("internal email content", () => {
     );
     expect(content.text).toContain(MANUAL_CUSTOMER_CONFIRMATION_BANNER);
     expect(content.html).toContain(MANUAL_CUSTOMER_CONFIRMATION_BANNER);
+    expect(content.text).toContain("Booking Reference");
+    expect(content.text).toContain("VF-TEST01");
+    expect(content.text).toContain(
+      "Open Booking: https://villefrancheshoreexcursions.com/admin/booking/VF-TEST01",
+    );
+    expect(content.html).toContain("Booking Reference");
+    expect(content.html).toContain("Open Booking");
+    expect(content.html).toContain(
+      "https://villefrancheshoreexcursions.com/admin/booking/VF-TEST01",
+    );
     expect(content.html).toContain('mailto:guest@example.com');
     expect(content.text).toContain("Celebrity Equinox");
     expect(content.text).toContain("07:00");
