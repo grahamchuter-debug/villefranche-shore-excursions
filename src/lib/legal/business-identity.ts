@@ -33,8 +33,8 @@ export const businessIdentity = {
     multiline:
       "Kintyre House\n70 High Street\nFareham\nHampshire\nUnited Kingdom\nPO16 7BB",
   },
-  customerServiceEmail: "info@villefrancheshoreexcursions.com",
-  customerServiceEmailHref: "mailto:info@villefrancheshoreexcursions.com",
+  customerServiceEmail: "info@wowatour.com",
+  customerServiceEmailHref: "mailto:info@wowatour.com",
   /** Concise statement for use near checkout legal links, before purchase. */
   agentStatus:
     "Villefranche Shore Excursions acts as booking agent for the local excursion provider.",
